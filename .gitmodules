@@ -1,0 +1,3 @@
+[submodule "da-base-template"]
+	path = da-base-template
+	url = https://github.com/HTL-Leoben/da-base-template
