@@ -1,0 +1,75 @@
+name: Build and send diploma thesis
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - Diplomarbeit/**
+  workflow_dispatch:
+
+jobs:
+  build-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Cache Docker Image
+        id: cache-docker
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.docker
+          key: ${{ runner.os }}-docker-${{ hashFiles('**/HTLLE-DA-Vorlage/tools/docker/Dockerfile') }}
+          restore-keys: ${{ runner.os }}-docker-
+
+      - name: Create Docker Cache Directory
+        if: steps.cache-docker.outputs.cache-hit != 'true'
+        run: mkdir -p /tmp/.docker
+
+      - name: Load Cached Docker Image
+        if: steps.cache-docker.outputs.cache-hit == 'true'
+        run: docker load -i /tmp/.docker/image.tar
+
+      - name: Pull Docker Image
+        if: steps.cache-docker.outputs.cache-hit != 'true'
+        run: |
+          docker pull bytebang/htlle-da-env
+          docker save bytebang/htlle-da-env -o /tmp/.docker/image.tar
+
+      - name: Build Diploma Thesis
+        run: docker run -v ${{ github.workspace }}/Diplomarbeit:/workspace bytebang/htlle-da-env
+
+      - name: Upload Diploma Thesis
+        uses: actions/upload-artifact@v4
+        with:
+          name: diploma-thesis
+          path: Diplomarbeit/diplomarbeit.pdf
+
+  send:
+    needs: build-upload
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Diploma Thesis
+        uses: actions/download-artifact@v4
+        with:
+          name: diploma-thesis
+
+      - name: Extract Commit Message
+        id: get_commit_message
+        run: echo "commit_message=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
+
+      - name: Send Diploma Thesis
+        uses: dawidd6/action-send-mail@v5
+        with:
+          server_address: ${{ secrets.SMTP_SERVER }}
+          server_port: ${{ secrets.SMTP_PORT }}
+          username: ${{ secrets.MAIL }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "Diploma thesis"
+          body: ${{ env.commit_message }}
+          to: ${{ secrets.TEAMS_MAIL }}
+          from: ${{ secrets.MAIL }}
+          attachments: diplomarbeit.pdf

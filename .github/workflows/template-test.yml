@@ -1,0 +1,53 @@
+name: Test Template
+
+on:
+  push:
+    paths-ignore:
+      - .github/**
+      - tools/**
+      - LICENSE
+      - CHANGELOG.md
+      - CODEOWNERS
+      - CODE_OF_CONDUCT.md
+      - CONTRIBUTING.md
+      - README.md
+      - SECURITY.md
+      - action.yml
+  pull_request:
+    paths-ignore:
+      - .github/**
+      - tools/**
+      - LICENSE
+      - CHANGELOG.md
+      - CODEOWNERS
+      - CODE_OF_CONDUCT.md
+      - CONTRIBUTING.md
+      - README.md
+      - SECURITY.md
+      - action.yml
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Create Diploma Thesis Folder
+        run: |
+          mkdir Diplomarbeit
+          mkdir Diplomarbeit/HTLLE-DA-Vorlage
+          cp -r example/* Diplomarbeit/
+          cp -r style tools Jenkinsfile Makefile Diplomarbeit/HTLLE-DA-Vorlage
+
+      - name: Build Docker Image
+        uses: docker/build-push-action@v6
+        with:
+          context: tools/docker
+          push: false
+          tags: ${{ secrets.DOCKERHUB_REPOSITORY }}:latest
+          
+      - name: Build Diploma Thesis
+        run: docker run -v ${{ github.workspace }}/Diplomarbeit:/workspace ${{ secrets.DOCKERHUB_REPOSITORY }}:latest

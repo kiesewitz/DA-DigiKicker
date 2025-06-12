@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  changelog:
+    name: Changelog
+    if: github.event_name != 'pull_request' 
+    runs-on: ubuntu-latest
+
+    outputs:
+      skipped: ${{ steps.changelog.outputs.skipped }}
+      tag: ${{ steps.changelog.outputs.tag }}
+      clean_changelog: ${{ steps.changelog.outputs.clean_changelog }}
+      version: ${{ steps.changelog.outputs.version }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Create Changelog
+        uses: TriPSs/conventional-changelog-action@v6
+        id: changelog
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          git-user-name: "github-actions[bot]"
+          git-user-email: "github-actions[bot]@users.noreply.github.com"
+          skip-git-pull: true
+          preset: conventionalcommits
+          input-file: CHANGELOG.md
+          output-file: CHANGELOG.md
+          version-file: .github/version-info.yml
+
+
+  release:
+    name: Release
+    needs: [changelog]
+    if: github.event_name != 'pull_request' && needs.changelog.outputs.skipped == 'false'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        with:
+          tag_name: ${{ needs.changelog.outputs.tag }}
+          name: ${{ needs.changelog.outputs.tag }}
+          body: ${{ needs.changelog.outputs.clean_changelog }}
+

@@ -1,0 +1,23 @@
+name: Build and send diploma thesis
+
+on: 
+  push:
+    branches:
+      - main
+    paths:
+      - Diplomarbeit/**
+  workflow_dispatch:
+
+jobs:
+  build-send:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build And Send Diploma Thesis
+        uses: bitsneak/HTLLE-DA-Vorlage@main
+        with:
+          mail-address: ${{ secrets.MAIL }}
+          mail-address-password: ${{ secrets.MAIL_PASSWORD }}
+          smtp-server: ${{ secrets.SMTP_SERVER }}
+          smtp-port: ${{ secrets.SMTP_PORT }}
+          teams-mail: ${{ secrets.TEAMS_MAIL }}
