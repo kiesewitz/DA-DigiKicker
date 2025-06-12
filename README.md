@@ -1,2 +1,0 @@
-# da-template
-Diplomarbeiten template
