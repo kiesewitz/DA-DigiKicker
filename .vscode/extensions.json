@@ -1,0 +1,16 @@
+{
+    "recommendations": [
+        "sygene.auto-correct",
+        "streetsidesoftware.code-spell-checker",
+        "streetsidesoftware.code-spell-checker-german",
+        "mhutchie.git-graph",
+        "waderyan.gitblame",
+        "shaharkazaz.git-merger",
+        "codezombiech.gitignore",
+        "yzhang.markdown-all-in-one",
+        "notzaki.pandocciter",
+        "tomoki1207.pdf",
+        "wayou.vscode-todo-highlight",
+        "spmeesseman.vscode-taskexplorer"
+    ]
+}

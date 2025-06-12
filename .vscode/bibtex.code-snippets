@@ -1,0 +1,64 @@
+{
+  "Online reference": {
+    "prefix": ["online"],
+    "body": [
+      "@online{${1:citeKey},",
+      "    author = {${2:author}},",
+      "    title = {{${3:title}}},",
+      "    url = {${4:url}},",
+      "    year = {${5:updateYear}},",
+      "    month = {${6:updateMonth}},",
+      "    day = {${7:updateDay}},",
+      "    urldate = {$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE}",
+      "}",
+    ],
+    "description": "Template for online reference"
+  },
+  "Article reference": {
+    "prefix": ["article"],
+    "body": [
+      "@article{${1:citeKey},",
+      "    author = {${2:author}},",
+      "    title = {{${3:title}}},",
+      "    journal = {{${4:journal}}},",
+      "    year = {${5:year}},",
+      "    volume = {${6}},",
+      "    number = {${7}},",
+      "    pages = {${8}},",
+      "    month = {${9}},",
+      "    note = {${10}},",
+      "}",
+    ],
+    "description": "Template for article reference"
+  },
+  "Book reference": {
+    "prefix": ["book"],
+    "body": [
+      "@book{${1:citeKey},",
+      "    author = {${2:author}},",
+      "    editor = {${3:editor}},",
+      "    title = {{${4:title}}},",
+      "    publisher = {{${5:publisher}}},",
+      "    year = {${6:year}},",
+      "    volume = {${7}},",
+      "    number = {${8}},",
+      "    pages = {${9}},",
+      "    month = {${10}},",
+      "    note = {${11}},",
+      "}",
+    ],
+    "description": "Template for book reference"
+  },
+  "Reference": {
+    "prefix": ["ref"],
+    "body": [
+      "@${1:kind}{${2:citeKey},",
+      "    author = {${3:author}},",
+      "    title = {{${4:title}}},",
+      "    year = {${5:year}},",
+      "}",
+    ],
+    "description": "Template for a reference "
+  },
+  //More templates are appreciated 
+}

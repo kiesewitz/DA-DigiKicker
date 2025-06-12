@@ -1,0 +1,12 @@
+{
+    "cSpell.words": [
+        "AHWIN",
+        "colour",
+        "colours"
+    ],
+    "cSpell.language": "en,de",
+    "todohighlight.keywords": [
+        "\\todo"
+    ],
+    "PandocCiter.RootFile": "metadata.yaml",
+}
