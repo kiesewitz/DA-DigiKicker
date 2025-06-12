@@ -1,0 +1,60 @@
+name: Build and send diploma thesis
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - Diplomarbeit/**
+  workflow_dispatch:
+
+jobs:
+  build-upload:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends git build-essential make-guile texlive-full pandoc pandoc-citeproc tree rsync hunspell hunspell-de-at hunspell-en-us
+          
+      - name: Build Diploma Thesis
+        run: |
+          cd Diplomarbeit
+          make pdf -C HTLLE-DA-Vorlage SOURCEDIR=$(pwd)
+
+      - name: Upload Diploma Thesis
+        uses: actions/upload-artifact@v4
+        with:
+          name: diploma-thesis
+          path: Diplomarbeit/diplomarbeit.pdf
+
+  send:
+      needs: build-upload
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Download Diploma Thesis
+          uses: actions/download-artifact@v4
+          with:
+            name: diploma-thesis
+
+        - name: Extract Commit Message
+          id: get_commit_message
+          run: echo "commit_message=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
+
+        - name: Send Diploma Thesis
+          uses: dawidd6/action-send-mail@v5
+          with:
+            server_address: ${{ secrets.SMTP_SERVER }}
+            server_port: ${{ secrets.SMTP_PORT }}
+            username: ${{ secrets.MAIL }}
+            password: ${{ secrets.MAIL_PASSWORD }}
+            subject: "Diploma thesis"
+            body: ${{ env.commit_message }}
+            to: ${{ secrets.TEAMS_MAIL }}
+            from: ${{ secrets.MAIL }}
+            attachments: diplomarbeit.pdf

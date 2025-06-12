@@ -1,0 +1,24 @@
+
+\lstdefinelanguage{Dart}{
+  morekeywords={
+    % normal keywords (without data types)
+    abstract, as, assert, async, await, break, case, catch, class, const,
+    continue, default, deferred, do, dynamic, else, enum, export, extends,
+    extension, external, factory, false, final, finally, for, get, if, implements,
+    import, in, interface, is, late, library, mixin, new, null, on, operator,
+    part, required, rethrow, return, set, show, static, super, switch, sync,
+    this, throw, true, try, typedef, var, void, while, with, yield
+  },
+  morekeywords={[2] % data types
+    int, double, String, bool, List, Map, Set, Future, Stream
+  },
+  morekeywords={[3] % literals
+    % reserved words for literal values
+    null,true,false,
+  },
+  sensitive,
+  morecomment  = [l]//,
+  morecomment  = [s]{/*}{*/},
+  morestring   = [b]",
+  morestring   = [b]',
+}

@@ -1,0 +1,9 @@
+version: 2
+updates:
+  - package-ecosystem: "docker"
+    directory: "tools/docker"
+    schedule:
+      interval: "monthly"
+    commit-message:
+      prefix: "deps"
+      include: "scope"

@@ -1,0 +1,197 @@
+name: Discord notification
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - Diplomarbeit/**
+
+  workflow_run:
+    workflows: ["Build and send diploma thesis"]
+    types:
+      - completed
+
+  issues:
+    types: [opened, reopened, assigned, unassigned, labeled, unlabeled, edited, closed, deleted]
+
+  pull_request:
+    types: [opened, reopened, assigned, unassigned, labeled, unlabeled, synchronize, closed]
+
+  release:
+    types: [created, edited, deleted]
+
+jobs:
+  commit:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Short SHA
+        id: short_sha
+        run: echo "short_sha=$(echo "${{ github.sha }}" | cut -c1-7)" >> $GITHUB_OUTPUT
+
+      - name: Get Commit Count
+        id: commit_count
+        run: echo "count=$(jq -r '.commits | length' <<< '${{ toJSON(github.event) }}')" >> $GITHUB_OUTPUT
+
+      - name: Format Commit Messages
+        id: commits
+        run: |
+          commits=$(jq -r '.commits[] | "[\(.id[0:7])](\(.url)) \(.message) - \(.author.username)"' <<< '${{ toJSON(github.event) }}')
+          echo "text<<EOF" >> $GITHUB_OUTPUT
+          echo "$commits" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Send Commit Notification
+        uses: tsickert/discord-webhook@v7.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          username: GitHub
+          avatar-url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          embed-title: "[${{ github.ref_name }}] ${{ steps.commit_count.outputs.count }} commit${{ steps.commit_count.outputs.count != 1 && 's' || '' }}"
+          embed-url: ${{ steps.commit_count.outputs.count > 1 && format('{0}/compare/{1}...{2}', github.event.repository.html_url, github.event.before, github.sha) || format('{0}/commit/{1}', github.event.repository.html_url, github.sha) }}
+          embed-description: ${{ steps.commits.outputs.text }}
+          embed-author-name: ${{ github.actor }}
+          embed-author-icon-url: ${{ github.event.sender.avatar_url }}
+          embed-author-url: ${{ github.event.sender.html_url }}
+          embed-color: 7506394
+
+  thesis:
+    if: github.event_name == 'workflow_run'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Short SHA
+        id: short_sha
+        run: echo "short_sha=$(echo "${{ github.sha }}" | cut -c1-7)" >> $GITHUB_OUTPUT
+
+      - name: Send Diploma Thesis Notification
+        uses: tsickert/discord-webhook@v7.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          username: GitHub
+          avatar-url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          embed-title: "[${{ github.event.workflow_run.head_branch }}] ${{ github.event.workflow_run.name }}"
+          embed-url: ${{ github.event.workflow_run.html_url }}
+          embed-description: |
+            **${{ github.event.workflow_run.status }} & ${{ github.event.workflow_run.conclusion }}**
+            [${{ steps.short_sha.outputs.short_sha }}](${{ github.event.repository.html_url }}/commit/${{ github.sha }}) ${{ github.event.workflow_run.head_commit.message }} - ${{ github.event.workflow_run.triggering_actor.login }}
+          embed-author-name: ${{ github.event.workflow_run.triggering_actor.login }}
+          embed-author-icon-url: ${{ github.event.workflow_run.triggering_actor.avatar_url }}
+          embed-author-url: ${{ github.event.workflow_run.triggering_actor.html_url }}
+          embed-color: |
+            ${{ github.event.workflow_run.conclusion == 'success' && '5025612' ||
+            github.event.workflow_run.conclusion == 'failure' && '15158332' ||
+            '15965209' }}
+
+  issue:
+    if: github.event_name == 'issues'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Labels
+        id: labels
+        env:
+          LABELS_JSON: ${{ toJSON(github.event.issue.labels) }}
+        run: |
+          LABELS=$(echo "$LABELS_JSON" | jq -r '.[].name' | awk -v ORS=', ' '1' | sed 's/, $//')
+          echo "labels=${LABELS:-No labels}" >> $GITHUB_OUTPUT
+
+      - name: Get Assignees
+        id: assignees
+        env:
+          ASSIGNEES_JSON: ${{ toJSON(github.event.issue.assignees) }}
+        run: |
+          ASSIGNEES=$(echo "$ASSIGNEES_JSON" | jq -r '.[].login' | awk -v ORS=', ' '1' | sed 's/, $//')
+          echo "assignees=${ASSIGNEES:-No assignees}" >> $GITHUB_OUTPUT
+
+  pr:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get PR Labels
+        id: labels
+        env:
+          LABELS_JSON: ${{ toJSON(github.event.pull_request.labels) }}
+        run: |
+          LABELS=$(echo "$LABELS_JSON" | jq -r '.[].name' | awk -v ORS=', ' '1' | sed 's/, $//')
+          echo "labels=${LABELS:-No labels}" >> $GITHUB_OUTPUT
+
+      - name: Get PR Assignees
+        id: assignees
+        env:
+          ASSIGNEES_JSON: ${{ toJSON(github.event.pull_request.assignees) }}
+        run: |
+          ASSIGNEES=$(echo "$ASSIGNEES_JSON" | jq -r '.[].login' | awk -v ORS=', ' '1' | sed 's/, $//')
+          echo "assignees=${ASSIGNEES:-No assignees}" >> $GITHUB_OUTPUT
+
+      - name: Send PR Notification
+        uses: tsickert/discord-webhook@v7.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          username: GitHub
+          avatar-url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          embed-title: "[PR ${{ github.event.action }}] ${{ github.event.pull_request.title }}"
+          embed-url: ${{ github.event.pull_request.html_url }}
+          embed-description: |
+            **${{ github.event.pull_request.user.login }}** ${{ github.event.action }} a PR
+            **Branch:** ${{ github.event.pull_request.head.ref }} → ${{ github.event.pull_request.base.ref }}
+            **State:** ${{ github.event.pull_request.state }}
+            **Assignees:** ${{ steps.assignees.outputs.assignees }}
+            **Labels:** ${{ steps.labels.outputs.labels }}
+          embed-author-name: ${{ github.event.pull_request.user.login }}
+          embed-author-icon-url: ${{ github.event.pull_request.user.avatar_url }}
+          embed-author-url: ${{ github.event.pull_request.user.html_url }}
+          embed-color: |
+            ${{ github.event.action == 'closed' && github.event.pull_request.merged && '5025612' ||
+            github.event.action == 'closed' && '15158332' ||
+            github.event.action == 'opened' && '3447003' ||
+            (github.event.action == 'labeled' || github.event.action == 'unlabeled') && '7506394' ||
+            '15965209' }}
+
+      - name: Send Issue Notification
+        uses: tsickert/discord-webhook@v7.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          username: GitHub
+          avatar-url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          embed-title: "[Issue ${{ github.event.action }}] ${{ github.event.issue.title }}"
+          embed-url: ${{ github.event.issue.html_url }}
+          embed-description: |
+            **${{ github.event.issue.user.login }}** ${{ github.event.action }} an issue
+            **Assignees:** ${{ steps.assignees.outputs.assignees }}
+            **Labels:** ${{ steps.labels.outputs.labels }}
+            **State:** ${{ github.event.issue.state }}
+          embed-author-name: ${{ github.event.issue.user.login }}
+          embed-author-icon-url: ${{ github.event.issue.user.avatar_url }}
+          embed-author-url: ${{ github.event.issue.user.html_url }}
+          embed-color: |
+            ${{ (github.event.action == 'opened' ||
+            github.event.action == 'reopened') && '3447003' ||
+            github.event.action == 'closed' && '5025612' ||
+            github.event.action == 'deleted' && '15158332' ||
+            (github.event.action == 'labeled' || github.event.action == 'unlabeled' || github.event.action == 'edited') && '7506394' ||
+            '15965209' }}
+
+  release:
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Release Notification
+        uses: tsickert/discord-webhook@v7.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          username: GitHub
+          avatar-url: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          embed-title: "[Release ${{ github.event.action }}] ${{ github.event.release.name || github.event.release.tag_name }}"
+          embed-url: ${{ github.event.release.html_url }}
+          embed-description: |
+            **${{ github.event.sender.login }}** ${{ github.event.action }} a release
+            **Tag:** ${{ github.event.release.tag_name }}
+            **Target:** ${{ github.event.release.target_commitish }}
+          embed-author-name: ${{ github.event.sender.login }}
+          embed-author-icon-url: ${{ github.event.sender.avatar_url }}
+          embed-author-url: ${{ github.event.sender.html_url }}
+          embed-color: |
+            ${{ github.event.action == 'created' && '5025612' ||
+            github.event.action == 'edited' && '7506394' ||
+            github.event.action == 'deleted' && '15158332' ||
+            '15965209' }}

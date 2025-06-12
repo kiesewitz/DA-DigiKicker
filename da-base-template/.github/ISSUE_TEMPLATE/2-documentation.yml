@@ -1,0 +1,59 @@
+name: Report a Documentation obscurity
+description: Report an issue or suggest an improvement regarding the documentation.
+labels:
+  - documentation
+
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: Provide a short description of the documentation issue or suggestion.
+      placeholder: The documentation for...
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Provide a detailed description of the issue or improvement, including what is incorrect, missing, or unclear.
+      placeholder: |
+        1. The section on...
+        2. Needs clarification about...
+        3. Missing details on...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: doc_section
+    attributes:
+      label: Documentation Section
+      description: Select the section of the documentation this issue applies to.
+      default: 0
+      options:
+        - Template
+        - GitHub Action
+        - Docker
+        - VMs
+        - WSL
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested_update
+    attributes:
+      label: Suggested Update
+      description: Suggest how this issue could be addressed or improved.
+      placeholder: Provide a specific update or describe the changes needed.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: Additional Notes
+      description: Add other notes or context related to this documentation issue.
+      placeholder: Additional details about the issue or suggestion.
+    validations:
+      required: false

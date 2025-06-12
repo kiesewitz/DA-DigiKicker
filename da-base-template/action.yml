@@ -1,0 +1,112 @@
+name: Build and send diploma thesis
+description: GitHub action to build and send a diploma thesis using the corresponding Docker image from the school HTL Leoben
+author: bitsneak
+branding:
+  icon: book
+  color: orange
+
+inputs:
+  mail-address:
+    description: The sending email address
+    required: true
+  mail-address-password:
+    description: The password for the sending email address
+    required: true
+  smtp-server:
+    description: The SMTP server of the sending email
+    required: true
+  smtp-port:
+    description: The SMTP server port of the sending email
+    required: true
+  teams-mail:
+    description: The email address of the teams channel the diploma thesis is sent to
+    required: true
+
+  thesis-path:
+    description: The path from the repository root to the filled out diploma thesis folder. If not set it will default to 'Diplomarbeit'
+    default: Diplomarbeit
+    required: false
+  mail-body:
+    description: The body to sent with the email. If not set it will default to the commit message
+    required: false
+  dockerhub-username:
+    description: The DockerHub username for the image. If not set it will default to 'bytebang'
+    default: bytebang
+    required: false
+  dockerhub-repository:
+    description: The DockerHub repository name for the image. If not set it will default to 'htlle-da-env'
+    default: htlle-da-env
+    required: false
+  manual-mode:
+    description: If the repository should not be checked out automatically specify the complete workspace path to the thesis-path. If not set it will default to checking out the latest repository state
+    required: false
+
+runs:
+  using: composite
+
+  steps:
+    - name: Checkout Repository
+      if: ${{ !inputs.manual-mode }}
+      uses: actions/checkout@v4
+
+    - name: Set thesis-path From manual-mode
+      if: ${{ inputs.manual-mode }}
+      shell: bash
+      run: echo "thesis-path=${{ inputs.manual-mode }}/${{ inputs.thesis-path }}" >> $GITHUB_ENV
+
+    - name: Check Template Folder
+      shell: bash
+      run: ls -la ${{ inputs.thesis-path }}/HTLLE-DA-Vorlage
+  
+    - name: Cache Docker Image
+      id: cache-docker
+      uses: actions/cache@v4
+      with:
+        path: /tmp/.docker
+        key: docker-${{ inputs.dockerhub-username }}-${{ inputs.dockerhub-repository }}-${{ hashFiles('**/HTLLE-DA-Vorlage/tools/docker/Dockerfile') }}
+        restore-keys: docker-${{ inputs.dockerhub-username }}-${{ inputs.dockerhub-repository }}
+
+    - name: Create Docker Cache Directory
+      if: steps.cache-docker.outputs.cache-hit != 'true'
+      shell: bash
+      run: mkdir -p /tmp/.docker
+
+    - name: Load Cached Docker Image
+      if: steps.cache-docker.outputs.cache-hit == 'true'
+      shell: bash
+      run: docker load -i /tmp/.docker/image.tar
+
+    - name: Pull Docker Image
+      if: steps.cache-docker.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        docker pull ${{ inputs.dockerhub-username }}/${{ inputs.dockerhub-repository }}
+        docker save ${{ inputs.dockerhub-username }}/${{ inputs.dockerhub-repository }} -o /tmp/.docker/image.tar
+
+    - name: Build Diploma Thesis
+      shell: bash
+      run: docker run -v ${{ github.workspace }}/${{ inputs.thesis-path }}:/workspace ${{ inputs.dockerhub-username }}/${{ inputs.dockerhub-repository }}
+
+    - name: Upload Diploma Thesis
+      uses: actions/upload-artifact@v4
+      with:
+        name: diploma-thesis
+        path: ${{ inputs.thesis-path }}/diplomarbeit.pdf
+
+    - name: Extract Commit Message
+      if: ${{ inputs.mail-body == '' }}
+      shell: bash
+      run: echo "COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV   
+
+    - name: Send Diploma Thesis
+      uses: dawidd6/action-send-mail@v5
+      with:
+        server_address: ${{ inputs.smtp-server }}
+        server_port: ${{ inputs.smtp-port }}
+        username: ${{ inputs.mail-address }}
+        password: ${{ inputs.mail-address-password }}
+        subject: "Diploma thesis"
+        body: ${{ inputs.mail-body || env.COMMIT_MESSAGE }}
+        to: ${{ inputs.teams-mail }}
+        from: ${{ inputs.mail-address }}
+        attachments: ${{ inputs.thesis-path }}/diplomarbeit.pdf

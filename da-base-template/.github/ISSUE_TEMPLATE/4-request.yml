@@ -1,0 +1,54 @@
+name: Make a Request
+description: Suggest a new idea or improvement.
+labels:
+  - enhancement
+
+body:
+  - type: input
+    id: overview
+    attributes:
+      label: Overview
+      description: Provide a short description of the feature.
+      placeholder: Add support for...
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Provide a detailed description of the feature or enhancement.
+      placeholder: Describe the problem this feature will solve or the functionality it will add.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Select any additional context that applies.
+      default: 2
+      options:
+        - Improve user experience
+        - Enhance performance
+        - Align with project goals
+    validations:
+      required: true
+
+  - type: textarea
+    id: potential_implementation
+    attributes:
+      label: Potential Implementation
+      description: Suggest how this feature could be implemented.
+      placeholder: The feature could be implemented by...
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: Additional Notes
+      description: Add other notes or comments.
+      placeholder: Additional details about the feature.
+    validations:
+      required: false

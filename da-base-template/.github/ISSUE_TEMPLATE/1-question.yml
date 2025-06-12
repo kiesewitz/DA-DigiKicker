@@ -1,0 +1,74 @@
+name: Ask a Question
+description: Ask a question.
+labels:
+  - question
+
+body:
+  - type: input
+    id: question_summary
+    attributes:
+      label: Question Summary
+      description: Provide a brief summary of your question.
+      placeholder: I don't understand how to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: detailed_question
+    attributes:
+      label: Detailed Question
+      description: Provide a more detailed explanation of your question or what you are unclear about.
+      placeholder: |
+        1. What is the purpose of...
+        2. How does it work with...
+        3. Why am I getting this...?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: context
+    attributes:
+      label: Context
+      description: Select the context that best applies to your question.
+      default: 0
+      options:
+        - Usage
+        - Setup / Installation
+        - Configuration
+        - Troubleshooting
+        - Concept / Architecture
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      description: Specify the environment where the question occurred.
+      default: 0
+      options:
+        - Template
+        - GitHub Action
+        - Docker
+        - VM
+        - WSL
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs and Screenshots
+      description: Attach relevant logs or screenshots.
+      placeholder: Attach logs here or drag and drop images.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: Additional Notes
+      description: Add other notes or comments.
+      placeholder: Additional details about the question.
+    validations:
+      required: false

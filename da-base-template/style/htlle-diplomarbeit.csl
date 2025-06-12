@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<style class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="de-DE" xmlns="http://purl.org/net/xbiblio/csl">
+  <!-- This style was edited with the Visual CSL Editor (https://editor.citationstyles.org/visualEditor/) -->
+  <info>
+    <title>HTL Leoben</title>
+    <id>http://www.zotero.org/styles/htl-leoben</id>
+    <link href="http://www.zotero.org/styles/htl-leoben" rel="self"/>
+    <link href="http://www.open.ac.uk/library/help-and-support/referencing-styles" rel="documentation"/>
+    <author>
+      <name>Günther Hutter</name>
+      <email>guenther.hutter@htl-leoben.at</email>
+    </author>
+    <category citation-format="numeric"/>
+    <category field="generic-base"/>
+    <summary>HTL Leoben numeric style</summary>
+    <updated>2024-02-29T07:18:19+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+  <macro name="editor">
+    <names variable="editor" delimiter=", ">
+      <name and="text" initialize-with=". " delimiter=", " sort-separator=", " name-as-sort-order="all"/>
+      <label form="short" prefix=" (" suffix=")"/>
+    </names>
+  </macro>
+  <macro name="anon">
+    <text term="anonymous" form="short" text-case="capitalize-first" strip-periods="true"/>
+  </macro>
+  <macro name="author">
+    <names variable="author" font-weight="bold">
+      <name and="text" delimiter-precedes-last="never" name-as-sort-order="all" sort-separator=" "/>
+      <label form="short" prefix=" (" suffix=")"/>
+      <substitute>
+        <names variable="editor"/>
+        <text macro="anon"/>
+      </substitute>
+    </names>
+  </macro>
+  <macro name="access">
+    <choose>
+      <if variable="URL">
+        <text term="online" prefix="[" suffix="]"/>
+        <group delimiter=" " prefix=" (" suffix=")">
+          <text term="accessed" text-case="capitalize-first"/>
+          <date variable="accessed">
+            <date-part name="day" suffix=" "/>
+            <date-part name="month" suffix=" "/>
+            <date-part name="year"/>
+          </date>
+        </group>
+        <text variable="URL" prefix=" "/>
+      </if>
+    </choose>
+  </macro>
+  <macro name="title">
+    <choose>
+      <if type="bill book graphic legal_case legislation motion_picture report song" match="any">
+        <text variable="title" font-style="italic"/>
+      </if>
+      <else>
+        <text variable="title" quotes="true"/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="publisher">
+    <group delimiter=", ">
+      <text variable="publisher-place"/>
+      <text variable="publisher"/>
+    </group>
+  </macro>
+  <macro name="year-date">
+    <choose>
+      <if variable="issued">
+        <date variable="issued">
+          <date-part name="year"/>
+        </date>
+      </if>
+      <else>
+        <text term="no date" form="short"/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="published-date">
+    <choose>
+      <if type="article-newspaper">
+        <date variable="issued">
+          <date-part name="day" form="ordinal" suffix=" "/>
+          <date-part name="month" form="long"/>
+        </date>
+      </if>
+    </choose>
+  </macro>
+  <macro name="pages">
+    <label variable="page" form="short" suffix=" "/>
+    <text variable="page"/>
+  </macro>
+  <macro name="edition">
+    <choose>
+      <if is-numeric="edition">
+        <group delimiter=" ">
+          <number variable="edition" form="ordinal"/>
+          <text term="edition" form="short"/>
+        </group>
+      </if>
+      <else>
+        <text variable="edition" suffix="."/>
+      </else>
+    </choose>
+  </macro>
+  <citation collapse="year">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="[" suffix="]" delimiter=",">
+      <text variable="citation-number"/>
+      <choose>
+        <if match="any" variable="page">
+          <group>
+            <label prefix=" " variable="page" form="short"/>
+            <number variable="page"/>
+          </group>
+        </if>
+      </choose>
+    </layout>
+  </citation>
+  <bibliography et-al-min="6" et-al-use-first="4" second-field-align="flush" hanging-indent="true">
+    <layout>
+      <text variable="citation-number" suffix=" ."/>
+      <group delimiter=" " suffix=" ">
+        <text macro="author"/>
+        <text macro="year-date" prefix="(" suffix=")"/>
+      </group>
+      <choose>
+        <if type="bill book graphic legal_case legislation motion_picture report song" match="any">
+          <group suffix="," delimiter=" ">
+            <text macro="title"/>
+            <text macro="edition"/>
+            <text macro="editor"/>
+          </group>
+          <group delimiter=", " prefix=" ">
+            <text variable="genre"/>
+            <text prefix=" " suffix="." macro="publisher"/>
+          </group>
+        </if>
+        <else-if type="chapter paper-conference" match="any">
+          <text macro="title" prefix=" "/>
+          <group prefix=", " delimiter=" ">
+            <text term="in"/>
+            <group delimiter=", " suffix=".">
+              <text macro="editor"/>
+              <text variable="container-title" font-style="italic"/>
+              <text variable="collection-title"/>
+              <text macro="publisher" prefix=" "/>
+              <text macro="pages"/>
+            </group>
+          </group>
+        </else-if>
+        <else>
+          <group suffix=".">
+            <text macro="title" prefix=" "/>
+            <text macro="editor" prefix=" "/>
+          </group>
+          <group prefix=" " suffix=".">
+            <text variable="container-title" font-style="italic"/>
+            <group prefix=", " delimiter=", ">
+              <group>
+                <text variable="volume"/>
+                <text variable="issue" prefix="(" suffix=")"/>
+                <text macro="published-date"/>
+              </group>
+              <text macro="pages"/>
+            </group>
+          </group>
+        </else>
+      </choose>
+      <text prefix=" " macro="access"/>
+      <text variable="ISBN" prefix=", ISBN: "/>
+      <text variable="note" prefix=", "/>
+    </layout>
+  </bibliography>
+</style>

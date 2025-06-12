@@ -1,0 +1,683 @@
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%
+% Diplomarbeitentemplate der |||| HTL Leoben
+% zur Verwendung im Fachbereich ITSP
+%
+% Author: G. Hutter (hg@htl-leoben.at)
+%
+% Dieses Template generiert alle notwendigen Abschnitte für die Diplomarbeit
+% es ist normalerweise nicht notwendig dass die SuS sich mit LaTex herumschlagen
+% muessen. 
+%
+% Vorgehensweise: 
+%     - befuellen der Metadaten der Diplomarbeit in der Datei metadata.yaml
+%     - markdownfiles mit Inhalt befuellen im ../src/* Ordner
+%       Diese werden von pandoc kompiliert und enthalten bereits alle 
+%       für die Diplomarbeit notwendigen Abschnittte
+%     - Literaturequellen in die Datei literatur.bib
+%     - Einzubindende PDFs in das Verzeichnis ./src/pdfs/ einkopieren und
+%       dann im yaml File referenzieren
+%     - Wenn das Template auf Englisch (oder einer anderen Sprache)
+%       verwendet werden soll, dann eiinfach die translations-default.tex auf
+%       translations-SPRACHE.tex umkopieren und die Teilstrings ersetzen
+%
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+\documentclass[
+    headings=optiontotocandhead,% Erweiterung für das optionale Argument der
+                                % Gliederungsbefehle aktiviert.
+    twoside,
+    numbers=noenddot,% Keine Punkte am Ende der Gliederungsnummern und davon
+                     % abgeleiteten Nummern
+    %toc=flat, %Flache TOC --- kann man anpassen (auskommentieren)
+    12pt, % Schriftgröße 
+    titlepage, % es wird eine Titelseite verwendet 
+    parskip=full, % Abstand zwischen Absätzen (ganze Zeile) 
+    %listof=totoc, % Verzeichnisse im Inhaltsverzeichnis aufführen 
+    %listof=flat, % mehr Abstand für grosse Zahlen
+    listof=leveldown, 
+    numbers=noenddot, % kein Punkt am Ende bei Nummern 
+    %%enlargefirstpage,% Gibt es bei scrartcl nicht!!!!
+    %bibliography=totoc, % Literaturverzeichnis im Inhaltsverzeichnis aufführen 
+    %index=totoc, % Index im Inhaltsverzeichnis aufführen 
+    %captions=tableheading, % Beschriftung von Tabellen für Ausgabe oberhalb
+                           % der Tabelle formatieren 
+    %draft % Status des Dokuments (final/draft) draft hinzufügen zum anziegen 
+    %%der zeilen ende
+    a4paper,DIV=14,
+    BCOR=15mm,
+    %captions=tablesignature,
+]{scrbook}
+
+%
+% verhindert, dass Chapter / Section / Subsection / Subsubsection im Inhaltsverzeichnis so extrem eingerückt werden
+%
+\makeatletter
+\renewcommand*\l@chapter{\bprot@dottedtocline{0}{0em}{2em}}
+\renewcommand*\l@section{\bprot@dottedtocline{1}{0em}{3em}}
+\renewcommand*\l@subsection{\bprot@dottedtocline{2}{0em}{4em}}
+\renewcommand*\l@subsubsection{\bprot@dottedtocline{3}{0em}{5em}}
+\makeatother
+
+% Verhindert zu grosse Abstaende beim Inhaltsverzeichnis und gleiche Schriftgoesse wie bei den anderen Ueberschriften
+\setkomafont{chapter}{\fontsize{18pt}{18pt}\selectfont}
+\BeforeTOCHead[toc]{%
+  \KOMAoptions{parskip=false}% no parskip in ToC
+  \RedeclareSectionCommand[beforeskip=0mm]{chapter}% no skip after ToC title
+}
+
+
+%
+% Farben aus dem HTL Logo
+%
+\usepackage{color}
+
+\definecolor{htlblau}{RGB}{0,99,169}
+\definecolor{htlgrau}{RGB}{153,153,153}
+\definecolor{htlgelb}{RGB}{243,172,0}
+\definecolor{htlflieder}{RGB}{141,0,76}
+\definecolor{htlgruen}{RGB}{63,165,53}
+
+
+%
+% Tabellen und  Bildbezeichnungen
+%
+\usepackage{booktabs} % Schönere Tabellen machen
+\usepackage{caption}
+\DeclareCaptionFont{myColor}{\color[RGB]{40,70,119}}
+\captionsetup[table]{labelfont=myColor, textfont=myColor}
+\captionsetup[longtable]{labelfont=myColor, textfont=myColor}
+\captionsetup[figure]{labelfont=myColor, textfont=myColor}
+\captionsetup[lstlisting]{labelfont=myColor, textfont=myColor}
+
+
+%
+% this needs to be in the preamble:
+\usepackage{chngcntr}
+\counterwithout{figure}{chapter}
+\counterwithout{figure}{section}
+
+\counterwithout{table}{chapter}
+\counterwithout{table}{section}
+
+
+\setcounter{secnumdepth}{4}
+\setcounter{section}{0}
+
+% Schriftart: helvetica
+\usepackage[scaled]{helvet}
+\renewcommand\familydefault{\sfdefault}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+
+\usepackage{setspace} % Package für 1.5 fachen Zeilenabstand 
+\singlespacing        % aber noch nicht jetzt
+
+% Uebersetzungen von Wörtern und Phrasen im Unterordner des Templates
+% für neue Sprachen einfach den translations-default.tex Ordner weiterkopieren
+% und die Strings neu übersetzen
+% Achtung: Der Name sollte so gewählt sein das dazu ein babel Paket existiert
+% https://tex.stackexchange.com/questions/330085/how-to-obtain-the-numbered-list-of-languages-loaded-by-babel
+
+\usepackage[english, ngerman $if(lang)$, $lang$ $endif$]{babel} % your native language must be the last one!!
+\usepackage{translator}
+$if(lang)$
+\ProvidesDictionary{translations-$lang$}{$lang$}
+\input{style/translations-$lang$.tex}
+\usedictionary{translations-$lang$}
+$else$
+\ProvidesDictionary{translations-default}{default}
+\input{style/translations-default.tex}
+\usedictionary{translations-default}
+$endif$
+
+
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{blindtext}
+
+%% Aufzählungen nicht so weit einrücken
+\usepackage[inline]{enumitem}
+%\setitemize{leftmargin=*} 
+% Listen etwas wenige einrücken, erfordert enumitem
+\setitemize{leftmargin=*}
+
+\usepackage{xspace}
+\usepackage{graphicx}
+
+%%? \usepackage{textcomp}
+\usepackage[hyphens]{url}
+\usepackage{makeidx}
+\makeindex
+%%? \usepackage{graphicx}
+\usepackage[numbers]{natbib}
+\PassOptionsToPackage{normalem}{ulem}
+\usepackage{ulem}
+
+\usepackage{needspace}
+
+\setlength\partopsep{0.5ex}%schoenere Listen
+\usepackage[bottom]{footmisc}%fussnote ganz unten
+
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+
+\usepackage{multirow}   % Allows table elements to span several rows.
+\usepackage{booktabs}   % Improves the typesettings of tables.
+\usepackage{subcaption} % Allows the use of subfigures and enables their referencing.
+\usepackage[ruled,linesnumbered,algochapter]{algorithm2e} % Enables the writing of pseudo code.
+\usepackage[usenames,dvipsnames,table]{xcolor} % Allows the definition and use of colors. This package has to be included before tikz.
+\usepackage{nag}       % Issues warnings when best practices in writing LaTeX documents are violated.
+\usepackage{todonotes} % Provides tooltip-like todo notes.
+\usepackage{eurosym}   % Euro symbols FTW
+\usepackage{censor}    % Zensurierungen (fuer geschwerzte passagen)
+
+% PDF Dateien einbinden lassen (für Appendix)
+\usepackage{pdfpages}
+
+\usepackage[binary-units]{siunitx}
+
+%% for pandoc2 images
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
+
+%% bessere Suche im PDF
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+
+%% Quellcodeformatierung
+
+$if(listings)$
+\usepackage{listings}
+\newcommand{\passthrough}[1]{#1}
+\lstset{defaultdialect=[5.3]Lua}
+\lstset{defaultdialect=[x86masm]Assembler}
+\lstset{captionpos=b} % sets the position of the listing headers to bottom
+$endif$
+
+% Redefine the verbatim environment 'Highlighting' to break long lines (with
+% the help of fvextra). Redefinition is necessary because it is unlikely that
+% pandoc includes fvextra in the default template.
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,fontsize=$if(code-block-font-size)$$code-block-font-size$$else$\small$endif$,commandchars=\\\{\}}
+
+$if(listings)$
+
+%
+% general listing colors
+%
+\definecolor{listing-background}{HTML}{F7F7F7}
+\definecolor{listing-rule}{HTML}{B3B2B3}
+\definecolor{listing-numbers}{HTML}{B3B2B3}
+\definecolor{listing-text-color}{HTML}{000000}
+\definecolor{listing-keyword}{HTML}{435489}
+\definecolor{listing-keyword-2}{HTML}{1284CA} % additional keywords
+\definecolor{listing-keyword-3}{HTML}{9137CB} % additional keywords
+\definecolor{listing-identifier}{HTML}{435489}
+\definecolor{listing-string}{HTML}{00999A}
+\definecolor{listing-comment}{HTML}{8E8E8E}
+
+\lstdefinestyle{eisvogel_listing_style}{
+  language         = java,
+$if(listings-disable-line-numbers)$
+  xleftmargin      = 0.6em,
+  framexleftmargin = 0.4em,
+$else$
+  numbers          = left,
+  xleftmargin      = 2.7em,
+  framexleftmargin = 2.5em,
+$endif$
+  backgroundcolor  = \color{listing-background},
+  basicstyle       = \color{listing-text-color}\linespread{1.0}$if(code-block-font-size)$$code-block-font-size$$else$\small$endif$\ttfamily{},
+  breaklines       = true,
+  frame            = single,
+  framesep         = 0.19em,
+  rulecolor        = \color{listing-rule},
+  frameround       = ffff,
+  tabsize          = 4,
+  numberstyle      = \color{listing-numbers},
+  aboveskip        = 1.0em,
+  belowskip        = 0.1em,
+  abovecaptionskip = 1.0em, % when listing header is on bottom set to 1.0em otherwise 0em
+  belowcaptionskip = 0em, % when listing header is on bottom set to 0em otherwise 1.0em
+  keywordstyle     = {\color{listing-keyword}\bfseries},
+  keywordstyle     = {[2]\color{listing-keyword-2}\bfseries},
+  keywordstyle     = {[3]\color{listing-keyword-3}\bfseries\itshape},
+  sensitive        = true,
+  identifierstyle  = \color{listing-identifier},
+  commentstyle     = \color{listing-comment},
+  stringstyle      = \color{listing-string},
+  showstringspaces = false,
+  escapeinside     = {/*@}{@*/}, % Allow LaTeX inside these special comments
+  literate         =
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\'e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\EUR}}1 {£}{{\pounds}}1 {«}{{\guillemotleft}}1
+  {»}{{\guillemotright}}1 {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1
+  {…}{{\ldots}}1 {≥}{{>=}}1 {≤}{{<=}}1 {„}{{\glqq}}1 {“}{{\grqq}}1
+  {”}{{''}}1
+}
+\lstset{style=eisvogel_listing_style}
+
+% Language definitions are in separate files 
+% in order to keep this template somehow readable
+\input{style/langdef-scala.tex}
+\input{style/langdef-java.tex}
+\input{style/langdef-javascript.tex}
+\input{style/langdef-css.tex}
+\input{style/langdef-html.tex}
+\input{style/langdef-xml.tex}
+\input{style/langdef-kotlin.tex}
+\input{style/langdef-vba.tex}
+\input{style/langdef-dart.tex}
+$endif$
+
+%
+% Tabellen
+%
+$if(tables)$
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+$endif$
+
+% Gives the opportunity to create a hierarchical directory tree
+\usepackage{dirtree} 
+% Creates a space before the dirtree
+\let\originaldirtree\dirtree
+\renewcommand{\dirtree}[1]{
+  \vspace{1.5em}
+  \originaldirtree{#1}
+}
+
+%% Bilder sind oft an merkwürdigen Stellen. Hier regeln wir das indem
+%% wir LaTex mitteilen das wir die Bilder GENAU HIER gerne hätten
+% Overwrite \begin{figure}[htbp] with \begin{figure}[H]
+\usepackage{float}
+\let\origfigure=\figure
+\let\endorigfigure=\endfigure
+\renewenvironment{figure}[1][]{%
+   \origfigure[H]
+}{%
+   \endorigfigure
+}
+
+%
+% Abbildungsverzeichnis, Tabellenverzeichnis und Quellcodeverzeichnis
+% haben eine eigene Überschrift (Section, nicht die selbst mitgbrachte)
+%
+\makeatletter
+\renewcommand{\listoffigures}{\@starttoc{lof}}
+\renewcommand{\listoftables}{\@starttoc{lot}}
+\renewcommand{\lstlistoflistings}{\@starttoc{lol}}
+\makeatother
+
+
+%
+% blockquote
+%
+\definecolor{blockquote-border}{RGB}{221,221,221}
+\definecolor{blockquote-text}{RGB}{119,119,119}
+\usepackage{mdframed}
+\newmdenv[rightline=false,bottomline=false,topline=false,linewidth=3pt,linecolor=blockquote-border,skipabove=\parskip]{customblockquote}
+\renewenvironment{quote}{\begin{customblockquote}\list{}{\rightmargin=0em\leftmargin=0em}%
+\item\relax\color{blockquote-text}\ignorespaces}{\unskip\unskip\endlist\end{customblockquote}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Als erstes „reservieren“ wir den Befehl \authormark mit einer leeren Definition.
+\newcommand*{\authormark}{}
+
+%Nun definieren wir \markauthor so, dass er \authormark umdefiniert. Folgende Leerzeichen sollen dabei ignoriert werden.
+\newcommand*{\textauthor}[1]{%
+   \renewcommand{\authormark}{\translate{author}: #1}%
+   \ignorespaces
+}
+
+\usepackage[automark,headsepline,footsepline,plainfootsepline]{scrlayer-scrpage}
+%\automark[chapter]{chapter}% Eventuell wenn doppelseitig
+\setkomafont{pageheadfoot}{\normalcolor\footnotesize\scshape}
+\setkomafont{pagenumber}{\normalfont\normalsize}
+\clearpairofpagestyles
+\ihead{\translate{thesis} $da-jahr$: \translate{team} $for(da-author)$$da-author.nachname$$sep$, $endfor$}
+\ohead{\voffset7mm\includegraphics[width=25mm]{style/HTLLE-Logo.png}}
+\ifoot{\authormark}
+\ofoot{\pagemark}
+\ModifyLayer[addvoffset=-.6ex]{scrheadings.foot.above.line}% Linie verschieben
+\ModifyLayer[addvoffset=-.6ex]{plain.scrheadings.foot.above.line}% Linie verschieben
+\setlength{\headheight}{32pt}
+
+% alle Seiten mit Kopfzeile
+\renewcommand{\chapterpagestyle}{scrheadings}
+
+
+%% should be last packages
+\usepackage{scrhack}
+
+
+% Sections beginnen immer auf einer neuen Seite
+\makeatletter%<-- nur, falls der Code in der Präambel steht
+\newcommand*{\the@orig@section}{}
+\let\the@orig@section\section
+\renewcommand*{\section}{%
+  \clearpage
+  \the@orig@section
+}
+\makeatother%<-- nur, falls der Code in der Präambel steht
+
+
+%% sollte das letzte Package sein
+\usepackage[unicode=true,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=true,pdfborder={0 0 0},backref=false,colorlinks=false]
+ {hyperref}
+
+%
+% PDF Metainformationen genereieren und setzen
+%
+\hypersetup{pdftitle={$da-titel$},
+ pdfauthor={$for(da-author)$$da-author.vorname$ $da-author.nachname$$sep$, $endfor$},
+ pdfsubject={\translate{Diplomarbeit} HTL Leoben, \translate{year} $da-jahr$. (\translate{superisor}: $for(da-betreuer)$$da-betreuer.paraffe$$sep$, $endfor$)},
+ pdfkeywords={$da-keywords$}}
+
+\urlstyle{same} % don't use monospace font for urls
+
+%% for pandoc
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+% Auch Fußnoten bündig ausrichten
+\deffootnote[]{1em}{1em}{\textsuperscript{\thefootnotemark\ }}
+
+%% setup
+\sloppy % weniger Meldungen
+\voffset7mm % etwas nach unten
+
+%% schöner: 10000 -- gar keine, 1000 als Mittelweg
+\clubpenalty = 1000 % Schusterjungen verhindern
+\widowpenalty = 1000 % Hurenkinder verhindern
+\displaywidowpenalty = 1000 
+
+\renewcommand{\thesection}{\arabic{section}}
+
+%% wir schreiben keine Umlaut mit "a "o
+\shorthandoff{"}
+
+%% Paragraphen sind überschriften 4ter Ordnung und sollten auch einen Zeilenumbruch haben.
+%% Siehe dazu issue #12
+\makeatletter
+  \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+    {-3.25ex \@plus -1ex \@minus -0.2ex}%
+    {0.01pt}%
+    {\raggedsection\normalfont\sectfont\nobreak\size@paragraph}%
+  }
+\makeatother
+
+%% CSL Referenzen ab pandoc 2.7
+$if(csl-refs)$
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{cslreferences}%
+  {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
+  {\par}
+$endif$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  DECKBLATT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\pagenumbering{roman}
+\frontmatter % Switches to roman numbering
+\title{\translate{thesis}}
+\begin{titlepage}
+
+\begin{center}
+
+\includegraphics[width=45mm]{style/HTLLE-Logo.png}
+
+\vspace{2cm}
+\textbf{\LARGE{}\translate{thesis}}{\large{}}\\
+{\large{}\vspace{15mm}
+ \textbf{\large{}
+$if(da-titel)$
+$da-titel$
+$else$
+\translate{missingtitle}
+$endif$
+}\\
+
+ \vspace{15mm}
+ \translate{executedat} \\
+ \translate{school} \\
+ \vspace{1cm}
+ \translate{inyear} 
+$if(da-jahr)$
+$da-jahr$
+$else$
+\translate{missingyear}
+$endif$
+\\
+ \vspace{1cm}
+ \translate{by}\\
+ \vspace{0.5cm}
+}
+
+$for(da-author)$\textbf{$da-author.nachname$ $da-author.vorname$ - $da-author.klasse$} \\ 
+$da-author.thema$
+\vspace{5mm}
+$sep$\\ $endfor$
+
+\par\end{center}{\large \par}
+
+\begin{center}
+ \normalsize \translate{underSupervisionOf} \\
+ \vspace{0.5cm}
+$for(da-betreuer)$$da-betreuer.name$$sep$\\ $endfor$
+
+\par\end{center}
+
+\begin{center}
+\vspace{5mm}
+\translate{signinglocation}, \today 
+\par\end{center}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  EIDESSTATTLICHE ERKLAERUNGEN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+$for(da-author)$
+\cleardoublepage{}
+\section*{\translate{authorship}}
+\translate{oath}
+
+$if(da-author.ki-tools)$
+\translate{aitools}
+
+$for(da-author.ki-tools)$
+\begin{itemize}[leftmargin=2cm]
+\item \textbf{$da-author.ki-tools.name$}: $da-author.ki-tools.zweck$ 
+\end{itemize}
+$endfor$
+$endif$
+
+\noindent
+
+\begin{minipage}[h]{0.4\linewidth}  \vspace*{3cm}
+\translate{signinglocation}, \translate{at} \dotfill\\
+\vspace*{2.5mm}
+\end{minipage}
+\hspace*{0.1\linewidth}
+\begin{minipage}[h]{0.5\linewidth}  \vspace*{3cm}
+  \begin{center}
+    \dotfill\\
+    (\translate{signature}: $da-author.vorname$ $da-author.nachname$)
+  \end{center}
+\end{minipage}
+$endfor$
+
+\onehalfspacing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  KURZFASSUNG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+$if(da-kurzfassung-de)$
+\cleardoublepage{}
+\section*{Kurzfassung}
+$da-kurzfassung-de$
+$endif$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  ABSTRACT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+$if(da-kurzfassung-en)$
+\cleardoublepage{}
+\section*{Abstract}
+$da-kurzfassung-en$
+$endif$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  DANKSAGUNG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+$if(da-danksagung)$
+\cleardoublepage{}
+\section*{\translate{noteofhanks}}
+$da-danksagung$
+$endif$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  INHALTSVERZEICHNIS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cleardoublepage{}
+\setcounter{tocdepth}{3}
+\tableofcontents{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Markdown generierter content
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%hier geht es los mit dem Text - auf einer rechten Seite
+\raggedbottom
+\cleardoublepage{}
+\mainmatter
+$body$
+
+\renewcommand{\authormark}{}% Ab hier keine Authorangaben mehr
+\cleardoublepage{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  VERZEICHNISSE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ... werden über die Datei 'verzeichnisse.md' von Pandoc nach Latex 
+% kompiliert und am Ende der Arbeit angehängt
+
+% Normalerweise kommen die Verzeichnisse in dieser Reihenfolge:
+% 1.) Abbildungsverzeichnis
+% 2.) Tabellenverzeichnis
+% 3.) Literaturverzeichnis 
+
+
+$if(da-kiquellen)$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  KI Quellen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ... besteht aus PDF Files die in der metadata.yaml Datei deklariert werden
+% und hier dann eingebunden werden. Normalerweise sind das folgende Dateien
+
+\translatelet\app{aisources}
+\section{\app}
+
+\translate{attachments}
+\begin{itemize}
+
+$for(da-kiquellen)$
+\item \textbf{$da-kiquellen.ki$: $da-kiquellen.short-prompt$}\\ $if(da-kiquellen.seiten)$\translate{pages} $da-kiquellen.seiten$ \translate{of} $endif$ Datei: \texttt{$da-kiquellen.pdf-file$}
+$endfor$
+\end{itemize}
+
+
+$for(da-kiquellen)$
+\stepcounter{subsection}
+\phantomsection
+\addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}$da-kiquellen.ki$: $da-kiquellen.short-prompt$}
+\includepdf[
+    clip=0mm 0mm 0mm 0mm,
+    pages=$if(da-kiquellen.seiten)$$da-appendix.seiten$$else$-$endif$,
+    frame,
+    scale=.73,
+    pagecommand={\begin{center}\translate{attachment}: $da-kiquellen.short-prompt$\\\begin{tiny}$da-kiquellen.pdf-file$\end{tiny}\end{center}}
+ ]{pdfs/$da-kiquellen.pdf-file$}
+%\includepdf[pages=$if(da-appendix.seiten)$$da-appendix.seiten$$else$-$endif$]{source/pdfs/$da-appendix.pdf-file$}
+$endfor$
+$endif$
+
+$if(da-appendix)$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  APPENDIX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ... besteht aus PDF Files die in der metadata.yaml Datei deklariert werden
+% und hier dann eingebunden werden. Normalerweise sind das folgende Dateien
+
+% BEGLEITPROTOKOLLE
+% PROJEKTHANDBUCH
+% TECHNISCHE DOKUMENTATION
+% ERKLAERUNG ZUR DA
+
+\translatelet\app{appendix}
+\section{\app}
+
+\translate{attachments}
+\begin{itemize}
+
+$for(da-appendix)$
+\item \textbf{$da-appendix.abschnitt$}\\ $if(da-appendix.seiten)$\translate{pages} $da-appendix.seiten$ \translate{of} $endif$ Datei: \texttt{$da-appendix.pdf-file$}
+$endfor$
+\end{itemize}
+
+
+$for(da-appendix)$
+%\subsection{$da-appendix.abschnitt$}
+\stepcounter{subsection}
+\phantomsection
+\addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}$da-appendix.abschnitt$}
+\includepdf[
+    clip=0mm 0mm 0mm 0mm,
+    pages=$if(da-appendix.seiten)$$da-appendix.seiten$$else$-$endif$,
+    frame,
+    scale=.73,
+    pagecommand={\begin{center}\translate{attachment}: $da-appendix.abschnitt$\\\begin{tiny}$da-appendix.pdf-file$\end{tiny}\end{center}}
+ ]{pdfs/$da-appendix.pdf-file$}
+%\includepdf[pages=$if(da-appendix.seiten)$$da-appendix.seiten$$else$-$endif$]{source/pdfs/$da-appendix.pdf-file$}
+$endfor$
+$endif$
+
+\end{document}
+

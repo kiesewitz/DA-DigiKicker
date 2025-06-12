@@ -1,0 +1,25 @@
+name: Build Docker Image
+
+on:
+  push:
+    paths:
+      - tools/docker/Dockerfile
+  pull_request:
+    paths:
+      - tools/docker/Dockerfile
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: Build Docker Image
+        uses: docker/build-push-action@v6
+        with:
+          context: tools/docker
+          push: false
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}:latest

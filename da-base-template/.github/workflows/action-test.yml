@@ -1,0 +1,36 @@
+name: Test Action
+
+on:
+  push:
+    paths:
+      - action.yml
+  pull_request:
+    paths:
+      - action.yml
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Create Diploma Thesis Folder
+        run: |
+          mkdir Diplomarbeit
+          mkdir Diplomarbeit/HTLLE-DA-Vorlage
+          cp -r example/* Diplomarbeit/
+          cp -r style tools Jenkinsfile Makefile Diplomarbeit/HTLLE-DA-Vorlage
+
+      - name: Build And Send Diploma Thesis
+        uses: bitsneak/HTLLE-DA-Vorlage@main
+        with:
+          manual-mode: ${{ github.workspace }}
+          mail-body: The Action 'Build and send diploma thesis' was successfully tested
+          smtp-server: ${{ secrets.SMTP_SERVER }}
+          smtp-port: ${{ secrets.SMTP_PORT }}
+          mail-address: ${{ secrets.SENDING_MAIL }}
+          mail-address-password: ${{ secrets.SENDING_MAIL_PASSWORD }}
+          teams-mail: ${{ secrets.RECEIVING_MAIL }}
