@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbt6ej8kljwj7"]
+
+[ext_resource type="Script" uid="uid://bsa5win5v5w4y" path="res://Arduino.cs" id="1_grtg8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wtcfe"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_grtg8")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 1153.0
+offset_bottom = 654.0
+theme_override_font_sizes/normal_font_size = 60
+
+[node name="Cube" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_wtcfe")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.596368, 0.379928, 0, 0.5373, 0.843391, -0.707107, -0.596368, 0.379928, 1.75, 3.5, 1.75)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.573576, 0.819152, 0, -0.819152, -0.573576, 0, 3, -2)
