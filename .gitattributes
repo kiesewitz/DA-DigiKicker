@@ -1,2 +1,3 @@
 *.tex -linguist-detectable
 *.bib -linguist-detectable
+Diplomarbeit/da-base-template/* -linguist-detectable
