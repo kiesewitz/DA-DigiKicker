@@ -38,18 +38,18 @@ da-kurzfassung-en: Hier kommt eine englische Kurzfassung hin.
 
 da-appendix:
 - abschnitt: Technische Dokumentation
-  pdf-file: pandoc-manual.pdf
-  seiten: 53-73
+  pdf-file: 
+  seiten: 
 
 - abschnitt: Betreuungsprotokolle
-  pdf-file: betreuungsprotokolle.pdf    
+  pdf-file:   
 
 # Diplomarbeitsvereinbarungen müssen zum Schluss sein 
 
-- abschnitt: Diplomatbeitsvereinbarung Englisch
-  pdf-file: HTL-DA-Doku-EN.pdf
+- abschnitt: Diplomarbeitsvereinbarung Englisch
+  pdf-file: 
 
-- abschnitt: Diplomatbeitsvereinbarung Deutsch
-  pdf-file: HTL-DA-Doku-DE.pdf
+- abschnitt: Diplomarbeitsvereinbarung Deutsch
+  pdf-file: 
   
 ---
