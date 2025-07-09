@@ -190,7 +190,7 @@ Jeder Anwendungsfall wird im selben Muster beschrieben. In den folgenden Absätz
 
 Damit man auch versteht wer mit welchem Anwendungsfall agiert bietet es sich an hier eine Übersichtsgrafik zu erstellen:
 
-![Übersicht Anwendungsfälle](img/anwendungsfalldiagramm.png){width=60%}
+
 
 \newpage
 ### Anwendungsfallname
