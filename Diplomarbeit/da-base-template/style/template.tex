@@ -366,6 +366,7 @@ $endif$
 \clearpairofpagestyles
 \ihead{\translate{thesis} $da-jahr$: \translate{team} $for(da-author)$$da-author.nachname$$sep$, $endfor$}
 \ohead{\voffset7mm\includegraphics[width=25mm]{style/HTLLE-Logo.png}}
+\ohead{\includegraphics[width=35mm]{style/DigiKickerLogo.png}}
 \ifoot{\authormark}
 \ofoot{\pagemark}
 \ModifyLayer[addvoffset=-.6ex]{scrheadings.foot.above.line}% Linie verschieben
@@ -628,13 +629,13 @@ $for(da-kiquellen)$
 \stepcounter{subsection}
 \phantomsection
 \addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}$da-kiquellen.ki$: $da-kiquellen.short-prompt$}
-\includepdf[
-    clip=0mm 0mm 0mm 0mm,
-    pages=$if(da-kiquellen.seiten)$$da-appendix.seiten$$else$-$endif$,
-    frame,
-    scale=.73,
-    pagecommand={\begin{center}\translate{attachment}: $da-kiquellen.short-prompt$\\\begin{tiny}$da-kiquellen.pdf-file$\end{tiny}\end{center}}
- ]{pdfs/$da-kiquellen.pdf-file$}
+%\includepdf[
+%    clip=0mm 0mm 0mm 0mm,
+%    pages=$if(da-kiquellen.seiten)$$da-appendix.seiten$$else$-$endif$,
+%    frame,
+%    scale=.73,
+%    pagecommand={\begin{center}\translate{attachment}: $da-kiquellen.short-prompt$\\\begin{tiny}$da-kiquellen.pdf-file$\end{tiny}\end{center}}
+% ]{pdfs/$da-kiquellen.pdf-file$}
 %\includepdf[pages=$if(da-appendix.seiten)$$da-appendix.seiten$$else$-$endif$]{source/pdfs/$da-appendix.pdf-file$}
 $endfor$
 $endif$
@@ -668,13 +669,13 @@ $for(da-appendix)$
 \stepcounter{subsection}
 \phantomsection
 \addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}$da-appendix.abschnitt$}
-\includepdf[
-    clip=0mm 0mm 0mm 0mm,
-    pages=$if(da-appendix.seiten)$$da-appendix.seiten$$else$-$endif$,
-    frame,
-    scale=.73,
-    pagecommand={\begin{center}\translate{attachment}: $da-appendix.abschnitt$\\\begin{tiny}$da-appendix.pdf-file$\end{tiny}\end{center}}
- ]{pdfs/$da-appendix.pdf-file$}
+%\includepdf[
+%    clip=0mm 0mm 0mm 0mm,
+%    pages=$if(da-appendix.seiten)$$da-appendix.seiten$$else$-$endif$,
+%    frame,
+%    scale=.73,
+%    pagecommand={\begin{center}\translate{attachment}: $da-appendix.abschnitt$\\\begin{tiny}$da-appendix.pdf-file$\end{tiny}\end{center}}
+% ]{pdfs/$da-appendix.pdf-file$}
 %\includepdf[pages=$if(da-appendix.seiten)$$da-appendix.seiten$$else$-$endif$]{source/pdfs/$da-appendix.pdf-file$}
 $endfor$
 $endif$
