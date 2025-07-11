@@ -13,9 +13,7 @@ Kurzbeschreibung Projektmanagement, später längerer Teil.
 
 Um die Leistung der verschiedenen Mikrocontroller vergleichbar zu machen müssen vorerst Kriterien festgelegt werden, anhand von denen die verschiedenen Optionen verglichen werden. Diese sollten so messbar und objektiv wie möglich vergleichbar sein, um eine gute Basis für die Auswahl zu schaffen. Mithilfe dieser Kriterien werde ich Punkte vergeben, anhand von denen ich danach eine Wahl treffen werde.
 
-Eine Eigenschaft die diesen Vergleich gut ermöglicht sind die Kosten. Natürlich ist es hierbei positiv, diese möglichst niedrig zu halten, da es für uns als Entwicklungsteam gut ist, wenn wir geringere Hardware-Kosten haben. Hinsichtlich darauf, dass wir die Pläne zusammen mit einer Anleitung Open-Source zugänglich machen, ist es auch gut niedrige Kosten zu haben, da so weit mehr Menschen einen Zugang zu diesem Projekt haben werden. 
-
-Die Verwendung der Mikrocontroller sollte "simpel" bleiben, sodass kein zu großes Vorwissen benötigt wird um den Controller zu Hause nachzubauen. Aus diesem Grund ist es ein Ziel, die Komplexität (der Verwendung) des Controllers so niedrig wie möglich zu halten. Da die Komplexität als einzelne Eigenschaft hier aber schwierig festzulegen ist, muss die Bewertung in dieser Hinsicht auf einer etwas subjektiveren Basis durchgeführt werden.
+Eine Eigenschaft die diesen Vergleich gut ermöglicht sind die Kosten. Natürlich ist es hierbei positiv, diese möglichst niedrig zu halten, da es für uns als Entwicklungsteam gut ist, wenn wir geringere Hardware-Kosten haben. Hinsichtlich darauf, dass wir die Pläne zusammen mit einer Anleitung Open-Source zugänglich machen, ist es auch gut niedrige Kosten zu haben, da so weit mehr Menschen einen Zugang zu diesem Projekt haben werden. Für die Bewertung der Kosten verwende ich die Formel $100/Kosten=Punkte$
 
 Für ein angenehmes Spielerlebnis ist eine schnelle und zuverlässige Übertragung der Eingaben wichtig, weshalb die Prozessorleistung zur Verarbeitung der Eingaben, sowie die Übertragungszeiten für den Austausch der Daten, für den Vergleich der verschiedenen Optionen auch wichtig sind. Diese sind einfach messbar und vergleichbar, weshalb sie sich auch als gutes Merkmal für den Vergleich eignen.
 
@@ -23,9 +21,9 @@ Bei der Entwicklung von Hardware ist natürlich, einerseits aus einer nachhaltig
 
 Da für das Projekt mehrere Sensoren benötigt werden sind eine größere Anzahl an Pins für die Datenmessung ein wichtiges Merkmal, welches bei der Bewertung berücksichtigt werden sollte. Wenn die Pinanzahl reicht kann man statt einem Sensor zu einem Mikrocontroller möglicherweise 2-zu-1 erreichen.
 
-Ein weiterer Punkt, bei dem die Wichtigkeit wieder nur auf subjektiver Basis beigemessen werden kann, sind zusätzliche Features welche die verschiedenen Sensoren aufweisen. Der ESP32 unterstützt beispielsweise das ESP Now Protokoll (siehe offizielle Website[@esp-now-protocol]), welches drahtlose Datenübertragung erlaubt, wozu aber bei der Bewertung des ESP32 mehr kommt.
+Ein Punkt, bei dem die Wichtigkeit nur auf subjektiver Basis beigemessen werden kann, sind zusätzliche Features welche die verschiedenen Sensoren aufweisen. Der ESP32 unterstützt beispielsweise das ESP Now Protokoll (siehe offizielle Website [@esp-now-protocol]), welches drahtlose Datenübertragung erlaubt, wozu aber bei der individuellen Bewertung des ESP32 mehr kommt.
 
-Anhand von all diesen Kriterien wird im folgenden Kapitel eine Entscheidung dafür getroffen, welche Mikrocontroller wir in dieser Arbeit verwenden.
+Anhand von all diesen Kriterien wird im folgenden Kapitel eine Entscheidung dafür getroffen, welche Mikrocontroller wir in dieser Arbeit verwenden. Für die Gesamtbewertung werde ich pro Kategorie Punkte zwischen 1 und 30 vergeben, diese dann je nach Wichtigkeit der Kategorie (Stromverbrauch z.B. 5% und Kosten z.B. 20%) zusammenrechnen und am Ende die verschiedenen Ergebnisse vergleichen.
 
 #### Arduino Nano
 
@@ -39,7 +37,7 @@ Billiger, bessere Leistung
 
 
 
-#### Vergleich der Optionen
+#### Vergleich der Optionen & Entscheidung
 
 Direkter Vergleich (mit Diagrammen, etc.)
 
@@ -85,7 +83,7 @@ In diesem Kapitel wird es um Unverwendete Prototypen und Ansätze, Demos und and
 
 #### Arduino <-> Godot Kommunikations-Demo
 
-Für die Erstpräsentation unserer Arbeit habe ich mit Hr. Rath zusammen eine Demo erstellt, anhand von der die Kommunikation zwischen einem Arduino und der Godot Engine veranschaulicht wird. Die Grundstruktur dieser Demo habe ich aus einem Youtube-Video genommen[@connect-godot-arduino], in dem die Übertragung der Daten über die Serielle Schnittstelle erklärt und anhand von einem kurzen Beispiel gezeigt wird.
+Für die Erstpräsentation unserer Arbeit habe ich mit Hr. Rath zusammen eine Demo erstellt, anhand von der die Kommunikation zwischen einem Arduino und der Godot Engine veranschaulicht wird. Die Grundstruktur dieser Demo habe ich aus einem Youtube-Video genommen [@connect-godot-arduino], in dem die Übertragung der Daten über die Serielle Schnittstelle erklärt und anhand von einem kurzen Beispiel gezeigt wird.
 
 Am Arduino werden hier die Signale von einem MPU6050-Sensor eingelesen und über die Serielle Schnittstelle übertragen.
 
