@@ -11,19 +11,19 @@ Kurzbeschreibung Projektmanagement, später längerer Teil.
 
 ### Mikrocontrollerauswahl
 
-Um die Leistung der verschiedenen Mikrocontroller vergleichbar zu machen müssen vorerst Kriterien festgelegt werden, anhand von denen die verschiedenen Optionen verglichen werden. Diese sollten so messbar und objektiv wie möglich vergleichbar sein, um eine gute Basis für die Auswahl zu schaffen. Mithilfe dieser Kriterien werde ich Punkte vergeben, anhand von denen ich danach eine Wahl treffen werde.
+Um die Leistung der verschiedenen Mikrocontroller vergleichbar zu machen, müssen vorerst Kriterien festgelegt werden, anhand von denen die verschiedenen Optionen verglichen werden. Diese sollten bestmöglich messbar und objektiv vergleichbar sein, um eine gute Basis für die Auswahl zu schaffen. Mithilfe dieser Kriterien werden Punkte vergeben, anhand von denen eine Wahl getroffen wird.
 
-Eine Eigenschaft die diesen Vergleich gut ermöglicht sind die Kosten. Natürlich ist es hierbei positiv, diese möglichst niedrig zu halten, da es für uns als Entwicklungsteam gut ist, wenn wir geringere Hardware-Kosten haben. Hinsichtlich darauf, dass wir die Pläne zusammen mit einer Anleitung Open-Source zugänglich machen, ist es auch gut niedrige Kosten zu haben, da so weit mehr Menschen einen Zugang zu diesem Projekt haben werden. Für die Bewertung der Kosten verwende ich die Formel $100/Kosten=Punkte$
+Eine gut vergleichbare Eigenschaft sind die Kosten, bei denen eine Reduktion sowohl für das Entwicklerteam als auch für Endbenutzer, welche das Projekt zu Hause replizieren wollen, vorteilhaft ist. Um die Kosten in direkter Relation zu vergleichen, wird die Formel $Punkte = min(30, \frac{50}{Kosten})$ zur Bewertung verwendet.
 
-Für ein angenehmes Spielerlebnis ist eine schnelle und zuverlässige Übertragung der Eingaben wichtig, weshalb die Prozessorleistung zur Verarbeitung der Eingaben, sowie die Übertragungszeiten für den Austausch der Daten, für den Vergleich der verschiedenen Optionen auch wichtig sind. Diese sind einfach messbar und vergleichbar, weshalb sie sich auch als gutes Merkmal für den Vergleich eignen.
+Für ein angenehmes Spielerlebnis ist eine schnelle und zuverlässige Übertragung der Eingaben wichtig. Daher werden die Prozessorleistung zur Verarbeitung der Eingaben sowie die Übertragungszeiten für den Austausch der Daten als weitere Vergleichsbasis verwendet.
 
-Bei der Entwicklung von Hardware ist natürlich, einerseits aus einer nachhaltigen Perspektive, aber auch wieder aus einer finanziellen Motivation, der Stromverbrauch ein wichtiger Entscheidungsgrund. Da die Unterschiede im Fall unseres Projektes, durch die Verwendung von eher weniger leistungsstarken Controllern geringer bleiben, werden diese Werte zwar in die Bewertung einfließen, aber für die Berechnung der Punkte nicht maßgeblich ausschlaggebend sein und eher für die engere Entscheidung herangezogen werden.
+Damit nachhaltige Hardwareentwicklung mit einem Fokus auf Kostenminimierung möglich wird, muss ein Augenmerk auf den Stromverbrauch der Mikrocontroller gelegt werden. Aufgrund von geringen Spannungsgrößen wird diesem Verbrauch in der endgültigen Entscheidung ein im Vergleich zu den anderen Eigenschaften kleinerer Stellenwert beigemessen.
 
-Da für das Projekt mehrere Sensoren benötigt werden sind eine größere Anzahl an Pins für die Datenmessung ein wichtiges Merkmal, welches bei der Bewertung berücksichtigt werden sollte. Wenn die Pinanzahl reicht kann man statt einem Sensor zu einem Mikrocontroller möglicherweise 2-zu-1 erreichen.
+Da das Design mehrere Sensoren beinhaltet, ist ein Mikrocontroller mit mehreren Pins zur Übertragung vorteilhaft. Wenn ein Controller mit einer ausreichenden Pinzahl gewählt wird, wäre eine Reduktion der gesamten Anzahl an Mikrocontrollern möglich.
 
-Ein Punkt, bei dem die Wichtigkeit nur auf subjektiver Basis beigemessen werden kann, sind zusätzliche Features welche die verschiedenen Sensoren aufweisen. Der ESP32 unterstützt beispielsweise das ESP Now Protokoll (siehe offizielle Website [@esp-now-protocol]), welches drahtlose Datenübertragung erlaubt, wozu aber bei der individuellen Bewertung des ESP32 mehr kommt.
+Ein Punkt, dessen Wichtigkeit nur auf subjektiver Basis ermessen werden kann, sind zusätzliche Features der Optionen. Der ESP32 unterstützt z. B. das ESP Now Protokoll (siehe offizielle Website [@esp-now-protocol]), welches drahtlose Datenübertragung erlaubt, wozu aber bei der individuellen Bewertung des ESP32 mehr kommt.
 
-Anhand von all diesen Kriterien wird im folgenden Kapitel eine Entscheidung dafür getroffen, welche Mikrocontroller wir in dieser Arbeit verwenden. Für die Gesamtbewertung werde ich pro Kategorie Punkte zwischen 1 und 30 vergeben, diese dann je nach Wichtigkeit der Kategorie (Stromverbrauch z.B. 5% und Kosten z.B. 20%) zusammenrechnen und am Ende die verschiedenen Ergebnisse vergleichen.
+Für die Gesamtbewertung werden vorerst für die Kosten Punkte zwischen 1 und 30 vergeben, welche anhand von der oben erklärten Formel errechnet werden. Die Punkte der anderen Kategorien werden relativ zu den anderen Optionen vergeben - Platz 1, 2 und 3 erhalten so 9, 6 und 3 Punkte - und danach mit einer prozentuellen Gewichtung zur finalen Punkteanzahl addiert.
 
 #### Arduino Nano
 
@@ -79,16 +79,55 @@ Kurzbeschreibung
 
 ### Prototyping
 
-In diesem Kapitel wird es um Unverwendete Prototypen und Ansätze, Demos und andere Entwicklungsschritte gehen, welche sich im Laufe der Arbeit am Controller ergeben haben. Durch sie soll es einfacher sein, mögliche Unterschiede, gefällte Entscheidungen und Änderungen zu verstehen.
+In diesem Kapitel wird es um Unverwendete Prototypen und Ansätze, Demos und andere Entwicklungsschritte gehen, welche sich im Laufe der Arbeit am Controller ergeben haben. Anhand von ihnen werden der Entwicklungsprozess und verschiedene Iterationen dargestellt.
 
 #### Arduino <-> Godot Kommunikations-Demo
 
-Für die Erstpräsentation unserer Arbeit habe ich mit Hr. Rath zusammen eine Demo erstellt, anhand von der die Kommunikation zwischen einem Arduino und der Godot Engine veranschaulicht wird. Die Grundstruktur dieser Demo habe ich aus einem Youtube-Video genommen [@connect-godot-arduino], in dem die Übertragung der Daten über die Serielle Schnittstelle erklärt und anhand von einem kurzen Beispiel gezeigt wird.
+Für die Erstpräsentation unserer Arbeit haben wir eine Demo erstellt, anhand von der die Kommunikation zwischen einem Arduino und der Godot Engine veranschaulicht wird. Die Grundstruktur dieser Demo wurde aus einem Youtube-Video genommen [@connect-godot-arduino], in dem die serielle Übertragung der Daten erklärt und beispielhaft dargestellt wird.
 
-Am Arduino werden hier die Signale von einem MPU6050-Sensor eingelesen und über die Serielle Schnittstelle übertragen.
+Am Arduino werden die Signale von einem MPU6050-Sensor eingelesen und über die Serielle Schnittstelle übertragen.
 
 ```c++
-TODO Hier kommt der Code hin, sobald der richtige im Repo ist (wieso auch immer nur der Platzhalter drauf ist) TODO
+// ...
+
+Adafruit_MPU6050 mpu;
+
+void setup(void) {
+  Serial.begin(9600);
+  while (!Serial)
+    delay(10);
+
+  Serial.println("Adafruit MPU6050 test!");
+  if (!mpu.begin()) {
+    Serial.println("Failed to find MPU6050 chip");
+    while (1) {
+      delay(10);
+    }
+  }
+  Serial.println("MPU6050 Found!");
+
+  // ...
+}
+
+void loop() {
+  sensors_event_t a, g, temp;
+  mpu.getEvent(&a, &g, &temp);
+
+  // ...
+
+  Serial.print("Rotation X: ");
+  Serial.print(g.gyro.x);
+  Serial.print(", Y: ");
+  Serial.print(g.gyro.y);
+  Serial.print(", Z: ");
+  Serial.print(g.gyro.z);
+  Serial.println(" rad/s");
+
+  // ...
+
+  Serial.println("");
+  delay(500);
+}
 ```
 
 In Godot wird das ganze über ein C#-Skript aufgenommen und ein 3D-Würfel wird anhand von den übernommenen Rotationswerten korrekt gedreht, obwohl hierbei teilweise noch Kalibrationsfehler vorkommen.
@@ -133,9 +172,11 @@ public partial class Arduino : Node3D
 }
 ```
 
-Überall wo in den Code-Segmenten ein Kommentar mit ... steht ist zusätzlicher Code, welcher aber zur Erklärung des Kernprozesses nicht wichtig ist und unnötigen Platz verbrauchen würde, da es sich hauptsächlich um die Deklaration von Variablen handelt.
+Kommentare mit drei Punkten stellen hierbei zusätzlichen Code dar, welcher für die Erklärung des Kernprozesses keine Wichtigkeit hat und meist aus Variablendeklarationen besteht.
 
-Mithilfe des Codes am Arduino, welcher vom Sensor die Rotationsdaten nimmt und sie im richtigen Format an die Serielle Schnittstelle schickt und dem C#-Code welcher diese Werte annimmt und zur Drehung eines Würfels verwendet ist schlussendlich diese Demo entstanden, welche die Verbindung zwischen einem Mikrocontroller und der Godot Engine und die sich daraus ergebenden Möglichkeiten darstellt.
+Mithilfe des Arduino-Codes, welcher vom Sensor die Rotationsdaten nimmt und sie im richtigen Format an die Serielle Schnittstelle schickt und dem C#-Code welcher diese Werte annimmt und zur Drehung eines Würfels verwendet ist schlussendlich diese Demo entstanden, welche die Verbindung zwischen einem Mikrocontroller und der Godot Engine und die sich daraus ergebenden Möglichkeiten darstellt.
+
+Mithilfe des Arduino-Codes, werden die Rotationsdaten des MPU6050 [@arduino-guide-mpu6050] an die Serielle Schnittstelle gesendet. Der C#-Code nimmt diese Werte an und dreht anhand von ihnen ein Würfel-Objekt. Durch diese Verbindung werden die Möglichkeiten für dieses Projekt simpel und effektiv dargestellt.
 
 ### Design des Controllers
 
