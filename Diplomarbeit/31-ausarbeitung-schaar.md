@@ -35,7 +35,7 @@ Billiger, bessere Leistung
 
 #### Raspberry Pi Pico
 
-
+raspi pico
 
 #### Vergleich der Optionen & Entscheidung
 
@@ -180,9 +180,11 @@ Mithilfe des Arduino-Codes, werden die Rotationsdaten des MPU6050 [@arduino-guid
 
 ### Design des Controllers
 
-#### Optisches Design
+#### Case Design
 
-Anforderungen an das Design, Iterationen, etc.
+Dieses Kapitel handelt von den verschiedenen Iterationen der Hülle des Controllers, sowie von den Entscheidungen, welche bei der Entwicklung getroffen worden sind.
+
+Zu Beginn war die Zurechtfindung in der neu gewählten CAD-Umgebung "FreeCAD" ungewöhnlich, jedoch war es nicht schwierig sich daran anzupassen. Die Wahl für FreeCAD entstand deshalb, ...
 
 #### Internes Design
 
