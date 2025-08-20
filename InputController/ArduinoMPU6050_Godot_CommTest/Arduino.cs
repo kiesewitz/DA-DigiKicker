@@ -20,7 +20,7 @@ public partial class Arduino : Node3D
 		text = GetNode<RichTextLabel>("RichTextLabel");
 		cube = GetNode<MeshInstance3D>("Cube");
 		text.Text = "Hallo";
-		serialPort = new SerialPort("COM6", 9600, Parity.None, 8, StopBits.One);
+		serialPort = new SerialPort("COM4", 9600, Parity.None, 8, StopBits.One);
 		serialPort.DtrEnable = true;
 		serialPort.RtsEnable = true;
 		serialPort.Open();
