@@ -1,0 +1,8 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1755692748
+CommunicationInterface.cs::CSharpScript::4686007996181645966::1755691278::0::1::::<>Node3D<><>0<>0<><>::
+icon.svg::CompressedTexture2D/CompressedTexture2D::1097776572044191807::1755685242::1755685250::1::::<><><>0<>0<>26200701ae06bb849f16634d59be9cfc<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+node_3d.tscn::PackedScene::4029365187161395258::1755691629::0::1::::<><><>0<>0<><>::uid://b7064qlbg3gcs::::res://CommunicationInterface.cs
+TestTexture.png::CompressedTexture2D::3372244896553714218::1755692748::1755692755::1::::<><><>0<>0<>5c5c9660eebb2977aab900e468e2b8cf<>res://.godot/imported/TestTexture.png-249bb1852704efb14b8cdd8033f9e613.s3tc.ctex::
+turnStickMat.tres::StandardMaterial3D::2531677639988781540::1755692563::0::1::::<><><>0<>0<><>::
+::res://ReadMPU6050/::1755689740
