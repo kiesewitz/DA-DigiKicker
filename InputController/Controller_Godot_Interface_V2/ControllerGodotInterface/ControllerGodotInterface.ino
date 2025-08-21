@@ -9,7 +9,7 @@ Adafruit_MPU6050 mpu;
 int trigPin = 11;
 int echoPin = 12;
 
-long duration, cm;
+double duration, cm;
 
 void setup(void) {
   Serial.begin(9600);
@@ -49,7 +49,7 @@ void loop() {
   Serial.print(g.gyro.y);
   Serial.print(" Z: ");
   Serial.print(g.gyro.z);
-  Serial.println(" rad/s");
+  Serial.print(" rad/s ");
 
   digitalWrite(trigPin, LOW);
   delayMicroseconds(5);
@@ -64,7 +64,7 @@ void loop() {
 
   Serial.print("Distance X: ");
   Serial.print(cm);
-  Serial.println("cm");
+  Serial.println(" cm");
   
   delay(50);
 }

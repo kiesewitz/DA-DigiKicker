@@ -190,11 +190,19 @@ Zuallererst wurde ein Prototyp entwickelt, der nur zur Bestimmung der grundlegen
 
 ![Prototyp 0.0](img/Schaar/ControllerV0Closed.png)
 
-Für die ersten Prototypen ist das Design auf einen Drehstab reduziert, da dieser sich für Testzwecke besser eignet und das endgültige Design hochskaliert werden kann.
+Für die ersten Prototypen ist das Design auf einen Drehstab reduziert, da dieser sich für Testzwecke besser eignet und das endgültige Design auf vier Stäbe hochskaliert werden kann.
 
-#### Internes Design
+Da diese rudimentäre Erstdarstellung jedoch selbst für Testzwecke noch unzureichend war, ist als nächstes eine erweiterte Version 1.0 designt worden, welche dem Bildnis eines Tischfußballtisches in mehreren Hinsichten ähnelt.
 
-Anforderungen, Iterationen, (möglicherweise) Entwicklung spezialisierter Platinen, etc.
+<img src="img/Schaar/ControllerV1Closed.png" width="47.5%"> <img src="img/Schaar/ControllerV1Open.png" width="50%">
+<img src="img/Schaar/ControllerV1OpenBackSide.png" width="98%">
+
+Diese Version weist einen Drehstab, eine Plattform für elektronische Bauteile, eine Trennwand zur Stabilisierung des Stabes sowie ein Loch für Kabel auf, sodass die Stromversorgung mit geschlossenem Deckel ermöglicht wird. Das erweiterte Design wurde dann, zur Erleichterung des Designprozesses und der Darstellung der Grundidee mithilfe eines BambuLab X1C 3D-Druckers ausgedruckt.
+
+<img src="img/Schaar/ControllerV1OpenIRL.jpg"> 
+<img src="img/Schaar/ControllerV1ClosedIRL.jpg" width="48%"> <img src="img/Schaar/ControllerV1BacksideIRL.jpg" width="39.15%">
+
+Um das visuelle Design attraktiver zu gestalten, obwohl es nur ein erster Prototyp ist, wurden Sticker - in Form von dem DigiKicker-Logo - auf dem Deckel und der Rückseite angebracht.
 
 ### Verbindung - Hardware & Software
 

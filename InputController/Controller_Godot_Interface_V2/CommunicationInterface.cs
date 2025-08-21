@@ -45,11 +45,15 @@ public partial class CommunicationInterface : Node3D
 		//);
 		
 		//cube.Rotation = newRotation;
-		turnStick.RotateX(x);
+		turnStick.RotateX(z);
 		//turnStick.RotateY(y);
 		//turnStick.RotateZ(z);
+		
+		var pos = turnStick.Position;
+		pos.X = (float) ((Convert.ToDouble(coords[10])-8)/15);
+		turnStick.Position = pos;
 
-		//GD.Print(serialMessage);
+		GD.Print(serialMessage);
 
 		text.Text = serialMessage;
 	}
