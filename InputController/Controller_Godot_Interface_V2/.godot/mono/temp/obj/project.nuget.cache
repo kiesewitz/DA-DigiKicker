@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0su4Dph97IqDpg3gMx5/inUFksVzeYWHM/eftW1Zb3vRD2Ir4Fb4P77Irif9C9cPyLrZtiz7lTDsfoLauCHMQg==",
+  "dgSpecHash": "8oK9ZhTy9t4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\kiese\\OneDrive\\Dokumente\\Schule\\Diplomarbeit\\Diplomarbeit_Tischkicker\\InputController\\Controller_Godot_Interface_V2\\Controller_Godot_Interface_V2.csproj",
+  "projectFilePath": "C:\\Users\\kiese\\Documents\\Schule\\Diplomarbeit_DigiKicker\\InputController\\Controller_Godot_Interface_V2\\Controller_Godot_Interface_V2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kiese\\.nuget\\packages\\godot.sourcegenerators\\4.4.1\\godot.sourcegenerators.4.4.1.nupkg.sha512",
     "C:\\Users\\kiese\\.nuget\\packages\\godotsharp\\4.4.1\\godotsharp.4.4.1.nupkg.sha512",
@@ -24,7 +24,10 @@
     "C:\\Users\\kiese\\.nuget\\packages\\runtime.native.system.io.ports\\9.0.8\\runtime.native.system.io.ports.9.0.8.nupkg.sha512",
     "C:\\Users\\kiese\\.nuget\\packages\\runtime.osx-arm64.runtime.native.system.io.ports\\9.0.8\\runtime.osx-arm64.runtime.native.system.io.ports.9.0.8.nupkg.sha512",
     "C:\\Users\\kiese\\.nuget\\packages\\runtime.osx-x64.runtime.native.system.io.ports\\9.0.8\\runtime.osx-x64.runtime.native.system.io.ports.9.0.8.nupkg.sha512",
-    "C:\\Users\\kiese\\.nuget\\packages\\system.io.ports\\9.0.8\\system.io.ports.9.0.8.nupkg.sha512"
+    "C:\\Users\\kiese\\.nuget\\packages\\system.io.ports\\9.0.8\\system.io.ports.9.0.8.nupkg.sha512",
+    "C:\\Users\\kiese\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.15\\microsoft.netcore.app.ref.8.0.15.nupkg.sha512",
+    "C:\\Users\\kiese\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.15\\microsoft.windowsdesktop.app.ref.8.0.15.nupkg.sha512",
+    "C:\\Users\\kiese\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.15\\microsoft.aspnetcore.app.ref.8.0.15.nupkg.sha512"
   ],
   "logs": []
 }

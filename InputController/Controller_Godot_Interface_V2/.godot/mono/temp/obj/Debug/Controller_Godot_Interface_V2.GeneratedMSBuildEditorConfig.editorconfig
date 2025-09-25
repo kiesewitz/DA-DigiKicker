@@ -1,6 +1,6 @@
 is_global = true
 build_property.GodotDisabledSourceGenerators = 
-build_property.GodotProjectDir = C:\Users\kiese\OneDrive\Dokumente\Schule\Diplomarbeit\Diplomarbeit_Tischkicker\InputController\Controller_Godot_Interface_V2\
+build_property.GodotProjectDir = C:\Users\kiese\Documents\Schule\Diplomarbeit_DigiKicker\InputController\Controller_Godot_Interface_V2\
 build_property.GodotProjectDirBase64 = 
 build_property.GodotSourceGenerators = 
 build_property.IsGodotToolsProject = 
@@ -13,6 +13,8 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Controller_Godot_Interface_V2
-build_property.ProjectDir = C:\Users\kiese\OneDrive\Dokumente\Schule\Diplomarbeit\Diplomarbeit_Tischkicker\InputController\Controller_Godot_Interface_V2\
+build_property.ProjectDir = C:\Users\kiese\Documents\Schule\Diplomarbeit_DigiKicker\InputController\Controller_Godot_Interface_V2\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
