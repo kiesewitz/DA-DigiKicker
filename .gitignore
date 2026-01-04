@@ -1,1 +1,10 @@
 InputController/ArduinoMPU6050_Godot_CommTest/.godot/shader_cache
+
+.venv/
+venv/
+**/.venv/
+**/venv/
+.godot/
+*.exe
+*.pck
+*.zip

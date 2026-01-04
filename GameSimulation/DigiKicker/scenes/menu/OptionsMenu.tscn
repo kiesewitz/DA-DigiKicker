@@ -1,0 +1,171 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwrv6u8icylto"]
+
+[ext_resource type="Script" uid="uid://cnthl7pn2gatd" path="res://scripts/menu/OptionsMenu.cs" id="1_n0wad"]
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1_n0wad")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.15, 0.15, 0.2, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="LabelTitle" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Options"
+horizontal_alignment = 1
+
+[node name="Separator1" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AudioSection" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LabelAudio" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Audio"
+
+[node name="HBoxMaster" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioSection"]
+layout_mode = 2
+
+[node name="LabelMaster" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioSection/HBoxMaster"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Master Volume:"
+
+[node name="SliderMasterVolume" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioSection"]
+layout_mode = 2
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+value = 100.0
+
+[node name="HBoxMusic" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioSection"]
+layout_mode = 2
+
+[node name="LabelMusic" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioSection/HBoxMusic"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Music Volume:"
+
+[node name="SliderMusicVolume" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioSection"]
+layout_mode = 2
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+value = 80.0
+
+[node name="HBoxSFX" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioSection"]
+layout_mode = 2
+
+[node name="LabelSFX" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioSection/HBoxSFX"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "SFX Volume:"
+
+[node name="SliderSFXVolume" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioSection"]
+layout_mode = 2
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+value = 100.0
+
+[node name="Separator2" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VideoSection" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LabelVideo" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VideoSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Video"
+
+[node name="HBoxFullscreen" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VideoSection"]
+layout_mode = 2
+
+[node name="LabelFullscreen" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VideoSection/HBoxFullscreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Window Mode:"
+
+[node name="OptionFullscreen" type="OptionButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VideoSection"]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Windowed"
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Borderless"
+popup/item_2/id = 2
+
+[node name="HBoxWindowSize" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VideoSection"]
+layout_mode = 2
+
+[node name="LabelWindowSize" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VideoSection/HBoxWindowSize"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Window Size:"
+
+[node name="OptionWindowSize" type="OptionButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VideoSection"]
+layout_mode = 2
+item_count = 5
+popup/item_0/text = "1280 x 720"
+popup/item_1/text = "1366 x 768"
+popup/item_1/id = 1
+popup/item_2/text = "1600 x 900"
+popup/item_2/id = 2
+popup/item_3/text = "1920 x 1080"
+popup/item_3/id = 3
+popup/item_4/text = "2560 x 1440"
+popup/item_4/id = 4
+
+[node name="OptionVSync" type="CheckBox" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VideoSection"]
+layout_mode = 2
+button_pressed = true
+text = "VSync"
+
+[node name="CheckFPSDisplay" type="CheckBox" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/VideoSection"]
+layout_mode = 2
+text = "Show FPS"
+
+[node name="Separator3" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BtnBack" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+text = "Back"

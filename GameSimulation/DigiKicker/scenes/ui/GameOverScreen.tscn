@@ -1,0 +1,80 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwtop4c03ltu6"]
+
+[ext_resource type="Script" uid="uid://b3n55xjwfnd6m" path="res://scripts/ui/GameOverScreen.cs" id="1_0pcqs"]
+
+[node name="GameOverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+process_mode = 3
+script = ExtResource("1_0pcqs")
+
+[node name="DimBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.95)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(300, 200)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="LabelGameOver" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="LabelWinner" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Winner"
+horizontal_alignment = 1
+
+[node name="FinalScore" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LabelFinalScoreRed" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/FinalScore"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "0"
+
+[node name="LabelVS" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/FinalScore"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = " vs "
+
+[node name="LabelFinalScoreBlue" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/FinalScore"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "0"
+
+[node name="BtnPlayAgain" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+text = "Play Again"
+
+[node name="BtnMainMenu" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+text = "Main Menu"

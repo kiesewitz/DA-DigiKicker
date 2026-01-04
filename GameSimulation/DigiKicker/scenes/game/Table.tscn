@@ -1,0 +1,97 @@
+[gd_scene load_steps=14 format=3 uid="uid://cdxsfh2y0vswl"]
+
+[ext_resource type="Script" uid="uid://bai2fdx665pqa" path="res://scripts/game/Table.cs" id="1_5sutu"]
+[ext_resource type="Script" uid="uid://cy4u2evs2vui1" path="res://scripts/game/Goal.cs" id="2_bqvlv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hr11x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oqddx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5sutu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bqvlv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5ktsa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ye5ck"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_px02t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bbcbx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cxepr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w42c5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wws4t"]
+
+[node name="Table" type="Node3D"]
+script = ExtResource("1_5sutu")
+
+[node name="TableBody" type="StaticBody3D" parent="."]
+
+[node name="TableMesh" type="MeshInstance3D" parent="TableBody"]
+
+[node name="TableCollider" type="CollisionShape3D" parent="TableBody"]
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="WallNorth" type="StaticBody3D" parent="Walls"]
+
+[node name="WallNorthMesh" type="MeshInstance3D" parent="Walls/WallNorth"]
+
+[node name="WallNorthCollider" type="CollisionShape3D" parent="Walls/WallNorth"]
+
+[node name="WallSouth" type="StaticBody3D" parent="Walls"]
+
+[node name="WallSouthMesh" type="MeshInstance3D" parent="Walls/WallSouth"]
+
+[node name="WallSouthCollider" type="CollisionShape3D" parent="Walls/WallSouth"]
+
+[node name="Goals" type="Node3D" parent="."]
+
+[node name="GoalRed" type="Node3D" parent="Goals"]
+
+[node name="GoalFrame" type="StaticBody3D" parent="Goals/GoalRed"]
+
+[node name="GoalFrameMesh" type="MeshInstance3D" parent="Goals/GoalRed/GoalFrame"]
+
+[node name="GoalFrameCollider" type="CollisionShape3D" parent="Goals/GoalRed/GoalFrame"]
+
+[node name="GoalBack" type="StaticBody3D" parent="Goals/GoalRed"]
+
+[node name="GoalBackMesh" type="MeshInstance3D" parent="Goals/GoalRed/GoalBack"]
+
+[node name="GoalBackCollider" type="CollisionShape3D" parent="Goals/GoalRed/GoalBack"]
+
+[node name="GoalTrigger" type="Area3D" parent="Goals/GoalRed"]
+script = ExtResource("2_bqvlv")
+DefendingTeam = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Goals/GoalRed/GoalTrigger"]
+shape = SubResource("BoxShape3D_wws4t")
+
+[node name="GoalBlue" type="Node3D" parent="Goals"]
+
+[node name="GoalFrame" type="StaticBody3D" parent="Goals/GoalBlue"]
+
+[node name="GoalFrameMesh" type="MeshInstance3D" parent="Goals/GoalBlue/GoalFrame"]
+
+[node name="GoalFrameCollider" type="CollisionShape3D" parent="Goals/GoalBlue/GoalFrame"]
+
+[node name="GoalBack" type="StaticBody3D" parent="Goals/GoalBlue"]
+
+[node name="GoalBackMesh" type="MeshInstance3D" parent="Goals/GoalBlue/GoalBack"]
+
+[node name="GoalBackCollider" type="CollisionShape3D" parent="Goals/GoalBlue/GoalBack"]
+
+[node name="GoalTrigger" type="Area3D" parent="Goals/GoalBlue"]
+script = ExtResource("2_bqvlv")
+DefendingTeam = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Goals/GoalBlue/GoalTrigger"]
+shape = SubResource("BoxShape3D_wws4t")
+
+[node name="TeamRed" type="Node3D" parent="."]
+
+[node name="TeamBlue" type="Node3D" parent="."]
