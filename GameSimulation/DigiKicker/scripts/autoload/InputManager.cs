@@ -229,79 +229,132 @@ public partial class InputManager : Node
 		}
 
 		// Tastatur-Stangenwechsel für lokalen Spieler verarbeiten
-		if (Player1Device == InputDevice.Keyboard && @event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
+		if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
 		{
-			// Logischen Spieler bestimmen (je nach Multiplayer-Modus und Team)
-			int logicalPlayer = 1;
-			bool isBlueTeam = false;
+			// Welche Tasten wurden gedrückt?
+			bool isP1SwitchLeft = _bindings.MatchesBinding(keyEvent, InputBindings.GameAction.P1_SwitchRodLeft, 1, false);
+			bool isP1SwitchRight = _bindings.MatchesBinding(keyEvent, InputBindings.GameAction.P1_SwitchRodRight, 1, false);
+			bool isP2SwitchLeft = _bindings.MatchesBinding(keyEvent, InputBindings.GameAction.P2_SwitchRodLeft, 2, false);
+			bool isP2SwitchRight = _bindings.MatchesBinding(keyEvent, InputBindings.GameAction.P2_SwitchRodRight, 2, false);
 
-			if (_gameManager != null && _gameManager.IsMultiplayer)
+			if (!isP1SwitchLeft && !isP1SwitchRight && !isP2SwitchLeft && !isP2SwitchRight)
+				return;
+
+			// Bestimmen: welcher Spieler (für Variablen), welches Team (für Richtung), welche Taste (links/rechts)
+			int varPlayer = 0; // 1 oder 2 - welche Variablen verwendet werden
+			bool isBlueTeam = false;
+			bool isSwitchLeft = false;
+			bool isSwitchRight = false;
+
+			if (_gameManager != null && _gameManager.IsMultiplayer && !IsOnlineGame())
 			{
-				logicalPlayer = _gameManager.PlayerTeam == GameManager.Team.Blue ? 2 : 1;
-				isBlueTeam = _gameManager.PlayerTeam == GameManager.Team.Blue;
+				// Lokaler Multiplayer: Gerät bestimmt welche Tasten akzeptiert werden
+				// Keyboard1 = P1 Tasten, Keyboard2 = P2 Tasten
+				if (_gameManager.RedTeamController == InputDevice.Keyboard && (isP1SwitchLeft || isP1SwitchRight))
+				{
+					varPlayer = 1;
+					isBlueTeam = false;
+					isSwitchLeft = isP1SwitchLeft;
+					isSwitchRight = isP1SwitchRight;
+				}
+				else if (_gameManager.RedTeamController == InputDevice.Keyboard2 && (isP2SwitchLeft || isP2SwitchRight))
+				{
+					varPlayer = 1;
+					isBlueTeam = false;
+					isSwitchLeft = isP2SwitchLeft;
+					isSwitchRight = isP2SwitchRight;
+				}
+				else if (_gameManager.BlueTeamController == InputDevice.Keyboard && (isP1SwitchLeft || isP1SwitchRight))
+				{
+					varPlayer = 2;
+					isBlueTeam = true;
+					isSwitchLeft = isP1SwitchLeft;
+					isSwitchRight = isP1SwitchRight;
+				}
+				else if (_gameManager.BlueTeamController == InputDevice.Keyboard2 && (isP2SwitchLeft || isP2SwitchRight))
+				{
+					varPlayer = 2;
+					isBlueTeam = true;
+					isSwitchLeft = isP2SwitchLeft;
+					isSwitchRight = isP2SwitchRight;
+				}
+			}
+			else if (_gameManager != null && _gameManager.IsMultiplayer && IsOnlineGame())
+			{
+				// Online Multiplayer: Immer P1 Tasten, unabhängig vom Hauptgerät
+				// (Spieler kann Controller + Tastatur gleichzeitig nutzen)
+				if (isP1SwitchLeft || isP1SwitchRight)
+				{
+					varPlayer = 1; // Im Online-MP immer Player 1 Variablen
+					isBlueTeam = _gameManager.PlayerTeam == GameManager.Team.Blue;
+					isSwitchLeft = isP1SwitchLeft;
+					isSwitchRight = isP1SwitchRight;
+				}
 			}
 			else
 			{
-				isBlueTeam = _gameManager != null && _gameManager.PlayerTeam == GameManager.Team.Blue;
+				// Singleplayer
+				if (Player1Device == InputDevice.Keyboard || Player1Device == InputDevice.Keyboard2)
+				{
+					if (isP1SwitchLeft || isP1SwitchRight)
+					{
+						varPlayer = 1;
+						isBlueTeam = _gameManager != null && _gameManager.PlayerTeam == GameManager.Team.Blue;
+						isSwitchLeft = isP1SwitchLeft;
+						isSwitchRight = isP1SwitchRight;
+					}
+				}
 			}
 
-			// Wechsel zur visuell linken Stange
-			if (_bindings.MatchesBinding(keyEvent, InputBindings.GameAction.P1_SwitchRodLeft, 1, false))
+			if (varPlayer == 0)
+				return;
+
+			if (isSwitchLeft)
 			{
 				// Rotes Team: niedrigerer Index nach links, Blaues Team: höherer Index nach links
-				if (isBlueTeam)
+				// varPlayer bestimmt welche Variable, isBlueTeam bestimmt die Richtung
+				if (varPlayer == 2)
 				{
-					if (logicalPlayer == 2)
-					{
+					if (isBlueTeam)
 						_player2SelectedRod = Mathf.Min(MAX_RODS_PER_TEAM - 1, _player2SelectedRod + 1);
-						_player1SelectedRod = _player2SelectedRod;
-					}
 					else
-						_player1SelectedRod = Mathf.Min(MAX_RODS_PER_TEAM - 1, _player1SelectedRod + 1);
+						_player2SelectedRod = Mathf.Max(0, _player2SelectedRod - 1);
 				}
 				else
 				{
-					if (logicalPlayer == 2)
-					{
-						_player2SelectedRod = Mathf.Max(0, _player2SelectedRod - 1);
-						_player1SelectedRod = _player2SelectedRod;
-					}
+					if (isBlueTeam)
+						_player1SelectedRod = Mathf.Min(MAX_RODS_PER_TEAM - 1, _player1SelectedRod + 1);
 					else
 						_player1SelectedRod = Mathf.Max(0, _player1SelectedRod - 1);
 				}
 
-				int sel = logicalPlayer == 2 ? _player2SelectedRod : _player1SelectedRod;
-				GD.Print($"Player {logicalPlayer} switched to rod {sel + 1} ({GetRodTypeName(sel)})");
-				EmitSignal(SignalName.RodSelectionChanged, logicalPlayer, sel);
+				int sel = varPlayer == 2 ? _player2SelectedRod : _player1SelectedRod;
+				int signalPlayer = isBlueTeam ? 2 : 1; // Für UI-Farbmarkierung
+				GD.Print($"Player {signalPlayer} switched to rod {sel + 1} ({GetRodTypeName(sel)})");
+				EmitSignal(SignalName.RodSelectionChanged, signalPlayer, sel);
 			}
-			// Wechsel zur visuell rechten Stange
-			else if (_bindings.MatchesBinding(keyEvent, InputBindings.GameAction.P1_SwitchRodRight, 1, false))
+			else if (isSwitchRight)
 			{
 				// Rotes Team: höherer Index nach rechts, Blaues Team: niedrigerer Index nach rechts
-				if (isBlueTeam)
+				if (varPlayer == 2)
 				{
-					if (logicalPlayer == 2)
-					{
+					if (isBlueTeam)
 						_player2SelectedRod = Mathf.Max(0, _player2SelectedRod - 1);
-						_player1SelectedRod = _player2SelectedRod;
-					}
 					else
-						_player1SelectedRod = Mathf.Max(0, _player1SelectedRod - 1);
+						_player2SelectedRod = Mathf.Min(MAX_RODS_PER_TEAM - 1, _player2SelectedRod + 1);
 				}
 				else
 				{
-					if (logicalPlayer == 2)
-					{
-						_player2SelectedRod = Mathf.Min(MAX_RODS_PER_TEAM - 1, _player2SelectedRod + 1);
-						_player1SelectedRod = _player2SelectedRod;
-					}
+					if (isBlueTeam)
+						_player1SelectedRod = Mathf.Max(0, _player1SelectedRod - 1);
 					else
 						_player1SelectedRod = Mathf.Min(MAX_RODS_PER_TEAM - 1, _player1SelectedRod + 1);
 				}
 
-				int sel = logicalPlayer == 2 ? _player2SelectedRod : _player1SelectedRod;
-				GD.Print($"Player {logicalPlayer} switched to rod {sel + 1} ({GetRodTypeName(sel)})");
-				EmitSignal(SignalName.RodSelectionChanged, logicalPlayer, sel);
+				int sel = varPlayer == 2 ? _player2SelectedRod : _player1SelectedRod;
+				int signalPlayer = isBlueTeam ? 2 : 1; // Für UI-Farbmarkierung
+				GD.Print($"Player {signalPlayer} switched to rod {sel + 1} ({GetRodTypeName(sel)})");
+				EmitSignal(SignalName.RodSelectionChanged, signalPlayer, sel);
 			}
 		}
 
@@ -345,16 +398,33 @@ public partial class InputManager : Node
 
 		if (_gameManager != null && _gameManager.IsMultiplayer)
 		{
-			// Im Multiplayer: Team-Controller-Zuordnungen prüfen
-			if (player == 0 && _gameManager.PlayerTeam == GameManager.Team.Red)
+			if (IsOnlineGame())
 			{
-				player = 1;
-				playerFound = true;
+				// Online Multiplayer: Nur der lokale Spieler steuert
+				if (_gameManager.PlayerTeam == GameManager.Team.Red)
+				{
+					player = 1;
+					playerFound = true;
+				}
+				else
+				{
+					player = 2;
+					playerFound = true;
+				}
 			}
-			else if (player == 0 && _gameManager.PlayerTeam == GameManager.Team.Blue)
+			else
 			{
-				player = 2;
-				playerFound = true;
+				// Lokaler Multiplayer: Prüfen welchem Team dieser Controller gehört
+				if (_gameManager.RedTeamController == device)
+				{
+					player = 1;
+					playerFound = true;
+				}
+				else if (_gameManager.BlueTeamController == device)
+				{
+					player = 2;
+					playerFound = true;
+				}
 			}
 		}
 		else
@@ -394,40 +464,45 @@ public partial class InputManager : Node
 		bool toggleLeftPair = (isToggleLeftButton && !isBlueTeam) || (isToggleRightButton && isBlueTeam);
 		bool toggleRightPair = (isToggleRightButton && !isBlueTeam) || (isToggleLeftButton && isBlueTeam);
 
+		// Im Online-Multiplayer gibt es nur einen lokalen Spieler, der immer Player 1 Variablen verwendet
+		// Aber für das Signal brauchen wir den echten Team-Player für die korrekte Farbmarkierung
+		int internalPlayer = (_gameManager != null && _gameManager.IsMultiplayer && IsOnlineGame()) ? 1 : player;
+		int signalPlayer = player; // Für UI-Farbmarkierung den echten Team-Player verwenden
+
 		if (toggleLeftPair)
 		{
 			// Linkes Paar umschalten (Torwart <-> Verteidigung)
-			if (player == 1)
+			if (internalPlayer == 1)
 			{
 				_player1LeftPairRods = (_player1LeftPairRods + 1) % 2;
 				_player1ActiveRod = LEFT_PAIR_RODS[_player1LeftPairRods];
-				GD.Print($"Player 1 left pair - switched to {GetRodTypeName(_player1ActiveRod)} (rod {_player1ActiveRod})");
-				EmitRodPairChangedSignal(player);
+				GD.Print($"Player {signalPlayer} left pair - switched to {GetRodTypeName(_player1ActiveRod)} (rod {_player1ActiveRod})");
+				EmitRodPairChangedSignalForPlayer(signalPlayer, _player1LeftPairRods, _player1RightPairRods, _player1ActiveRod);
 			}
 			else
 			{
 				_player2LeftPairRods = (_player2LeftPairRods + 1) % 2;
 				_player2ActiveRod = LEFT_PAIR_RODS[_player2LeftPairRods];
-				GD.Print($"Player 2 left pair - switched to {GetRodTypeName(_player2ActiveRod)} (rod {_player2ActiveRod})");
-				EmitRodPairChangedSignal(player);
+				GD.Print($"Player {signalPlayer} left pair - switched to {GetRodTypeName(_player2ActiveRod)} (rod {_player2ActiveRod})");
+				EmitRodPairChangedSignalForPlayer(signalPlayer, _player2LeftPairRods, _player2RightPairRods, _player2ActiveRod);
 			}
 		}
 		else if (toggleRightPair)
 		{
 			// Rechtes Paar umschalten (Mittelfeld <-> Angriff)
-			if (player == 1)
+			if (internalPlayer == 1)
 			{
 				_player1RightPairRods = (_player1RightPairRods + 1) % 2;
 				_player1ActiveRod = RIGHT_PAIR_RODS[_player1RightPairRods];
-				GD.Print($"Player 1 right pair - switched to {GetRodTypeName(_player1ActiveRod)} (rod {_player1ActiveRod})");
-				EmitRodPairChangedSignal(player);
+				GD.Print($"Player {signalPlayer} right pair - switched to {GetRodTypeName(_player1ActiveRod)} (rod {_player1ActiveRod})");
+				EmitRodPairChangedSignalForPlayer(signalPlayer, _player1LeftPairRods, _player1RightPairRods, _player1ActiveRod);
 			}
 			else
 			{
 				_player2RightPairRods = (_player2RightPairRods + 1) % 2;
 				_player2ActiveRod = RIGHT_PAIR_RODS[_player2RightPairRods];
-				GD.Print($"Player 2 right pair - switched to {GetRodTypeName(_player2ActiveRod)} (rod {_player2ActiveRod})");
-				EmitRodPairChangedSignal(player);
+				GD.Print($"Player {signalPlayer} right pair - switched to {GetRodTypeName(_player2ActiveRod)} (rod {_player2ActiveRod})");
+				EmitRodPairChangedSignalForPlayer(signalPlayer, _player2LeftPairRods, _player2RightPairRods, _player2ActiveRod);
 			}
 		}
 	}
@@ -449,6 +524,16 @@ public partial class InputManager : Node
 			int rightRod = RIGHT_PAIR_RODS[_player2RightPairRods];
 			EmitSignal(SignalName.ControllerRodPairChanged, player, leftRod, rightRod, _player2ActiveRod);
 		}
+	}
+
+	/// <summary>
+	/// Sendet Signal mit expliziten Werten für Online-Multiplayer (korrekte Farbmarkierung)
+	/// </summary>
+	private void EmitRodPairChangedSignalForPlayer(int player, int leftPairIndex, int rightPairIndex, int activeRod)
+	{
+		int leftRod = LEFT_PAIR_RODS[leftPairIndex];
+		int rightRod = RIGHT_PAIR_RODS[rightPairIndex];
+		EmitSignal(SignalName.ControllerRodPairChanged, player, leftRod, rightRod, activeRod);
 	}
 
 	/// <summary>
@@ -475,17 +560,35 @@ public partial class InputManager : Node
 		InputDevice device;
 		int inputPlayer;
 
-		// Im Multiplayer: Lokaler Spieler steuert nur sein gewähltes Team via Player1Device
+		// Im Multiplayer: Unterscheidung zwischen Online und Lokal
 		if (_gameManager != null && _gameManager.IsMultiplayer)
 		{
-			int localTeamIndex = _gameManager.PlayerTeam == GameManager.Team.Red ? 1 : 2;
-			if (player != localTeamIndex)
+			if (IsOnlineGame())
 			{
-				return Vector2.Zero; // Gegner-Stangen: keine lokale Eingabe
+				// Online-Multiplayer: Nur der lokale Spieler steuert sein Team
+				int localTeamIndex = _gameManager.PlayerTeam == GameManager.Team.Red ? 1 : 2;
+				if (player != localTeamIndex)
+				{
+					return Vector2.Zero; // Gegner-Stangen: keine lokale Eingabe
+				}
+				device = Player1Device;
+				inputPlayer = 1; // Im Online-MP immer Player 1 Eingaben verwenden
 			}
-
-			device = Player1Device;
-			inputPlayer = localTeamIndex;
+			else
+			{
+				// Lokaler Multiplayer: Beide Spieler steuern lokal
+				// Spieler 1 (Red) mit RedTeamController, Spieler 2 (Blue) mit BlueTeamController
+				if (player == 1)
+				{
+					device = _gameManager.RedTeamController;
+					inputPlayer = 1;
+				}
+				else
+				{
+					device = _gameManager.BlueTeamController;
+					inputPlayer = 2;
+				}
+			}
 		}
 		else
 		{
@@ -509,10 +612,13 @@ public partial class InputManager : Node
 		// Bei Tastatur-Eingabe: nur Eingabe zurückgeben wenn diese Stange ausgewählt ist
 		if (device == InputDevice.Keyboard || device == InputDevice.Keyboard2)
 		{
-			int selectedRod = _player1SelectedRod;
+			// Im Online-Multiplayer gibt es nur einen lokalen Spieler, der Player 1 Variablen verwendet
+			bool usePlayer1Vars = (_gameManager == null || !_gameManager.IsMultiplayer || IsOnlineGame());
+			int selectedRod = usePlayer1Vars ? _player1SelectedRod :
+							  (inputPlayer == 2 ? _player2SelectedRod : _player1SelectedRod);
 			if (rodIndex != selectedRod)
 				return Vector2.Zero;
-			return GetInputForDevice(device, 1);
+			return GetInputForDevice(device, inputPlayer);
 		}
 
 		// Bei Controller-Eingabe: zwei Stangen können gleichzeitig gesteuert werden
@@ -543,9 +649,15 @@ public partial class InputManager : Node
 			device = Player1Device;
 			isBlueTeam = (_gameManager.PlayerTeam == GameManager.Team.Blue);
 		}
+		else if (_gameManager != null && _gameManager.IsMultiplayer && IsOnlineGame())
+		{
+			// Online Multiplayer: Lokaler Spieler verwendet Player1Device
+			device = Player1Device;
+			isBlueTeam = (_gameManager.PlayerTeam == GameManager.Team.Blue);
+		}
 		else
 		{
-			// Multiplayer: Gerät aus GameManager Team-Zuweisungen holen
+			// Lokaler Multiplayer: Gerät aus GameManager Team-Zuweisungen holen
 			device = player == 1 ? _gameManager.RedTeamController : _gameManager.BlueTeamController;
 			isBlueTeam = (player == 2);
 		}
@@ -560,9 +672,13 @@ public partial class InputManager : Node
 		{
 			humanPlayerIndex = 1; // Mensch ist immer Player 1 im Singleplayer
 		}
+		else if (_gameManager != null && _gameManager.IsMultiplayer && IsOnlineGame())
+		{
+			humanPlayerIndex = 1; // Im Online-Multiplayer gibt es nur einen lokalen Spieler
+		}
 		else
 		{
-			humanPlayerIndex = player;
+			humanPlayerIndex = player; // Lokaler Multiplayer: Spieler-Index verwenden
 		}
 
 		int leftPairActiveRod = humanPlayerIndex == 1
@@ -742,34 +858,19 @@ public partial class InputManager : Node
 		switch (device)
 		{
 			case InputDevice.Keyboard:
-				if (player == 1)
-				{
-					// Spieler 1 Tastatur: Benutzerdefinierte Tastenbelegungen verwenden
-					if (_bindings.IsActionPressed(InputBindings.GameAction.P1_MoveUp, 1, false))
-						input.X -= 1.0f;
-					if (_bindings.IsActionPressed(InputBindings.GameAction.P1_MoveDown, 1, false))
-						input.X += 1.0f;
-					if (_bindings.IsActionPressed(InputBindings.GameAction.P1_RotateLeft, 1, false))
-						input.Y -= 1.0f;
-					if (_bindings.IsActionPressed(InputBindings.GameAction.P1_RotateRight, 1, false))
-						input.Y += 1.0f;
-				}
-				else if (player == 2)
-				{
-					// Spieler 2 Tastatur: Benutzerdefinierte Tastenbelegungen verwenden
-					if (_bindings.IsActionPressed(InputBindings.GameAction.P2_MoveUp, 2, false))
-						input.X -= 1.0f;
-					if (_bindings.IsActionPressed(InputBindings.GameAction.P2_MoveDown, 2, false))
-						input.X += 1.0f;
-					if (_bindings.IsActionPressed(InputBindings.GameAction.P2_RotateLeft, 2, false))
-						input.Y -= 1.0f;
-					if (_bindings.IsActionPressed(InputBindings.GameAction.P2_RotateRight, 2, false))
-						input.Y += 1.0f;
-				}
+				// Keyboard1 verwendet IMMER P1 Tasten (WASD + QE), unabhängig vom Team
+				if (_bindings.IsActionPressed(InputBindings.GameAction.P1_MoveUp, 1, false))
+					input.X -= 1.0f;
+				if (_bindings.IsActionPressed(InputBindings.GameAction.P1_MoveDown, 1, false))
+					input.X += 1.0f;
+				if (_bindings.IsActionPressed(InputBindings.GameAction.P1_RotateLeft, 1, false))
+					input.Y -= 1.0f;
+				if (_bindings.IsActionPressed(InputBindings.GameAction.P1_RotateRight, 1, false))
+					input.Y += 1.0f;
 				break;
 
 			case InputDevice.Keyboard2:
-				// Keyboard2 verwendet immer Spieler 2 Belegungen (Pfeiltasten + Nummernblock)
+				// Keyboard2 verwendet IMMER P2 Tasten (Pfeiltasten + Numpad), unabhängig vom Team
 				if (_bindings.IsActionPressed(InputBindings.GameAction.P2_MoveUp, 2, false))
 					input.X -= 1.0f;
 				if (_bindings.IsActionPressed(InputBindings.GameAction.P2_MoveDown, 2, false))
