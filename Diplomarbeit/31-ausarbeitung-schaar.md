@@ -50,6 +50,13 @@ Die Firma wurde im Jahr 2005 in Italien gegründet und hat vier Co-Gründer, wel
 - David Mellis
   - Er arbeitet als Softwareentwickler bei der Firma Autodesk, wo es sein Ziel ist, Menschen für die kreative bzw. DIY-Nutzung von elektronischen Bauteilen zu inspirieren. Wie seine Mitgründer hat auch er mehrere Titel (MSc., PhD.) und unterrichtete ebenfalls an Universitäten wie dem Copenhagen Institute of Interaction Design (Dänemark).
 
+Die vier Gründer in Reihenfolge der Nennung:
+
+![Massimo Banzi](img/Schaar/massimo-banzi.png)
+![David Cuartielles](img/Schaar/david-cuartielles.png)
+![Tom Igoe](img/Schaar/tom-igoe.png)
+![David Mellis](img/Schaar/david-mellis.png)
+
 ### Technische Spezifikationen
 
 
