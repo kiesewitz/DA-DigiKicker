@@ -2753,7 +2753,7 @@ if (speed > MAX_VELOCITY)
 
 ```python
 policy_kwargs = dict(
-    log_std_init=-1.0,  # exp(-1) ≈ 0.37 statt 1.0
+    log_std_init=-1.0,  # exp(-1) = (ungefähr) 0.37 statt 1.0
 )
 
 model = PPO(
