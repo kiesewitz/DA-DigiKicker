@@ -2271,7 +2271,7 @@ Der Action Space besteht aus 8 kontinuierlichen Werten im Bereich [-1, 1]:
 
 ```gdscript
 func get_action_space() -> Dictionary:
-    # 4 Rods × 2 Actions (lateral, rotation) = 8 kontinuierliche Actions
+    # 4 Rods * 2 Actions (lateral, rotation) = 8 kontinuierliche Actions
     return {
         "rod_actions": {
             "size": 8,
