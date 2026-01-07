@@ -1677,7 +1677,7 @@ public partial class Rod : Node3D
         float rotationAmount = input * ROTATION_SPEED * delta;
         RotateObjectLocal(Vector3.Back, rotationAmount);
 
-        // Rotation auf +-180° begrenzen
+        // Rotation auf +-180 Grad begrenzen
         var currentRotation = Rotation;
         currentRotation.Z = Mathf.Clamp(currentRotation.Z, -Mathf.Pi, Mathf.Pi);
         Rotation = currentRotation;
