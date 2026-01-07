@@ -625,10 +625,10 @@ Das grundlegende RL-Framework besteht aus einem Agenten, der in einer Umgebung (
 |   |          |                        |           |   |
 |   |  Agent   |                        |Environment|   |
 |   |          |                        |           |   |
-|   +-----------+   <-----------------   +------------+   |
+|   +----------+   <-----------------   +-----------+   |
 |                    State, Reward                      |
 |                                                       |
-+--------------------------------------------------------+
++-------------------------------------------------------+
 ```
 
 Diese Formulierung macht RL besonders geeignet für Probleme, bei denen der optimale Lösungsweg nicht bekannt ist, aber die Qualität von Ergebnissen bewertet werden kann. Prominente Beispiele umfassen das Erlernen von Spielstrategien wie bei AlphaGo, Roboter-Steuerung und autonomes Fahren.
@@ -667,7 +667,7 @@ for step in range(1000):
 env.close()
 ```
 
-Die Policy ist die Strategie des Agenten, die für jeden State eine Aktion (oder eine Wahrscheinlichkeitsverteilung über Aktionen) bestimmt. Das Ziel des RL-Trainings ist es, eine optimale Policy zu finden, die den erwarteten kumulativen Reward maximiert. Der Discount Factor γ (Gamma) gewichtet dabei zukünftige Rewards gegenüber unmittelbaren.
+Die Policy ist die Strategie des Agenten, die für jeden State eine Aktion (oder eine Wahrscheinlichkeitsverteilung über Aktionen) bestimmt. Das Ziel des RL-Trainings ist es, eine optimale Policy zu finden, die den erwarteten kumulativen Reward maximiert. Der Discount Factor Gamma gewichtet dabei zukünftige Rewards gegenüber unmittelbaren.
 
 ### 7.3 Algorithmen-Kategorien
 
