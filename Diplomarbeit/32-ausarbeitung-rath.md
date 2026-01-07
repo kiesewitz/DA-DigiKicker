@@ -935,14 +935,14 @@ Das Framework besteht aus zwei Hauptkomponenten: einem GDExtension-Plugin für G
 |   |                   |            |                     |   |
 |   | +---------------+ |    TCP/    | +-----------------+ |   |
 |   | | AIController  | | <--------> | |Stable-Baselines3| |   |
-|   | +----------------+ |   Shared   | +------------------+ |   |
+|   | +---------------+ |   Shared   | +-----------------+ |   |
 |   |        |          |   Memory   |         |           |   |
-|   |        ▼          |            |         ▼           |   |
+|   |        v          |            |         v           |   |
 |   | +---------------+ |            | +-----------------+ |   |
 |   | |    Sensors    | |            | |    PPO / DQN    | |   |
-|   | +----------------+ |            | +------------------+ |   |
+|   | +---------------+ |            | +-----------------+ |   |
 |   |                   |            |                     |   |
-|   +--------------------+            +----------------------+   |
+|   +-------------------+            +---------------------+   |
 |                                                              |
 +---------------------------------------------------------------+
 ```
@@ -1868,13 +1868,13 @@ Der `GameManager` verwaltet den Spielzustand über ein Enum mit vier möglichen 
     +--|---+
        |
        | StartGame()
-       ▼
+       v
    Countdown
        |
        |
        |      +-----------------------------------------+
        |      |                                         |
-       ▼      ▼                                         |
+       v      v                                         |
   +-------------+    Pause()     +--------+             |
   |             | -------------> |        |             |
   |   Playing   |                | Paused |             |
@@ -1885,7 +1885,7 @@ Der `GameManager` verwaltet den Spielzustand über ein Enum mit vier möglichen 
      |       +---------------> Countdown ---------------+
      |
      | Win Condition erfüllt
-     ▼
+     v
 +----------+
 | GameOver |
 +----------+
@@ -2195,7 +2195,7 @@ Das Training nutzt das Godot RL Agents Framework, das eine Brücke zwischen Godo
 |   |                       |                             |  |
 |   +------------------------|-----------------------------+  |
 |                           | TCP/Shared Memory              |
-|                           ▼                                |
+|                           v                                |
 |   +-----------------------------------------------------+  |
 |   |              Python Training                        |  |
 |   |                                                     |  |
