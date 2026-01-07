@@ -1,5 +1,7 @@
 # Theorie - Schaar
 \textauthor{Nikita Schaar}
+\usepackage[settings]{markdown}
+\usepackage[pipeTables=true]{markdown}
 
 Das folgende Kapitel befasst sich mit jeglicher Theorie rund um diese Diplomarbeit. Beschrieben werden sowohl Werkzeuge und Programme als auch jegliche Bauteile und wichtige Hardware, welche verwendet wurde.
 
@@ -23,51 +25,51 @@ Für ein angenehmes Spielerlebnis ist eine schnelle und zuverlässige Übertragu
 
 Damit nachhaltige Hardwareentwicklung mit einem Fokus auf Kostenminimierung möglich wird, muss ein Augenmerk auf den Stromverbrauch der Mikrocontroller gelegt werden. Aufgrund von geringen Spannungsgrößen wird diesem Verbrauch in der endgültigen Entscheidung ein im Vergleich zu den anderen Eigenschaften kleinerer Stellenwert beigemessen.
 
-Da das Design mehrere Sensoren beinhaltet, ist ein Mikrocontroller mit mehreren Pins zur Übertragung vorteilhaft. Wenn ein Controller mit einer ausreichenden Pinzahl gewählt wird, wäre eine Reduktion der gesamten Anzahl an Mikrocontrollern möglich.
+Für die Gesamtbewertung werden vorerst für die Kosten Punkte zwischen 1 und 30 vergeben, welche anhand von der oben erklärten Formel errechnet werden. Die Punkte der anderen Kategorien werden relativ zu den anderen Optionen vergeben - Platz 1, 2 und 3 erhalten so 9, 6 und 3 Punkte (Kategorie Stromverbrauch: 3, 2, 1 Punkte) - und danach mit einer prozentuellen Gewichtung zur finalen Punkteanzahl addiert.
 
-Ein Punkt, dessen Wichtigkeit nur auf subjektiver Basis ermessen werden kann, sind zusätzliche Features der Optionen. Der ESP32 unterstützt z. B. das ESP Now Protokoll (siehe offizielle Website [@esp-now-protocol]), welches drahtlose Datenübertragung erlaubt, wozu aber bei der individuellen Bewertung des ESP32 mehr kommt.
+## Arduino Nano ESP32
 
-Für die Gesamtbewertung werden vorerst für die Kosten Punkte zwischen 1 und 30 vergeben, welche anhand von der oben erklärten Formel errechnet werden. Die Punkte der anderen Kategorien werden relativ zu den anderen Optionen vergeben - Platz 1, 2 und 3 erhalten so 9, 6 und 3 Punkte (Kategorie Stromverbrauch: 5, 3, 1 Punkte) - und danach mit einer prozentuellen Gewichtung zur finalen Punkteanzahl addiert.
-
-## Arduino Nano
-
-Der erste Mikrocontroller, welcher im Zuge dieser Arbeit bewertet wird, ist der Arduino Nano. Er ist ein gutes Einsteigermodell für die Entwicklung mit Mikrocontrollern, da er viele Funktionen bietet, welche dank offiziellen Dokumentationen und Tutorials verständlich gemacht werden [@arduino-docs].
+Der erste Mikrocontroller, welcher im Zuge dieser Arbeit bewertet wird, ist der Arduino Nano ESP32. Er ist ein gutes Einsteigermodell für die Entwicklung mit Mikrocontrollern, da er viele Funktionen bietet, welche dank offiziellen Dokumentationen und Tutorials verständlich gemacht werden [@arduino-docs].
 
 ### Organisation - Arduino
 
-Der Arduino Nano ist ein Produkt von der Firma Arduino[@arduino-about] [@arduino-linkedin], einer Tochterfirma von Qualcomm. Arduino befasst sich mit dem Design, der Herstellung und der Weiterentwicklung von Mikrocontrollern. Die offizielle "Mission & Vision" der Firma ist die Erweiterung und Erleichterung des Zugangs zu Elektronik und digitalen Technologien. Für diese Vision arbeitet die Arduino-Community, welche sich weltweit aus Menschen von Hobbyist:innen über Schüler:innen bis hin zu professionellen Entwickler:innen zusammensetzt.
+Der Arduino Nano ist ein Produkt von der Firma Arduino [@arduino-about] [@arduino-linkedin], einer Tochterfirma von Qualcomm. Arduino befasst sich mit dem Design, der Herstellung und der Weiterentwicklung von Mikrocontrollern. Die offizielle "Mission & Vision" der Firma ist die Erweiterung und Erleichterung des Zugangs zu Elektronik und digitalen Technologien. Für diese Vision arbeitet die Arduino-Community, welche sich weltweit aus Menschen von Hobbyist:innen über Schüler:innen bis hin zu professionellen Entwickler:innen zusammensetzt.
 
-\section*{Co-Gründer}
-  Die Firma wurde im Jahr 2005 in Italien gegründet und hat vier Co-Gründer, welche im folgenden Abschnitt kurz aufgelistet werden:
-    \begin{enumerate}
-        \item Massimo Banzi
-        \begin{itemize}
-            \item Ursprünglich arbeitete er als Softwarearchitekt, befasste sich später jedoch weitaus mehr mit der Elektrotechnik. Heutzutage lehrt er sowohl an der USI Universität sowie an der SUPSI in der Schweiz. 
-            Zusätzlich zu diesen Errungenschaften ist er der Autor des Buchs "Getting Started with Arduino"[@getting-started-with-arduino], in welchem er die Leser:innen an die Entwicklung mit Arduinos heranführt und über persönliche Erfahrungen berichtet.
-        \end{itemize}
-        \item David Cuartielles
-        \begin{itemize}
-            \item So wie Banzi lehrt auch er an einer Uni, wobei es bei ihm die Malmö-Universität in Schweden ist, an der er seit dem Jahr 2000 unterrichtet. Er hat sowohl einen MSc. als auch einen Doktortitel, war an verschiedenen Unis von Europa über Amerika, bis Asien und spricht öffentlich über Open-Source-Hardware und STEAM-Unterricht [@steam-education].
-        \end{itemize}
-        \item Tom Igoe
-        \begin{itemize}
-            \item Seine Forschung umfasst verschiedene Themen von Netzwerken über Belichtungsdesign und die Auswirkungen von technologischer Entwicklung auf die Umwelt. Er hat für mehrere Museen und Design-Firmen als Berater gewirkt sowie 4 Bücher und zahlreiche Artikel verfasst, welche sich mit Elektronik befassen.
-        \end{itemize}
-        \item David Mellis
-        \begin{itemize}
-            \item Er arbeitet als Softwareentwickler bei der Firma Autodesk, wo es sein Ziel ist, Menschen für die kreative bzw. DIY-Nutzung von elektronischen Bauteilen zu inspirieren. Wie seine Mitgründer hat auch er mehrere Titel (MSc., PhD.) und unterrichtete ebenfalls an Universitäten wie dem Copenhagen Institute of Interaction Design (Dänemark).
-        \end{itemize}
-    \end{enumerate}
+Die Firma wurde im Jahr 2005 in Italien gegründet und hat vier Co-Gründer, welche im folgenden Abschnitt kurz aufgelistet werden:
+  \begin{enumerate}
+      \item Massimo Banzi
+      \begin{itemize}
+          \item Ursprünglich arbeitete er als Softwarearchitekt, befasste sich später jedoch weitaus mehr mit der Elektrotechnik. Heutzutage lehrt er sowohl an der USI Universität sowie an der SUPSI in der Schweiz. 
+          Zusätzlich zu diesen Errungenschaften ist er der Autor des Buchs "Getting Started with Arduino" [@getting-started-with-arduino], in welchem er die Leser:innen an die Entwicklung mit Arduinos heranführt und über persönliche Erfahrungen berichtet.
+      \end{itemize}
+      \item David Cuartielles
+      \begin{itemize}
+          \item So wie Banzi lehrt auch er an einer Uni, wobei es bei ihm die Malmö-Universität in Schweden ist, an der er seit dem Jahr 2000 unterrichtet. Er hat sowohl einen MSc. als auch einen Doktortitel, war an verschiedenen Unis von Europa über Amerika, bis Asien und spricht öffentlich über Open-Source-Hardware und STEAM-Unterricht [@steam-education].
+      \end{itemize}
+      \item Tom Igoe
+      \begin{itemize}
+          \item Seine Forschung umfasst verschiedene Themen von Netzwerken über Belichtungsdesign und die Auswirkungen von technologischer Entwicklung auf die Umwelt. Er hat für mehrere Museen und Design-Firmen als Berater gewirkt sowie 4 Bücher und zahlreiche Artikel verfasst, welche sich mit Elektronik befassen.
+      \end{itemize}
+      \item David Mellis
+      \begin{itemize}
+          \item Er arbeitet als Softwareentwickler bei der Firma Autodesk, wo es sein Ziel ist, Menschen für die kreative bzw. DIY-Nutzung von elektronischen Bauteilen zu inspirieren. Wie seine Mitgründer hat auch er mehrere Titel (MSc., PhD.) und unterrichtete ebenfalls an Universitäten wie dem Copenhagen Institute of Interaction Design (Dänemark).
+      \end{itemize}
+  \end{enumerate}
 
-Die vier Gründer in Reihenfolge der Nennung:
+### Technische Daten
 
-![Massimo Banzi](img/Schaar/massimo-banzi.png)
-![David Cuartielles](img/Schaar/david-cuartielles.png)
-![Tom Igoe](img/Schaar/tom-igoe.png)
-![David Mellis](img/Schaar/david-mellis.png)
+Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Arduino Nano ESP32 Datenblatt [@arduino-nano-esp32]. Die Daten beziehen sich hierbei auf die zu bewertenden Kategorien 
 
-### Technische Spezifikationen
-
+| Controllereigenschaft | Wert / Größe |
+|:-|:-|
+| Taktfrequenz | 240 MHz |
+| Busbreite | 32 Bit |
+| SRAM | 512 kB |
+| Wi-Fi-Geschwindigkeiten | 72 Mbit/s max bei 20 MHz, 150 Mbit/s max bei 40 MHz |
+| Externer Flash-Speicher | 16 MB |
+| Externe Flash-Frequenz | 133 MHz |
+| Externe Flash-Geschwindigkeit | Bis zu 664 Mbit/s |
+| VIN (Eingangsspannung) Rating | 6-21 V |
 
 ## ESP32
 
@@ -111,7 +113,7 @@ Großteils kabellose Datenübertragung möglich
 
 ## Erstellung der Nachbauanleitung
 
-Herangehensweise der Erstellung, Open-Source-Bereitstellung der Anleitung
+Herangehensweise der Erstellung, Open-Source-Bereitstellung der Anleitung, Nach Fertigstellung der Praxis
 
 # Praxis - Schaar
 
