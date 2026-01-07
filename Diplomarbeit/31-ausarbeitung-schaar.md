@@ -1,7 +1,5 @@
 # Theorie - Schaar
 \textauthor{Nikita Schaar}
-\usepackage[settings]{markdown}
-\usepackage[pipeTables=true]{markdown}
 
 Das folgende Kapitel befasst sich mit jeglicher Theorie rund um diese Diplomarbeit. Beschrieben werden sowohl Werkzeuge und Programme als auch jegliche Bauteile und wichtige Hardware, welche verwendet wurde.
 
