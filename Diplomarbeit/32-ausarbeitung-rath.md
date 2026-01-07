@@ -125,12 +125,12 @@ Nodes werden in einer Baumstruktur organisiert, wobei jeder Node einen Parent un
 ```
 # Typische Node-Hierarchie eines Spielers
 Player (CharacterBody3D)
-├── CollisionShape3D
-├── MeshInstance3D (Spieler-Modell)
-├── Camera3D
-├── AnimationPlayer
+|--- CollisionShape3D
+|--- MeshInstance3D (Spieler-Modell)
+|--- Camera3D
+|--- AnimationPlayer
 └── Weapon (Node3D)
-    ├── MeshInstance3D
+    |--- MeshInstance3D
     └── RayCast3D
 ```
 
@@ -1320,19 +1320,19 @@ Die funktionalen Anforderungen gliedern sich in drei Hauptbereiche:
 
 ```
 SPIELLOGIK & PHYSIK
-├── Godot Engine 4.5
-├── C# (.NET 8.0) für Gameplay-Code
+|--- Godot Engine 4.5
+|--- C# (.NET 8.0) für Gameplay-Code
 └── GDScript für RL-Integration und Networking
 
 MULTIPLAYER
-├── WebRTC (WebRTCPeerConnection)
-├── PHP Backend für Signaling
+|--- WebRTC (WebRTCPeerConnection)
+|--- PHP Backend für Signaling
 └── Coturn STUN/TURN Server
 
 REINFORCEMENT LEARNING
-├── Godot RL Agents (GDExtension)
-├── Stable-Baselines3 (PPO)
-├── PyTorch für neuronale Netze
+|--- Godot RL Agents (GDExtension)
+|--- Stable-Baselines3 (PPO)
+|--- PyTorch für neuronale Netze
 └── ONNX Runtime für Inference
 ```
 
@@ -1346,70 +1346,70 @@ Das Projekt folgt einer modularen Ordnerstruktur, die eine klare Trennung zwisch
 
 ```
 DigiKicker/
-├── project.godot              # Godot Projektkonfiguration
-├── DickiKicker.csproj         # C# Projekt-Datei
+|--- project.godot              # Godot Projektkonfiguration
+|--- DickiKicker.csproj         # C# Projekt-Datei
 │
-├── scenes/                    # Godot Scene-Dateien (.tscn)
-│   ├── main/
+|--- scenes/                    # Godot Scene-Dateien (.tscn)
+│   |--- main/
 │   │   └── Main.tscn          # Einstiegspunkt der Anwendung
-│   ├── game/
-│   │   ├── Game.tscn          # Hauptspielszene
-│   │   ├── Table.tscn         # Tischgeometrie mit Wänden und Toren
-│   │   ├── Rod.tscn           # Einzelne Spielstange
-│   │   ├── Ball.tscn          # Physik-Ball
+│   |--- game/
+│   │   |--- Game.tscn          # Hauptspielszene
+│   │   |--- Table.tscn         # Tischgeometrie mit Wänden und Toren
+│   │   |--- Rod.tscn           # Einzelne Spielstange
+│   │   |--- Ball.tscn          # Physik-Ball
 │   │   └── Figure.tscn        # Spielerfigur (3D-Modell)
-│   ├── menu/
-│   │   ├── MainMenu.tscn      # Hauptmenü
-│   │   ├── ModeSelectionMenu.tscn # Spielmodus-Auswahl
-│   │   ├── GameSetupMenu.tscn # Spielkonfiguration
-│   │   ├── OnlineMenu.tscn    # Multiplayer-Lobby
-│   │   ├── OptionsMenu.tscn   # Einstellungen
-│   │   ├── ControllerMenu.tscn # Controller-Konfiguration
+│   |--- menu/
+│   │   |--- MainMenu.tscn      # Hauptmenü
+│   │   |--- ModeSelectionMenu.tscn # Spielmodus-Auswahl
+│   │   |--- GameSetupMenu.tscn # Spielkonfiguration
+│   │   |--- OnlineMenu.tscn    # Multiplayer-Lobby
+│   │   |--- OptionsMenu.tscn   # Einstellungen
+│   │   |--- ControllerMenu.tscn # Controller-Konfiguration
 │   │   └── StatsMenu.tscn     # Statistiken
-│   ├── ui/
-│   │   ├── Hud.tscn           # In-Game HUD
-│   │   ├── PauseMenu.tscn     # Pausemenü
+│   |--- ui/
+│   │   |--- Hud.tscn           # In-Game HUD
+│   │   |--- PauseMenu.tscn     # Pausemenü
 │   │   └── GameOverScreen.tscn
 │   └── training/
 │       └── RLTraining.tscn    # RL-Trainingsszene
 │
-├── scripts/                   # Quellcode
-│   ├── autoload/              # Singleton-Manager
-│   │   ├── GameManager.cs
-│   │   ├── AudioManager.cs
-│   │   ├── InputManager.cs
+|--- scripts/                   # Quellcode
+│   |--- autoload/              # Singleton-Manager
+│   │   |--- GameManager.cs
+│   │   |--- AudioManager.cs
+│   │   |--- InputManager.cs
 │   │   └── StatsManager.cs
-│   ├── game/                  # Spiellogik
-│   │   ├── Ball.cs
-│   │   ├── Rod.cs
-│   │   ├── Game.cs
-│   │   ├── Figure.cs
-│   │   ├── Table.cs
-│   │   ├── Goal.cs
-│   │   ├── CameraController.cs
-│   │   ├── BotController.cs
+│   |--- game/                  # Spiellogik
+│   │   |--- Ball.cs
+│   │   |--- Rod.cs
+│   │   |--- Game.cs
+│   │   |--- Figure.cs
+│   │   |--- Table.cs
+│   │   |--- Goal.cs
+│   │   |--- CameraController.cs
+│   │   |--- BotController.cs
 │   │   └── RLBotController.cs
-│   ├── ai/                    # RL-spezifischer Code
-│   │   ├── FoosballAIController.gd
+│   |--- ai/                    # RL-spezifischer Code
+│   │   |--- FoosballAIController.gd
 │   │   └── RLTrainingManager.gd
-│   ├── online/                # Multiplayer-Code
-│   │   ├── OnlineMultiplayerManager.gd
-│   │   ├── OnlineGameIntegration.gd
+│   |--- online/                # Multiplayer-Code
+│   │   |--- OnlineMultiplayerManager.gd
+│   │   |--- OnlineGameIntegration.gd
 │   │   └── NetworkGameSync.gd
-│   ├── menu/                  # Menü-Controller
+│   |--- menu/                  # Menü-Controller
 │   └── ui/                    # UI-Controller
 │
-├── assets/                    # Ressourcen
-│   ├── models/                # 3D-Modelle
-│   ├── textures/              # Texturen
-│   ├── audio/                 # Sound-Dateien
+|--- assets/                    # Ressourcen
+│   |--- models/                # 3D-Modelle
+│   |--- textures/              # Texturen
+│   |--- audio/                 # Sound-Dateien
 │   └── materials/             # Godot Materials
 │
-├── models/                    # Trainierte KI-Modelle
+|--- models/                    # Trainierte KI-Modelle
 │   └── foosball_ai.onnx
 │
 └── addons/                    # Godot-Plugins
-    ├── godot_rl_agents/       
+    |--- godot_rl_agents/       
     └── webrtc/ 
 ```
 
@@ -2717,12 +2717,12 @@ Die folgenden Ordner können nicht in die `.exe`-Datei eingebettet werden und m�
 
 ```
 DigiKicker/
-├── DigiKicker.exe
-├── addons/
-│   ├── godot_rl_agents/
+|--- DigiKicker.exe
+|--- addons/
+│   |--- godot_rl_agents/
 │   └── webrtc/
 └── models/
-    ├── foosball_ai.onnx
+    |--- foosball_ai.onnx
     └── foosball_ai.onnx.data
 ```
 
