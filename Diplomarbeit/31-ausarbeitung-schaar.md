@@ -178,6 +178,14 @@ Mithilfe des Arduino-Codes, welcher vom Sensor die Rotationsdaten nimmt und sie 
 
 Mithilfe des Arduino-Codes, werden die Rotationsdaten des MPU6050 [@arduino-guide-mpu6050] an die Serielle Schnittstelle gesendet. Der C#-Code nimmt diese Werte an und dreht anhand von ihnen ein Würfel-Objekt. Durch diese Verbindung werden die Möglichkeiten für dieses Projekt simpel und effektiv dargestellt.
 
+#### Controller V1 - Demo für Sensoreingaben
+
+Nachdem die Erstversion des physischen Controllers fertiggestellt wurde war natürlich eine erweiterte Simulation vonnöten, um die Eingaben auf ihre Funktion zu überprüfen.
+
+![Simulation V1](img/Schaar/ControllerV1Demo.png)
+
+Auch wenn die zweite Simulation visuell wieder
+
 ### Design des Controllers
 
 #### Case Design
@@ -203,6 +211,8 @@ Diese Version weist einen Drehstab, eine Plattform für elektronische Bauteile, 
 ![Prototyp 1.0 Closed IRL](img/Schaar/ControllerV1ClosedIRL.jpg)
 
 Um das visuelle Design attraktiver zu gestalten wurden Sticker in Form von dem DigiKicker-Logo auf dem Deckel und der Rückseite angebracht.
+
+Nachdem der 
 
 ### Verbindung - Hardware & Software
 
