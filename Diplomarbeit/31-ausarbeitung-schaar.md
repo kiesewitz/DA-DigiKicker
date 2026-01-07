@@ -1,19 +1,25 @@
-# Teilaufgabe Schüler Schaar
+# Theorie - Schaar
 \textauthor{Nikita Schaar}
 
-## Theorie
+# Theorie
 
-Kurzbeschreibung
+Das folgende Kapitel befasst sich mit jeglicher Theorie rund um diese Diplomarbeit. Beschrieben werden sowohl Werkzeuge und Programme als auch jegliche Bauteile und wichtige Hardware, welche verwendet wurde.
 
-### Projektmanagement
+## Projektmanagement
 
-Kurzbeschreibung Projektmanagement, später längerer Teil.
+Projektmanagement
 
-### Mikrocontrollerauswahl
+## Mikrocontroller
+
+### Was sind Mikrocontroller?
+
+
+
+### Auswahlkriterien für Mikrocontroller
 
 Um die Leistung der verschiedenen Mikrocontroller vergleichbar zu machen, müssen vorerst Kriterien festgelegt werden, anhand von denen die verschiedenen Optionen verglichen werden. Diese sollten bestmöglich messbar und objektiv vergleichbar sein, um eine gute Basis für die Auswahl zu schaffen. Mithilfe dieser Kriterien werden Punkte vergeben, anhand von denen eine Wahl getroffen wird.
 
-Eine gut vergleichbare Eigenschaft sind die Kosten, bei denen eine Reduktion sowohl für das Entwicklerteam als auch für Endbenutzer, welche das Projekt zu Hause replizieren wollen, vorteilhaft ist. Um die Kosten in direkter Relation zu vergleichen, wird die Formel $Punkte = min(30, \frac{50}{Kosten})$ zur Bewertung verwendet.
+Eine gut vergleichbare Eigenschaft sind die Kosten, bei denen eine Reduktion sowohl für das Entwicklerteam als auch für Endbenutzer, welche das Projekt zu Hause replizieren wollen, vorteilhaft ist. Um die Kosten in direkter Relation zu vergleichen, wird die Formel $Punkte = min(30, ceil(\frac{100}{Kosten}))$ zur Bewertung verwendet.
 
 Für ein angenehmes Spielerlebnis ist eine schnelle und zuverlässige Übertragung der Eingaben wichtig. Daher werden die Prozessorleistung zur Verarbeitung der Eingaben sowie die Übertragungszeiten für den Austausch der Daten als weitere Vergleichsbasis verwendet.
 
@@ -23,65 +29,83 @@ Da das Design mehrere Sensoren beinhaltet, ist ein Mikrocontroller mit mehreren 
 
 Ein Punkt, dessen Wichtigkeit nur auf subjektiver Basis ermessen werden kann, sind zusätzliche Features der Optionen. Der ESP32 unterstützt z. B. das ESP Now Protokoll (siehe offizielle Website [@esp-now-protocol]), welches drahtlose Datenübertragung erlaubt, wozu aber bei der individuellen Bewertung des ESP32 mehr kommt.
 
-Für die Gesamtbewertung werden vorerst für die Kosten Punkte zwischen 1 und 30 vergeben, welche anhand von der oben erklärten Formel errechnet werden. Die Punkte der anderen Kategorien werden relativ zu den anderen Optionen vergeben - Platz 1, 2 und 3 erhalten so 9, 6 und 3 Punkte - und danach mit einer prozentuellen Gewichtung zur finalen Punkteanzahl addiert.
+Für die Gesamtbewertung werden vorerst für die Kosten Punkte zwischen 1 und 30 vergeben, welche anhand von der oben erklärten Formel errechnet werden. Die Punkte der anderen Kategorien werden relativ zu den anderen Optionen vergeben - Platz 1, 2 und 3 erhalten so 9, 6 und 3 Punkte (Kategorie Stromverbrauch: 5, 3, 1 Punkte) - und danach mit einer prozentuellen Gewichtung zur finalen Punkteanzahl addiert.
 
-#### Arduino Nano
+## Arduino Nano
 
-Teurer, geringere Leistung
+Der erste Mikrocontroller, welcher im Zuge dieser Arbeit bewertet wird, ist der Arduino Nano. Er ist ein gutes Einsteigermodell für die Entwicklung mit Mikrocontrollern, da er viele Funktionen bietet, welche dank offiziellen Dokumentationen und Tutorials verständlich gemacht werden [@arduino-docs].
 
-#### ESP32
+### Organisation - Arduino
+
+Der Arduino Nano ist ein Produkt von der Firma Arduino[@arduino-about] [@arduino-linkedin], einer Tochterfirma von Qualcomm. Arduino befasst sich mit dem Design, der Herstellung und der Weiterentwicklung von Mikrocontrollern. Die offizielle "Mission & Vision" der Firma ist die Erweiterung und Erleichterung des Zugangs zu Elektronik und digitalen Technologien. Für diese Vision arbeitet die Arduino-Community, welche sich weltweit aus Menschen von Hobbyist:innen über Schüler:innen bis hin zu professionellen Entwickler:innen zusammensetzt.
+
+Die Firma wurde im Jahr 2005 in Italien gegründet und hat vier Co-Gründer, welche im folgenden Abschnitt kurz aufgelistet werden:
+- Massimo Banzi
+  - Ursprünglich arbeitete er als Softwarearchitekt, befasste sich später jedoch weitaus mehr mit der Elektrotechnik. Heutzutage lehrt er sowohl an der USI Universität sowie an der SUPSI in der Schweiz. 
+  Zusätzlich zu diesen Errungenschaften ist er der Autor des Buchs "Getting Started with Arduino"[@getting-started-with-arduino], in welchem er die Leser:innen an die Entwicklung mit Arduinos heranführt und über persönliche Erfahrungen berichtet.
+- David Cuartielles
+  - So wie Banzi lehrt auch er an einer Uni, wobei es bei ihm die Malmö-Universität in Schweden ist, an der er seit dem Jahr 2000 unterrichtet. Er hat sowohl einen MSc. als auch einen Doktortitel, war an verschiedenen Unis von Europa über Amerika, bis Asien und spricht öffentlich über Open-Source-Hardware und STEAM-Unterricht [@steam-education].
+- Tom Igoe
+  - Seine Forschung umfasst verschiedene Themen von Netzwerken über Belichtungsdesign und die Auswirkungen von technologischer Entwicklung auf die Umwelt. Er hat für mehrere Museen und Design-Firmen als Berater gewirkt sowie 4 Bücher und zahlreiche Artikel verfasst, welche sich mit Elektronik befassen.
+- David Mellis
+  - Er arbeitet als Softwareentwickler bei der Firma Autodesk, wo es sein Ziel ist, Menschen für die kreative bzw. DIY-Nutzung von elektronischen Bauteilen zu inspirieren. Wie seine Mitgründer hat auch er mehrere Titel (MSc., PhD.) und unterrichtete ebenfalls an Universitäten wie dem Copenhagen Institute of Interaction Design (Dänemark).
+
+### Technische Spezifikationen
+
+
+## ESP32
 
 Billiger, bessere Leistung
 
-#### Raspberry Pi Pico
+## Raspberry Pi Pico
 
 raspi pico
 
-#### Vergleich der Optionen & Entscheidung
+## Vergleich der Optionen & Entscheidung
 
 Direkter Vergleich (mit Diagrammen, etc.)
 
-### Sensorenauswahl
+## Sensorenauswahl
 
 Kriterien
 
-#### Maussensor
+### Maussensor
 
 Billig, leicht nachzumachen
 
-#### MPU6050
+### MPU6050
 
 Potentiell genauer, Komplexer für Nachbau, teurer
 
-#### HC-SR04 + Potentiometer
+### HC-SR04 + Potentiometer
 
 Warum eher nicht? (Schleifring) 
 
-### Datenaustausch
+## Datenaustausch
 
 Kriterien
 
-#### ESP-Now
+### ESP-Now
 
 Großteils kabellose Datenübertragung möglich
 
-#### Serielle Schnittstelle
+### Serielle Schnittstelle
 
 Übertragung von Daten zwischen Microcontroller/Godot mithilfe von serieller Schnittstelle mit Code in C#
 
-### Erstellung der Nachbauanleitung
+## Erstellung der Nachbauanleitung
 
 Herangehensweise der Erstellung, Open-Source-Bereitstellung der Anleitung
 
-## Praktischer Teil
+# Praxis - Schaar
 
 Kurzbeschreibung
 
-### Prototyping
+## Prototyping
 
 In diesem Kapitel wird es um Unverwendete Prototypen und Ansätze, Demos und andere Entwicklungsschritte gehen, welche sich im Laufe der Arbeit am Controller ergeben haben. Anhand von ihnen werden der Entwicklungsprozess und verschiedene Iterationen dargestellt.
 
-#### Arduino <-> Godot Kommunikations-Demo
+### Arduino <-> Godot Kommunikations-Demo
 
 Für die Erstpräsentation unserer Arbeit haben wir eine Demo erstellt, anhand von der die Kommunikation zwischen einem Arduino und der Godot Engine veranschaulicht wird. Die Grundstruktur dieser Demo wurde aus einem Youtube-Video genommen [@connect-godot-arduino], in dem die serielle Übertragung der Daten erklärt und beispielhaft dargestellt wird.
 
@@ -178,7 +202,7 @@ Mithilfe des Arduino-Codes, welcher vom Sensor die Rotationsdaten nimmt und sie 
 
 Mithilfe des Arduino-Codes, werden die Rotationsdaten des MPU6050 [@arduino-guide-mpu6050] an die Serielle Schnittstelle gesendet. Der C#-Code nimmt diese Werte an und dreht anhand von ihnen ein Würfel-Objekt. Durch diese Verbindung werden die Möglichkeiten für dieses Projekt simpel und effektiv dargestellt.
 
-#### Controller V1 - Demo für Sensoreingaben
+### Controller V1 - Demo für Sensoreingaben
 
 Nachdem die Erstversion des physischen Controllers fertiggestellt wurde war natürlich eine erweiterte Simulation vonnöten, um die Eingaben auf ihre Funktion zu überprüfen.
 
@@ -186,9 +210,9 @@ Nachdem die Erstversion des physischen Controllers fertiggestellt wurde war nat�
 
 Auch wenn die zweite Simulation visuell wieder
 
-### Design des Controllers
+## Design des Controllers
 
-#### Case Design
+### Case Design
 
 Dieses Kapitel handelt von den verschiedenen Iterationen der Hülle des Controllers, sowie von den Entscheidungen, welche bei der Entwicklung getroffen worden sind.
 
@@ -214,14 +238,14 @@ Um das visuelle Design attraktiver zu gestalten wurden Sticker in Form von dem D
 
 Nachdem der 
 
-### Verbindung - Hardware & Software
+## Verbindung - Hardware & Software
 
 Technischere Details und Beschreibung für Schnittstelle(n) auf der Hardware-Seite
 
-### Debugging/Bug-Fixing
+## Debugging/Bug-Fixing
 
 Aufgetretene Fehler, Lösungsansätze
 
-### Finaler Controller
+## Finaler Controller
 
-### Audio Design
+## Audio Design
