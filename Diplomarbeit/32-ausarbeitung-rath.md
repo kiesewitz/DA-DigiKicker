@@ -129,9 +129,9 @@ Player (CharacterBody3D)
 |--- MeshInstance3D (Spieler-Modell)
 |--- Camera3D
 |--- AnimationPlayer
-└── Weapon (Node3D)
++--- Weapon (Node3D)
     |--- MeshInstance3D
-    └── RayCast3D
+    +--- RayCast3D
 ```
 
 ### 5.2 Das Scene-System
@@ -617,18 +617,18 @@ Reinforcement Learning (RL) ist ein Teilgebiet des maschinellen Lernens, bei dem
 Das grundlegende RL-Framework besteht aus einem Agenten, der in einer Umgebung (Environment) agiert. Der Agent beobachtet den aktuellen Zustand (State), wählt eine Aktion (Action), und die Umgebung antwortet mit einem neuen Zustand und einem Reward. Das Ziel des Agenten ist es, eine Policy zu erlernen, die den kumulativen, langfristigen Reward maximiert.
 
 ```
-┌───────────────────────────────────────────────────────┐
-│                     RL Framework                      │
-│                                                       │
-│                        Action                         │
-│   ┌──────────┐   ─────────────────>   ┌───────────┐   │
-│   │          │                        │           │   │
-│   │  Agent   │                        │Environment│   │
-│   │          │                        │           │   │
-│   └──────────┘   <─────────────────   └───────────┘   │
-│                    State, Reward                      │
-│                                                       │
-└───────────────────────────────────────────────────────┘
++-------------------------------------------------------+
+|                     RL Framework                      |
+|                                                       |
+|                        Action                         |
+|   +----------+   ----------------->   +-----------+   |
+|   |          |                        |           |   |
+|   |  Agent   |                        |Environment|   |
+|   |          |                        |           |   |
+|   +-----------+   <-----------------   +------------+   |
+|                    State, Reward                      |
+|                                                       |
++--------------------------------------------------------+
 ```
 
 Diese Formulierung macht RL besonders geeignet für Probleme, bei denen der optimale Lösungsweg nicht bekannt ist, aber die Qualität von Ergebnissen bewertet werden kann. Prominente Beispiele umfassen das Erlernen von Spielstrategien wie bei AlphaGo, Roboter-Steuerung und autonomes Fahren.
@@ -927,24 +927,24 @@ Die Motivation für Godot RL Agents entstand aus der Beobachtung, dass bestehend
 Das Framework besteht aus zwei Hauptkomponenten: einem GDExtension-Plugin für Godot und einer Python-Bibliothek für das Training. Das Godot-Plugin stellt die notwendigen Nodes und Klassen bereit, um Spielumgebungen als RL-Environments zu definieren, während die Python-Seite das Training mit Stable-Baselines3 oder anderen Frameworks übernimmt.
 
 ```
-┌──────────────────────────────────────────────────────────────┐
-│                  Godot RL Agents Architektur                 │
-│                                                              │
-│   ┌───────────────────┐            ┌─────────────────────┐   │
-│   │   Godot Engine    │            │   Python Training   │   │
-│   │                   │            │                     │   │
-│   │ ┌───────────────┐ │    TCP/    │ ┌─────────────────┐ │   │
-│   │ │ AIController  │ │ <────────> │ │Stable-Baselines3│ │   │
-│   │ └───────────────┘ │   Shared   │ └─────────────────┘ │   │
-│   │        │          │   Memory   │         │           │   │
-│   │        ▼          │            │         ▼           │   │
-│   │ ┌───────────────┐ │            │ ┌─────────────────┐ │   │
-│   │ │    Sensors    │ │            │ │    PPO / DQN    │ │   │
-│   │ └───────────────┘ │            │ └─────────────────┘ │   │
-│   │                   │            │                     │   │
-│   └───────────────────┘            └─────────────────────┘   │
-│                                                              │
-└──────────────────────────────────────────────────────────────┘
++--------------------------------------------------------------+
+|                  Godot RL Agents Architektur                 |
+|                                                              |
+|   +-------------------+            +---------------------+   |
+|   |   Godot Engine    |            |   Python Training   |   |
+|   |                   |            |                     |   |
+|   | +---------------+ |    TCP/    | +-----------------+ |   |
+|   | | AIController  | | <--------> | |Stable-Baselines3| |   |
+|   | +----------------+ |   Shared   | +------------------+ |   |
+|   |        |          |   Memory   |         |           |   |
+|   |        ▼          |            |         ▼           |   |
+|   | +---------------+ |            | +-----------------+ |   |
+|   | |    Sensors    | |            | |    PPO / DQN    | |   |
+|   | +----------------+ |            | +------------------+ |   |
+|   |                   |            |                     |   |
+|   +--------------------+            +----------------------+   |
+|                                                              |
++---------------------------------------------------------------+
 ```
 
 Die Kommunikation zwischen Godot und Python erfolgt über einen SharedMemory-Mechanismus oder Sockets. Dieser Ansatz erlaubt paralleles Training mit mehreren Godot-Instanzen für beschleunigtes Lernen. Die API ist inspiriert von Gymnasium (ehemals OpenAI Gym), dem Standard-Interface für RL-Environments, was die Integration mit bestehenden RL-Codebasen erleichtert.
@@ -1322,18 +1322,18 @@ Die funktionalen Anforderungen gliedern sich in drei Hauptbereiche:
 SPIELLOGIK & PHYSIK
 |--- Godot Engine 4.5
 |--- C# (.NET 8.0) für Gameplay-Code
-└── GDScript für RL-Integration und Networking
++--- GDScript für RL-Integration und Networking
 
 MULTIPLAYER
 |--- WebRTC (WebRTCPeerConnection)
 |--- PHP Backend für Signaling
-└── Coturn STUN/TURN Server
++--- Coturn STUN/TURN Server
 
 REINFORCEMENT LEARNING
 |--- Godot RL Agents (GDExtension)
 |--- Stable-Baselines3 (PPO)
 |--- PyTorch für neuronale Netze
-└── ONNX Runtime für Inference
++--- ONNX Runtime für Inference
 ```
 
 ---
@@ -1348,69 +1348,69 @@ Das Projekt folgt einer modularen Ordnerstruktur, die eine klare Trennung zwisch
 DigiKicker/
 |--- project.godot              # Godot Projektkonfiguration
 |--- DickiKicker.csproj         # C# Projekt-Datei
-│
+|
 |--- scenes/                    # Godot Scene-Dateien (.tscn)
-│   |--- main/
-│   │   └── Main.tscn          # Einstiegspunkt der Anwendung
-│   |--- game/
-│   │   |--- Game.tscn          # Hauptspielszene
-│   │   |--- Table.tscn         # Tischgeometrie mit Wänden und Toren
-│   │   |--- Rod.tscn           # Einzelne Spielstange
-│   │   |--- Ball.tscn          # Physik-Ball
-│   │   └── Figure.tscn        # Spielerfigur (3D-Modell)
-│   |--- menu/
-│   │   |--- MainMenu.tscn      # Hauptmenü
-│   │   |--- ModeSelectionMenu.tscn # Spielmodus-Auswahl
-│   │   |--- GameSetupMenu.tscn # Spielkonfiguration
-│   │   |--- OnlineMenu.tscn    # Multiplayer-Lobby
-│   │   |--- OptionsMenu.tscn   # Einstellungen
-│   │   |--- ControllerMenu.tscn # Controller-Konfiguration
-│   │   └── StatsMenu.tscn     # Statistiken
-│   |--- ui/
-│   │   |--- Hud.tscn           # In-Game HUD
-│   │   |--- PauseMenu.tscn     # Pausemenü
-│   │   └── GameOverScreen.tscn
-│   └── training/
-│       └── RLTraining.tscn    # RL-Trainingsszene
-│
+|   |--- main/
+|   |   +--- Main.tscn          # Einstiegspunkt der Anwendung
+|   |--- game/
+|   |   |--- Game.tscn          # Hauptspielszene
+|   |   |--- Table.tscn         # Tischgeometrie mit Wänden und Toren
+|   |   |--- Rod.tscn           # Einzelne Spielstange
+|   |   |--- Ball.tscn          # Physik-Ball
+|   |   +--- Figure.tscn        # Spielerfigur (3D-Modell)
+|   |--- menu/
+|   |   |--- MainMenu.tscn      # Hauptmenü
+|   |   |--- ModeSelectionMenu.tscn # Spielmodus-Auswahl
+|   |   |--- GameSetupMenu.tscn # Spielkonfiguration
+|   |   |--- OnlineMenu.tscn    # Multiplayer-Lobby
+|   |   |--- OptionsMenu.tscn   # Einstellungen
+|   |   |--- ControllerMenu.tscn # Controller-Konfiguration
+|   |   +--- StatsMenu.tscn     # Statistiken
+|   |--- ui/
+|   |   |--- Hud.tscn           # In-Game HUD
+|   |   |--- PauseMenu.tscn     # Pausemenü
+|   |   +--- GameOverScreen.tscn
+|   +--- training/
+|       +--- RLTraining.tscn    # RL-Trainingsszene
+|
 |--- scripts/                   # Quellcode
-│   |--- autoload/              # Singleton-Manager
-│   │   |--- GameManager.cs
-│   │   |--- AudioManager.cs
-│   │   |--- InputManager.cs
-│   │   └── StatsManager.cs
-│   |--- game/                  # Spiellogik
-│   │   |--- Ball.cs
-│   │   |--- Rod.cs
-│   │   |--- Game.cs
-│   │   |--- Figure.cs
-│   │   |--- Table.cs
-│   │   |--- Goal.cs
-│   │   |--- CameraController.cs
-│   │   |--- BotController.cs
-│   │   └── RLBotController.cs
-│   |--- ai/                    # RL-spezifischer Code
-│   │   |--- FoosballAIController.gd
-│   │   └── RLTrainingManager.gd
-│   |--- online/                # Multiplayer-Code
-│   │   |--- OnlineMultiplayerManager.gd
-│   │   |--- OnlineGameIntegration.gd
-│   │   └── NetworkGameSync.gd
-│   |--- menu/                  # Menü-Controller
-│   └── ui/                    # UI-Controller
-│
+|   |--- autoload/              # Singleton-Manager
+|   |   |--- GameManager.cs
+|   |   |--- AudioManager.cs
+|   |   |--- InputManager.cs
+|   |   +--- StatsManager.cs
+|   |--- game/                  # Spiellogik
+|   |   |--- Ball.cs
+|   |   |--- Rod.cs
+|   |   |--- Game.cs
+|   |   |--- Figure.cs
+|   |   |--- Table.cs
+|   |   |--- Goal.cs
+|   |   |--- CameraController.cs
+|   |   |--- BotController.cs
+|   |   +--- RLBotController.cs
+|   |--- ai/                    # RL-spezifischer Code
+|   |   |--- FoosballAIController.gd
+|   |   +--- RLTrainingManager.gd
+|   |--- online/                # Multiplayer-Code
+|   |   |--- OnlineMultiplayerManager.gd
+|   |   |--- OnlineGameIntegration.gd
+|   |   +--- NetworkGameSync.gd
+|   |--- menu/                  # Menü-Controller
+|   +--- ui/                    # UI-Controller
+|
 |--- assets/                    # Ressourcen
-│   |--- models/                # 3D-Modelle
-│   |--- textures/              # Texturen
-│   |--- audio/                 # Sound-Dateien
-│   └── materials/             # Godot Materials
-│
+|   |--- models/                # 3D-Modelle
+|   |--- textures/              # Texturen
+|   |--- audio/                 # Sound-Dateien
+|   +--- materials/             # Godot Materials
+|
 |--- models/                    # Trainierte KI-Modelle
-│   └── foosball_ai.onnx
-│
-└── addons/                    # Godot-Plugins
+|   +--- foosball_ai.onnx
+|
++--- addons/                    # Godot-Plugins
     |--- godot_rl_agents/       
-    └── webrtc/ 
+    +--- webrtc/ 
 ```
 
 ### 11.2 C#-Projekt-Setup
@@ -1863,32 +1863,32 @@ Der `GameManager` verwaltet den Spielzustand über ein Enum mit vier möglichen 
 ```
                         Lebenszyklus eines Spiels
 
-    ┌──────┐
-    │ Menu │
-    └──┬───┘
-       │
-       │ StartGame()
+    +------+
+    | Menu |
+    +--|---+
+       |
+       | StartGame()
        ▼
    Countdown
-       │
-       │
-       │      ┌─────────────────────────────────────────┐
-       │      │                                         │
-       ▼      ▼                                         │
-  ┌─────────────┐    Pause()     ┌────────┐             │
-  │             │ ─────────────> │        │             │
-  │   Playing   │                │ Paused │             │
-  │             │ <───────────── │        │             │
-  └──┬───────┬──┘    Resume()    └────────┘             │
-     │       │                                          │
-     │       │ Tor erzielt                              │
-     │       └──────────────> Countdown ────────────────┘
-     │
-     │ Win Condition erfüllt
+       |
+       |
+       |      +-----------------------------------------+
+       |      |                                         |
+       ▼      ▼                                         |
+  +-------------+    Pause()     +--------+             |
+  |             | -------------> |        |             |
+  |   Playing   |                | Paused |             |
+  |             | <------------- |        |             |
+  +--|-------|--+    Resume()    +--------+             |
+     |       |                                          |
+     |       | Tor erzielt                              |
+     |       +---------------> Countdown ---------------+
+     |
+     | Win Condition erfüllt
      ▼
-┌──────────┐
-│ GameOver │
-└──────────┘
++----------+
+| GameOver |
++----------+
 ```
 
 ---
@@ -1905,43 +1905,43 @@ DigiKicker verwendet eine Peer-to-Peer-Architektur basierend auf WebRTC. Diese E
 
      Host                                                      Joiner
    (Player 1)                                                (Player 2)
-       │                                                          │
-       │                                                          │
-       │                     ┌──────────────┐                     │
-       │  1. Create Match    │  Signaling   │                     │
-       │ ───────────────────>│   Server     │                     │
-       │                     │    (PHP)     │                     │
-       │  2. Room Code       │              │                     │
-       │ <───────────────────│              │                     │
-       │                     │              │  3. Join            │
-       │                     │              │<────────────────────│
-       │                     └──────┬───────┘                     │
-       │                            │                             │
-       │  4. SDP Offer              │                             │
-       │ ──────────────────────────>│────────────────────────────>│
-       │                            │              SDP Answer     │
-       │ <──────────────────────────│<────────────────────────────│
-       │                            │                             │
-       │  5. ICE Candidates         │                             │
-       │ <─────────────────────────>│<───────────────────────────>│
-       │                            │                             │
-       │                            │                             │
-       │                   ┌────────┴────────┐                    │
-       │                   │  STUN/TURN      │                    │
-       │                   │    Server       │                    │
-       │                   │   (Coturn)      │                    │
-       │                   └────────┬────────┘                    │
-       │                            │                             │
-       │  6a. STUN: Public IP       │                             │
-       │ <─────────────────────────>│<───────────────────────────>│
-       │                            │                             │
-       │  6b. Direct P2P (wenn möglich)                           │
-       │<════════════════════════════════════════════════════════>│
-       │                   (WebRTC DataChannel)                   │
-       │                            │                             │
-       │  6c. TURN Relay (Fallback bei NAT)                       │
-       │ <─────────────────────────>│<───────────────────────────>│
-       │                            │                             │
+       |                                                          |
+       |                                                          |
+       |                     +--------------+                     |
+       |  1. Create Match    |  Signaling   |                     |
+       | ------------------->|   Server     |                     |
+       |                     |    (PHP)     |                     |
+       |  2. Room Code       |              |                     |
+       | <-------------------|              |                     |
+       |                     |              |  3. Join            |
+       |                     |              |<--------------------|
+       |                     +-------|-------+                     |
+       |                            |                             |
+       |  4. SDP Offer              |                             |
+       | -------------------------->|---------------------------->|
+       |                            |              SDP Answer     |
+       | <--------------------------|<----------------------------|
+       |                            |                             |
+       |  5. ICE Candidates         |                             |
+       | <------------------------->|<--------------------------->|
+       |                            |                             |
+       |                            |                             |
+       |                   +--------┴--------+                    |
+       |                   |  STUN/TURN      |                    |
+       |                   |    Server       |                    |
+       |                   |   (Coturn)      |                    |
+       |                   +---------|--------+                    |
+       |                            |                             |
+       |  6a. STUN: Public IP       |                             |
+       | <------------------------->|<--------------------------->|
+       |                            |                             |
+       |  6b. Direct P2P (wenn möglich)                           |
+       |<════════════════════════════════════════════════════════>|
+       |                   (WebRTC DataChannel)                   |
+       |                            |                             |
+       |  6c. TURN Relay (Fallback bei NAT)                       |
+       | <------------------------->|<--------------------------->|
+       |                            |                             |
 ```
 
 Das Diagramm zeigt den vollständigen Verbindungsaufbau: Nach dem Signaling über den PHP-Server wird versucht, eine direkte P2P-Verbindung herzustellen. Der STUN-Server hilft dabei, die öffentliche IP zu ermitteln. Sollte aufgrund von NAT-Restriktionen keine direkte Verbindung möglich sein, wird der TURN-Server als Relay verwendet.
@@ -2176,34 +2176,34 @@ func _handle_pong(msg: Dictionary) -> void:
 Das Training nutzt das Godot RL Agents Framework, das eine Brücke zwischen Godot und Python-basierten RL-Bibliotheken schlägt. Die Trainingsszene `RLTraining.tscn` enthält zwei AI-Controller für Self-Play:
 
 ```
-┌────────────────────────────────────────────────────────────┐
-│                   RL Training Setup                        │
-│                                                            │
-│   ┌─────────────────────────────────────────────────────┐  │
-│   │              RLTraining.tscn                        │  │
-│   │                                                     │  │
-│   │   ┌─────────────┐           ┌─────────────┐         │  │
-│   │   │ AIController│           │ AIController│         │  │
-│   │   │   (Red)     │           │   (Blue)    │         │  │
-│   │   │ mirror: -1  │           │ mirror: +1  │         │  │
-│   │   └──────┬──────┘           └──────┬──────┘         │  │
-│   │          │                         │                │  │
-│   │          │    ┌───────────────┐    │                │  │
-│   │          └───>│    sync.gd    │<───┘                │  │
-│   │               │   (Godot RL)  │                     │  │
-│   │               └───────┬───────┘                     │  │
-│   │                       │                             │  │
-│   └───────────────────────│─────────────────────────────┘  │
-│                           │ TCP/Shared Memory              │
-│                           ▼                                │
-│   ┌─────────────────────────────────────────────────────┐  │
-│   │              Python Training                        │  │
-│   │                                                     │  │
-│   │   StableBaselinesGodotEnv ──> PPO ──> ONNX Export   │  │
-│   │                                                     │  │
-│   └─────────────────────────────────────────────────────┘  │
-│                                                            │
-└────────────────────────────────────────────────────────────┘
++------------------------------------------------------------+
+|                   RL Training Setup                        |
+|                                                            |
+|   +-----------------------------------------------------+  |
+|   |              RLTraining.tscn                        |  |
+|   |                                                     |  |
+|   |   +-------------+           +-------------+         |  |
+|   |   | AIController|           | AIController|         |  |
+|   |   |   (Red)     |           |   (Blue)    |         |  |
+|   |   | mirror: -1  |           | mirror: +1  |         |  |
+|   |   +-------|------+           +-------|------+         |  |
+|   |          |                         |                |  |
+|   |          |    +---------------+    |                |  |
+|   |          +---->|    sync.gd    |<---+                |  |
+|   |               |   (Godot RL)  |                     |  |
+|   |               +--------|-------+                     |  |
+|   |                       |                             |  |
+|   +------------------------|-----------------------------+  |
+|                           | TCP/Shared Memory              |
+|                           ▼                                |
+|   +-----------------------------------------------------+  |
+|   |              Python Training                        |  |
+|   |                                                     |  |
+|   |   StableBaselinesGodotEnv --> PPO --> ONNX Export   |  |
+|   |                                                     |  |
+|   +------------------------------------------------------+  |
+|                                                            |
++-------------------------------------------------------------+
 ```
 
 ### 14.2 Observation Space
@@ -2719,11 +2719,11 @@ Die folgenden Ordner können nicht in die `.exe`-Datei eingebettet werden und m�
 DigiKicker/
 |--- DigiKicker.exe
 |--- addons/
-│   |--- godot_rl_agents/
-│   └── webrtc/
-└── models/
+|   |--- godot_rl_agents/
+|   +--- webrtc/
++--- models/
     |--- foosball_ai.onnx
-    └── foosball_ai.onnx.data
+    +--- foosball_ai.onnx.data
 ```
 
 ---
