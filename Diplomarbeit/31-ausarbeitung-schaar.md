@@ -58,9 +58,9 @@ Die Firma wurde im Jahr 2005 in Italien gegründet und hat vier Co-Gründer, wel
 
 Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Arduino Nano ESP32 Datenblatt [@arduino-nano-esp32]. Die Daten beziehen sich hierbei auf die zu bewertenden Kategorien
 
-\begin{tabular}{ |s|p{2cm}|p{2cm}|  }
+\begin{tabular}{|l|p{7cm}|}
   \hline
-  \rowcolor{lightgray} \multicolumn{3}{|c|}{Arduino Nano ESP32 - Eigenschaften} \\
+  \rowcolor{lightgray} \multicolumn{2}{|c|}{Arduino Nano ESP32 -- Eigenschaften} \\
   \hline
   Controllereigenschaft & Wert / Größe \\
   \hline
@@ -71,7 +71,7 @@ Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Ar
   Externer Flash-Speicher & 16 MB \\
   Externe Flash-Frequenz & 133 MHz \\
   Externe Flash-Geschwindigkeit & Bis zu 664 Mbit/s \\
-  VIN (Eingangsspannung) Rating & 6-21 V \\
+  VIN (Eingangsspannung) Rating & 6--21 V \\
   \hline
 \end{tabular}
 
