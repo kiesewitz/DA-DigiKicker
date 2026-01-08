@@ -11,7 +11,11 @@ Projektmanagement
 
 ### Was sind Mikrocontroller?
 
+Um Mikrocontroller [@microcontroller-definition] zu erklären, muss erst ihr Unterschied zu Mikroprozessoren beleuchtet werden. Mikroprozessoren sind, so wie die "größeren" Prozessoren - in diesem Fall sowohl auf physikalische Größe als auch auf Leistung bezogen - die Recheneinheit eines Systems. Während Mikroprozessoren ausschließlich rechnerische Aufgaben bearbeiten und für andere Funktionen separate Teile (RAM, ROM, Timer-Module, etc.) benötigen fungieren Mikrocontroller als ein fertiges Paket, welches die verschiedenen Teile verbaut hat.
 
+![Mikroprozessor vs. Mikrocontroller](img/Schaar/Difference_Microprocessor_Microcontroller.png)[@microcontroller-microprocessor]
+
+Wie in diesem Diagramm dargestellt ist links der Mikroprozessor bzw. die CPU (Central Processing Unit) zentral, benötigt jedoch extern verbundene Teile, sodass alle Aufgaben ausgeführt werden können. Ihm gegenübergestellt wird der Mikrocontroller, bei dem veranschaulicht wird, dass es sich hierbei um ein fertiges System handelt, bei dem alle Teile in diesem Ökosystem fest verbaut sind 
 
 ### Auswahlkriterien für Mikrocontroller
 
@@ -56,7 +60,7 @@ Die Firma wurde im Jahr 2005 in Italien gegründet und hat vier Co-Gründer, wel
 
 ### Technische Daten
 
-Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Arduino Nano ESP32 Datenblatt [@arduino-nano-esp32]. Die Daten beziehen sich hierbei auf die zu bewertenden Kategorien
+Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Arduino Nano ESP32 Datenblatt [@arduino-nano-datasheet]. Die Daten beziehen sich hierbei auf die zu bewertenden Kategorien, welche für die Entscheidung eines Mikrocontrollers herangenommen werden.
 
 \begin{tabular}{|l|p{7cm}|}
   \hline
