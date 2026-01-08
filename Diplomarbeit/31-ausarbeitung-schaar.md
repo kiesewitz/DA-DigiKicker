@@ -1,7 +1,7 @@
 # Theorie - Schaar
 \textauthor{Nikita Schaar}
 
-Das folgende Kapitel befasst sich mit jeglicher Theorie rund um diese Diplomarbeit. Beschrieben werden sowohl Werkzeuge und Programme als auch jegliche Bauteile und wichtige Hardware, welche verwendet wurde.
+Das folgende Kapitel befasst sich mit jeglicher Theorie rund um diese Diplomarbeit. Beschrieben werden sowohl Werkzeuge und Programme als auch jegliche Bauteile und wichtige Hardware, welche verwendet wurden.
 
 ## Projektmanagement
 
@@ -11,11 +11,17 @@ Projektmanagement
 
 ### Was sind Mikrocontroller?
 
-Um Mikrocontroller [@microcontroller-definition] zu erklären, muss erst ihr Unterschied zu Mikroprozessoren beleuchtet werden. Mikroprozessoren sind, so wie die "größeren" Prozessoren - in diesem Fall sowohl auf physikalische Größe als auch auf Leistung bezogen - die Recheneinheit eines Systems. Während Mikroprozessoren ausschließlich rechnerische Aufgaben bearbeiten und für andere Funktionen separate Teile (RAM, ROM, Timer-Module, etc.) benötigen fungieren Mikrocontroller als ein fertiges Paket, welches die verschiedenen Teile verbaut hat.
+Um Mikrocontroller [@microcontroller-definition] zu erklären, muss erst ihr Unterschied zu Mikroprozessoren beleuchtet werden. Mikroprozessoren sind so wie die "größeren" Prozessoren - In diesem Fall sowohl auf physikalische Größe als auch auf Leistung bezogen - die Recheneinheit eines Systems. Während Mikroprozessoren ausschließlich rechnerische Aufgaben bearbeiten und für andere Funktionen separate Teile (RAM, ROM, Timer-Module, etc.) benötigen, fungieren Mikrocontroller als ein fertiges Paket, welches die verschiedenen Teile verbaut hat.
 
-![Mikroprozessor vs. Mikrocontroller](img/Schaar/Difference_Microprocessor_Microcontroller.png)[@microcontroller-microprocessor]
+[@microcontroller-microprocessor]![Mikroprozessor vs. Mikrocontroller](img/Schaar/Difference_Microprocessor_Microcontroller.png)
 
-Wie in diesem Diagramm dargestellt ist links der Mikroprozessor bzw. die CPU (Central Processing Unit) zentral, benötigt jedoch extern verbundene Teile, sodass alle Aufgaben ausgeführt werden können. Ihm gegenübergestellt wird der Mikrocontroller, bei dem veranschaulicht wird, dass es sich hierbei um ein fertiges System handelt, bei dem alle Teile in diesem Ökosystem fest verbaut sind 
+Wie in diesem Diagramm dargestellt ist links der Mikroprozessor bzw. die CPU (Central Processing Unit) zentral, benötigt jedoch extern verbundene Teile, sodass alle Aufgaben ausgeführt werden können. Ihm gegenübergestellt wird der Mikrocontroller, bei dem veranschaulicht wird, dass es sich hierbei um ein fertiges System handelt, bei dem alle Teile in diesem Ökosystem fest verbaut sind. Um eine Analogie zum menschlichen Körper zu bilden wäre in diesem Fall der Mikroprozessor das Gehirn alleine und der Mikrocontroller ein vollständiger Körper, welcher zur Funktion auf keine zusätzlichen Hilfsmittel angewiesen ist.
+
+Tendenziell sind Mikroprozessoren für leistungsintensivere Anwendungszwecke angedacht als Mikrocontroller (z. B. grafische Berechnungen, Multitasking). Mikrocontroller sind durch ihre autonome Struktur in puncto Kosten, Stromverbrauch und Größe beliebt und bringen viele Möglichkeiten mit ohne unnötig hohe Komplexität. Aufgrund von diesen Faktoren werden Mikrocontroller sehr gerne in eingebetteten Systemen (Embedded Systems) [@embedded-systems] verwendet. 
+
+Dieser Begriff bezeichnet Systeme, welche für einen speziellen Zweck entwickelt und optimiert sind, im Gegensatz zu herkömmlichen Mikroprozessoren, welche für viele Anwendungszwecke existieren. Diese Systeme bilden sich aus einem Zusammenhang zwischen Software und Hardware und können eigenständig verwendet werden, wobei sie jedoch meist eher als Teil eines größeren Systems eine Aufgabe erledigen, wie z. B. in einem Auto oder einer Spielekonsole. Den Namen haben die Embedded Systems genau dieser Eigenschaft der "Einbettung" in andere Systeme zu verdanken.
+
+Mikrocontroller sind in den verschiedensten Systemen zu zahlreichen Zwecken verbaut und erfüllen in jedem eine eigene Aufgabe. Heute gibt es Mikrocontroller in jeder erdenklichen Ausführung, weshalb sie für jegliche Anwendungszwecke von Hobbyprojekten bis zu Raketenwissenschaften nicht mehr wegzudenken sind.
 
 ### Auswahlkriterien für Mikrocontroller
 
@@ -31,9 +37,9 @@ Für die Gesamtbewertung werden vorerst für die Kosten Punkte zwischen 1 und 30
 
 ## Arduino Nano ESP32
 
-Der erste Mikrocontroller, welcher im Zuge dieser Arbeit bewertet wird, ist der Arduino Nano ESP32. Er ist ein gutes Einsteigermodell für die Entwicklung mit Mikrocontrollern, da er viele Funktionen bietet, welche dank offiziellen Dokumentationen und Tutorials verständlich gemacht werden [@arduino-docs].
+Der erste Mikrocontroller, welcher im Zuge dieser Arbeit bewertet wird, ist der Arduino Nano ESP32. Er ist ein Controller mit überschaubarer Komplexität, bietet jedoch trotzdem zahlreiche Funktionen für alle möglichen Zwecke, welche dank offiziellen Dokumentationen und Tutorials verständlich gemacht werden [@arduino-docs].
 
-### Organisation - Arduino
+### Firma - Arduino
 
 Der Arduino Nano ist ein Produkt von der Firma Arduino [@arduino-about] [@arduino-linkedin], einer Tochterfirma von Qualcomm. Arduino befasst sich mit dem Design, der Herstellung und der Weiterentwicklung von Mikrocontrollern. Die offizielle "Mission & Vision" der Firma ist die Erweiterung und Erleichterung des Zugangs zu Elektronik und digitalen Technologien. Für diese Vision arbeitet die Arduino-Community, welche sich weltweit aus Menschen von Hobbyist:innen über Schüler:innen bis hin zu professionellen Entwickler:innen zusammensetzt.
 
@@ -60,52 +66,76 @@ Die Firma wurde im Jahr 2005 in Italien gegründet und hat vier Co-Gründer, wel
 
 ### Technische Daten
 
-Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Arduino Nano ESP32 Datenblatt [@arduino-nano-datasheet]. Die Daten beziehen sich hierbei auf die zu bewertenden Kategorien, welche für die Entscheidung eines Mikrocontrollers herangenommen werden.
+Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Arduino-Nano-ESP32-Datenblatt [@arduino-nano-datasheet]. Die Daten beziehen sich hierbei auf die zu bewertenden Kategorien, welche für die Entscheidung eines Mikrocontrollers herangenommen werden.
 
-\begin{tabular}{|l|p{7cm}|}
-  \hline
-  \rowcolor{lightgray} \multicolumn{2}{|c|}{Arduino Nano ESP32 -- Eigenschaften} \\
-  \hline
-  Controllereigenschaft & Wert / Größe \\
-  \hline
-  Taktfrequenz & 240 MHz \\
-  Busbreite & 32 Bit \\
-  SRAM & 512 kB \\
-  Wi-Fi-Geschwindigkeiten & 72 Mbit/s max bei 20 MHz, 150 Mbit/s max bei 40 MHz \\
-  Externer Flash-Speicher & 16 MB \\
-  Externe Flash-Frequenz & 133 MHz \\
-  Externe Flash-Geschwindigkeit & Bis zu 664 Mbit/s \\
-  VIN (Eingangsspannung) Rating & 6--21 V \\
-  \hline
-\end{tabular}
+| Controllereigenschaft         | Wert / Größe                                        |
+|------------------------------:|:----------------------------------------------------|
+| Taktfrequenz                  | 240 MHz                                             |
+| Busbreite                     | 32 Bit                                              |
+| SRAM                          | 512 kB                                              |
+| Wi-Fi-Geschwindigkeiten       | 72 Mbit/s max bei 20 MHz, 150 Mbit/s max bei 40 MHz |
+| Flash-Speicher                | 16 MB                                               |
+| VIN (Eingangsspannung) Rating | 6-21 V                                              |
+
+: Arduino Nano ESP32 - Eigenschaften
 
 ## ESP32
 
 Billiger, bessere Leistung
 
-## Raspberry Pi Pico
+### Firma - Espressif Systems
 
-raspi pico
+### Technische Daten
+
+Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen ESP32-WROOM-32-Datenblatt [@esp32-datasheet]. Die Daten beziehen sich hierbei auf die zu bewertenden Kategorien, welche für die Entscheidung eines Mikrocontrollers herangenommen werden.
+
+| Controllereigenschaft         | Wert / Größe                                        |
+|------------------------------:|:----------------------------------------------------|
+| Taktfrequenz                  | 240 MHz                                             |
+| Busbreite                     | 32 Bit                                              |
+| SRAM                          | 520 kB                                              |
+| Wi-Fi-Geschwindigkeiten       | Bis zu 150 Mbit/s                                   |
+| Flash-Speicher                | 4/8/16 MB                                           |
+| VIN (Eingangsspannung) Rating | 3.0-3.6 V                                           |
+
+: ESP32-WROOM-32 - Eigenschaften
+
+## Raspberry Pi Pico 2
+
+raspi pico 2
+
+### Technische Daten
+
+Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Raspberry-Pi-Pico-2-Datenblatt [@raspberry-pi-pico-datasheet]. Die Daten beziehen sich hierbei auf die zu bewertenden Kategorien, welche für die Entscheidung eines Mikrocontrollers herangenommen werden.
+
+| Controllereigenschaft         | Wert / Größe                                        |
+|------------------------------:|:----------------------------------------------------|
+| Taktfrequenz                  | 150 MHz                                             |
+| Busbreite                     | 32 Bit                                              |
+| SRAM                          | 520 kB                                              |
+| Wi-Fi-Geschwindigkeiten       | Bis zu 72.2 Mbit/s möglich (realistisch 9-10 Mbit/s)|
+| Flash-Speicher                | 4 MB                                                |
+| VIN (Eingangsspannung) Rating | 5 V                                                 |
+
+: Raspberry Pi Pico 2 - Eigenschaften
+
+### Firma - Raspberry Pi
 
 ## Vergleich der Optionen & Entscheidung
 
-Direkter Vergleich (mit Diagrammen, etc.)
+In diesem Teil folgt der direkte Vergleich sowie die Entscheidung für eine der Mikrocontroller-Optionen. Jegliche Diagramme, welche zur Veranschaulichung der Daten verwendet werden, wurden mithilfe von Microsoft Excel erstellt.
 
 ## Sensorenauswahl
 
 Kriterien
 
-### Maussensor
+### Maussensor / Maus
 
 Billig, leicht nachzumachen
 
-### MPU6050
+### HC-SR04 + MPU6050 / IMU-Sensor
 
-Potentiell genauer, Komplexer für Nachbau, teurer
-
-### HC-SR04 + Potentiometer
-
-Warum eher nicht? (Schleifring) 
+Warum eher nicht? (Schleifring), Komplexer für Nachbau
 
 ## Datenaustausch
 
@@ -253,11 +283,13 @@ Für die ersten Prototypen ist das Design auf einen Drehstab reduziert, da diese
 Da diese rudimentäre Erstdarstellung jedoch selbst für Testzwecke noch unzureichend war, ist als nächstes eine erweiterte Version 1.0 designt worden, welche dem Bildnis eines Tischfußballtisches in mehreren Hinsichten ähnelt.
 
 ![Prototyp 1.0 Closed](img/Schaar/ControllerV1Closed.png) ![Prototyp 1.0 Open](img/Schaar/ControllerV1Open.png)
+
 ![Prototyp 1.0 Open Backside](img/Schaar/ControllerV1OpenBackSide.png)
 
 Diese Version weist einen Drehstab, eine Plattform für elektronische Bauteile, eine Trennwand zur Stabilisierung des Stabes sowie ein Loch für Kabel auf, sodass die Stromversorgung mit geschlossenem Deckel ermöglicht wird. Das erweiterte Design wurde dann, zur Erleichterung des Designprozesses und der Darstellung der Grundidee mithilfe eines BambuLab X1C 3D-Druckers ausgedruckt.
 
-![Prototyp 1.0 Open IRL](img/Schaar/ControllerV1OpenIRL.jpg) 
+![Prototyp 1.0 Open IRL](img/Schaar/ControllerV1OpenIRL.jpg)
+
 ![Prototyp 1.0 Closed IRL](img/Schaar/ControllerV1ClosedIRL.jpg)
 
 Um das visuelle Design attraktiver zu gestalten wurden Sticker in Form von dem DigiKicker-Logo auf dem Deckel und der Rückseite angebracht.
