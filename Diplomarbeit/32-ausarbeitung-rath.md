@@ -1,4 +1,4 @@
-# Theorieteil Rath
+# Theorie - Rath
 
 ## Inhaltsverzeichnis
 
@@ -1251,7 +1251,7 @@ func increase_difficulty() -> void:
 
 
 
-# Praxisteil Rath
+# Praxis - Rath
 
 ## Inhaltsverzeichnis
 
