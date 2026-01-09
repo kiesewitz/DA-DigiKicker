@@ -108,9 +108,13 @@ Dieses Diagramm [@arduino-nano-pinout] stellt das Pin-Layout eines Arduino Nano 
 
 Der nächste Mikrocontroller ist der ESP32-WROOM-32 [@esp32-data], welcher wie der zuvor betrachtete Mikrocontroller auf dem ESP32 basiert ist, weshalb für die Programmierung die Arduino Language sowie MicroPython verwendet werden kann. Wie allen ESP32-basierten Controllern ist es auch diesem möglich, von dem Protokoll "ESP-Now" Gebrauch zu machen. 
 
-Hierbei handelt es sich um ein eigens entwickeltes Protokoll von Espressif Systems, welches es mehreren Geräten erlaubt, sich untereinander zu verständigen. Das Protokoll ist auf dem 802.11 Wi-Fi Standard basiert, benötigt jedoch keinen zusätzlichen Access Point für die Kommunikation. In einem späteren Kapitel dieser Arbeit folgt eine genauere Veranschaulichung des ESP-Now-Protokolls, bei der die Details des Protokolls gezeigt werden.
+Hierbei handelt es sich um ein eigens entwickeltes Protokoll von Espressif Systems, welches es mehreren Geräten erlaubt, sich untereinander zu verständigen. Das Protokoll ist auf dem 802.11 Wi-Fi Standard basiert, benötigt jedoch keinen zusätzlichen Access Point für die Kommunikation. In einem späteren Kapitel dieser Arbeit folgt eine genauere Veranschaulichung von ESP-Now, bei der die Details des Protokolls aufgezeigt werden.
 
 ### Firma - Espressif Systems
+
+Der ESP32-WROOM-32 ist Teil der großen ESP32-Familie an Mikrocontrollern, welche von Espressif Systems [@espressif-about] entwickelt wird. Die Firma arbeitet an innovativen Lösungen rund um IoT und arbeitet in den letzten Jahren mehr und mehr an KI-Integration für Mikrocontroller. Sie veröffentlichen ihre Ressourcen und Modelle Open-Source und tragen damit maßgeblich zur globalen Weiterentwicklung von Mikrocontrollern, Embedded Systems und IoT bei.
+
+Teo Swee Ann hat die Firma im Jahr 2008 in Shanghai gegründet und ist bis heute der CEO bei Espressif Systems. 2016 wird dann der originale ESP32-Mikrocontroller veröffentlicht, welcher durch seine WLAN- & Bluetooth-Kapazitäten revolutionär ist. Seither wurden der Familie allerlei neue und spezialisierte Mikrocontroller hinzugefügt, wodurch für Projekte verschiedenster Größenordnungen Optionen existieren.
 
 ### Technische Daten
 
