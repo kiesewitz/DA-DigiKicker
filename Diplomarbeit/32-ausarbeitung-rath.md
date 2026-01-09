@@ -1,4 +1,5 @@
 # Theorie - Rath
+\textauthor{André Rath}
 
 ## Einführung in Game Engines
 
