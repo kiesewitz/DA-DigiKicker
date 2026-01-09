@@ -602,7 +602,7 @@ Reinforcement Learning (RL) ist ein Teilgebiet des maschinellen Lernens, bei dem
 
 Das grundlegende RL-Framework besteht aus einem Agenten, der in einer Umgebung (Environment) agiert. Der Agent beobachtet den aktuellen Zustand (State), wählt eine Aktion (Action), und die Umgebung antwortet mit einem neuen Zustand und einem Reward. Das Ziel des Agenten ist es, eine Policy zu erlernen, die den kumulativen, langfristigen Reward maximiert.
 
-![Godot RL Agents Architektur](img/rath/RL-Framework.png)
+![Godot RL Agents Architektur](img/Rath/RL-Framework.png)
 
 Diese Formulierung macht RL besonders geeignet für Probleme, bei denen der optimale Lösungsweg nicht bekannt ist, aber die Qualität von Ergebnissen bewertet werden kann. Prominente Beispiele umfassen das Erlernen von Spielstrategien wie bei AlphaGo [@alphago-documentary], Roboter-Steuerung und autonomes Fahren.
 
@@ -900,7 +900,7 @@ Die Motivation für Godot RL Agents entstand aus der Beobachtung, dass bestehend
 Das Framework besteht aus zwei Hauptkomponenten: einem GDExtension-Plugin für Godot und einer Python-Bibliothek für das Training [@huggingface-godotrl]. Das Godot-Plugin stellt die notwendigen Nodes und Klassen bereit, um Spielumgebungen als RL-Environments zu definieren, während die Python-Seite das Training mit Stable-Baselines3 oder anderen Frameworks übernimmt.
 
 
-![Godot RL Agents Architektur](img/rath/Godot-RL-Agents-Architektur.png)
+![Godot RL Agents Architektur](img/Rath/Godot-RL-Agents-Architektur.png)
 
 
 Die Kommunikation zwischen Godot und Python erfolgt über einen SharedMemory-Mechanismus oder Sockets. Dieser Ansatz erlaubt paralleles Training mit mehreren Godot-Instanzen für beschleunigtes Lernen. Die API ist inspiriert von Gymnasium (ehemals OpenAI Gym), dem Standard-Interface für RL-Environments, was die Integration mit bestehenden RL-Codebasen erleichtert.
@@ -1803,7 +1803,7 @@ public partial class Goal : Area3D
 
 Der `GameManager` verwaltet den Spielzustand über ein Enum mit vier möglichen Zuständen: `Menu`, `Playing`, `Paused` und `GameOver`. Der Countdown nach Spielstart oder nach einem Tor wird separat über Flags gesteuert.
 
-![Godot RL Agents Architektur](img/rath/Lebenszyklus-Spiel.png)
+![Godot RL Agents Architektur](img/Rath/Lebenszyklus-Spiel.png)
 
 ---
 
@@ -1813,7 +1813,7 @@ Der `GameManager` verwaltet den Spielzustand über ein Enum mit vier möglichen 
 
 DigiKicker verwendet eine Peer-to-Peer-Architektur basierend auf WebRTC. Diese Entscheidung eliminiert die Notwendigkeit eines dedizierten Spielservers und reduziert die Latenz, da Spielzustandsdaten direkt zwischen den Spielern ausgetauscht werden.
 
-![Godot RL Agents Architektur](img/rath/WebRTC-P2P.png)
+![Godot RL Agents Architektur](img/Rath/WebRTC-P2P.png)
 
 Das Diagramm zeigt den vollständigen Verbindungsaufbau: Nach dem Signaling über den PHP-Server wird versucht, eine direkte P2P-Verbindung herzustellen. Der STUN-Server hilft dabei, die öffentliche IP zu ermitteln. Sollte aufgrund von NAT-Restriktionen keine direkte Verbindung möglich sein, wird der TURN-Server als Relay verwendet.
 
@@ -2046,7 +2046,7 @@ func _handle_pong(msg: Dictionary) -> void:
 
 Das Training nutzt das Godot RL Agents Framework, das eine Brücke zwischen Godot und Python-basierten RL-Bibliotheken schlägt. Die Trainingsszene `RLTraining.tscn` enthält zwei AI-Controller für Self-Play:
 
-![Godot RL Agents Architektur](img/rath/RL-Training-Setup.png)
+![Godot RL Agents Architektur](img/Rath/RL-Training-Setup.png)
 
 ### Observation Space
 
