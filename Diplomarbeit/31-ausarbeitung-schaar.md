@@ -9,6 +9,8 @@ Projektmanagement
 
 ## Mikrocontroller
 
+In diesem Kapitel wird der Begriff Mikrocontroller erklärt und die Unterschiede zu Mikroprozessoren werden aufgezeigt. Darauf folgend werden drei verschiedene Mikrocontroller-Optionen betrachtet und anhand von ihren Eigenschaften und technischen Spezifikationen verglichen.
+
 ### Was sind Mikrocontroller?
 
 Um Mikrocontroller [@microcontroller-definition] zu erklären, muss erst ihr Unterschied zu Mikroprozessoren beleuchtet werden. Mikroprozessoren sind so wie die "größeren" Prozessoren - In diesem Fall sowohl auf physikalische Größe als auch auf Leistung bezogen - die Recheneinheit eines Systems. Während Mikroprozessoren ausschließlich rechnerische Aufgaben bearbeiten und für andere Funktionen separate Teile (RAM, ROM, Timer-Module, etc.) benötigen, fungieren Mikrocontroller als ein fertiges Paket, welches die verschiedenen Teile verbaut hat.
@@ -104,7 +106,9 @@ Dieses Diagramm [@arduino-nano-pinout] stellt das Pin-Layout eines Arduino Nano 
 
 ## ESP32-WROOM-32
 
-Der nächste betrachtete Mikrocontroller ist der ESP32-WROOM-32, welcher wie der zuvor betrachtete Mikrocontroller auf dem ESP32 basiert ist, weshalb für die Programmierung auch die Arduino Language sowie MicroPython verwendet werden kann. So wie alle ESP32-basierten Controller ist es auch diesem möglich, von dem 
+Der nächste Mikrocontroller ist der ESP32-WROOM-32 [@esp32-data], welcher wie der zuvor betrachtete Mikrocontroller auf dem ESP32 basiert ist, weshalb für die Programmierung die Arduino Language sowie MicroPython verwendet werden kann. Wie allen ESP32-basierten Controllern ist es auch diesem möglich, von dem Protokoll "ESP-Now" Gebrauch zu machen. 
+
+Hierbei handelt es sich um ein eigens entwickeltes Protokoll von Espressif Systems, welches es mehreren Geräten erlaubt, sich untereinander zu verständigen. Das Protokoll ist auf dem 802.11 Wi-Fi Standard basiert, benötigt jedoch keinen zusätzlichen Access Point für die Kommunikation. In einem späteren Kapitel dieser Arbeit folgt eine genauere Veranschaulichung des ESP-Now-Protokolls, bei der die Details des Protokolls gezeigt werden.
 
 ### Firma - Espressif Systems
 
@@ -148,7 +152,7 @@ Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Ra
 
 : Raspberry Pi Pico 2W - Eigenschaften
 
-![Raspberry Pi Pico 2W Pinout-Diagramm](img/Schaar/Pinout-ESP32-DevBoard.jpg)
+![Raspberry Pi Pico 2W Pinout-Diagramm](img/Schaar/Pinout-Raspberry-Pi-Pico-2W.png)
 
 Dieses Diagramm [@raspberry-pi-pico-2w-pinout] zeigt die Pin-Belegungen eines Raspberry Pi Pico 2W.
 
@@ -190,7 +194,7 @@ Kurzbeschreibung
 
 ## Prototyping
 
-In diesem Kapitel wird es um Unverwendete Prototypen und Ansätze, Demos und andere Entwicklungsschritte gehen, welche sich im Laufe der Arbeit am Controller ergeben haben. Anhand von ihnen werden der Entwicklungsprozess und verschiedene Iterationen dargestellt.
+In diesem Kapitel geht es um Unverwendete Prototypen und Ansätze, Demos und andere Entwicklungsschritte, welche sich im Laufe der Arbeit am Controller ergeben haben. Anhand von ihnen werden der Entwicklungsprozess und verschiedene Iterationen dargestellt.
 
 ### Arduino <-> Godot Kommunikations-Demo
 
