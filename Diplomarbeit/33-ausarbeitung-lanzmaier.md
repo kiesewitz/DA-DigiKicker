@@ -139,16 +139,17 @@ Hinweis: Bei der Grundmodellierung wählt man beim sculpten einen relativ große
 
 Für genauere Merkmale verwendet man nochmal einen Subdivision-Surface-Modifier und aktiviert Shade-Smooth. Dadurch kann man mit Sculpt-Tools, wie dem Draw-Tool oder dem Grab-Tool mit geringem Radius, mit der Detailmodellierung starten.
 
-![Detailmodellierung der Kopf-Mesh](img/Lanzmaier/NormalMapCharacter1.png)
-![Detailmodellierung der Kopf-Mesh2](img/Lanzmaier/NormalMapCharacter2.png)
-![Detailmodellierung der Kopf-Mesh3](img/Lanzmaier/NormalMapCharacter3.png)
-![Detailmodellierung der Kopf-Mesh4](img/Lanzmaier/NormalMapCharacter4.png)
+![Detailmodellierung der Kopf-Mesh](img/Lanzmaier/image-6.png)
+
 Hinweis: Nase, Augen, Ohren, Hals, Augenbrauen und Haare werden in diesem Fall als eigene Mesh designt und später mit der Haupt-Mesh (dem Kopf) mit "Ctrl+J" gejoint und "geremesht". Wenn beim "remeshen" unschöne Kanten entstehen, können diese ausgeglättet werden, in dem man mit dem Grab-Tool "Shift" gedrückt hält und damit an den Kanten entlang fährt.
 
 Definition Remesh: Remesh in Blender ist ein Werkzeug, das die Geometrie eines 3D-Modells automatisch neu aufbaut, um eine gleichmäßigere Topologie zu erzeugen.
 
 !Wichtig: Man sollte während diesem Prozess immer wieder Backups in Form von Collections in Blender oder als .blend-Files machen. Das ist hier besonders wichtig, da die Mesh beim Modellieren schnell vom einen auf den anderen Moment nicht so wie erwünscht aussehen kann.
 
+![Detailmodellierung der Kopf-Mesh2](img/Lanzmaier/image-7.png)
+![Detailmodellierung der Kopf-Mesh3](img/Lanzmaier/image-8.png)
+![Detailmodellierung der Kopf-Mesh4](img/Lanzmaier/image-9.png)
 ![High-Poly Modell der Kopf-Mesh](img/Lanzmaier/image-10.png)
 Jetzt ist es wichtig, die Anzahl der Tris zu senken. Da der Kopf ziemlich detailreich ist, verwendet man "Retopology", um eine Low-Poly-Kopie der High-Poly-Mesh zu erstellen.
 
