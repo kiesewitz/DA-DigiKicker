@@ -150,7 +150,7 @@ Definition Remesh: Remesh in Blender ist ein Werkzeug, das die Geometrie eines 3
 !Wichtig: Man sollte während diesem Prozess immer wieder Backups in Form von Collections in Blender oder als .blend-Files machen. Das ist hier besonders wichtig, da die Mesh beim Modellieren schnell vom einen auf den anderen Moment nicht so wie erwünscht aussehen kann.
 
 ![High-Poly Modell der Kopf-Mesh](img/Lanzmaier/image-10.png)
-Jetzt ist es wichtig, die Anzahl der Tris zu senken. Da der Kopf ziemlich detailreich ist, verwenden wir Retopology um eine Low-Poly-Kopie der High-Poly-Mesh zu erstellen.
+Jetzt ist es wichtig, die Anzahl der Tris zu senken. Da der Kopf ziemlich detailreich ist, verwendet man "Retopology", um eine Low-Poly-Kopie der High-Poly-Mesh zu erstellen.
 
 Definition Retopology: Retopology ist der Prozess, in der man eine neue, saubere Low-Poly-Mesh auf der Oberfläche der High-Poly-Mesh erstellt, um das Modell performanter zu machen.
 
