@@ -242,6 +242,10 @@ Für die Tore und die Löcher, an denen der Ball reingeworfen wird, verwendet ma
 
 !Wichtig: Damit die Hitbox für das Spielfeld in der Engine richtig erstellt werden kann, muss über den Bodenmarkierungen, die jetzt weiter unten liegen, einen unsichtbaren Boden erstellen. Dafür erstellt man ein neues Material und stellt den "Alpha Value" auf 0.
 
+Auch bei den Materials auf der Vorderseite wird der "Alpha Value" auf 0 gesetzt, sodass man während der Simulation alles sehen kann. Alle Materialien werden auch hier einer "Diffuse Map zugeordnet. Die verschiedenen "Alpha-Values" werden auf einer "Emission Map" dargestellt.
+
+![Fertig modelliertes Character-Asset](img/Lanzmaier/BlenderModelAndMaterialNodes.png)
+
 ### Optisches Design/Arrangement des Spiels
 
 Design der Assets im Spiel, Stilisierte Darstellung und Design-Iterationen
