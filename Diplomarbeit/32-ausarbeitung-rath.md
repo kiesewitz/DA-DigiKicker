@@ -19,7 +19,6 @@ Die Lizenzkosten und das Geschäftsmodell sind ebenfalls wichtige Überlegungen.
 
 Weitere Kriterien umfassen die verfügbare Dokumentation und Community-Unterstützung, die unterstützten Plattformen für den Export, die Programmiersprachen und Scripting-Möglichkeiten sowie die Lernkurve für neue Entwickler. Auch die Integration von Drittanbieter-Tools, insbesondere für Machine Learning und KI-Entwicklung, kann je nach Projektanforderungen relevant sein.
 
----
 
 ## Unity Engine
 
@@ -47,8 +46,6 @@ Ein wesentlicher Vorteil von Unity ist der umfangreiche Asset Store, ein Marktpl
 
 Die große Community und die umfangreiche offizielle Dokumentation machen Unity zu einer zugänglichen Plattform für Einsteiger [@codemonkey-unity-beginner]. Unity Learn bietet strukturierte Kurse und Tutorials für alle Erfahrungsstufen [@unity-learn]. Allerdings wurde Unity in der Vergangenheit für kontroverse Geschäftsentscheidungen kritisiert, insbesondere die Ankündigung von Runtime-Gebühren im Jahr 2023, die zu einem signifikanten Vertrauensverlust in der Entwickler-Community führte [@gamefromscratch-godot-vs-unity].
 
----
-
 ## Unreal Engine
 
 ### Überblick und Geschichte
@@ -75,8 +72,6 @@ Die Unreal Engine ist kostenlos nutzbar, verlangt jedoch 5% Royalties auf den Br
 
 Die Zielgruppe der Unreal Engine umfasst primär mittlere bis große Studios, die an visuell ambitionierten Projekten arbeiten [@unrealsensei-ue5-beginner]. Die komplexe Architektur und die steile Lernkurve machen sie weniger geeignet für absolute Anfänger oder sehr kleine Projekte. Für 2D-Spiele oder einfachere 3D-Projekte sind Unity oder Godot oft die bessere Wahl aufgrund ihrer schlankeren Architektur und schnelleren Entwicklungszyklen.
 
----
-
 ## Godot Engine
 
 ### Überblick und Geschichte
@@ -96,8 +91,6 @@ Die Engine ist bemerkenswert leichtgewichtig mit einer Größe von etwa 200 MB f
 Die Godot-Entwicklung erfolgt vollständig öffentlich auf GitHub mit transparenten Roadmaps und Issue-Tracking. Jeder kann Bugs melden, Features vorschlagen oder Code beitragen. Die Engine wird von der Godot Foundation verwaltet, einer gemeinnützigen Organisation, die 2022 gegründet wurde, um die langfristige Entwicklung sicherzustellen.
 
 Die offizielle Dokumentation ist umfangreich und wird kontinuierlich verbessert. Neben der Dokumentation existieren Community-Ressourcen wie das offizielle Forum, Discord-Server und diverse Online-Tutorials [@brackeys-godot-beginner]. Kommerziell erfolgreiche Spiele wie Dome Keeper, Cassette Beasts, Brotato und Buckshot Roulette demonstrieren, dass mit Godot professionelle Produkte entwickelt werden können.
-
----
 
 ## Godot im Detail
 
@@ -475,8 +468,6 @@ func physics_update(delta: float) -> void:
 
 Diese Architektur führt zu sauberem, wartbarem Code für komplexe Verhaltensmuster.
 
----
-
 ## WebRTC und Multiplayer Networking
 
 ### Grundlagen von WebRTC
@@ -589,11 +580,9 @@ Für die Integration mit Godots High-Level Multiplayer API existiert die WebRTCM
 
 Bei der Entwicklung von Multiplayer-Spielen gibt es verschiedene Architekturansätze. Die Client-Server-Architektur verwendet einen autoritativen Server, der den Spielzustand verwaltet und Entscheidungen trifft. Clients senden Inputs an den Server und erhalten Zustandsupdates zurück. Diese Architektur bietet guten Schutz vor Cheating, erfordert aber Server-Infrastruktur.
 
-Die Peer-to-Peer-Architektur, die WebRTC ermöglicht, verbindet Spieler direkt miteinander ohne zentralen Spielserver [@henriquelalves-p2p-snake]. Ein Peer kann als Host fungieren und autoritative Entscheidungen treffen, oder alle Peers können gleichberechtigt sein mit Lockstep-Synchronisation. P2P reduziert Infrastrukturkosten, ist aber anfälliger für Cheating und erfordert sorgfältige Synchronisation.
+Die Peer-to-Peer-Architektur, die WebRTC ermöglicht, verbindet Spieler direkt miteinander ohne zentralen Spielserver [@henriquelalves-p2p-snake]. Ein Peer kann als Host fungieren und autoritative Entscheidungen treffen, oder alle Peers können gleichberechtigt sein mit Lockstep-Synchronisation. P2P reduziert Infrastrukturkosten, ist aber anfälliger für Cheating (Schummeln) und erfordert sorgfältige Synchronisation.
 
 Hybride Ansätze kombinieren beide Architekturen: Ein leichtgewichtiger Server übernimmt Matchmaking und Authentifizierung, während die eigentliche Spielkommunikation peer-to-peer erfolgt. Dies reduziert Serverkosten bei gleichzeitiger Beibehaltung zentraler Kontrolle über wichtige Funktionen.
-
----
 
 ## Grundlagen des Reinforcement Learning
 
@@ -645,11 +634,11 @@ Die Policy ist die Strategie des Agenten, die für jeden State eine Aktion (oder
 
 ### Algorithmen-Kategorien
 
-Value-based Methods wie Q-Learning und DQN (Deep Q-Network) lernen eine Value Function, die den erwarteten kumulativen Reward für jeden State (oder State-Action-Paar) schätzt. Die Policy wird implizit abgeleitet, indem immer die Aktion mit dem höchsten geschätzten Wert gewählt wird.
+Value-based Methods wie Q-Learning und DQN (Deep Q-Network) lernen eine Value Function, die den erwarteten kumulativen Reward für jeden State (oder State-Action-Paar) schätzt.[@silver-rl-lecture1] [@sentdex-dqn] Die Policy wird implizit abgeleitet, indem immer die Aktion mit dem höchsten geschätzten Wert gewählt wird.
 
-Policy-based Methods wie REINFORCE und Policy Gradient lernen die Policy direkt, ohne den Umweg über eine Value Function. Diese Methoden sind besonders geeignet für kontinuierliche Action Spaces und können stochastische Policies darstellen. Sie sind jedoch oft mit hoher Varianz in den Gradienten konfrontiert.
+Policy-based Methods wie REINFORCE und Policy Gradient lernen die Policy direkt, ohne den Umweg über eine Value Function.[@spinningup-intro] [@silver-rl-lecture1] Diese Methoden sind besonders geeignet für kontinuierliche Action Spaces und können stochastische Policies darstellen. Sie sind jedoch oft mit hoher Varianz in den Gradienten konfrontiert.
 
-Actor-Critic Methods kombinieren beide Ansätze: Ein Actor lernt die Policy, während ein Critic die Value Function schätzt. Der Critic reduziert die Varianz des Policy-Gradienten, was zu stabilerem Training führt. Moderne Algorithmen wie PPO (Proximal Policy Optimization) und A3C gehören zu dieser Kategorie.
+Actor-Critic Methods kombinieren beide Ansätze: Ein Actor lernt die Policy, während ein Critic die Value Function schätzt. Der Critic reduziert die Varianz des Policy-Gradienten, was zu stabilerem Training führt. Moderne Algorithmen wie PPO (Proximal Policy Optimization) und A3C gehören zu dieser Kategorie.[@spinningup-ppo]
 
 ### Deep Q-Networks (DQN)
 
@@ -796,15 +785,14 @@ model.save("ppo_lunarlander")
 
 PPO ist besonders populär für kontinuierliche Control-Tasks, Robotik und Game AI. Die relative Einfachheit der Implementierung im Vergleich zu anderen Algorithmen wie TRPO, bei gleichzeitig vergleichbarer Performance, macht PPO zur Standardwahl für viele Anwendungen. Stable-Baselines3 bietet eine robuste, gut getestete PPO-Implementierung [@sb3-documentation].
 
----
 
 ## Neuronale Netze und Deep Learning
 
 ### Grundlagen neuronaler Netze
 
-Neuronale Netze sind von biologischen Nervensystemen inspirierte Berechnungsmodelle, die aus miteinander verbundenen Neuronen bestehen. Ein künstliches Neuron empfängt gewichtete Inputs, summiert diese auf und wendet eine Aktivierungsfunktion an, um den Output zu berechnen. Durch das Schichten von vielen Neuronen entstehen tiefe Netze mit der Fähigkeit, komplexe Muster zu lernen.
+Neuronale Netze sind von biologischen Nervensystemen inspirierte Berechnungsmodelle, die aus miteinander verbundenen Neuronen bestehen. Ein künstliches Neuron empfängt gewichtete Inputs, summiert diese auf und wendet eine Aktivierungsfunktion an, um den Output zu berechnen. Durch das Schichten von vielen Neuronen entstehen tiefe Netze mit der Fähigkeit, komplexe Muster zu lernen. 
 
-Die Architektur eines Feedforward-Netzes besteht aus einem Input Layer, das die Eingabedaten empfängt, einem oder mehreren Hidden Layers, die Zwischenrepräsentationen berechnen, und einem Output Layer, das die finale Vorhersage liefert. Die Stärke neuronaler Netze liegt in ihrer Fähigkeit, automatisch relevante Features aus den Rohdaten zu extrahieren.
+Die Architektur eines Feedforward-Netzes besteht aus einem Input Layer, das die Eingabedaten empfängt, einem oder mehreren Hidden Layers, die Zwischenrepräsentationen berechnen, und einem Output Layer, das die finale Vorhersage liefert. Die Stärke neuronaler Netze liegt in ihrer Fähigkeit, automatisch relevante Features aus den Rohdaten zu extrahieren. [@karpathy-micrograd]
 
 ```python
 # Python: Einfaches Neuronales Netz mit PyTorch
@@ -886,7 +874,6 @@ for epoch in range(100):
 
 Für Reinforcement Learning ist PyTorch die bevorzugte Wahl vieler Forscher und Bibliotheken [@renotte-rl-3hours]. Stable-Baselines3, die Standard-RL-Bibliothek, basiert vollständig auf PyTorch. Die Kombination aus Flexibilität, Performance und dem umfangreichen Ökosystem macht PyTorch ideal für die Entwicklung und das Training von RL-Agenten.
 
----
 
 ## Godot RL Agents
 
@@ -1203,8 +1190,6 @@ func increase_difficulty() -> void:
 ```
 
 
----
-
 
 
 
@@ -1225,20 +1210,23 @@ Das Spielprinzip folgt den etablierten Regeln des Tischfußballs: Zwei Spieler s
 
 Die funktionalen Anforderungen gliedern sich in drei Hauptbereiche:
 
-**Spielmechanik:**
+**Spielmechanik**
+
 - Realistische Ballphysik mit Kollisionserkennung und natürlichem Rollverhalten
 - Acht Stangen (vier pro Team) mit korrekter Figurenanzahl je Stangentyp
 - Intuitive Steuerung für Rotation und laterale Bewegung der Stangen
 - Automatische Torerkennung und Punktezählung
 - Spielablauf-Management mit Countdown, Pause und Spielende
 
-**Multiplayer-Funktionalität:**
+**Multiplayer-Funktionalität**
+
 - Peer-to-Peer Verbindung ohne dedizierten Spielserver
 - Lobby-System mit Raumcode für einfaches Beitreten
 - Synchronisation des Spielzustands in Echtzeit
 - Latenzanzeige und robuste Verbindungshandhabung
 
-**KI-Gegner:**
+**KI-Gegner**
+
 - Trainierbarer KI-Agent basierend auf Reinforcement Learning
 - Export des trainierten Modells im ONNX-Format für Inference in Godot
 - Regelbasierter Bot als Alternative für verschiedene Schwierigkeitsstufen
@@ -1246,16 +1234,19 @@ Die funktionalen Anforderungen gliedern sich in drei Hauptbereiche:
 
 ### Nicht-funktionale Anforderungen
 
-**Performance:**
+**Performance**
+
 - Stabile 60 FPS auf modernen Desktop-Systemen
 - Physik-Simulation bei 50 Hz für konsistentes Spielgefühl
 - Niedrige Latenz bei der Netzwerkkommunikation
 
-**Plattformen:**
+**Plattformen**
+
 - Primäre Zielplattform: Windows
 - Export-Möglichkeit für Linux und macOS
 
-**Benutzerfreundlichkeit:**
+**Benutzerfreundlichkeit**
+
 - Intuitive Menüführung
 - Unterstützung für Tastatur und Controller
 - Visuelle Rückmeldung zur aktiven Stangenauswahl
@@ -1279,8 +1270,6 @@ REINFORCEMENT LEARNING
 |--- PyTorch für neuronale Netze
 +--- ONNX Runtime für Inference
 ```
-
----
 
 ## Projektstruktur und Setup
 
@@ -1433,8 +1422,6 @@ torch==2.11.0
 onnx==1.20.0
 onnxruntime==1.23.2
 ```
-
----
 
 ## Spielmechanik-Implementierung
 
@@ -1806,8 +1793,6 @@ Der `GameManager` verwaltet den Spielzustand über ein Enum mit vier möglichen 
 
 ![Lebenszyklus eines Spiels](img/Rath/Lebenszyklus-Spiel.png)
 
----
-
 ## Multiplayer-Implementierung
 
 ### Netzwerk-Architektur
@@ -1830,6 +1815,8 @@ Der Signaling-Prozess wird über ein PHP-Backend abgewickelt, das auf einem eige
 
 **get_signals.php:** Polling-Endpunkt zum Abrufen neuer Signaling-Nachrichten.
 
+Das PHP-Backend speichert offene Lobbys und abgeschlossene Matches in einer MySQL-Datenbank.
+
 ### STUN/TURN-Server mit Coturn
 
 Für NAT-Traversal wird ein eigener Coturn-Server betrieben, der sowohl STUN- als auch TURN-Dienste bereitstellt:
@@ -1848,6 +1835,8 @@ Realm:      <Realm-Name>
 ```
 
 Die Authentifizierung erfolgt über Long-Term Credentials mit Benutzername und Passwort.
+
+Coturn speichert aktive Sessions temporär im Arbeitsspeicher und löscht diese automatisch nach Verbindungsende.
 
 ### WebRTC-Implementierung in Godot
 
@@ -2038,8 +2027,6 @@ func _handle_pong(msg: Dictionary) -> void:
 
     emit_signal("ping_updated", current_ping_ms, connection_type)
 ```
-
----
 
 ## KI-Gegner mit Reinforcement Learning
 
@@ -2292,6 +2279,10 @@ class StabilityMonitorCallback(BaseCallback):
         return True
 ```
 
+![Training Reward Verlauf](img/Rath/mean_reward_training.png)
+
+Die Abbildung zeigt den mittleren Episode-Reward (ep_rew_mean) verschiedener Trainingsläufe über die Anzahl der Steps. Die grüne Linie (v16) repräsentiert das längste Training mit über 50 Millionen Steps und einer Trainingszeit von etwa 6,5 Stunden. Der Reward stabilisiert sich bei diesem Lauf um den Wert -5. Die negativen Werte resultieren aus dem Reward-Shaping, bei dem zeitbasierte Bestrafungen den Agenten zu schnellerem Spielabschluss motivieren sollen. Ein Wert von -5 ist dabei kein schlechtes Zeichen. Anders als bei klassischem RL, wo der Mean Reward typischerweise kontinuierlich steigt, bleibt er beim gespiegelten Self-Play-Training in einem bestimmten Bereich. Dies liegt daran, dass beide Seiten gleichzeitig lernen: Wenn die KI besser angreift, verbessert sich auch ihre Verteidigung, wodurch der Reward schwankt statt monoton zu steigen. Die verschiedenen Kurven zeigen unterschiedliche Hyperparameter-Konfigurationen und verdeutlichen, wie sensibel das Training auf diese reagiert. Die Abbildung zeigt einen Großteil der trainierten Modelle, jedoch nicht alle.
+
 ### ONNX-Export und Integration
 
 Nach erfolgreichem Training wird das Modell im ONNX-Format exportiert:
@@ -2384,8 +2375,6 @@ public override void _PhysicsProcess(double delta)
     ApplyActions(_currentActions);
 }
 ```
-
----
 
 ## User Interface
 
@@ -2514,8 +2503,6 @@ func _on_opponent_joined(joiner_name: String) -> void:
     start_button.visible = true
 ```
 
----
-
 ## Testing und Qualitätssicherung
 
 ### Gameplay-Testing
@@ -2535,8 +2522,6 @@ Für das Netzwerk-Testing wurden folgende Szenarien geprüft:
 - Fallback auf TURN bei NAT-Problemen
 - Verhalten bei Verbindungsabbruch
 - Latenz-Simulation mit künstlicher Verzögerung
-
----
 
 ## Deployment und Distribution
 
@@ -2568,8 +2553,6 @@ DigiKicker/
     |--- foosball_ai.onnx
     +--- foosball_ai.onnx.data
 ```
-
----
 
 ## Herausforderungen und Lösungen
 
@@ -2648,6 +2631,4 @@ obs.append(mirror * ball_vel.x / 10.0)
 **Problem:** Nach Beendigung eines Online-Spiels wurde die WebRTC-Verbindung nicht korrekt geschlossen. Dies führte zu einem kritischen Bug: Wenn ein Spieler anschließend ein Singleplayer-Spiel startete und dabei das Team wählte, das zuvor der Online-Gegner kontrolliert hatte, konnte der ehemalige Gegner das Spiel weiterhin über die offene Verbindung steuern.
 
 **Lösung:** Implementierung einer expliziten Verbindungstrennung beim Verlassen des Online-Spiels. Der `OnlineMultiplayerManager` ruft nun beim Spielende `close_connection()` auf, das sowohl den DataChannel als auch die PeerConnection ordnungsgemäß schließt und alle Signale trennt.
-
----
 
