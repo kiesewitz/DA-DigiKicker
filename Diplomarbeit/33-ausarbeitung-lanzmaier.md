@@ -88,8 +88,6 @@ Um die Polygonanzahl zu minimieren, wird eine Low-Poly Kopie des bereits bestehe
 
 Damit man eine Mesh texturieren und Maps (Normal, Diffuse, Emition etc.) verwenden kann, muss man sie zuvor "unwrappen". Dies kann man entweder per Hand oder wie in unserem Fall mit dem Smart UV Project machen.
 
-![Bild des Unwrapped Characters](image.png)
-
 ### Texturierung
 
 Wenn externe Texturen benötigt werden, kann man sie jetzt mit einer Image-Texture-Node im Shader Editor hinzufügen.
@@ -99,13 +97,9 @@ Damit unsere Assets game-ready sind verwenden wir folgende Texture Maps:
 
 Mit einer Normal Map können wir echte Oberflächendetails erzeugen, um den realistischen Look unseres Characters zu verstärken. Die geometrische Komplexität erhöht sich hierbei nicht und die Anzahl der Polygone bleiben gleich.
 
-![Normal Map des Charakters](CharacterNormal.png)
-
 #### Diffuse Map
 
 Mit einer Diffuse Map können wir die Base Color aller benutzten Materialien auf eine UV-Map projizieren. Statt für jede Farbe ein eigenes Material zu benutzen, können wir so ein Material mit allen benötigten Farben erstellen. Je weniger Materialien verwendet werden, desto geringer ist die Anzahl der Draw Calls, da jedes zusätzliche Material einen separaten Renderaufruf erfordert. Dadurch wird der Kommunikationsaufwand mit der Grafik-API reduziert, was die Performance verbessert.
-
-![Diffuse Map des Charakters](CharacterColor.png)
 
 #### Emission Map
 
@@ -113,8 +107,6 @@ Eine Emissive Map ist eine Textur, die in der 3D-Grafik bestimmt, welche Bereich
 Weiße/helle Bereiche - leuchten stark.
 Schwarze/dunkle Bereiche - senden kein Licht aus.
 Das ist wichtig bei Materialien die beispielsweise unterschiedliche Alpha bzw. Metallic Values besitzen.
-
-![Emission Map der Tischplatte](PlateInv-1.png)
 
 ### Ausarbeitung der einzelnen Game-Assets
 
@@ -136,7 +128,7 @@ Gleichzeitig wird bewusst auf direkte Referenzen realer Tischfußballfiguren ver
 
 ### Modellierung
 
-Bei der Modellierung fangen wir beim Kopf an. Die erste Aufgabe ist es eine neue Cube-Mesh mit "Shift+A" zu erstellen. Auf die Mesh wird ein Subdivision-Surface-Modifier verwendet, um die Polygon-Anzahl ein wenig zu erhöhen und wir weiters grob die Form des Kopfes modellieren können.
+Bei der Modellierung fängt man beim Kopf an. Die erste Aufgabe ist es eine neue Cube-Mesh mit "Shift+A" zu erstellen. Auf die Mesh wird ein Subdivision-Surface-Modifier verwendet, um die Polygon-Anzahl ein wenig zu erhöhen und man weiters grob die Form des Kopfes modellieren kann.
 
 ![Cube Mesh mit Subdivision-Surface-Modifier](img/Lanzmaier/image.png)
 
@@ -145,20 +137,21 @@ Als nächstes wird mit Sculpt Tools, wie beispielsweise dem Grab-Tool, die ungef
 ![Grundmodellierung der Kopf-Mesh](img/Lanzmaier/image-4.png)
 Hinweis: Bei der Grundmodellierung wählt man beim sculpten einen relativ großen Radius, da man nur die wichtigsten Merkmale hervorzuheben möchte. Um den Kopf gleichmäßig zu designen wird hier auch standardmäßig die Mesh-Symmetrie auf der X-Achse ausgewählt (rechts oben)
 
-Für genauere Merkmale verwenden wir nochmal einen Subdivision-Surface-Modifier und aktivieren Shade-Smooth. Dadurch können wir mit Sculpt-Tools, wie dem Draw-Tool oder dem Grab-Tool mit geringem Radius, mit der Detailmodellierung starten.
+Für genauere Merkmale verwendet man nochmal einen Subdivision-Surface-Modifier und aktiviert Shade-Smooth. Dadurch kann man mit Sculpt-Tools, wie dem Draw-Tool oder dem Grab-Tool mit geringem Radius, mit der Detailmodellierung starten.
 
-![Detailmodellierung der Kopf-Mesh](img/Lanzmaier/NormalMapCharacter1.png)
-![Detailmodellierung der Kopf-Mesh2](img/Lanzmaier/NormalMapCharacter2.png)
-![Detailmodellierung der Kopf-Mesh3](img/Lanzmaier/NormalMapCharacter3.png)
-![Detailmodellierung der Kopf-Mesh4](img/Lanzmaier/NormalMapCharacter4.png)
+![Detailmodellierung der Kopf-Mesh](img/Lanzmaier/image-6.png)
+
 Hinweis: Nase, Augen, Ohren, Hals, Augenbrauen und Haare werden in diesem Fall als eigene Mesh designt und später mit der Haupt-Mesh (dem Kopf) mit "Ctrl+J" gejoint und "geremesht". Wenn beim "remeshen" unschöne Kanten entstehen, können diese ausgeglättet werden, in dem man mit dem Grab-Tool "Shift" gedrückt hält und damit an den Kanten entlang fährt.
 
 Definition Remesh: Remesh in Blender ist ein Werkzeug, das die Geometrie eines 3D-Modells automatisch neu aufbaut, um eine gleichmäßigere Topologie zu erzeugen.
 
 !Wichtig: Man sollte während diesem Prozess immer wieder Backups in Form von Collections in Blender oder als .blend-Files machen. Das ist hier besonders wichtig, da die Mesh beim Modellieren schnell vom einen auf den anderen Moment nicht so wie erwünscht aussehen kann.
 
+![Detailmodellierung der Kopf-Mesh2](img/Lanzmaier/image-7.png)
+![Detailmodellierung der Kopf-Mesh3](img/Lanzmaier/image-8.png)
+![Detailmodellierung der Kopf-Mesh4](img/Lanzmaier/image-9.png)
 ![High-Poly Modell der Kopf-Mesh](img/Lanzmaier/image-10.png)
-Jetzt ist es wichtig, die Anzahl der Tris zu senken. Da der Kopf ziemlich detailreich ist, verwenden wir Retopology um eine Low-Poly-Kopie der High-Poly-Mesh zu erstellen.
+Jetzt ist es wichtig, die Anzahl der Tris zu senken. Da der Kopf ziemlich detailreich ist, verwendet man "Retopology", um eine Low-Poly-Kopie der High-Poly-Mesh zu erstellen.
 
 Definition Retopology: Retopology ist der Prozess, in der man eine neue, saubere Low-Poly-Mesh auf der Oberfläche der High-Poly-Mesh erstellt, um das Modell performanter zu machen.
 
@@ -196,14 +189,14 @@ Mit einer Normal Map kann man die Low-Poly-Mesh so aussehen lassen, als wäre si
 #### Normal Map erstellen
 Der erste Schritt ist es, die Low-Poly-Version zu UV-Unwrappen. Dafür geht man in den "Edit-Mode", markiert alle Faces mit "A", drückt "U" und wählt "Smart UV Project" aus. Mit "Smart UV Project" versucht der Rechner so gut wie möglich aus der 3D-Mesh einzelne 2D-Parts zu machen und sie auf eine UV-Map zu projizieren. Der "Island Margin" sagt dem Rechner, wie groß der Abstand der einzelnen 2D-Parts sein soll. Ein guter Wert für den "Island Margin" ist 0.01, da er nicht zu klein ist, sodass sich die Texturen vermischen, aber auch nicht zu groß, sodass der Margin zu viel Platz auf der Map einnimmt.
 
-![Normal Map im Shader Editor erstellen](image.png)
+![Normal Map im Shader Editor erstellen](img/Lanzmaier/NormalMapCharacter1.png)
 Als Nächstes wechselt man von dem 3D-Viewport in den Shader-Editor und erstellt ein neues Material für die Low-Poly-Version. Mit "Shift+A" kann man neue "Nodes" hinzufügen. Für eine Normal Map braucht man eine "Image Texture Node" und eine "Normal Map Node". Mit einer "Image Texture Node" kann man die erstellten "Texture Maps" auf ein Material abbilden. Da es sich um eine Normal Map handelt, benötigt man zusätzlich eine "Normal Map Node", um die "Image Texture" mit dem Material verbinden zu können. Auf der "Image Texture Node" klickt man auf "New", um eine neue Textur zu erstellen. Als Auflösung wählt man standardmäßig 4096px. Beim "Color Space" benötigen wir bei der Normal Map keine Farben, deshalb wählen wir "Non Color".
 
-![Normal Map der Low-Poly-Version erstellen](image-2.png)
+![Normal Map der Low-Poly-Version erstellen](img/Lanzmaier/NormalMapCharacter3.png)
 Die beiden Versionen, High-Poly und Low-Poly, müssen direkt aufeinander positioniert werden. Im Shader Editor muss die "Image Texture Node" ausgewählt werden, sodass man einen weißen Rand an der Node sehen kann. Oben rechts wählt man zuerst die High Poly-Version aus und dann die Low-Poly-Version indem man "Ctrl" gedrückt hält. Im "Render Tab" unter den "Mesh Properties" wählt man für die Render Engine "Cycles". Unter "Bake" wählt man "Bake Type Normal" und drückt auf Bake. In der "Image Editor Ansicht" kann man nun die fertige Normal Map der High-Poly-Mesh erkennen.
 
 #### Der fertige Kopf nach Anwendung der Normal Map
-![Kopf nach Anwendung der Normal Map](image-3.png)
+![Kopf nach Anwendung der Normal Map](img/Lanzmaier/NormalMapCharacter4.png)
 
 Oberkörper und Unterkörper werden nach dem gleichen Prinzip wie der Kopf designt. Da diese beiden Komponenten allerdings nicht so detailreich sind, werden die Low-Poly-Modelle nicht per Hand designt, sondern der "Decimate Modifier" wird benutzt.
 
@@ -216,12 +209,12 @@ Der erste Schritt ist es, die Farben aller Materials auf eine Texture Map zu pro
 
 !Wichtig: Unter der "Image Editor Ansicht" muss man jede neu erstellte Texture Map unter "Image -> Save As" abspeichern, weil das "Image Texture Node" nach jedem Baking-Vorgang die Texture Map überschreibt.
 
-![Diffuse Map Character-Asset](CharacterColor.png)
-![Normal Map Character-Asset](CharacterNormal.png)
-![Roughness Map Character-Asset](CharacterRoughness.png)
+![Diffuse Map Character-Asset](img/Lanzmaier/CharacterColorMap.png)
+![Normal Map Character-Asset](img/Lanzmaier/CharacterNormalMap.png)
+![Roughness Map Character-Asset](img/Lanzmaier/CharacterRoughnessMap.png)
 Nachdem man alle Texture Maps erstellt hat, muss man unter "Edit -> Preferences -> Add-ons" den "Node Wrangler" aktivieren, damit man gleich alle Texturen einfach in ein neues Material einbetten kann. In der "Shader Editor Ansicht" kann man nun ein neues Material erstellen. Um die Texture Maps einfach hinzufügen zu können, muss man die "Principled BSDF Node" anklicken und "Ctrl+Shift+T" drücken, um den Explorer aufzumachen. Nun wählt man alle abgespeicherten Maps aus und drückt "Enter".
 
-![Fertig modelliertes Character-Asset](image.png)
+![Fertig modelliertes Character-Asset](img/Lanzmaier/BlenderModelAndMaterialNodes.png)
 
 ### Tischplatte
 
@@ -233,13 +226,25 @@ Neben der optischen Darstellung des Spielfeldes (z. B. Linienmarkierungen, Tore 
 
 Darüber hinaus dient die Tischplatte als Referenzebene für die Positionierung weiterer Komponenten wie Spielfiguren, Stangen, Tore und Bande. Eine saubere Modellierung und korrekte Skalierung sind daher essenziell, um ein realistisches Spielgefühl sowie eine stabile und performante Simulation zu gewährleisten.
 
-#### Design- und Stilentscheidung
+### Design- und Stilentscheidung
 
 Die Tischplatte ist an ein klassisches Tischfußball-Spielfeld angelehnt und so gestaltet, dass sie eindeutig als Spielfläche erkennbar ist. Die grüne Grundfarbe in Kombination mit weißen Linienmarkierungen dient der klaren Darstellung des Spielfeldes und unterstützt die Orientierung während der Simulation. Zentrale Spielfeldmarkierungen wie Mittellinie, Mittelkreis, Strafräume und Torbereiche sind reduziert, aber eindeutig dargestellt.
 
 Die seitlichen Banden sind farblich dunkler gehalten, um eine klare Abgrenzung zur Spielfläche zu schaffen. Die Tore sind farblich unterschiedlich (rot und blau) gestaltet, um die beiden Spielseiten eindeutig voneinander zu unterscheiden.
 
 Insgesamt wurde ein funktionales und übersichtliches Design gewählt, das den Fokus auf Spielbarkeit und Lesbarkeit legt. Auf unnötige Details wurde bewusst verzichtet, um die Performance nicht zu beeinträchtigen und eine klare visuelle Struktur zu gewährleisten.
+
+### Modellierung
+
+Als Grundlage für die Tischplatte erstellt man mit "Shift+A" eine neue Cube-Mesh. Diese skaliert man mit "S+X" in Richtung der x-Achse, sodass die Größe verhältnismäßig mit einem Tischfußballtisch zusammenpasst. Um Eine Box, welche oben offen ist, zu erschaffen, wird der "Boolean Modifier" verwendet. Hierfür wird die bereits erstellte Mesh kopiert und ein wenig runterskaliert. Weiters postioniert man die kopierte Mesh so, dass sie an der größeren Cube-Mesh oben hinausschaut. Jetzt wendet man auf der größeren Cube-Mesh den "Boolean Modifier" an. Als Target wählt man die kleinere Mesh. Jetzt wurde die Grundlage für die Tischplatte erstellt.
+
+Für die Tore und die Löcher, an denen der Ball reingeworfen wird, verwendet man die gleiche Methode. Zuerst werden die Formen als separate Meshes erstellt. Mit dem "Boolean Modifier" kann man jetzt die Löcher erschaffen, in dem man die separaten Meshes als Target auswählt. Auch für die Bodenmarkierungen werden zuerst dementsprechende Meshes erstellt und per "Boolean Modifier" hinzugefügt. Für ein schöneres Aussehen, werden die Bodenmarkierungen mit "E" nach unten "extrudet.
+
+!Wichtig: Damit die Hitbox für das Spielfeld in der Engine richtig erstellt werden kann, muss über den Bodenmarkierungen, die jetzt weiter unten liegen, einen unsichtbaren Boden erstellen. Dafür erstellt man ein neues Material und stellt den "Alpha Value" auf 0.
+
+Auch bei den Materials auf der Vorderseite wird der "Alpha Value" auf 0 gesetzt, sodass man während der Simulation alles sehen kann. Alle Materialien werden auch hier einer "Diffuse Map zugeordnet. Die verschiedenen "Alpha-Values" werden auf einer "Emission Map" dargestellt.
+
+![Fertig modelliertes Character-Asset](img/Lanzmaier/BlenderModelAndMaterialNodes.png)
 
 ### Optisches Design/Arrangement des Spiels
 

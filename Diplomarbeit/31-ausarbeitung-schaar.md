@@ -9,13 +9,15 @@ Projektmanagement
 
 ## Mikrocontroller
 
+In diesem Kapitel wird der Begriff Mikrocontroller erklärt und die Unterschiede zu Mikroprozessoren werden aufgezeigt. Darauf folgend werden drei verschiedene Mikrocontroller-Optionen betrachtet und anhand von ihren Eigenschaften und technischen Spezifikationen verglichen.
+
 ### Was sind Mikrocontroller?
 
 Um Mikrocontroller [@microcontroller-definition] zu erklären, muss erst ihr Unterschied zu Mikroprozessoren beleuchtet werden. Mikroprozessoren sind so wie die "größeren" Prozessoren - In diesem Fall sowohl auf physikalische Größe als auch auf Leistung bezogen - die Recheneinheit eines Systems. Während Mikroprozessoren ausschließlich rechnerische Aufgaben bearbeiten und für andere Funktionen separate Teile (RAM, ROM, Timer-Module, etc.) benötigen, fungieren Mikrocontroller als ein fertiges Paket, welches die verschiedenen Teile verbaut hat.
 
-[@microcontroller-microprocessor]![Mikroprozessor vs. Mikrocontroller](img/Schaar/Difference_Microprocessor_Microcontroller.png)
+![Mikroprozessor vs. Mikrocontroller](img/Schaar/Difference_Microprocessor_Microcontroller.png)
 
-Wie in diesem Diagramm dargestellt ist links der Mikroprozessor bzw. die CPU (Central Processing Unit) zentral, benötigt jedoch extern verbundene Teile, sodass alle Aufgaben ausgeführt werden können. Ihm gegenübergestellt wird der Mikrocontroller, bei dem veranschaulicht wird, dass es sich hierbei um ein fertiges System handelt, bei dem alle Teile in diesem Ökosystem fest verbaut sind. Um eine Analogie zum menschlichen Körper zu bilden wäre in diesem Fall der Mikroprozessor das Gehirn alleine und der Mikrocontroller ein vollständiger Körper, welcher zur Funktion auf keine zusätzlichen Hilfsmittel angewiesen ist.
+Wie in diesem Diagramm [@microcontroller-microprocessor] dargestellt ist links der Mikroprozessor bzw. die CPU (Central Processing Unit) zentral, benötigt jedoch extern verbundene Teile, sodass alle Aufgaben ausgeführt werden können. Ihm gegenübergestellt wird der Mikrocontroller, bei dem veranschaulicht wird, dass es sich hierbei um ein fertiges System handelt, bei dem alle Teile in diesem Ökosystem fest verbaut sind. Um eine Analogie zum menschlichen Körper zu bilden wäre in diesem Fall der Mikroprozessor das Gehirn alleine und der Mikrocontroller ein vollständiger Körper, welcher zur Funktion auf keine zusätzlichen Hilfsmittel angewiesen ist.
 
 Tendenziell sind Mikroprozessoren für leistungsintensivere Anwendungszwecke angedacht als Mikrocontroller (z. B. grafische Berechnungen, Multitasking). Mikrocontroller sind durch ihre autonome Struktur in puncto Kosten, Stromverbrauch und Größe beliebt und bringen viele Möglichkeiten mit ohne unnötig hohe Komplexität. Aufgrund von diesen Faktoren werden Mikrocontroller sehr gerne in eingebetteten Systemen (Embedded Systems) [@embedded-systems] verwendet. 
 
@@ -27,17 +29,36 @@ Mikrocontroller sind in den verschiedensten Systemen zu zahlreichen Zwecken verb
 
 Um die Leistung der verschiedenen Mikrocontroller vergleichbar zu machen, müssen vorerst Kriterien festgelegt werden, anhand von denen die verschiedenen Optionen verglichen werden. Diese sollten bestmöglich messbar und objektiv vergleichbar sein, um eine gute Basis für die Auswahl zu schaffen. Mithilfe dieser Kriterien werden Punkte vergeben, anhand von denen eine Wahl getroffen wird.
 
-Eine gut vergleichbare Eigenschaft sind die Kosten, bei denen eine Reduktion sowohl für das Entwicklerteam als auch für Endbenutzer, welche das Projekt zu Hause replizieren wollen, vorteilhaft ist. Um die Kosten in direkter Relation zu vergleichen, wird die Formel $Punkte = min(30, ceil(\frac{100}{Kosten}))$ zur Bewertung verwendet.
+Eine gut vergleichbare Eigenschaft sind die Kosten, bei denen eine Reduktion sowohl für das Entwicklerteam als auch für Endbenutzer, welche das Projekt zu Hause replizieren wollen, vorteilhaft ist. Um die Kosten in direkter Relation zu vergleichen, wird die Formel $Punkte = min(30, ceil(\frac{100}{Kosten}))$ zur Bewertung verwendet. Mit ihr wird 100 durch die Kosten dividiert und das Ergebnis gerundet, sodass eine Punktezahl herauskommt. Danach wird dieser Wert auf maximal 30 gesetzt, sodass nicht mehr Punkte möglich sind, auch wenn die Kosten niedriger sind. Dieser Ansatz wurde gewählt, da er simpel zu berechnen ist und Kostenunterschiede in der Punktzahl sichtbar macht.
 
 Für ein angenehmes Spielerlebnis ist eine schnelle und zuverlässige Übertragung der Eingaben wichtig. Daher werden die Prozessorleistung zur Verarbeitung der Eingaben sowie die Übertragungszeiten für den Austausch der Daten als weitere Vergleichsbasis verwendet.
 
 Damit nachhaltige Hardwareentwicklung mit einem Fokus auf Kostenminimierung möglich wird, muss ein Augenmerk auf den Stromverbrauch der Mikrocontroller gelegt werden. Aufgrund von geringen Spannungsgrößen wird diesem Verbrauch in der endgültigen Entscheidung ein im Vergleich zu den anderen Eigenschaften kleinerer Stellenwert beigemessen.
 
-Für die Gesamtbewertung werden vorerst für die Kosten Punkte zwischen 1 und 30 vergeben, welche anhand von der oben erklärten Formel errechnet werden. Die Punkte der anderen Kategorien werden relativ zu den anderen Optionen vergeben - Platz 1, 2 und 3 erhalten so 9, 6 und 3 Punkte (Kategorie Stromverbrauch: 3, 2, 1 Punkte) - und danach mit einer prozentuellen Gewichtung zur finalen Punkteanzahl addiert.
+Für die Gesamtbewertung werden vorerst für die Kosten Punkte zwischen 1 und 30 vergeben, welche anhand von der oben erklärten Formel errechnet werden. Die Punkte der anderen Kategorien werden relativ zu den anderen Optionen vergeben - Platz 1, 2 und 3 erhalten so 9, 6 und 3 Punkte (Kategorie Stromverbrauch: 3, 2, 1 Punkte) - und danach zur finalen Punkteanzahl addiert.
 
 ## Arduino Nano ESP32
 
-Der erste Mikrocontroller, welcher im Zuge dieser Arbeit bewertet wird, ist der Arduino Nano ESP32. Er ist ein Controller mit überschaubarer Komplexität, bietet jedoch trotzdem zahlreiche Funktionen für alle möglichen Zwecke, welche dank offiziellen Dokumentationen und Tutorials verständlich gemacht werden [@arduino-docs].
+Der erste Mikrocontroller, welcher im Zuge dieser Arbeit bewertet wird, ist der Arduino Nano ESP32. Er ist ein Controller mit überschaubarer Komplexität, bietet jedoch trotzdem zahlreiche Funktionen für alle möglichen Zwecke, welche dank offiziellen Dokumentationen und Tutorials verständlich gemacht werden [@arduino-docs]. Wie schon am Namen ersichtlich beinhaltet dieser Controller denselben ESP32 wie ein anderer Controller in dieser Liste, hat jedoch Unterschiede zu diesem, was technische Daten sowie den Kostenpunkt angeht.
+
+Während die primäre Programmiersprache des Arduino Nano ESP32 zwar eine simplifizierte Version von C bzw. C++ (Arduino Language) ist, gibt es bei dieser Ausführung des Nano die Möglichkeit, in MicroPython [@micropython] zu programmieren, da diese Sprache auf allen ESP32-basierten Controllern funktioniert. Bei MicroPython handelt es sich ähnlich wie bei der Arduino Language selbst um eine schlankere Version und effizientere Version von Python. Sie hat einen Teil der Funktionalitäten der Python Standard Library und ist für die Verwendung auf Mikrocontrollern optimiert. Die genauen Unterschiede zum standardmäßigen CPython sind zahlreich und reichen von Syntax-Unterschieden bis zu entfernten Core-Funktionen.
+
+Beispiel:  Einzelne Array-Elemente können nicht wie in CPython gelöscht werden.
+
+```Python
+a = array.array("b", (1, 2, 3))
+del a[1]
+```
+
+Während dieser Ausdruck in CPython zu einer Löschung des Elements am Index 1 geführt hätte bekommt man in MicroPython einen Error.
+
+```
+Traceback (most recent call last):
+  File "<stdin>", line 11, in <module>
+TypeError: 'array' object doesn't support item deletion
+```
+
+Dies war nur ein Beispiel für die vielen kleinen Änderungen von MicroPython, welche die Sprache dazu bringen so hochoptimiert und effizient auf vergleichsweise leistungsschwacher Hardware zu funktionieren.
 
 ### Firma - Arduino
 
@@ -73,17 +94,27 @@ Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Ar
 | Taktfrequenz                  | 240 MHz                                             |
 | Busbreite                     | 32 Bit                                              |
 | SRAM                          | 512 kB                                              |
-| Wi-Fi-Geschwindigkeiten       | 72 Mbit/s max bei 20 MHz, 150 Mbit/s max bei 40 MHz |
+| Wi-Fi-Geschwindigkeiten       | Bis zu 150 Mbit/s bei 40 MHz                        |
 | Flash-Speicher                | 16 MB                                               |
 | VIN (Eingangsspannung) Rating | 6-21 V                                              |
 
 : Arduino Nano ESP32 - Eigenschaften
 
-## ESP32
+![Arduino Nano ESP32 Pinout-Diagramm](img/Schaar/Pinout-Arduino-Nano-ESP32.png)
 
-Billiger, bessere Leistung
+Dieses Diagramm [@arduino-nano-pinout] stellt das Pin-Layout eines Arduino Nano ESP32 dar.
+
+## ESP32-WROOM-32
+
+Der nächste Mikrocontroller ist der ESP32-WROOM-32 [@esp32-data], welcher wie der zuvor betrachtete Mikrocontroller auf dem ESP32 basiert ist, weshalb für die Programmierung die Arduino Language sowie MicroPython verwendet werden kann. Wie allen ESP32-basierten Controllern ist es auch diesem möglich, von dem Protokoll "ESP-Now" Gebrauch zu machen. 
+
+Hierbei handelt es sich um ein eigens entwickeltes Protokoll von Espressif Systems, welches es mehreren Geräten erlaubt, sich untereinander zu verständigen. Das Protokoll ist auf dem 802.11 Wi-Fi Standard basiert, benötigt jedoch keinen zusätzlichen Access Point für die Kommunikation. In einem späteren Kapitel dieser Arbeit folgt eine genauere Veranschaulichung von ESP-Now, bei der die Details des Protokolls aufgezeigt werden.
 
 ### Firma - Espressif Systems
+
+Der ESP32-WROOM-32 ist Teil der großen ESP32-Familie an Mikrocontrollern, welche von Espressif Systems [@espressif-about] entwickelt wird. Die Firma arbeitet an innovativen Lösungen rund um IoT und arbeitet in den letzten Jahren mehr und mehr an KI-Integration für Mikrocontroller. Sie veröffentlichen ihre Ressourcen und Modelle Open-Source und tragen damit maßgeblich zur globalen Weiterentwicklung von Mikrocontrollern, Embedded Systems und IoT bei.
+
+Teo Swee Ann hat die Firma im Jahr 2008 in Shanghai gegründet und ist bis heute der CEO bei Espressif Systems. 2016 wird dann der originale ESP32-Mikrocontroller veröffentlicht, welcher durch seine WLAN- & Bluetooth-Kapazitäten revolutionär ist. Seither wurden der Familie allerlei neue und spezialisierte Mikrocontroller hinzugefügt, wodurch für Projekte verschiedenster Größenordnungen Optionen existieren.
 
 ### Technische Daten
 
@@ -100,26 +131,34 @@ Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen ES
 
 : ESP32-WROOM-32 - Eigenschaften
 
-## Raspberry Pi Pico 2
+![ESP32-WROOM-32 Pinout-Diagramm](img/Schaar/Pinout-ESP32-DevBoard.jpg)
 
-raspi pico 2
+In dieser Grafik [@esp32-pinout] werden die Pin-Belegungen eines ESP32-WROOM-32 dargestellt.
+
+## Raspberry Pi Pico 2W
+
+raspi pico 2w
+
+### Firma - Raspberry Pi
 
 ### Technische Daten
 
-Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Raspberry-Pi-Pico-2-Datenblatt [@raspberry-pi-pico-datasheet]. Die Daten beziehen sich hierbei auf die zu bewertenden Kategorien, welche für die Entscheidung eines Mikrocontrollers herangenommen werden.
+Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Raspberry-Pi-Pico-2W-Datenblatt [@raspberry-pi-pico-datasheet]. Die Daten beziehen sich hierbei auf die zu bewertenden Kategorien, welche für die Entscheidung eines Mikrocontrollers herangenommen werden.
 
 | Controllereigenschaft         | Wert / Größe                                        |
 |------------------------------:|:----------------------------------------------------|
 | Taktfrequenz                  | 150 MHz                                             |
 | Busbreite                     | 32 Bit                                              |
 | SRAM                          | 520 kB                                              |
-| Wi-Fi-Geschwindigkeiten       | Bis zu 72.2 Mbit/s möglich (realistisch 9-10 Mbit/s)|
+| Wi-Fi-Geschwindigkeiten       | Bis 72.2 Mbit/s möglich (real ~9-10 Mbit/s)         |
 | Flash-Speicher                | 4 MB                                                |
 | VIN (Eingangsspannung) Rating | 5 V                                                 |
 
-: Raspberry Pi Pico 2 - Eigenschaften
+: Raspberry Pi Pico 2W - Eigenschaften
 
-### Firma - Raspberry Pi
+![Raspberry Pi Pico 2W Pinout-Diagramm](img/Schaar/Pinout-Raspberry-Pi-Pico-2W.png)
+
+Dieses Diagramm [@raspberry-pi-pico-2w-pinout] zeigt die Pin-Belegungen eines Raspberry Pi Pico 2W.
 
 ## Vergleich der Optionen & Entscheidung
 
@@ -159,7 +198,7 @@ Kurzbeschreibung
 
 ## Prototyping
 
-In diesem Kapitel wird es um Unverwendete Prototypen und Ansätze, Demos und andere Entwicklungsschritte gehen, welche sich im Laufe der Arbeit am Controller ergeben haben. Anhand von ihnen werden der Entwicklungsprozess und verschiedene Iterationen dargestellt.
+In diesem Kapitel geht es um Unverwendete Prototypen und Ansätze, Demos und andere Entwicklungsschritte, welche sich im Laufe der Arbeit am Controller ergeben haben. Anhand von ihnen werden der Entwicklungsprozess und verschiedene Iterationen dargestellt.
 
 ### Arduino <-> Godot Kommunikations-Demo
 
