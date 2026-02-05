@@ -3,13 +3,9 @@
 
 ## Theorie
 
-Kurzbeschreibung
-
-
+Im Theorieteil werden die Grundlagen für die grafische Umsetzung der Tischfußball‑Simulation sowie die Multiplayer‑Grundlagen beschrieben. Dazu zählen die Auswahl von Verbindungsmodellen, Entscheidungen für Multiplayer‑Spielprinzipien, der Unterschied zwischen Offline‑ und Echtzeit‑Rendering sowie zentrale Optimierungsprinzipien für Game‑Assets (High‑/Low‑Poly, Normal Maps, Retopology und Reduktion von Draw Calls).
 
 ### Auswahl eines Verbindungsmodells
-
-
 
 #### P2P
 
@@ -57,9 +53,13 @@ Normal Maps täuschen Details auf einer Oberfläche vor, ohne die Geometrie tats
 
 Retopology erstellt aus einem detaillierten High Poly Modell eine vereinfachte Low Poly Version mit deutlich weniger Polygonen. Kombiniert mit Normal Maps sieht das Ergebnis genauso gut aus, braucht aber viel weniger Rechenleistung. Das ist der Schlüssel zur Performance bei Game-Assets.
 
+#### Draw Calls und Material‑Reduktion
+
+Jedes zusätzliche Material erzeugt in der Engine einen eigenen Render‑Aufruf. Durch das Zusammenführen mehrerer Materialien in ein einziges Material (Texture Atlas) reduzieren wir die sogenannten Draw Calls und steigern die Performance. Dieser Ansatz wird in der praktischen Umsetzung beim Backen der Maps direkt eingesetzt.
+
 ## Praktische Arbeit
 
-Kurzbeschreibung
+Im Praxisteil wird die Umsetzung der Assets und der Prototypen beschrieben, inklusive der Integration des Multiplayer‑Modells in der Engine, damit mehrere Spieler gemeinsam spielen können. Dazu zählen die Modellierung in Blender, die Optimierung der Polygonanzahl, die Multiplayer‑Integration in der Engine, das Erstellen und Baken von Texture Maps sowie der Import und die Prüfung der Assets in der Godot‑Engine.
 
 ### Prototyping
 
@@ -279,6 +279,14 @@ Für die Tore und die Löcher, an denen der Ball reingeworfen wird, verwendet ma
 !Wichtig: Damit die Hitbox für das Spielfeld in der Engine richtig erstellt werden kann, muss über den Bodenmarkierungen, die jetzt weiter unten liegen, einen unsichtbaren Boden erstellen. Dafür erstellt man ein neues Material und stellt den "Alpha Value" auf 0.
 
 Auch bei den Materials auf der Vorderseite wird der "Alpha Value" auf 0 gesetzt, sodass man während der Simulation alles sehen kann. Alle Materialien werden auch hier einer "Diffuse Map zugeordnet. Die verschiedenen "Alpha-Values" werden auf einer "Emission Map" dargestellt.
+
+### UV‑Unwrapping und Texturierung
+
+Wie bei den Spielfiguren werden die Farben und Materialinformationen auf Texture Maps gebacken, sodass möglichst wenige Materialien in der Engine benötigt werden. Das reduziert Draw Calls und beschleunigt das Rendering. Für die Linienmarkierungen und transparente Flächen wird die Emission‑ bzw. Alpha‑Information in einer Map zusammengeführt.
+
+### Optimierung und Engine‑Test
+
+Die Tischplatte bleibt bewusst Low‑Poly, da sie großflächig ist und im Spiel mehrfach sichtbar sein kann. Abschließend wird das Asset in der Engine importiert und auf Skalierung, Hitboxen und visuelle Konsistenz mit den Spielfiguren überprüft.
 
 ![Fertig modelliertes Character-Asset](img/Lanzmaier/BlenderModelAndMaterialNodes.png)
 
