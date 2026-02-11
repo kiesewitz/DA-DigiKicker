@@ -1445,6 +1445,7 @@ Der Spieltisch wird prozedural in der `Table.cs`-Klasse aufgebaut. Alle Dimensio
 Anfangs war das Spielfeld sehr klein skaliert, was zu fehlerhafter Schattendarstellung führte – *Godot*s Shadow-Mapping produziert bei sehr kleinen Objekten Artefakte. Es wurde getestet, ob eine größere Skalierung das Problem behebt. Ab einem Faktor von etwa 5.0 waren keine Artefakte mehr sichtbar, und höhere Werte brachten keinen weiteren Unterschied, weshalb 5.0 gewählt wurde.
 
 ![Vorher: Schatten-Artefakte](img/Rath/shadows_before.png)
+
 ![Nachher: Saubere Schattendarstellung](img/Rath/shadows_after.png)
 
 Die Einführung des Skalierungsfaktors ermöglicht zudem einfache Größenanpassungen des gesamten Spielfelds durch Änderung einer einzigen Konstante:
