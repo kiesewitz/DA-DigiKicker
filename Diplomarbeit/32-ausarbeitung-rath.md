@@ -13,9 +13,9 @@ Zusätzlich bieten die meisten Engines einen integrierten Editor, der eine visue
 
 ### Kriterien für die Engine-Auswahl
 
-Bei der Auswahl einer Game Engine spielen mehrere Faktoren eine entscheidende Rolle. Der Projektumfang und die Art des Spiels bestimmen maßgeblich, welche Engine am besten geeignet ist. Für fotorealistische 3D-Spiele mit aufwendiger Grafik bietet sich beispielsweise die Unreal Engine an, während für kleinere Indie-Projekte oder 2D-Spiele Godot eine hervorragende Alternative darstellt.
+Bei der Auswahl einer Game Engine spielen mehrere Faktoren eine entscheidende Rolle. Der Projektumfang und die Art des Spiels bestimmen maßgeblich, welche Engine am besten geeignet ist. Für fotorealistische 3D-Spiele mit aufwendiger Grafik bietet sich beispielsweise die *Unreal Engine* an, während für kleinere Indie-Projekte oder 2D-Spiele *Godot* eine hervorragende Alternative darstellt.
 
-Die Lizenzkosten und das Geschäftsmodell sind ebenfalls wichtige Überlegungen. Unity verwendet ein Abonnement-Modell mit Runtime-Gebühren ab bestimmten Umsatzschwellen, während Unreal Engine 5% Royalties nach einer Million Dollar Umsatz verlangt. Godot hingegen ist vollständig kostenlos und Open Source unter der MIT-Lizenz, was es besonders attraktiv für Indie-Entwickler und Lernende macht.
+Die Lizenzkosten und das Geschäftsmodell sind ebenfalls wichtige Überlegungen. *Unity* verwendet ein Abonnement-Modell mit Runtime-Gebühren ab bestimmten Umsatzschwellen, während *Unreal Engine* 5% Royalties nach einer Million Dollar Umsatz verlangt. *Godot* hingegen ist vollständig kostenlos und Open Source unter der MIT-Lizenz, was es besonders attraktiv für Indie-Entwickler und Lernende macht.
 
 Weitere Kriterien umfassen die verfügbare Dokumentation und Community-Unterstützung, die unterstützten Plattformen für den Export, die Programmiersprachen und Scripting-Möglichkeiten sowie die Lernkurve für neue Entwickler. Auch die Integration von Drittanbieter-Tools, insbesondere für Machine Learning und KI-Entwicklung, kann je nach Projektanforderungen relevant sein.
 
@@ -24,83 +24,92 @@ Weitere Kriterien umfassen die verfügbare Dokumentation und Community-Unterstü
 
 ### Überblick und Geschichte
 
-Unity ist eine der weltweit meistverwendeten Game Engines und wurde 2005 von Unity Technologies in Dänemark entwickelt [@wikipedia-unity-engine]. Ursprünglich als Mac-exklusive Engine konzipiert, hat sich Unity zu einer plattformübergreifenden Lösung entwickelt, die den Export auf über 20 verschiedene Plattformen ermöglicht, darunter Windows, macOS, Linux, iOS, Android, PlayStation, Xbox, Nintendo Switch und diverse VR/AR-Geräte [@unity-official-website].
+*Unity* ist eine der weltweit meistverwendeten Game Engines und wurde 2005 von Unity Technologies in Dänemark entwickelt [@wikipedia-unity-engine]. Ursprünglich als Mac-exklusive Engine konzipiert, hat sich *Unity* zu einer plattformübergreifenden Lösung entwickelt, die den Export auf über 20 verschiedene Plattformen ermöglicht, darunter Windows, macOS, Linux, iOS, Android, PlayStation, Xbox, Nintendo Switch und diverse VR/AR-Geräte [@unity-official-website].
 
 Die Engine hat sich besonders im Mobile-Gaming-Bereich als Standard etabliert und wird auch für Anwendungen außerhalb der Spielebranche genutzt, etwa in der Architekturvisualisierung, im Film für Echtzeit-Rendering und in der Automobilindustrie für Simulationen. Bekannte Spiele, die mit Unity entwickelt wurden, umfassen Pokémon Go, Among Us, Cuphead, Hollow Knight und Cities: Skylines.
 
 ### Architektur und Kernkonzepte
 
-Unity basiert auf einem komponentenbasierten Architekturmodell, bei dem GameObjects die grundlegenden Container für alle Spielelemente darstellen. Diese GameObjects sind zunächst leere Hüllen, denen durch das Hinzufügen von Components spezifische Funktionalitäten verliehen werden. Standardkomponenten umfassen Transform für Position und Rotation, Renderer für die visuelle Darstellung, Collider für Physik-Interaktionen und diverse Script-Components für benutzerdefinierte Logik.
+*Unity* basiert auf einem komponentenbasierten Architekturmodell, bei dem GameObjects die grundlegenden Container für alle Spielelemente darstellen. Diese GameObjects sind zunächst leere Hüllen, denen durch das Hinzufügen von Components spezifische Funktionalitäten verliehen werden. Standardkomponenten umfassen Transform für Position und Rotation, Renderer für die visuelle Darstellung, Collider für Physik-Interaktionen und diverse Script-Components für benutzerdefinierte Logik.
 
-Das Scripting in Unity erfolgt primär in C#, einer objektorientierten Programmiersprache von Microsoft. Unity-Scripts erben typischerweise von der MonoBehaviour-Klasse und nutzen Lifecycle-Methoden wie Start(), Update() und FixedUpdate() zur Implementierung der Spiellogik. Die tiefe Integration von C# ermöglicht Zugriff auf das gesamte .NET-Ökosystem und macht Unity zu einer mächtigen Plattform für komplexe Anwendungen.
+Das Scripting in *Unity* erfolgt primär in C#, einer objektorientierten Programmiersprache von Microsoft. *Unity*-Scripts erben typischerweise von der MonoBehaviour-Klasse und nutzen Lifecycle-Methoden wie Start(), Update() und FixedUpdate() zur Implementierung der Spiellogik. Die tiefe Integration von C# ermöglicht Zugriff auf das gesamte .NET-Ökosystem und macht *Unity* zu einer mächtigen Plattform für komplexe Anwendungen.
 
 ### Rendering und Grafik-Pipelines
 
-Unity bietet mehrere Rendering-Pipelines für unterschiedliche Anforderungen. Die Built-in Render Pipeline ist die traditionelle Standardoption, die Universal Render Pipeline (URP) ist optimiert für breite Plattformunterstützung und mobile Geräte, während die High Definition Render Pipeline (HDRP) für visuell anspruchsvolle Projekte auf High-End-Hardware konzipiert ist.
+*Unity* bietet mehrere Rendering-Pipelines für unterschiedliche Anforderungen. Die *Built-in Render Pipeline* ist die traditionelle Standardoption, die *Universal Render Pipeline* (*URP*) ist optimiert für breite Plattformunterstützung und mobile Geräte, während die *High Definition Render Pipeline* (*HDRP*) für visuell anspruchsvolle Projekte auf High-End-Hardware konzipiert ist.
 
-Die URP hat sich als beliebte Wahl für die meisten Projekte etabliert, da sie einen guten Kompromiss zwischen visueller Qualität und Performance bietet. Sie unterstützt moderne Rendering-Features wie Post-Processing-Effekte, Shader Graph für visuelles Shader-Design und ein skalierbares Lighting-System. Die Pipeline-Architektur ermöglicht es Entwicklern, das Rendering an ihre spezifischen Projektanforderungen anzupassen.
+Die *URP* hat sich als beliebte Wahl für die meisten Projekte etabliert, da sie einen guten Kompromiss zwischen visueller Qualität und Performance bietet. Sie unterstützt moderne Rendering-Features wie Post-Processing-Effekte, *Shader Graph* für visuelles Shader-Design und ein skalierbares Lighting-System. Die Pipeline-Architektur ermöglicht es Entwicklern, das Rendering an ihre spezifischen Projektanforderungen anzupassen.
 
 ### Asset Store und Ökosystem
 
-Ein wesentlicher Vorteil von Unity ist der umfangreiche Asset Store, ein Marktplatz mit tausenden von vorgefertigten Assets, Tools und Plugins. Entwickler können hier 3D-Modelle, Texturen, Audio-Dateien, komplette Gameplay-Systeme und Editor-Erweiterungen erwerben oder kostenlos herunterladen. Dies beschleunigt den Entwicklungsprozess erheblich, insbesondere für kleinere Teams oder Solo-Entwickler.
+Ein wesentlicher Vorteil von *Unity* ist der umfangreiche *Asset Store*, ein Marktplatz mit tausenden von vorgefertigten Assets, Tools und Plugins. Entwickler können hier 3D-Modelle, Texturen, Audio-Dateien, komplette Gameplay-Systeme und Editor-Erweiterungen erwerben oder kostenlos herunterladen. Dies beschleunigt den Entwicklungsprozess erheblich, insbesondere für kleinere Teams oder Solo-Entwickler.
 
-Die große Community und die umfangreiche offizielle Dokumentation machen Unity zu einer zugänglichen Plattform für Einsteiger [@codemonkey-unity-beginner]. Unity Learn bietet strukturierte Kurse und Tutorials für alle Erfahrungsstufen [@unity-learn]. Allerdings wurde Unity in der Vergangenheit für kontroverse Geschäftsentscheidungen kritisiert, insbesondere die Ankündigung von Runtime-Gebühren im Jahr 2023, die zu einem signifikanten Vertrauensverlust in der Entwickler-Community führte [@gamefromscratch-godot-vs-unity].
+Die große Community und die umfangreiche offizielle Dokumentation machen *Unity* zu einer zugänglichen Plattform für Einsteiger [@codemonkey-unity-beginner]. *Unity Learn* bietet strukturierte Kurse und Tutorials für alle Erfahrungsstufen [@unity-learn]. Allerdings wurde *Unity* in der Vergangenheit für kontroverse Geschäftsentscheidungen kritisiert, insbesondere die Ankündigung von Runtime-Gebühren im Jahr 2023, die zu einem signifikanten Vertrauensverlust in der Entwickler-Community führte [@gamefromscratch-godot-vs-unity].
+
+![Unity Engine](img/Rath/unity_engine.png)[@unity-project-window]
+
 
 ## Unreal Engine
 
 ### Überblick und Geschichte
 
-Die Unreal Engine wurde 1998 von Epic Games entwickelt und ist nach Unity die zweithäufigst verwendete kommerzielle Game Engine [@wikipedia-unreal-engine]. Sie wurde ursprünglich für den First-Person-Shooter Unreal entwickelt und hat sich seitdem zu einer der technisch fortschrittlichsten Engines auf dem Markt entwickelt. Die Engine ist bekannt für ihre Fähigkeit, visuell beeindruckende, fotorealistische Grafiken zu erzeugen [@unreal-official-website].
+Die *Unreal Engine* wurde 1998 von Epic Games entwickelt und ist nach *Unity* die zweithäufigst verwendete kommerzielle Game Engine [@wikipedia-unreal-engine]. Sie wurde ursprünglich für den First-Person-Shooter Unreal entwickelt und hat sich seitdem zu einer der technisch fortschrittlichsten Engines auf dem Markt entwickelt. Die Engine ist bekannt für ihre Fähigkeit, visuell beeindruckende, fotorealistische Grafiken zu erzeugen [@unreal-official-website].
 
-Bekannte Titel, die mit der Unreal Engine entwickelt wurden, umfassen Fortnite, PlayerUnknown's Battlegrounds und zahlreiche AAA-Produktionen. Die Engine wird auch außerhalb der Spieleentwicklung eingesetzt, etwa in der Filmindustrie für virtuelle Produktionen (The Mandalorian) und in der Automobilindustrie für Design-Visualisierungen.
+Bekannte Titel, die mit der *Unreal Engine* entwickelt wurden, umfassen Fortnite, PlayerUnknown's Battlegrounds und zahlreiche AAA-Produktionen. Die Engine wird auch außerhalb der Spieleentwicklung eingesetzt, etwa in der Filmindustrie für virtuelle Produktionen (The Mandalorian) und in der Automobilindustrie für Design-Visualisierungen.
 
 ### Technische Highlights
 
-Unreal Engine 5 führte mehrere bahnbrechende Technologien ein [@unreal-documentation]. Nanite ist ein virtualisiertes Geometrie-System, das es ermöglicht, Assets mit filmischer Qualität direkt in Spielen zu verwenden, ohne aufwendige Level-of-Detail-Optimierungen manuell erstellen zu müssen. Die Technologie streamt und skaliert die Geometrie automatisch basierend auf der Bildschirmauflösung und Kameraposition.
+*Unreal Engine 5* führte mehrere bahnbrechende Technologien ein [@unreal-documentation]. *Nanite* ist ein virtualisiertes Geometrie-System, das es ermöglicht, Assets mit filmischer Qualität direkt in Spielen zu verwenden, ohne aufwendige Level-of-Detail-Optimierungen manuell erstellen zu müssen. Die Technologie streamt und skaliert die Geometrie automatisch basierend auf der Bildschirmauflösung und Kameraposition.
 
-Lumen ist ein vollständig dynamisches Global-Illumination-System, das realistische Beleuchtung ohne vorberechnete Lightmaps ermöglicht. Änderungen an der Beleuchtung oder Geometrie werden in Echtzeit reflektiert, was den Workflow für Künstler und Level-Designer erheblich verbessert. Diese Technologien machen die Unreal Engine besonders attraktiv für Projekte, bei denen visuelle Qualität höchste Priorität hat.
+*Lumen* ist ein vollständig dynamisches Global-Illumination-System, das realistische Beleuchtung ohne vorberechnete Lightmaps ermöglicht. Änderungen an der Beleuchtung oder Geometrie werden in Echtzeit reflektiert, was den Workflow für Künstler und Level-Designer erheblich verbessert. Diese Technologien machen die *Unreal Engine* besonders attraktiv für Projekte, bei denen visuelle Qualität höchste Priorität hat.
 
 ### Programmierung und Blueprints
 
-Die Unreal Engine unterstützt zwei primäre Entwicklungsansätze: C++ für maximale Kontrolle und Performance sowie Blueprints für visuelles Scripting. Blueprints ermöglichen es Entwicklern, komplexe Spiellogik durch das Verbinden von Nodes in einem visuellen Graph zu erstellen, ohne eine Zeile Code schreiben zu müssen. Dies macht die Engine zugänglicher für Designer und Künstler ohne Programmierhintergrund.
+Die *Unreal Engine* unterstützt zwei primäre Entwicklungsansätze: C++ für maximale Kontrolle und Performance sowie *Blueprints* für visuelles Scripting. *Blueprints* ermöglichen es Entwicklern, komplexe Spiellogik durch das Verbinden von Nodes in einem visuellen Graph zu erstellen, ohne eine Zeile Code schreiben zu müssen. Dies macht die Engine zugänglicher für Designer und Künstler ohne Programmierhintergrund.
 
-Für performancekritische Systeme bietet C++ die volle Kontrolle über die Engine. Die Kombination beider Ansätze ist üblich: C++ für die Grundsysteme und Performance-intensive Berechnungen, Blueprints für schnelles Prototyping und spielspezifische Logik. Die Lernkurve für die Unreal Engine ist steiler als bei Unity oder Godot, bietet aber entsprechend mehr Möglichkeiten für komplexe Projekte.
+Für performancekritische Systeme bietet C++ die volle Kontrolle über die Engine. Die Kombination beider Ansätze ist üblich: C++ für die Grundsysteme und Performance-intensive Berechnungen, *Blueprints* für schnelles Prototyping und spielspezifische Logik. Die Lernkurve für die *Unreal Engine* ist steiler als bei *Unity* oder *Godot*, bietet aber entsprechend mehr Möglichkeiten für komplexe Projekte.
 
 ### Lizenzmodell und Zielgruppe
 
 Die Unreal Engine ist kostenlos nutzbar, verlangt jedoch 5% Royalties auf den Bruttoumsatz nach dem ersten Million Dollar. Für viele Indie-Entwickler bedeutet dies de facto kostenlose Nutzung, während erfolgreiche Projekte entsprechend beteiligt werden. Epic Games bietet zudem Grants und Förderprogramme für vielversprechende Projekte.
 
-Die Zielgruppe der Unreal Engine umfasst primär mittlere bis große Studios, die an visuell ambitionierten Projekten arbeiten [@unrealsensei-ue5-beginner]. Die komplexe Architektur und die steile Lernkurve machen sie weniger geeignet für absolute Anfänger oder sehr kleine Projekte. Für 2D-Spiele oder einfachere 3D-Projekte sind Unity oder Godot oft die bessere Wahl aufgrund ihrer schlankeren Architektur und schnelleren Entwicklungszyklen.
+Die Zielgruppe der *Unreal Engine* umfasst primär mittlere bis große Studios, die an visuell ambitionierten Projekten arbeiten [@unrealsensei-ue5-beginner]. Die komplexe Architektur und die steile Lernkurve machen sie weniger geeignet für absolute Anfänger oder sehr kleine Projekte. Für 2D-Spiele oder einfachere 3D-Projekte sind *Unity* oder *Godot* oft die bessere Wahl aufgrund ihrer schlankeren Architektur und schnelleren Entwicklungszyklen.
+
+![Unreal Engine](img/Rath/unreal_engine.jpg)[@unreal-animation-screenshot]
+
 
 ## Godot Engine
 
 ### Überblick und Geschichte
 
-Godot ist eine Open-Source Game Engine, die am 14. Januar 2014 von Juan Linietsky und Ariel Manzur erstmals öffentlich auf GitHub veröffentlicht wurde [@wikipedia-godot]. Die erste stabile Version 1.0 erschien am 15. Dezember 2014. Mit der Veröffentlichung als Open-Source-Projekt unter der MIT-Lizenz begann ein stetiges Wachstum der Community und der Feature-Entwicklung.
+*Godot* ist eine Open-Source Game Engine, die am 14. Januar 2014 von Juan Linietsky und Ariel Manzur erstmals öffentlich auf *GitHub* veröffentlicht wurde [@wikipedia-godot]. Die erste stabile Version 1.0 erschien am 15. Dezember 2014. Mit der Veröffentlichung als Open-Source-Projekt unter der MIT-Lizenz begann ein stetiges Wachstum der Community und der Feature-Entwicklung.
 
-Die Veröffentlichung von Godot 4.0 am 1. März 2023 markierte einen Meilenstein mit einem komplett überarbeiteten Vulkan-basierten Rendering-Backend, verbesserter 3D-Unterstützung und zahlreichen Quality-of-Life-Verbesserungen [@godot-docs-official]. Godot hat sich als beliebte Alternative zu den kommerziellen Engines etabliert, insbesondere nach den kontroversen Lizenzänderungen bei Unity im September 2023, die zu einem signifikanten Zuwachs an Godot-Nutzern führten [@gamefromscratch-godot-vs-unity].
+Die Veröffentlichung von *Godot* 4.0 am 1. März 2023 markierte einen Meilenstein mit einem komplett überarbeiteten *Vulkan*-basierten Rendering-Backend, verbesserter 3D-Unterstützung und zahlreichen Quality-of-Life-Verbesserungen [@godot-docs-official]. *Godot* hat sich als beliebte Alternative zu den kommerziellen Engines etabliert, insbesondere nach den kontroversen Lizenzänderungen bei *Unity* im September 2023, die zu einem signifikanten Zuwachs an *Godot*-Nutzern führten [@gamefromscratch-godot-vs-unity].
 
 ### Vorteile von Godot
 
-Der größte Vorteil von Godot ist seine vollständige Kostenfreiheit und Open-Source-Natur. Die MIT-Lizenz erlaubt uneingeschränkte kommerzielle Nutzung ohne Lizenzgebühren oder Royalties. Entwickler können den Quellcode einsehen, modifizieren und an ihre Bedürfnisse anpassen. Dies fördert Transparenz und ermöglicht tiefes Verständnis der Engine-Funktionsweise.
+Der größte Vorteil von *Godot* ist seine vollständige Kostenfreiheit und Open-Source-Natur. Die MIT-Lizenz erlaubt uneingeschränkte kommerzielle Nutzung ohne Lizenzgebühren oder Royalties. Entwickler können den Quellcode einsehen, modifizieren und an ihre Bedürfnisse anpassen. Dies fördert Transparenz und ermöglicht tiefes Verständnis der Engine-Funktionsweise.
 
-Die Engine ist bemerkenswert leichtgewichtig mit einer Größe von etwa 200 MB für den Editor inklusive Projektdateien und Cache, im Vergleich zu mehreren Gigabytes bei Unity und Unreal. Der Export auf verschiedene Plattformen erfordert zusätzlich das Herunterladen von Export Templates (ca. 1,3 GB nach Installation). Der Editor startet in Sekunden und ist auch auf älteren oder leistungsschwächeren Rechnern performant nutzbar. Godot bietet erstklassige 2D-Unterstützung mit einem dedizierten 2D-Rendering-System, das nicht auf 3D-Projektion basiert, sowie solide 3D-Capabilities für die meisten Projektanforderungen.
+Die Engine ist bemerkenswert leichtgewichtig mit einer Größe von etwa 200 MB für den Editor inklusive Projektdateien und Cache, im Vergleich zu mehreren Gigabytes bei *Unity* und *Unreal Engine*. Der Export auf verschiedene Plattformen erfordert zusätzlich das Herunterladen von Export Templates (ca. 1,3 GB nach Installation). Der Editor startet in Sekunden und ist auch auf älteren oder leistungsschwächeren Rechnern performant nutzbar. Godot bietet erstklassige 2D-Unterstützung mit einem dedizierten 2D-Rendering-System, das nicht auf 3D-Projektion basiert, sowie solide 3D-Capabilities für die meisten Projektanforderungen.
 
 ### Community und Entwicklung
 
-Die Godot-Entwicklung erfolgt vollständig öffentlich auf GitHub mit transparenten Roadmaps und Issue-Tracking. Jeder kann Bugs melden, Features vorschlagen oder Code beitragen. Die Engine wird von der Godot Foundation verwaltet, einer gemeinnützigen Organisation, die 2022 gegründet wurde, um die langfristige Entwicklung sicherzustellen.
+Die *Godot*-Entwicklung erfolgt vollständig öffentlich auf *GitHub* mit transparenten Roadmaps und Issue-Tracking. Jeder kann Bugs melden, Features vorschlagen oder Code beitragen. Die Engine wird von der *Godot* Foundation verwaltet, einer gemeinnützigen Organisation, die 2022 gegründet wurde, um die langfristige Entwicklung sicherzustellen.
 
 Die offizielle Dokumentation ist umfangreich und wird kontinuierlich verbessert. Neben der Dokumentation existieren Community-Ressourcen wie das offizielle Forum, Discord-Server und diverse Online-Tutorials [@brackeys-godot-beginner]. Kommerziell erfolgreiche Spiele wie Dome Keeper, Cassette Beasts, Brotato und Buckshot Roulette demonstrieren, dass mit Godot professionelle Produkte entwickelt werden können.
+
+![Godot Engine](img/Rath/godot_engine.jpg)[@godot-editor-screenshot]
+
 
 ## Godot im Detail
 
 ### Das Node-System
 
-Das Herzstück der Godot-Architektur ist das Node-System [@godot-docs-official]. Ein Node ist das grundlegende Baustein-Element in Godot und repräsentiert eine einzelne, spezialisierte Funktionalität. Im Gegensatz zu Unity's komponentenbasiertem Ansatz, bei dem GameObjects mit Components bestückt werden, sind Godot-Nodes von Grund auf für ihre spezifische Aufgabe konzipiert. Diese Designentscheidung führt zu einer klaren, intuitiven Struktur.
+Das Herzstück der *Godot*-Architektur ist das Node-System [@godot-docs-official]. Ein Node ist das grundlegende Baustein-Element in *Godot* und repräsentiert eine einzelne, spezialisierte Funktionalität. Im Gegensatz zu *Unity*'s komponentenbasiertem Ansatz, bei dem GameObjects mit Components bestückt werden, sind *Godot*-Nodes von Grund auf für ihre spezifische Aufgabe konzipiert. Diese Designentscheidung führt zu einer klaren, intuitiven Struktur.
 
-Godot bietet über 200 verschiedene Node-Typen für unterschiedliche Zwecke [@lukky-nodes-explained]. Die wichtigsten Kategorien umfassen Node2D und Node3D als Basis für 2D- und 3D-Objekte, Control-Nodes für Benutzeroberflächen, verschiedene Body-Typen für Physik-Interaktionen wie RigidBody, CharacterBody und StaticBody, sowie spezialisierte Nodes für Audio, Animation, Navigation und mehr.
+*Godot* bietet über 200 verschiedene Node-Typen für unterschiedliche Zwecke [@lukky-nodes-explained]. Die wichtigsten Kategorien umfassen Node2D und Node3D als Basis für 2D- und 3D-Objekte, Control-Nodes für Benutzeroberflächen, verschiedene Body-Typen für Physik-Interaktionen wie RigidBody, CharacterBody und StaticBody, sowie spezialisierte Nodes für Audio, Animation, Navigation und mehr.
 
-Nodes werden in einer Baumstruktur organisiert, wobei jeder Node einen Parent und beliebig viele Children haben kann. Diese Hierarchie ist fundamental für die Funktionsweise von Godot: Transformationen werden von Parents an Children vererbt, Children bewegen sich mit ihren Parents, und das Entfernen eines Parent-Nodes entfernt automatisch alle Children.
+Nodes werden in einer Baumstruktur organisiert, wobei jeder Node einen Parent und beliebig viele Children haben kann. Diese Hierarchie ist fundamental für die Funktionsweise von *Godot*: Transformationen werden von Parents an Children vererbt, Children bewegen sich mit ihren Parents, und das Entfernen eines Parent-Nodes entfernt automatisch alle Children.
 
 ```
 # Typische Node-Hierarchie eines Spielers
@@ -142,7 +151,7 @@ Dies ermöglicht effizientes Memory-Management und flexible Spielsysteme, bei de
 
 ### Scripting mit GDScript
 
-GDScript ist Godots eigene, Python-ähnliche Programmiersprache, die speziell für die Game-Entwicklung optimiert wurde [@brackeys-gdscript-tutorial]. Die Syntax ist bewusst einfach und verzichtet auf unnötige Boilerplate-Code. GDScript ist dynamisch typisiert, unterstützt aber auch optionale Type-Hints für bessere Editor-Unterstützung und Fehlererkennung.
+*GDScript* ist *Godot*s eigene, Python-ähnliche Programmiersprache, die speziell für die Game-Entwicklung optimiert wurde [@brackeys-gdscript-tutorial]. Die Syntax ist bewusst einfach und verzichtet auf unnötige Boilerplate-Code. *GDScript* ist dynamisch typisiert, unterstützt aber auch optionale Type-Hints für bessere Editor-Unterstützung und Fehlererkennung.
 
 ```gdscript
 # GDScript: Vollständiger Player Controller
@@ -188,13 +197,13 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
 ```
 
-Die enge Integration mit der Engine ist ein Hauptvorteil von GDScript [@clearcode-godot4-intro]. Alle Engine-Funktionen sind direkt zugänglich, Auto-Completion im Editor ist umfassend, und die Dokumentation ist direkt verlinkt. Die Lernkurve ist gering, insbesondere für Entwickler mit Python-Erfahrung, was GDScript ideal für Einsteiger und schnelles Prototyping macht.
+Die enge Integration mit der Engine ist ein Hauptvorteil von *GDScript* [@clearcode-godot4-intro]. Alle Engine-Funktionen sind direkt zugänglich, Auto-Completion im Editor ist umfassend, und die Dokumentation ist direkt verlinkt. Die Lernkurve ist gering, insbesondere für Entwickler mit Python-Erfahrung, was *GDScript* ideal für Einsteiger und schnelles Prototyping macht.
 
-Wichtige GDScript-Konzepte umfassen die Lifecycle-Methoden `_ready()` für Initialisierung, `_process()` für Frame-Updates und `_physics_process()` für physik-relevante Berechnungen [@godotneers-gdscript]. Variablen können mit `@export` annotiert werden, um sie im Editor bearbeitbar zu machen. `@onready` ermöglicht das sichere Referenzieren von Child-Nodes nach der Initialisierung.
+Wichtige *GDScript*-Konzepte umfassen die Lifecycle-Methoden `_ready()` für Initialisierung, `_process()` für Frame-Updates und `_physics_process()` für physik-relevante Berechnungen [@godotneers-gdscript]. Variablen können mit `@export` annotiert werden, um sie im Editor bearbeitbar zu machen. `@onready` ermöglicht das sichere Referenzieren von Child-Nodes nach der Initialisierung.
 
 ### C# in Godot
 
-Neben GDScript unterstützt Godot auch C# als vollwertige Scripting-Sprache [@godot-csharp-docs]. C# bietet statische Typisierung, Zugang zum .NET-Ökosystem und ist für Entwickler mit Unity-Erfahrung vertraut. Die C#-Unterstützung erfordert die .NET-Version von Godot (separat downloadbar).
+Neben *GDScript* unterstützt *Godot* auch C# als vollwertige Scripting-Sprache [@godot-csharp-docs]. C# bietet statische Typisierung, Zugang zum .NET-Ökosystem und ist für Entwickler mit *Unity*-Erfahrung vertraut. Die C#-Unterstützung erfordert die .NET-Version von *Godot* (separat downloadbar).
 
 ```csharp
 // C# in Godot: Player Controller
@@ -243,9 +252,9 @@ public partial class Player : CharacterBody3D
 }
 ```
 
-C# in Godot verwendet eine leicht andere API als GDScript, folgt aber denselben Konzepten. Nodes erben von der entsprechenden C#-Klasse, und Lifecycle-Methoden werden überschrieben. Die Integration mit dem Editor ist gut, wenngleich GDScript manchmal tiefere Integration genießt. Für komplexe Projekte oder Teams mit C#-Erfahrung ist die Sprache eine hervorragende Wahl.
+C# in *Godot* verwendet eine leicht andere API als *GDScript*, folgt aber denselben Konzepten. Nodes erben von der entsprechenden C#-Klasse, und Lifecycle-Methoden werden überschrieben. Die Integration mit dem Editor ist gut, wenngleich *GDScript* manchmal tiefere Integration genießt. Für komplexe Projekte oder Teams mit C#-Erfahrung ist die Sprache eine hervorragende Wahl.
 
-Ein wichtiger Aspekt bei der Arbeit mit C# in Godot sind Autoloads (Singletons) für global zugängliche Systeme [@jetbrains-autoloads]. Diese werden in den Projekteinstellungen konfiguriert und stehen dann in allen Scripts zur Verfügung:
+Ein wichtiger Aspekt bei der Arbeit mit C# in *Godot* sind Autoloads (Singletons) für global zugängliche Systeme [@jetbrains-autoloads]. Diese werden in den Projekteinstellungen konfiguriert und stehen dann in allen Scripts zur Verfügung:
 
 ```csharp
 // C# Autoload/Singleton Beispiel: GameManager
@@ -353,9 +362,9 @@ Built-in Signals werden von der Engine bereitgestellt, wie `body_entered` bei Co
 
 ### Rendering und Shaders
 
-Godot 4 verwendet eine moderne Vulkan-basierte Rendering-Pipeline, die signifikante Verbesserungen gegenüber dem OpenGL-basierten Godot 3 bietet. Die Engine unterstützt verschiedene Rendering-Methoden: Forward+, Mobile und Compatibility für unterschiedliche Plattform-Anforderungen. Die Forward+-Methode bietet die beste visuelle Qualität mit Unterstützung für unbegrenzte Lichtquellen.
+*Godot* 4 verwendet eine moderne *Vulkan*-basierte Rendering-Pipeline, die signifikante Verbesserungen gegenüber dem *OpenGL*-basierten *Godot* 3 bietet. Die Engine unterstützt verschiedene Rendering-Methoden: Forward+, Mobile und Compatibility für unterschiedliche Plattform-Anforderungen. Die Forward+-Methode bietet die beste visuelle Qualität mit Unterstützung für unbegrenzte Lichtquellen.
 
-Für Shader-Entwicklung bietet Godot eine eigene Shading-Sprache, die GLSL ähnelt, aber vereinfacht ist [@godotneers-shaders]:
+Für Shader-Entwicklung bietet *Godot* eine eigene Shading-Sprache, die *GLSL* ähnelt, aber vereinfacht ist [@godotneers-shaders]:
 
 ```glsl
 // Godot Shader: Einfacher Dissolve-Effekt
@@ -382,11 +391,11 @@ void fragment() {
 }
 ```
 
-Shader können für Canvas (2D), Spatial (3D) und Particles geschrieben werden. Der Visual Shader Editor ermöglicht node-basiertes Shader-Design für Entwickler ohne Shader-Programmiererfahrung.
+Shader können für Canvas (2D), Spatial (3D) und Particles geschrieben werden. Der *Visual Shader Editor* ermöglicht node-basiertes Shader-Design für Entwickler ohne Shader-Programmiererfahrung.
 
 ### State Machines in Godot
 
-Finite State Machines (FSM) sind ein fundamentales Designpattern für die Verwaltung komplexer Objektzustände, etwa für KI-Verhalten, Spieler-Charaktere oder UI-Systeme [@heartbeast-fsm]. Godot bietet mit dem AnimationTree einen integrierten State Machine für Animationen, für Gameplay-Logik werden State Machines typischerweise manuell implementiert.
+Finite State Machines (FSM) sind ein fundamentales Designpattern für die Verwaltung komplexer Objektzustände, etwa für KI-Verhalten, Spieler-Charaktere oder UI-Systeme [@heartbeast-fsm]. *Godot* bietet mit dem *AnimationTree* einen integrierten State Machine für Animationen, für Gameplay-Logik werden State Machines typischerweise manuell implementiert.
 
 ```gdscript
 # GDScript: State Machine Basisklasse
@@ -472,15 +481,15 @@ Diese Architektur führt zu sauberem, wartbarem Code für komplexe Verhaltensmus
 
 ### Grundlagen von WebRTC
 
-WebRTC (Web Real-Time Communication) ist ein offener Standard für Echtzeit-Kommunikation direkt zwischen Browsern und Anwendungen ohne die Notwendigkeit von Plugins oder zusätzlicher Software [@mdn-webrtc-datachannels]. Ursprünglich von Google entwickelt und 2011 als Open-Source-Projekt veröffentlicht, ermöglicht WebRTC die Übertragung von Audio, Video und beliebigen Daten zwischen Peers [@wikipedia-webrtc].
+*WebRTC* (Web Real-Time Communication) ist ein offener Standard für Echtzeit-Kommunikation direkt zwischen Browsern und Anwendungen ohne die Notwendigkeit von Plugins oder zusätzlicher Software [@mdn-webrtc-datachannels]. Ursprünglich von Google entwickelt und 2011 als Open-Source-Projekt veröffentlicht, ermöglicht *WebRTC* die Übertragung von Audio, Video und beliebigen Daten zwischen Peers [@wikipedia-webrtc].
 
 Die Technologie basiert auf drei Hauptkomponenten: MediaStream für die Erfassung von Audio und Video, RTCPeerConnection für die Peer-to-Peer-Verbindung und den Datenaustausch, sowie RTCDataChannel für die bidirektionale Übertragung beliebiger Daten. Für Spieleanwendungen ist besonders der DataChannel relevant, da er niedrige Latenz und optionale Zuverlässigkeit bietet.
 
-WebRTC verwendet standardmäßig UDP für die Datenübertragung, was minimale Latenz gewährleistet. Der DataChannel unterstützt sowohl zuverlässige (geordnete, garantierte Zustellung) als auch unzuverlässige (schnellere, aber möglicherweise verlorene Pakete) Übertragungsmodi, was Entwicklern Flexibilität für verschiedene Anwendungsfälle gibt.
+*WebRTC* verwendet standardmäßig UDP für die Datenübertragung, was minimale Latenz gewährleistet. Der DataChannel unterstützt sowohl zuverlässige (geordnete, garantierte Zustellung) als auch unzuverlässige (schnellere, aber möglicherweise verlorene Pakete) Übertragungsmodi, was Entwicklern Flexibilität für verschiedene Anwendungsfälle gibt.
 
 ### NAT Traversal und Signaling
 
-Eine der größten Herausforderungen bei Peer-to-Peer-Verbindungen ist das NAT (Network Address Translation) Traversal. Die meisten Geräte befinden sich hinter Routern mit NAT, was direkte Verbindungen erschwert. WebRTC löst dieses Problem durch ICE (Interactive Connectivity Establishment), ein Framework das verschiedene Verbindungsmethoden kombiniert.
+Eine der größten Herausforderungen bei Peer-to-Peer-Verbindungen ist das NAT (Network Address Translation) Traversal. Die meisten Geräte befinden sich hinter Routern mit NAT, was direkte Verbindungen erschwert. *WebRTC* löst dieses Problem durch ICE (Interactive Connectivity Establishment), ein Framework das verschiedene Verbindungsmethoden kombiniert.
 
 STUN (Session Traversal Utilities for NAT) Server helfen Clients, ihre öffentliche IP-Adresse und Port zu ermitteln. Wenn eine direkte Verbindung nicht möglich ist, kommt TURN (Traversal Using Relays around NAT) zum Einsatz, wobei ein Relay-Server den gesamten Traffic zwischen den Peers weiterleitet. TURN ist ressourcenintensiver, funktioniert aber in nahezu allen Netzwerkkonfigurationen.
 
@@ -488,9 +497,9 @@ Der Signaling-Prozess selbst ist nicht Teil des WebRTC-Standards und kann über 
 
 ### Coturn als TURN/STUN Server
 
-Coturn ist eine Open-Source-Implementierung eines TURN und STUN Servers, die häufig für WebRTC-Anwendungen eingesetzt wird [@coturn-github]. Der Server kann selbst gehostet werden und bietet volle Kontrolle über die Infrastruktur sowie Unabhängigkeit von Drittanbietern.
+*Coturn* ist eine Open-Source-Implementierung eines TURN und STUN Servers, die häufig für *WebRTC*-Anwendungen eingesetzt wird [@coturn-github]. Der Server kann selbst gehostet werden und bietet volle Kontrolle über die Infrastruktur sowie Unabhängigkeit von Drittanbietern.
 
-Die Konfiguration von Coturn umfasst typischerweise die Festlegung von Listening-Ports, Realm-Einstellungen für die Authentifizierung, und optional TLS-Zertifikate für verschlüsselte Verbindungen. Für Produktionsumgebungen ist die Einrichtung von Authentifizierung und Rate-Limiting wichtig, um Missbrauch zu verhindern.
+Die Konfiguration von *Coturn* umfasst typischerweise die Festlegung von Listening-Ports, Realm-Einstellungen für die Authentifizierung, und optional TLS-Zertifikate für verschlüsselte Verbindungen. Für Produktionsumgebungen ist die Einrichtung von Authentifizierung und Rate-Limiting wichtig, um Missbrauch zu verhindern.
 
 ```bash
 # Beispiel Coturn Konfiguration (turnserver.conf)
@@ -512,7 +521,7 @@ Die Integration in Spieleanwendungen erfolgt durch Angabe der STUN/TURN Server U
 
 ### WebRTC in Godot
 
-Godot bietet native Unterstützung für WebRTC über die WebRTCPeerConnection und WebRTCDataChannel Klassen [@godot-webrtc-docs]. Diese ermöglichen die Implementierung von Peer-to-Peer Multiplayer ohne externe Plugins. Die High-Level Multiplayer API von Godot kann mit WebRTC als Transport-Layer verwendet werden.
+*Godot* bietet native Unterstützung für *WebRTC* über die WebRTCPeerConnection und WebRTCDataChannel Klassen [@godot-webrtc-docs]. Diese ermöglichen die Implementierung von Peer-to-Peer Multiplayer ohne externe Plugins. Die High-Level Multiplayer API von *Godot* kann mit *WebRTC* als Transport-Layer verwendet werden.
 
 ```gdscript
 # GDScript: WebRTC Peer Connection Setup
@@ -574,13 +583,13 @@ func send_game_data(data: String) -> void:
         data_channel.put_packet(data.to_utf8_buffer())
 ```
 
-Für die Integration mit Godots High-Level Multiplayer API existiert die WebRTCMultiplayerPeer Klasse, die WebRTC als Transport für das MultiplayerAPI System verwendet [@godot-highlevel-multiplayer]. Dies ermöglicht die Nutzung von RPCs und synchronisierten Variablen über WebRTC-Verbindungen.
+Für die Integration mit *Godot*s High-Level Multiplayer API existiert die WebRTCMultiplayerPeer Klasse, die *WebRTC* als Transport für das MultiplayerAPI System verwendet [@godot-highlevel-multiplayer]. Dies ermöglicht die Nutzung von RPCs und synchronisierten Variablen über *WebRTC*-Verbindungen.
 
 ### Multiplayer Architekturen
 
 Bei der Entwicklung von Multiplayer-Spielen gibt es verschiedene Architekturansätze. Die Client-Server-Architektur verwendet einen autoritativen Server, der den Spielzustand verwaltet und Entscheidungen trifft. Clients senden Inputs an den Server und erhalten Zustandsupdates zurück. Diese Architektur bietet guten Schutz vor Cheating, erfordert aber Server-Infrastruktur.
 
-Die Peer-to-Peer-Architektur, die WebRTC ermöglicht, verbindet Spieler direkt miteinander ohne zentralen Spielserver [@henriquelalves-p2p-snake]. Ein Peer kann als Host fungieren und autoritative Entscheidungen treffen, oder alle Peers können gleichberechtigt sein mit Lockstep-Synchronisation. P2P reduziert Infrastrukturkosten, ist aber anfälliger für Cheating (Schummeln) und erfordert sorgfältige Synchronisation.
+Die Peer-to-Peer-Architektur, die *WebRTC* ermöglicht, verbindet Spieler direkt miteinander ohne zentralen Spielserver [@henriquelalves-p2p-snake]. Ein Peer kann als Host fungieren und autoritative Entscheidungen treffen, oder alle Peers können gleichberechtigt sein mit Lockstep-Synchronisation, bei der alle Teilnehmer jeden Spielschritt gemeinsam und simultan ausführen, bevor der nächste beginnt. P2P reduziert Infrastrukturkosten, ist aber anfälliger für Cheating und erfordert sorgfältige Synchronisation.
 
 Hybride Ansätze kombinieren beide Architekturen: Ein leichtgewichtiger Server übernimmt Matchmaking und Authentifizierung, während die eigentliche Spielkommunikation peer-to-peer erfolgt. Dies reduziert Serverkosten bei gleichzeitiger Beibehaltung zentraler Kontrolle über wichtige Funktionen.
 
@@ -783,7 +792,7 @@ model.save("ppo_lunarlander")
 # torch.onnx.export(model.policy, ...)
 ```
 
-PPO ist besonders populär für kontinuierliche Control-Tasks, Robotik und Game AI. Die relative Einfachheit der Implementierung im Vergleich zu anderen Algorithmen wie TRPO, bei gleichzeitig vergleichbarer Performance, macht PPO zur Standardwahl für viele Anwendungen. Stable-Baselines3 bietet eine robuste, gut getestete PPO-Implementierung [@sb3-documentation].
+PPO ist besonders populär für kontinuierliche Control-Tasks, Robotik und Game AI. Die relative Einfachheit der Implementierung im Vergleich zu anderen Algorithmen wie TRPO, bei gleichzeitig vergleichbarer Performance, macht PPO zur Standardwahl für viele Anwendungen. *Stable-Baselines3* bietet eine robuste, gut getestete PPO-Implementierung [@sb3-documentation].
 
 
 ## Neuronale Netze und Deep Learning
@@ -830,9 +839,9 @@ Das Training neuronaler Netze erfolgt durch Backpropagation, einen Algorithmus z
 
 ### PyTorch als Framework
 
-PyTorch ist ein Open-Source Deep Learning Framework, das von Meta (Facebook) entwickelt wurde und sich als eines der führenden Frameworks für Forschung und Produktion etabliert hat [@pytorch-official-docs]. Seine dynamische Computation Graph-Architektur ermöglicht flexibles Debugging und intuitive Entwicklung.
+*PyTorch* ist ein Open-Source Deep Learning Framework, das von Meta (Facebook) entwickelt wurde und sich als eines der führenden Frameworks für Forschung und Produktion etabliert hat [@pytorch-official-docs]. Seine dynamische Computation Graph-Architektur ermöglicht flexibles Debugging und intuitive Entwicklung.
 
-Die Kernkonzepte von PyTorch umfassen Tensors als mehrdimensionale Arrays mit GPU-Beschleunigung, Automatic Differentiation für die automatische Gradientenberechnung und ein modulares System zur Definition von Netzwerk-Architekturen [@pytorch-tutorials]. Die API ist Python-nativ und erlaubt natürliche Kontrollflussstrukturen innerhalb von Modellen.
+Die Kernkonzepte von *PyTorch* umfassen Tensors als mehrdimensionale Arrays mit GPU-Beschleunigung, Automatic Differentiation für die automatische Gradientenberechnung und ein modulares System zur Definition von Netzwerk-Architekturen [@pytorch-tutorials]. Die API ist Python-nativ und erlaubt natürliche Kontrollflussstrukturen innerhalb von Modellen.
 
 ```python
 # Python: Training Loop mit PyTorch
@@ -872,30 +881,30 @@ for epoch in range(100):
         print(f"Epoch {epoch}, Loss: {loss:.4f}")
 ```
 
-Für Reinforcement Learning ist PyTorch die bevorzugte Wahl vieler Forscher und Bibliotheken [@renotte-rl-3hours]. Stable-Baselines3, die Standard-RL-Bibliothek, basiert vollständig auf PyTorch. Die Kombination aus Flexibilität, Performance und dem umfangreichen Ökosystem macht PyTorch ideal für die Entwicklung und das Training von RL-Agenten.
+Für Reinforcement Learning ist *PyTorch* die bevorzugte Wahl vieler Forscher und Bibliotheken [@renotte-rl-3hours]. *Stable-Baselines3*, die Standard-RL-Bibliothek, basiert vollständig auf *PyTorch*. Die Kombination aus Flexibilität, Performance und dem umfangreichen Ökosystem macht *PyTorch* ideal für die Entwicklung und das Training von RL-Agenten.
 
 
 ## Godot RL Agents
 
 ### Überblick und Motivation
 
-Godot RL Agents ist ein Open-Source-Framework, das die Integration von Reinforcement Learning mit der Godot Game Engine ermöglicht [@godot-rl-agents-github]. Das Projekt wurde von Edward Beeching entwickelt [@godot-rl-agents-arxiv]. Es adressiert den Bedarf an einer zugänglichen, gut integrierten Lösung für RL in Spielumgebungen.
+*Godot RL Agents* ist ein Open-Source-Framework, das die Integration von Reinforcement Learning mit der *Godot* Game Engine ermöglicht [@godot-rl-agents-github]. Das Projekt wurde von Edward Beeching entwickelt [@godot-rl-agents-arxiv]. Es adressiert den Bedarf an einer zugänglichen, gut integrierten Lösung für RL in Spielumgebungen.
 
-Die Motivation für Godot RL Agents entstand aus der Beobachtung, dass bestehende RL-Frameworks für Spiele oft komplexe Setups erfordern oder auf spezifische Engines beschränkt sind. Die Kombination von Godots Zugänglichkeit und Open-Source-Natur mit modernen RL-Algorithmen schafft eine Plattform, die sowohl für Forschung als auch für praktische Game-AI-Anwendungen geeignet ist.
+Die Motivation für *Godot RL Agents* entstand aus der Beobachtung, dass bestehende RL-Frameworks für Spiele oft komplexe Setups erfordern oder auf spezifische Engines beschränkt sind. Die Kombination von *Godot*s Zugänglichkeit und Open-Source-Natur mit modernen RL-Algorithmen schafft eine Plattform, die sowohl für Forschung als auch für praktische Game-AI-Anwendungen geeignet ist.
 
 ### Architektur und Komponenten
 
-Das Framework besteht aus zwei Hauptkomponenten: einem GDExtension-Plugin für Godot und einer Python-Bibliothek für das Training [@huggingface-godotrl]. Das Godot-Plugin stellt die notwendigen Nodes und Klassen bereit, um Spielumgebungen als RL-Environments zu definieren, während die Python-Seite das Training mit Stable-Baselines3 oder anderen Frameworks übernimmt.
+Das Framework besteht aus zwei Hauptkomponenten: einem GDExtension-Plugin für *Godot* und einer Python-Bibliothek für das Training [@huggingface-godotrl]. Das *Godot*-Plugin stellt die notwendigen Nodes und Klassen bereit, um Spielumgebungen als RL-Environments zu definieren, während die Python-Seite das Training mit *Stable-Baselines3* oder anderen Frameworks übernimmt.
 
 
 ![Godot RL Agents Architektur](img/Rath/Godot-RL-Agents-Architektur.png)
 
 
-Die Kommunikation zwischen Godot und Python erfolgt über einen SharedMemory-Mechanismus oder Sockets. Dieser Ansatz erlaubt paralleles Training mit mehreren Godot-Instanzen für beschleunigtes Lernen. Die API ist inspiriert von Gymnasium (ehemals OpenAI Gym), dem Standard-Interface für RL-Environments, was die Integration mit bestehenden RL-Codebasen erleichtert.
+Die Kommunikation zwischen *Godot* und Python erfolgt über einen SharedMemory-Mechanismus oder Sockets. Dieser Ansatz erlaubt paralleles Training mit mehreren *Godot*-Instanzen für beschleunigtes Lernen. Die API ist inspiriert von *Gymnasium* (ehemals OpenAI Gym), dem Standard-Interface für RL-Environments, was die Integration mit bestehenden RL-Codebasen erleichtert.
 
 ### AIController und Sensoren
 
-Der AIController ist der zentrale Node für RL-Agenten in Godot RL Agents. Er verwaltet die Observation- und Action-Spaces, sammelt Sensor-Daten und wendet Aktionen an:
+Der AIController ist der zentrale Node für RL-Agenten in *Godot RL Agents*. Er verwaltet die Observation- und Action-Spaces, sammelt Sensor-Daten und wendet Aktionen an:
 
 ```gdscript
 # GDScript: AI Controller Setup
@@ -986,7 +995,7 @@ Das Framework bietet verschiedene Sensor-Typen für die Observation-Erfassung. R
 
 ### Training und Inference
 
-Das Training erfolgt typischerweise mit der Python-Bibliothek gdrl, die auf Stable-Baselines3 aufbaut [@godot-rl-tutorial-video]:
+Das Training erfolgt typischerweise mit der Python-Bibliothek gdrl, die auf *Stable-Baselines3* aufbaut [@godot-rl-tutorial-video]:
 
 ```python
 # Python: Godot RL Training Script
@@ -1079,7 +1088,7 @@ if __name__ == "__main__":
     train()
 ```
 
-Trainierte Modelle können im ONNX-Format exportiert werden, einem standardisierten Format für Machine Learning Modelle [@pytorch-onnx-intro]. ONNX ermöglicht die Inference direkt in Godot ohne Python-Abhängigkeit, was für den finalen Einsatz in Spielen essentiell ist [@sb3-export-docs]:
+Trainierte Modelle können im *ONNX*-Format exportiert werden, einem standardisierten Format für Machine Learning Modelle [@pytorch-onnx-intro]. *ONNX* ermöglicht die Inference direkt in *Godot* ohne Python-Abhängigkeit, was für den finalen Einsatz in Spielen essentiell ist [@sb3-export-docs]:
 
 ```gdscript
 # GDScript: ONNX Inference in Godot
@@ -1104,7 +1113,7 @@ func get_action(observations: Array) -> Array:
 
 ### Reward Engineering
 
-Die Definition einer geeigneten Reward-Funktion ist oft die größte Herausforderung beim Anwenden von RL auf neue Probleme. Das Reward-Signal muss das gewünschte Verhalten effektiv kommunizieren, ohne unbeabsichtigte Nebeneffekte zu fördern. Godot RL Agents ermöglicht flexible Reward-Definitionen direkt im GDScript-Code.
+Die Definition einer geeigneten Reward-Funktion ist oft die größte Herausforderung beim Anwenden von RL auf neue Probleme. Das Reward-Signal muss das gewünschte Verhalten effektiv kommunizieren, ohne unbeabsichtigte Nebeneffekte zu fördern. *Godot RL Agents* ermöglicht flexible Reward-Definitionen direkt im *GDScript*-Code.
 
 ```gdscript
 # GDScript: Komplexe Reward-Funktion
@@ -1151,7 +1160,7 @@ func get_reward() -> float:
 
 Typische Reward-Komponenten in Spielen umfassen positive Rewards für Zielerreichung (Punkte sammeln, Level abschließen), negative Rewards als Strafen (Schaden nehmen, Zeit verschwenden) und Shaping Rewards für Zwischenziele (näher ans Ziel kommen, richtige Richtung einschlagen). Die Balance dieser Komponenten bestimmt maßgeblich das erlernte Verhalten.
 
-Curriculum Learning ist eine Technik, bei der die Schwierigkeit der Aufgabe während des Trainings schrittweise erhöht wird. In Godot kann dies durch dynamische Anpassung der Environment-Parameter implementiert werden:
+Curriculum Learning ist eine Technik, bei der die Schwierigkeit der Aufgabe während des Trainings schrittweise erhöht wird. In *Godot* kann dies durch dynamische Anpassung der Environment-Parameter implementiert werden:
 
 ```gdscript
 # GDScript: Curriculum Learning
@@ -1202,7 +1211,7 @@ func increase_difficulty() -> void:
 
 ### Spielkonzept
 
-DigiKicker ist ein vollständig in 3D umgesetztes Tischfußball-Spiel (Foosball), das die klassische Spielmechanik eines physischen Kickertisches in eine digitale Form überträgt. Das Projekt demonstriert die Anwendung moderner Spieleentwicklungstechnologien und kombiniert drei zentrale Aspekte: realistische Physik-Simulation, Online-Multiplayer über WebRTC und einen KI-Gegner, der mittels Reinforcement Learning trainiert wurde.
+DigiKicker ist ein vollständig in 3D umgesetztes Tischfußball-Spiel (Foosball), das die klassische Spielmechanik eines physischen Kickertisches in eine digitale Form überträgt. Das Projekt demonstriert die Anwendung moderner Spieleentwicklungstechnologien und kombiniert drei zentrale Aspekte: realistische Physik-Simulation, Online-Multiplayer über *WebRTC* und einen KI-Gegner, der mittels Reinforcement Learning trainiert wurde.
 
 Das Spielprinzip folgt den etablierten Regeln des Tischfußballs: Zwei Spieler steuern jeweils vier Stangen mit aufmontierten Spielerfiguren. Durch Rotation der Stangen werden die Figuren bewegt, um einen Ball ins gegnerische Tor zu befördern. Die laterale Bewegung der Stangen ermöglicht die Positionierung der Figuren entlang der Querachse des Spielfelds.
 
@@ -1228,7 +1237,7 @@ Die funktionalen Anforderungen gliedern sich in drei Hauptbereiche:
 **KI-Gegner**
 
 - Trainierbarer KI-Agent basierend auf Reinforcement Learning
-- Export des trainierten Modells im ONNX-Format für Inference in Godot
+- Export des trainierten Modells im *ONNX*-Format für Inference in *Godot*
 - Regelbasierter Bot als Alternative für verschiedene Schwierigkeitsstufen
 - Self-Play Training für symmetrisches Lernverhalten
 
@@ -1348,7 +1357,7 @@ DigiKicker/
 
 ### C#-Projekt-Setup
 
-Das C#-Projekt verwendet .NET 8.0 und integriert die ONNX Runtime für die KI-Inferenz. Die Projektkonfiguration in der `.csproj`-Datei:
+Das C#-Projekt verwendet .NET 8.0 und integriert die *ONNX Runtime* für die KI-Inferenz. Die Projektkonfiguration in der `.csproj`-Datei:
 
 ```xml
 <Project Sdk="Godot.NET.Sdk/4.5.1">
@@ -1365,11 +1374,11 @@ Das C#-Projekt verwendet .NET 8.0 und integriert die ONNX Runtime für die KI-In
 </Project>
 ```
 
-Die ONNX Runtime ermöglicht die Ausführung trainierter neuronaler Netze direkt in Godot ohne Python-Abhängigkeit. Das Paket wird automatisch beim Build heruntergeladen und in das Export-Verzeichnis kopiert.
+Die *ONNX Runtime* ermöglicht die Ausführung trainierter neuronaler Netze direkt in *Godot* ohne Python-Abhängigkeit. Das Paket wird automatisch beim Build heruntergeladen und in das Export-Verzeichnis kopiert.
 
 ### Autoload-Konfiguration
 
-Godot's Autoload-System wird genutzt, um globale Manager-Klassen als Singletons zu registrieren. Diese sind in der `project.godot` definiert:
+*Godot*'s Autoload-System wird genutzt, um globale Manager-Klassen als Singletons zu registrieren. Diese sind in der `project.godot` definiert:
 
 ```ini
 [autoload]
@@ -1406,11 +1415,13 @@ public partial class GameManager : Node
 
 Die Entwicklung erfolgte mit folgenden Werkzeugen:
 
-- **IDE:** Visual Studio Code mit C#-Extension und Godot-Tools
-- **Godot Version:** 4.5 (.NET-Version für C#-Unterstützung)
+- **IDE:** Visual Studio Code^[https://code.visualstudio.com/] mit C#-Extension und *Godot*-Tools^[https://marketplace.visualstudio.com/items?itemName=geequlim.godot-tools]
+- **Godot Version:** 4.5 (.NET-Version für C#-Unterstützung)^[https://godotengine.org/]
 - **Python:** 3.11 für RL-Training
-- **PHP:** Backend für WebRTC-Signaling-Server
-- **Coturn:** STUN/TURN-Server für NAT-Traversal
+- **PHP:** Backend für den *WebRTC*-Signaling-Server
+- **WebRTC-Addon:** GDExtension-Plugin für native *WebRTC*-Unterstützung in *Godot*^[https://github.com/godotengine/webrtc-native]
+- **Godot RL Agents-Addon:** GDExtension-Plugin für die Anbindung von *Godot* an Python-basierte RL-Bibliotheken^[https://github.com/edbeeching/godot_rl_agents_plugin]
+- **Coturn:** STUN/TURN-Server für NAT-Traversal^[https://github.com/coturn/coturn]
 
 Für das RL-Training wurde eine separate Python-Umgebung eingerichtet. Die wichtigsten Abhängigkeiten (Auszug):
 
@@ -1423,13 +1434,21 @@ onnx==1.20.0
 onnxruntime==1.23.2
 ```
 
+Die verwendeten Pakete: *Stable-Baselines3*^[https://stable-baselines3.readthedocs.io/], *Godot RL Agents*^[https://github.com/edbeeching/godot_rl_agents], *Gymnasium*^[https://gymnasium.farama.org/], *PyTorch*^[https://pytorch.org/] und *ONNX*^[https://onnx.ai/].
+
 ## Spielmechanik-Implementierung
 
 ### 3D-Szenenaufbau
 
 Der Spieltisch wird prozedural in der `Table.cs`-Klasse aufgebaut. Alle Dimensionen werden mit einem globalen Skalierungsfaktor (`SCALE = 5.0`) multipliziert.
 
-Anfangs war das Spielfeld sehr klein skaliert, was zu fehlerhafter Schattendarstellung führte - Godots Shadow-Mapping produziert bei sehr kleinen Objekten Artefakte. Die Einführung des Skalierungsfaktors löste dieses Problem und ermöglicht zudem einfache Größenanpassungen des gesamten Spielfelds durch Änderung einer einzigen Konstante:
+Anfangs war das Spielfeld sehr klein skaliert, was zu fehlerhafter Schattendarstellung führte – *Godot*s Shadow-Mapping produziert bei sehr kleinen Objekten Artefakte. Es wurde getestet, ob eine größere Skalierung das Problem behebt. Ab einem Faktor von etwa 5.0 waren keine Artefakte mehr sichtbar, und höhere Werte brachten keinen weiteren Unterschied, weshalb 5.0 gewählt wurde.
+
+| ![Schatten-Artefakte vor dem Skalierungsfaktor](img/Rath/shadows_before.png) | ![Saubere Schattendarstellung nach Einführung des Skalierungsfaktors](img/Rath/shadows_after.png) |
+|:---:|:---:|
+| Vorher | Nachher |
+
+Die Einführung des Skalierungsfaktors ermöglicht zudem einfache Größenanpassungen des gesamten Spielfelds durch Änderung einer einzigen Konstante:
 
 ```csharp
 public partial class Table : Node3D
@@ -1472,7 +1491,7 @@ private const int ATTACK_FIGURES = 3;
 
 #### Ball-Physik
 
-Der Ball ist als `RigidBody3D` implementiert und nutzt Godots integrierte Physik-Engine. Die Konfiguration optimiert das Spielgefühl für reaktive, aber kontrollierbare Bewegungen:
+Der Ball ist als `RigidBody3D` implementiert und nutzt *Godot*s integrierte Physik-Engine. Die Konfiguration optimiert das Spielgefühl für reaktive, aber kontrollierbare Bewegungen:
 
 ```csharp
 public partial class Ball : RigidBody3D
@@ -1797,7 +1816,7 @@ Der `GameManager` verwaltet den Spielzustand über ein Enum mit vier möglichen 
 
 ### Netzwerk-Architektur
 
-DigiKicker verwendet eine Peer-to-Peer-Architektur basierend auf WebRTC. Diese Entscheidung eliminiert die Notwendigkeit eines dedizierten Spielservers und reduziert die Latenz, da Spielzustandsdaten direkt zwischen den Spielern ausgetauscht werden.
+DigiKicker verwendet eine Peer-to-Peer-Architektur basierend auf *WebRTC*. Diese Entscheidung eliminiert die Notwendigkeit eines dedizierten Spielservers und reduziert die Latenz, da Spielzustandsdaten direkt zwischen den Spielern ausgetauscht werden.
 
 ![WebRTC P2P Architektur](img/Rath/WebRTC-P2P.png)
 
@@ -1811,7 +1830,7 @@ Der Signaling-Prozess wird über ein PHP-Backend abgewickelt, das auf einem eige
 
 **join_match.php:** Ermöglicht einem Spieler, einem existierenden Raum beizutreten.
 
-**signal.php:** Übermittelt WebRTC-Signaling-Daten (SDP und ICE Candidates).
+**signal.php:** Übermittelt *WebRTC*-Signaling-Daten (SDP und ICE Candidates).
 
 **get_signals.php:** Polling-Endpunkt zum Abrufen neuer Signaling-Nachrichten.
 
@@ -1819,13 +1838,13 @@ Das PHP-Backend speichert offene Lobbys und abgeschlossene Matches in einer MySQ
 
 ### STUN/TURN-Server mit Coturn
 
-Für NAT-Traversal wird ein eigener Coturn-Server betrieben, der sowohl STUN- als auch TURN-Dienste bereitstellt:
+Für NAT-Traversal wird ein eigener *Coturn*-Server betrieben, der sowohl STUN- als auch TURN-Dienste bereitstellt:
 
 - **STUN (Session Traversal Utilities for NAT):** Ermöglicht die Ermittlung der öffentlichen IP-Adresse und des Ports eines Clients hinter NAT. Bei symmetrischen NATs reicht STUN alleine nicht aus.
 
 - **TURN (Traversal Using Relays around NAT):** Fungiert als Relay-Server, der den gesamten Datenverkehr weiterleitet, wenn eine direkte P2P-Verbindung nicht möglich ist. Dies erhöht die Latenz, garantiert aber Konnektivität.
 
-Eine typische Coturn-Konfiguration umfasst folgende Parameter:
+Eine typische *Coturn*-Konfiguration umfasst folgende Parameter:
 
 ```
 Server:     <Server-IP>
@@ -1836,7 +1855,7 @@ Realm:      <Realm-Name>
 
 Die Authentifizierung erfolgt über Long-Term Credentials mit Benutzername und Passwort.
 
-Coturn speichert aktive Sessions temporär im Arbeitsspeicher und löscht diese automatisch nach Verbindungsende.
+*Coturn* speichert aktive Sessions temporär im Arbeitsspeicher und löscht diese automatisch nach Verbindungsende.
 
 ### WebRTC-Implementierung in Godot
 
@@ -2032,7 +2051,7 @@ func _handle_pong(msg: Dictionary) -> void:
 
 ### Training-Environment Setup
 
-Das Training nutzt das Godot RL Agents Framework, das eine Brücke zwischen Godot und Python-basierten RL-Bibliotheken schlägt. Die Trainingsszene `RLTraining.tscn` enthält zwei AI-Controller für Self-Play:
+Das Training nutzt das *Godot RL Agents* Framework, das eine Brücke zwischen *Godot* und Python-basierten RL-Bibliotheken schlägt. Die Trainingsszene `RLTraining.tscn` enthält zwei AI-Controller für Self-Play:
 
 ![RL Training Setup](img/Rath/RL-Training-Setup.png)
 
@@ -2163,7 +2182,7 @@ func _physics_process(delta: float) -> void:
 
 ### Training-Script
 
-Das Python-Trainingsskript verwendet Stable-Baselines3 mit dem PPO-Algorithmus:
+Das Python-Trainingsskript verwendet *Stable-Baselines3* mit dem PPO-Algorithmus:
 
 ```python
 # train_foosball.py
@@ -2256,7 +2275,7 @@ Die PPO-Hyperparameter beeinflussen das Trainingsverhalten maßgeblich. Die wich
 
 ### Training-Monitoring
 
-Das Training wird mit TensorBoard überwacht. Ein eigener Callback protokolliert zusätzliche Stabilitätsmetriken:
+Das Training wird mit *TensorBoard* überwacht. Ein eigener Callback protokolliert zusätzliche Stabilitätsmetriken:
 
 ```python
 class StabilityMonitorCallback(BaseCallback):
@@ -2281,11 +2300,11 @@ class StabilityMonitorCallback(BaseCallback):
 
 ![Training Reward Verlauf](img/Rath/mean_reward_training.png)
 
-Die Abbildung zeigt den mittleren Episode-Reward (ep_rew_mean) verschiedener Trainingsläufe über die Anzahl der Steps. Die grüne Linie (v16) repräsentiert das längste Training mit über 50 Millionen Steps und einer Trainingszeit von etwa 6,5 Stunden. Der Reward stabilisiert sich bei diesem Lauf um den Wert -5. Die negativen Werte resultieren aus dem Reward-Shaping, bei dem zeitbasierte Bestrafungen den Agenten zu schnellerem Spielabschluss motivieren sollen. Ein Wert von -5 ist dabei kein schlechtes Zeichen. Anders als bei klassischem RL, wo der Mean Reward typischerweise kontinuierlich steigt, bleibt er beim gespiegelten Self-Play-Training in einem bestimmten Bereich. Dies liegt daran, dass beide Seiten gleichzeitig lernen: Wenn die KI besser angreift, verbessert sich auch ihre Verteidigung, wodurch der Reward schwankt statt monoton zu steigen. Die verschiedenen Kurven zeigen unterschiedliche Hyperparameter-Konfigurationen und verdeutlichen, wie sensibel das Training auf diese reagiert. Die Abbildung zeigt einen Großteil der trainierten Modelle, jedoch nicht alle.
+Die Abbildung zeigt den mittleren Episode-Reward (ep_rew_mean) verschiedener Trainingsläufe über die Anzahl der Steps. Die grüne Linie repräsentiert das längste Training mit über 50 Millionen Steps und einer Trainingszeit von etwa 6,5 Stunden. Der Reward stabilisiert sich bei diesem Lauf um den Wert -5. Die negativen Werte resultieren aus dem Reward-Shaping, bei dem zeitbasierte Bestrafungen den Agenten zu schnellerem Spielabschluss motivieren sollen. Ein Wert von -5 ist dabei kein schlechtes Zeichen. Anders als bei klassischem RL, wo der Mean Reward typischerweise kontinuierlich steigt, bleibt er beim gespiegelten Self-Play-Training in einem bestimmten Bereich. Dies liegt daran, dass beide Seiten gleichzeitig lernen: Wenn die KI besser angreift, verbessert sich auch ihre Verteidigung, wodurch der Reward schwankt statt monoton zu steigen. Die verschiedenen Kurven zeigen unterschiedliche Hyperparameter-Konfigurationen und verdeutlichen, wie sensibel das Training auf diese reagiert. Die Abbildung zeigt einen Großteil der trainierten Modelle, jedoch nicht alle.
 
 ### ONNX-Export und Integration
 
-Nach erfolgreichem Training wird das Modell im ONNX-Format exportiert:
+Nach erfolgreichem Training wird das Modell im *ONNX*-Format exportiert:
 
 ```python
 from godot_rl.wrappers.onnx.stable_baselines_export import export_model_as_onnx
@@ -2293,7 +2312,7 @@ from godot_rl.wrappers.onnx.stable_baselines_export import export_model_as_onnx
 export_model_as_onnx(model, "foosball_ai.onnx")
 ```
 
-Die Integration in Godot erfolgt über den `RLBotController`:
+Die Integration in *Godot* erfolgt über den `RLBotController`:
 
 ```csharp
 public partial class RLBotController : Node
@@ -2527,9 +2546,9 @@ Für das Netzwerk-Testing wurden folgende Szenarien geprüft:
 
 ### Plattform-Export
 
-Das Projekt wurde primär für Windows exportiert und getestet. Godot 4.5 unterstützt jedoch auch den Export für macOS und Linux, sodass diese Plattformen mit geringem Aufwand ebenfalls bedient werden können.
+Das Projekt wurde primär für Windows exportiert und getestet. *Godot* 4.5 unterstützt jedoch auch den Export für macOS und Linux, sodass diese Plattformen mit geringem Aufwand ebenfalls bedient werden können.
 
-Der Export erfolgt über Godots integrierten Export-Dialog, der entsprechende Export-Templates für die jeweilige Zielplattform benötigt.
+Der Export erfolgt über *Godot*s integrierten Export-Dialog, der entsprechende Export-Templates für die jeweilige Zielplattform benötigt.
 
 ### Besonderheiten beim Export
 
@@ -2539,9 +2558,9 @@ Bei der Distribution von DigiKicker sind folgende Besonderheiten zu beachten:
 
 Die folgenden Ordner können nicht in die `.exe`-Datei eingebettet werden und müssen als separate Verzeichnisse neben der Executable bereitgestellt werden:
 
-- **`addons/`**: Enthält die WebRTC- und Godot RL Agents-Plugins als GDExtension-Bibliotheken (`.dll`/`.so`-Dateien). Diese nativen Bibliotheken müssen zur Laufzeit dynamisch geladen werden.
+- **`addons/`**: Enthält die *WebRTC*- und *Godot RL Agents*-Plugins als GDExtension-Bibliotheken (`.dll`/`.so`-Dateien). Diese nativen Bibliotheken müssen zur Laufzeit dynamisch geladen werden.
 
-- **`models/`**: Enthält die trainierten ONNX-Modelle für den KI-Gegner. Das ONNX-Runtime-System benötigt Zugriff auf diese Dateien im Dateisystem.
+- **`models/`**: Enthält die trainierten *ONNX*-Modelle für den KI-Gegner. Das *ONNX Runtime*-System benötigt Zugriff auf diese Dateien im Dateisystem.
 
 ```
 DigiKicker/
@@ -2606,7 +2625,7 @@ const TURN_SERVERS := [{
 
 **Hinweis:** Die Credentials im obigen Beispiel sind Platzhalter. In einer Produktionsumgebung sollten echte Zugangsdaten sicher verwaltet und nicht im Quellcode hartcodiert werden.
 
-**Zusätzlicher Bug:** Ein weiteres Problem war, dass die WebRTC-Verbindung ohne explizite Angabe des `credentialType`-Feldes nicht funktionierte. Der Wert muss auf `"password"` gesetzt werden, damit die Long-Term Credentials korrekt vom TURN-Server akzeptiert werden.
+**Zusätzlicher Bug:** Ein weiteres Problem war, dass die *WebRTC*-Verbindung ohne explizite Angabe des `credentialType`-Feldes nicht funktionierte. Der Wert muss auf `"password"` gesetzt werden, damit die Long-Term Credentials korrekt vom TURN-Server akzeptiert werden.
 
 ### Observation-Spiegelung für Self-Play
 
@@ -2628,7 +2647,7 @@ obs.append(mirror * ball_vel.x / 10.0)
 
 ### WebRTC-Verbindung nicht ordnungsgemäß beendet
 
-**Problem:** Nach Beendigung eines Online-Spiels wurde die WebRTC-Verbindung nicht korrekt geschlossen. Dies führte zu einem kritischen Bug: Wenn ein Spieler anschließend ein Singleplayer-Spiel startete und dabei das Team wählte, das zuvor der Online-Gegner kontrolliert hatte, konnte der ehemalige Gegner das Spiel weiterhin über die offene Verbindung steuern.
+**Problem:** Nach Beendigung eines Online-Spiels wurde die *WebRTC*-Verbindung nicht korrekt geschlossen. Dies führte zu einem kritischen Bug: Wenn ein Spieler anschließend ein Singleplayer-Spiel startete und dabei das Team wählte, das zuvor der Online-Gegner kontrolliert hatte, konnte der ehemalige Gegner das Spiel weiterhin über die offene Verbindung steuern.
 
 **Lösung:** Implementierung einer expliziten Verbindungstrennung beim Verlassen des Online-Spiels. Der `OnlineMultiplayerManager` ruft nun beim Spielende `close_connection()` auf, das sowohl den DataChannel als auch die PeerConnection ordnungsgemäß schließt und alle Signale trennt.
 
