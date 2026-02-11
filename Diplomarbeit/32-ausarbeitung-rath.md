@@ -1433,7 +1433,6 @@ torch==2.11.0
 onnx==1.20.0
 onnxruntime==1.23.2
 ```
-
 Die verwendeten Pakete: *Stable-Baselines3*^[https://stable-baselines3.readthedocs.io/], *Godot RL Agents*^[https://github.com/edbeeching/godot_rl_agents], *Gymnasium*^[https://gymnasium.farama.org/], *PyTorch*^[https://pytorch.org/] und *ONNX*^[https://onnx.ai/].
 
 ## Spielmechanik-Implementierung
@@ -1444,8 +1443,8 @@ Der Spieltisch wird prozedural in der `Table.cs`-Klasse aufgebaut. Alle Dimensio
 
 Anfangs war das Spielfeld sehr klein skaliert, was zu fehlerhafter Schattendarstellung führte – *Godot*s Shadow-Mapping produziert bei sehr kleinen Objekten Artefakte. Es wurde getestet, ob eine größere Skalierung das Problem behebt. Ab einem Faktor von etwa 5.0 waren keine Artefakte mehr sichtbar, und höhere Werte brachten keinen weiteren Unterschied, weshalb 5.0 gewählt wurde.
 
-![Vorher: Schatten-Artefakte](img/Rath/shadows_before.png){width=47%} 
-![Nachher: Saubere Schattendarstellung](img/Rath/shadows_after.png){width=47%}
+![Vorher: Schatten-Artefakte](img/Rath/shadows_before.png){width=50%} 
+![Nachher: Saubere Schattendarstellung](img/Rath/shadows_after.png){width=50%}
 
 Die Einführung des Skalierungsfaktors ermöglicht zudem einfache Größenanpassungen des gesamten Spielfelds durch Änderung einer einzigen Konstante:
 
