@@ -75,7 +75,7 @@ Die Unreal Engine ist kostenlos nutzbar, verlangt jedoch 5% Royalties auf den Br
 
 Die Zielgruppe der *Unreal Engine* umfasst primär mittlere bis große Studios, die an visuell ambitionierten Projekten arbeiten [@unrealsensei-ue5-beginner]. Die komplexe Architektur und die steile Lernkurve machen sie weniger geeignet für absolute Anfänger oder sehr kleine Projekte. Für 2D-Spiele oder einfachere 3D-Projekte sind *Unity* oder *Godot* oft die bessere Wahl aufgrund ihrer schlankeren Architektur und schnelleren Entwicklungszyklen.
 
-![Unreal Engine Screenshot[@unreal-animation-screenshot]](img/Rath/unreal_engine.jpg)
+![Unreal Engine Screenshot [@unreal-animation-screenshot]](img/Rath/unreal_engine.jpg)
 
 
 ## Godot Engine
@@ -1444,7 +1444,8 @@ Der Spieltisch wird prozedural in der `Table.cs`-Klasse aufgebaut. Alle Dimensio
 
 Anfangs war das Spielfeld sehr klein skaliert, was zu fehlerhafter Schattendarstellung führte – *Godot*s Shadow-Mapping produziert bei sehr kleinen Objekten Artefakte. Es wurde getestet, ob eine größere Skalierung das Problem behebt. Ab einem Faktor von etwa 5.0 waren keine Artefakte mehr sichtbar, und höhere Werte brachten keinen weiteren Unterschied, weshalb 5.0 gewählt wurde.
 
-![Vorher: Schatten-Artefakte](img/Rath/shadows_before.png){width=49%} ![Nachher: Saubere Schattendarstellung](img/Rath/shadows_after.png){width=49%}
+![Vorher: Schatten-Artefakte](img/Rath/shadows_before.png){width=47%} 
+![Nachher: Saubere Schattendarstellung](img/Rath/shadows_after.png){width=47%}
 
 Die Einführung des Skalierungsfaktors ermöglicht zudem einfache Größenanpassungen des gesamten Spielfelds durch Änderung einer einzigen Konstante:
 
