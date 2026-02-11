@@ -46,7 +46,7 @@ Ein wesentlicher Vorteil von *Unity* ist der umfangreiche *Asset Store*, ein Mar
 
 Die große Community und die umfangreiche offizielle Dokumentation machen *Unity* zu einer zugänglichen Plattform für Einsteiger [@codemonkey-unity-beginner]. *Unity Learn* bietet strukturierte Kurse und Tutorials für alle Erfahrungsstufen [@unity-learn]. Allerdings wurde *Unity* in der Vergangenheit für kontroverse Geschäftsentscheidungen kritisiert, insbesondere die Ankündigung von Runtime-Gebühren im Jahr 2023, die zu einem signifikanten Vertrauensverlust in der Entwickler-Community führte [@gamefromscratch-godot-vs-unity].
 
-![Unity Engine](img/Rath/unity_engine.png)[@unity-project-window]
+![Unity Editor Screenshot [@unity-project-window]](img/Rath/unity_engine.png)
 
 
 ## Unreal Engine
@@ -75,7 +75,7 @@ Die Unreal Engine ist kostenlos nutzbar, verlangt jedoch 5% Royalties auf den Br
 
 Die Zielgruppe der *Unreal Engine* umfasst primär mittlere bis große Studios, die an visuell ambitionierten Projekten arbeiten [@unrealsensei-ue5-beginner]. Die komplexe Architektur und die steile Lernkurve machen sie weniger geeignet für absolute Anfänger oder sehr kleine Projekte. Für 2D-Spiele oder einfachere 3D-Projekte sind *Unity* oder *Godot* oft die bessere Wahl aufgrund ihrer schlankeren Architektur und schnelleren Entwicklungszyklen.
 
-![Unreal Engine](img/Rath/unreal_engine.jpg)[@unreal-animation-screenshot]
+![Unreal Engine Screenshot[@unreal-animation-screenshot]](img/Rath/unreal_engine.jpg)
 
 
 ## Godot Engine
@@ -98,7 +98,7 @@ Die *Godot*-Entwicklung erfolgt vollständig öffentlich auf *GitHub* mit transp
 
 Die offizielle Dokumentation ist umfangreich und wird kontinuierlich verbessert. Neben der Dokumentation existieren Community-Ressourcen wie das offizielle Forum, Discord-Server und diverse Online-Tutorials [@brackeys-godot-beginner]. Kommerziell erfolgreiche Spiele wie Dome Keeper, Cassette Beasts, Brotato und Buckshot Roulette demonstrieren, dass mit Godot professionelle Produkte entwickelt werden können.
 
-![Godot Engine](img/Rath/godot_engine.jpg)[@godot-editor-screenshot]
+![Godot Editor Screenshot [@godot-editor-screenshot]](img/Rath/godot_engine.jpg)
 
 
 ## Godot im Detail
@@ -1444,9 +1444,7 @@ Der Spieltisch wird prozedural in der `Table.cs`-Klasse aufgebaut. Alle Dimensio
 
 Anfangs war das Spielfeld sehr klein skaliert, was zu fehlerhafter Schattendarstellung führte – *Godot*s Shadow-Mapping produziert bei sehr kleinen Objekten Artefakte. Es wurde getestet, ob eine größere Skalierung das Problem behebt. Ab einem Faktor von etwa 5.0 waren keine Artefakte mehr sichtbar, und höhere Werte brachten keinen weiteren Unterschied, weshalb 5.0 gewählt wurde.
 
-| ![Schatten-Artefakte vor dem Skalierungsfaktor](img/Rath/shadows_before.png) | ![Saubere Schattendarstellung nach Einführung des Skalierungsfaktors](img/Rath/shadows_after.png) |
-|:---:|:---:|
-| Vorher | Nachher |
+![Vorher: Schatten-Artefakte](img/Rath/shadows_before.png){width=49%} ![Nachher: Saubere Schattendarstellung](img/Rath/shadows_after.png){width=49%}
 
 Die Einführung des Skalierungsfaktors ermöglicht zudem einfache Größenanpassungen des gesamten Spielfelds durch Änderung einer einzigen Konstante:
 
