@@ -20,7 +20,7 @@ Die grundlegende Aufgabenstellung ist die Verwirklichung einer "Digitalversion" 
 
     * Bend it like Bosch [@bend-it-like-bosch]:
 
-        Dieses Projekt ist auf funktioneller Ebene relativ ident zu dem vorherigen, da bei ihm auch mittels Kamera die Spielsituation erkannt und anhand von algorithmisch errechneten Ergebnissen die Motoren angesteuert werden. Wie in den Abbildungen ersichtlich, ist der Tisch höher technologisiert als bei der BYU, aber grundsätzlich sehr ähnlich.
+        Dieses Projekt ist auf funktioneller Ebene relativ ident zu dem vorherigen, da bei ihm auch mittels Kamera die Spielsituation erkannt und anhand von algorithmisch errechneten Ergebnissen die Motoren angesteuert werden. Wie in den Abbildungen 3 & 4 ersichtlich, ist der Tisch höher technologisiert als bei der BYU, aber grundsätzlich sehr ähnlich.
 
         ![Bend it like Bosch - Tischfußballtisch](img/Schaar/Bosch-Foosball-Table.png)
 

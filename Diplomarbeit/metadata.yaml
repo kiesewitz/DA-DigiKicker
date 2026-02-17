@@ -44,12 +44,10 @@ da-appendix:
 - abschnitt: Betreuungsprotokolle
   pdf-file:   
 
-# Diplomarbeitsvereinbarungen müssen zum Schluss sein 
-
 - abschnitt: Diplomarbeitsvereinbarung Englisch
-  pdf-file: 
+  pdf-file: [pdfs/HTL-DA-Doku-DE.pdf]
 
 - abschnitt: Diplomarbeitsvereinbarung Deutsch
-  pdf-file: 
+  pdf-file: [pdfs/HTL-DA-Doku-EN.pdf]
   
 ---
