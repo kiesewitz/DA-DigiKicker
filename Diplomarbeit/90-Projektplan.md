@@ -1,5 +1,5 @@
 # Projekthandbuch
-\textauthor{Schueler XY}
+\textauthor{Nikita Schaar}
 
 ## Entwicklungsplan
 

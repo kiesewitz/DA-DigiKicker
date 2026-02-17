@@ -1,4 +1,5 @@
 \newpage
+\textauthor{Nikita Schaar}
 ## Projektabschlussbericht
 
 ### Erfolgsmessung

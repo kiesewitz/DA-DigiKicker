@@ -1,23 +1,27 @@
-# Theorie - Schaar
+# Teilaufgabe Schüler Schaar
 \textauthor{Nikita Schaar}
+
+## Theoretischer Teil
 
 Das folgende Kapitel befasst sich mit jeglicher Theorie rund um diese Diplomarbeit. Beschrieben werden sowohl Werkzeuge und Programme als auch jegliche Bauteile und wichtige Hardware, welche verwendet wurden.
 
-## Projektmanagement
+### Projektmanagement
 
-Projektmanagement
+Die Zuständigkeit für das Projektmanagement der Arbeit "DigiKicker - Digitalisierung eines Tischfußballtisches" lag bei dem Schüler Schaar. Der Ansatz des Managements war hierbei agil mit regelmäßigen Besprechungen über den Projektstand (Diese Kurzbeschreibung noch etwas erweitern).
 
-## Mikrocontroller
+Für die detailreiche Dokumentation des Projektmanagements wird auf Seite xxx verwiesen.
+
+### Mikrocontroller
 
 In diesem Kapitel wird der Begriff Mikrocontroller erklärt und die Unterschiede zu Mikroprozessoren werden aufgezeigt. Darauf folgend werden drei verschiedene Mikrocontroller-Optionen betrachtet und anhand von ihren Eigenschaften und technischen Spezifikationen verglichen.
 
-### Was sind Mikrocontroller?
+#### Was sind Mikrocontroller?
 
 Um Mikrocontroller [@microcontroller-definition] zu erklären, muss erst ihr Unterschied zu Mikroprozessoren beleuchtet werden. Mikroprozessoren sind so wie die "größeren" Prozessoren - In diesem Fall sowohl auf physikalische Größe als auch auf Leistung bezogen - die Recheneinheit eines Systems. Während Mikroprozessoren ausschließlich rechnerische Aufgaben bearbeiten und für andere Funktionen separate Teile (RAM, ROM, Timer-Module, etc.) benötigen, fungieren Mikrocontroller als ein fertiges Paket, welches die verschiedenen Teile verbaut hat.
 
 ![Mikroprozessor vs. Mikrocontroller](img/Schaar/Difference_Microprocessor_Microcontroller.png)
 
-Wie in diesem Diagramm [@microcontroller-microprocessor] dargestellt ist links der Mikroprozessor bzw. die CPU (Central Processing Unit) zentral, benötigt jedoch extern verbundene Teile, sodass alle Aufgaben ausgeführt werden können. Ihm gegenübergestellt wird der Mikrocontroller, bei dem veranschaulicht wird, dass es sich hierbei um ein fertiges System handelt, bei dem alle Teile in diesem Ökosystem fest verbaut sind. Um eine Analogie zum menschlichen Körper zu bilden wäre in diesem Fall der Mikroprozessor das Gehirn alleine und der Mikrocontroller ein vollständiger Körper, welcher zur Funktion auf keine zusätzlichen Hilfsmittel angewiesen ist.
+Wie in Abbildung x [@microcontroller-microprocessor] ersichtlich, ist links der Mikroprozessor bzw. die CPU (Central Processing Unit) zentral, benötigt jedoch extern verbundene Teile, sodass alle Aufgaben ausgeführt werden können. Ihm gegenübergestellt wird der Mikrocontroller, bei dem veranschaulicht wird, dass es sich hierbei um ein fertiges System handelt, bei dem alle Teile in diesem Ökosystem fest verbaut sind. Um eine Analogie zum menschlichen Körper zu bilden wäre in diesem Fall der Mikroprozessor das Gehirn alleine und der Mikrocontroller ein vollständiger Körper, welcher zur Funktion auf keine zusätzlichen Hilfsmittel angewiesen ist.
 
 Tendenziell sind Mikroprozessoren für leistungsintensivere Anwendungszwecke angedacht als Mikrocontroller (z. B. grafische Berechnungen, Multitasking). Mikrocontroller sind durch ihre autonome Struktur in puncto Kosten, Stromverbrauch und Größe beliebt und bringen viele Möglichkeiten mit ohne unnötig hohe Komplexität. Aufgrund von diesen Faktoren werden Mikrocontroller sehr gerne in eingebetteten Systemen (Embedded Systems) [@embedded-systems] verwendet. 
 
@@ -25,21 +29,27 @@ Dieser Begriff bezeichnet Systeme, welche für einen speziellen Zweck entwickelt
 
 Mikrocontroller sind in den verschiedensten Systemen zu zahlreichen Zwecken verbaut und erfüllen in jedem eine eigene Aufgabe. Heute gibt es Mikrocontroller in jeder erdenklichen Ausführung, weshalb sie für jegliche Anwendungszwecke von Hobbyprojekten bis zu Raketenwissenschaften nicht mehr wegzudenken sind.
 
-### Auswahlkriterien für Mikrocontroller
+#### Auswahlkriterien für Mikrocontroller
 
 Um die Leistung der verschiedenen Mikrocontroller vergleichbar zu machen, müssen vorerst Kriterien festgelegt werden, anhand von denen die verschiedenen Optionen verglichen werden. Diese sollten bestmöglich messbar und objektiv vergleichbar sein, um eine gute Basis für die Auswahl zu schaffen. Mithilfe dieser Kriterien werden Punkte vergeben, anhand von denen eine Wahl getroffen wird.
 
-Eine gut vergleichbare Eigenschaft sind die Kosten, bei denen eine Reduktion sowohl für das Entwicklerteam als auch für Endbenutzer, welche das Projekt zu Hause replizieren wollen, vorteilhaft ist. Um die Kosten in direkter Relation zu vergleichen, wird die Formel $Punkte = min(30, ceil(\frac{100}{Kosten}))$ zur Bewertung verwendet. Mit ihr wird 100 durch die Kosten dividiert und das Ergebnis gerundet, sodass eine Punktezahl herauskommt. Danach wird dieser Wert auf maximal 30 gesetzt, sodass nicht mehr Punkte möglich sind, auch wenn die Kosten niedriger sind. Dieser Ansatz wurde gewählt, da er simpel zu berechnen ist und Kostenunterschiede in der Punktzahl sichtbar macht.
+Eine gut vergleichbare Eigenschaft sind die Kosten, bei denen eine Reduktion sowohl für das Entwicklerteam als auch für Endbenutzer, welche das Projekt zu Hause replizieren wollen, vorteilhaft ist. Um die Kosten in direkter Relation zu vergleichen, wird die Formel $Punkte = min(30, ceil(\frac{100}{Kosten}))$ zur Bewertung verwendet. Mit ihr wird 100 durch die Kosten dividiert und das Ergebnis gerundet, sodass eine Punktezahl herauskommt. Danach wird dieser Wert auf maximal 30 gesetzt, sodass nicht mehr Punkte möglich sind, auch wenn niedrigere Kosten bestehen. Dieser Ansatz wurde gewählt, da er simpel zu berechnen ist und Kostenunterschiede in der Punktzahl sichtbar macht.
 
 Für ein angenehmes Spielerlebnis ist eine schnelle und zuverlässige Übertragung der Eingaben wichtig. Daher werden die Prozessorleistung zur Verarbeitung der Eingaben sowie die Übertragungszeiten für den Austausch der Daten als weitere Vergleichsbasis verwendet.
 
-Damit nachhaltige Hardwareentwicklung mit einem Fokus auf Kostenminimierung möglich wird, muss ein Augenmerk auf den Stromverbrauch der Mikrocontroller gelegt werden. Aufgrund von geringen Spannungsgrößen wird diesem Verbrauch in der endgültigen Entscheidung ein im Vergleich zu den anderen Eigenschaften kleinerer Stellenwert beigemessen.
+Damit nachhaltige Hardwareentwicklung mit einem Fokus auf Kostenminimierung ermöglicht wird, muss ein Augenmerk auf den Stromverbrauch der Mikrocontroller gelegt werden. Aufgrund von geringen Spannungsgrößen wird diesem Verbrauch in der endgültigen Entscheidung ein im Vergleich zu den anderen Eigenschaften kleinerer Stellenwert beigemessen.
 
 Für die Gesamtbewertung werden vorerst für die Kosten Punkte zwischen 1 und 30 vergeben, welche anhand von der oben erklärten Formel errechnet werden. Die Punkte der anderen Kategorien werden relativ zu den anderen Optionen vergeben - Platz 1, 2 und 3 erhalten so 9, 6 und 3 Punkte (Kategorie Stromverbrauch: 3, 2, 1 Punkte) - und danach zur finalen Punkteanzahl addiert.
 
-## Arduino Nano ESP32
+![Punkteverteilung Mikrocontroller](img/Schaar/PointWeightsMicrocontrollers.png)
 
-Der erste Mikrocontroller, welcher im Zuge dieser Arbeit bewertet wird, ist der Arduino Nano ESP32. Er ist ein Controller mit überschaubarer Komplexität, bietet jedoch trotzdem zahlreiche Funktionen für alle möglichen Zwecke, welche dank offiziellen Dokumentationen und Tutorials verständlich gemacht werden [@arduino-docs]. Wie schon am Namen ersichtlich beinhaltet dieser Controller denselben ESP32 wie ein anderer Controller in dieser Liste, hat jedoch Unterschiede zu diesem, was technische Daten sowie den Kostenpunkt angeht.
+In Abbildung x (erstellt in Microsoft Excel) sind die Anteile der Bewertungskategorien an der finalen Punktezahl visuell dargestellt. Wie man erkennt, machen die Kosten hierbei den größten Anteil aus, während die Eigenschaften, welche sich auf die Übertragung der Eingaben beziehen, mit jeweils 17 % auch eine relativ hohe Gewichtung besitzen. Da wie bereits erwähnt die Stromversorgung vernachlässigbar ist, macht sie mit 6 % keinen allzu großen Anteil an der Gesamtpunktzahl aus. Bei diesen Anteilen wird für alle Kategorien vom theoretisch maximalen Ergebnis an Punkten ausgegangen (51 Punkte bei perfekter Bewertung in allen Kategorien).
+
+### Arduino Nano ESP32
+
+![Arduino Nano ESP32](img/Schaar/Arduino-Nano-ESP32-IRL.png)
+
+Der erste Mikrocontroller, welcher im Zuge dieser Arbeit bewertet wird, ist der Arduino Nano ESP32 (siehe Abbildung x [@arduino-nano-esp32-image]). Er ist ein Controller mit überschaubarer Komplexität, bietet jedoch trotzdem zahlreiche Funktionen für alle möglichen Zwecke, welche dank offiziellen Dokumentationen und Tutorials verständlich gemacht werden [@arduino-docs]. Wie schon am Namen ersichtlich beinhaltet dieser Controller auch einen ESP32, gleich wie das ESP-32 DevKit C, ein anderer behandelter Controller in dieser Arbeit, jedoch ist hierbei ein ESP32-S3 verbaut und kein ESP32-WROOM-32. Zum DevKit C bestehen auch Unterschiede, was technische Daten sowie den Kostenpunkt angeht. Im Detail folgen diese Unterschiede in der Auflistung der technischen Daten.
 
 Während die primäre Programmiersprache des Arduino Nano ESP32 zwar eine simplifizierte Version von C bzw. C++ (Arduino Language) ist, gibt es bei dieser Ausführung des Nano die Möglichkeit, in MicroPython [@micropython] zu programmieren, da diese Sprache auf allen ESP32-basierten Controllern funktioniert. Bei MicroPython handelt es sich ähnlich wie bei der Arduino Language selbst um eine schlankere Version und effizientere Version von Python. Sie hat einen Teil der Funktionalitäten der Python Standard Library und ist für die Verwendung auf Mikrocontrollern optimiert. Die genauen Unterschiede zum standardmäßigen CPython sind zahlreich und reichen von Syntax-Unterschieden bis zu entfernten Core-Funktionen.
 
@@ -60,32 +70,30 @@ TypeError: 'array' object doesn't support item deletion
 
 Dies war nur ein Beispiel für die vielen kleinen Änderungen von MicroPython, welche die Sprache dazu bringen so hochoptimiert und effizient auf vergleichsweise leistungsschwacher Hardware zu funktionieren.
 
-### Firma - Arduino
+#### Firma - Arduino
 
 Der Arduino Nano ist ein Produkt von der Firma Arduino [@arduino-about] [@arduino-linkedin], einer Tochterfirma von Qualcomm. Arduino befasst sich mit dem Design, der Herstellung und der Weiterentwicklung von Mikrocontrollern. Die offizielle "Mission & Vision" der Firma ist die Erweiterung und Erleichterung des Zugangs zu Elektronik und digitalen Technologien. Für diese Vision arbeitet die Arduino-Community, welche sich weltweit aus Menschen von Hobbyist:innen über Schüler:innen bis hin zu professionellen Entwickler:innen zusammensetzt.
 
 Die Firma wurde im Jahr 2005 in Italien gegründet und hat vier Co-Gründer, welche im folgenden Abschnitt kurz aufgelistet werden:
-  \begin{enumerate}
-      \item Massimo Banzi
-      \begin{itemize}
-          \item Ursprünglich arbeitete er als Softwarearchitekt, befasste sich später jedoch weitaus mehr mit der Elektrotechnik. Heutzutage lehrt er sowohl an der USI Universität sowie an der SUPSI in der Schweiz. 
-          Zusätzlich zu diesen Errungenschaften ist er der Autor des Buchs "Getting Started with Arduino" [@getting-started-with-arduino], in welchem er die Leser:innen an die Entwicklung mit Arduinos heranführt und über persönliche Erfahrungen berichtet.
-      \end{itemize}
-      \item David Cuartielles
-      \begin{itemize}
-          \item So wie Banzi lehrt auch er an einer Uni, wobei es bei ihm die Malmö-Universität in Schweden ist, an der er seit dem Jahr 2000 unterrichtet. Er hat sowohl einen MSc. als auch einen Doktortitel, war an verschiedenen Unis von Europa über Amerika, bis Asien und spricht öffentlich über Open-Source-Hardware und STEAM-Unterricht [@steam-education].
-      \end{itemize}
-      \item Tom Igoe
-      \begin{itemize}
-          \item Seine Forschung umfasst verschiedene Themen von Netzwerken über Belichtungsdesign und die Auswirkungen von technologischer Entwicklung auf die Umwelt. Er hat für mehrere Museen und Design-Firmen als Berater gewirkt sowie 4 Bücher und zahlreiche Artikel verfasst, welche sich mit Elektronik befassen.
-      \end{itemize}
-      \item David Mellis
-      \begin{itemize}
-          \item Er arbeitet als Softwareentwickler bei der Firma Autodesk, wo es sein Ziel ist, Menschen für die kreative bzw. DIY-Nutzung von elektronischen Bauteilen zu inspirieren. Wie seine Mitgründer hat auch er mehrere Titel (MSc., PhD.) und unterrichtete ebenfalls an Universitäten wie dem Copenhagen Institute of Interaction Design (Dänemark).
-      \end{itemize}
-  \end{enumerate}
 
-### Technische Daten
+**1. Massimo Banzi**
+
+- Ursprünglich arbeitete er als Softwarearchitekt, befasste sich später jedoch weitaus mehr mit der Elektrotechnik. Heutzutage lehrt er sowohl an der USI Universität sowie an der SUPSI in der Schweiz. 
+Zusätzlich zu diesen Errungenschaften ist er der Autor des Buchs "Getting Started with Arduino" [@getting-started-with-arduino], in welchem er die Leser:innen an die Entwicklung mit Arduinos heranführt und über persönliche Erfahrungen berichtet.
+
+**2. David Cuartielles**
+
+- So wie Banzi lehrt auch er an einer Uni, wobei es bei ihm die Malmö-Universität in Schweden ist, an der er seit dem Jahr 2000 unterrichtet. Er hat sowohl einen MSc. als auch einen Doktortitel, war an verschiedenen Unis von Europa über Amerika bis Asien und spricht öffentlich über Open-Source-Hardware und STEAM-Unterricht [@steam-education].
+
+**3. Tom Igoe**
+
+- Seine Forschung umfasst verschiedene Themen von Netzwerken über Belichtungsdesign und die Auswirkungen von technologischer Entwicklung auf die Umwelt. Er hat für mehrere Museen und Design-Firmen als Berater gewirkt sowie 4 Bücher und zahlreiche Artikel verfasst, welche sich mit Elektronik befassen.
+
+**4. David Mellis**
+
+- Er arbeitet als Softwareentwickler bei der Firma Autodesk, wo es sein Ziel ist, Menschen für die kreative bzw. DIY-Nutzung von elektronischen Bauteilen zu inspirieren. Wie seine Mitgründer hat auch er mehrere Titel (MSc., PhD.) und unterrichtete ebenfalls an Universitäten wie dem Copenhagen Institute of Interaction Design (Dänemark).
+
+#### Technische Daten
 
 Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Arduino-Nano-ESP32-Datenblatt [@arduino-nano-datasheet]. Die Daten beziehen sich hierbei auf die zu bewertenden Kategorien, welche für die Entscheidung eines Mikrocontrollers herangenommen werden.
 
@@ -102,21 +110,23 @@ Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Ar
 
 ![Arduino Nano ESP32 Pinout-Diagramm](img/Schaar/Pinout-Arduino-Nano-ESP32.png)
 
-Dieses Diagramm [@arduino-nano-pinout] stellt das Pin-Layout eines Arduino Nano ESP32 dar.
+Abbildung x [@arduino-nano-pinout] stellt das Pin-Layout eines Arduino Nano ESP32 dar.
 
-## ESP32-WROOM-32
+### ESP-32 DevKit C
 
-Der nächste Mikrocontroller ist der ESP32-WROOM-32 [@esp32-data], welcher wie der zuvor betrachtete Mikrocontroller auf dem ESP32 basiert ist, weshalb für die Programmierung die Arduino Language sowie MicroPython verwendet werden kann. Wie allen ESP32-basierten Controllern ist es auch diesem möglich, von dem Protokoll "ESP-Now" Gebrauch zu machen. 
+![ESP-32 DevKit C V4](img/Schaar/ESP32-DevKit-C-V4-IRL.png)
 
-Hierbei handelt es sich um ein eigens entwickeltes Protokoll von Espressif Systems, welches es mehreren Geräten erlaubt, sich untereinander zu verständigen. Das Protokoll ist auf dem 802.11 Wi-Fi Standard basiert, benötigt jedoch keinen zusätzlichen Access Point für die Kommunikation. In einem späteren Kapitel dieser Arbeit folgt eine genauere Veranschaulichung von ESP-Now, bei der die Details des Protokolls aufgezeigt werden.
+Der nächste Mikrocontroller ist das ESP-32 Dev Kit C V4 [@esp32-data] (siehe Abbildung x [@esp32-devkit-c-image]), welcher wie der zuvor betrachtete Mikrocontroller auf einem ESP32 - genauer gesagt, einem ESP32-WROOM-32 - basiert ist, weshalb für die Programmierung die Arduino Language sowie MicroPython verwendet werden kann. Wie allen ESP32-basierten Controllern ist es auch diesem möglich, von dem Protokoll "ESP-Now" Gebrauch zu machen. 
 
-### Firma - Espressif Systems
+Hierbei handelt es sich um ein eigens entwickeltes Protokoll von Espressif Systems, welches es mehreren Geräten erlaubt, sich untereinander zu verständigen. Das Protokoll [@esp-now-protocol] ist auf dem 802.11 Wi-Fi Standard basiert, benötigt jedoch keinen zusätzlichen Access Point für die Kommunikation.
 
-Der ESP32-WROOM-32 ist Teil der großen ESP32-Familie an Mikrocontrollern, welche von Espressif Systems [@espressif-about] entwickelt wird. Die Firma arbeitet an innovativen Lösungen rund um IoT und arbeitet in den letzten Jahren mehr und mehr an KI-Integration für Mikrocontroller. Sie veröffentlichen ihre Ressourcen und Modelle Open-Source und tragen damit maßgeblich zur globalen Weiterentwicklung von Mikrocontrollern, Embedded Systems und IoT bei.
+#### Firma - Espressif Systems
+
+Das ESP-32 DevKit C ist Teil der großen ESP32-Familie an Mikrocontrollern, welche von Espressif Systems [@espressif-about] entwickelt wird. Die Firma arbeitet an innovativen Lösungen rund um IoT und arbeitet in den letzten Jahren mehr und mehr an KI-Integration für Mikrocontroller. Sie veröffentlichen ihre Ressourcen und Modelle Open-Source und tragen damit maßgeblich zur globalen Weiterentwicklung von Mikrocontrollern, Embedded Systems und IoT bei. Ihre Produktlösungen umfassen Smart Home Systeme, IoT Security, Machine Vision, Deep Learning, Speech AI und viele weitere 
 
 Teo Swee Ann hat die Firma im Jahr 2008 in Shanghai gegründet und ist bis heute der CEO bei Espressif Systems. 2016 wird dann der originale ESP32-Mikrocontroller veröffentlicht, welcher durch seine WLAN- & Bluetooth-Kapazitäten revolutionär ist. Seither wurden der Familie allerlei neue und spezialisierte Mikrocontroller hinzugefügt, wodurch für Projekte verschiedenster Größenordnungen Optionen existieren.
 
-### Technische Daten
+#### Technische Daten
 
 Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen ESP32-WROOM-32-Datenblatt [@esp32-datasheet]. Die Daten beziehen sich hierbei auf die zu bewertenden Kategorien, welche für die Entscheidung eines Mikrocontrollers herangenommen werden.
 
@@ -133,15 +143,17 @@ Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen ES
 
 ![ESP32-WROOM-32 Pinout-Diagramm](img/Schaar/Pinout-ESP32-DevBoard.jpg)
 
-In dieser Grafik [@esp32-pinout] werden die Pin-Belegungen eines ESP32-WROOM-32 dargestellt.
+In Abbildung x [@esp32-pinout] werden die Pin-Belegungen eines ESP32-WROOM-32 dargestellt.
 
-## Raspberry Pi Pico 2W
+### Raspberry Pi Pico 2W
 
-raspi pico 2w
+![Raspberry Pi Pico 2W](img/Schaar/Raspberry-Pi-Pico-2W-IRL.png)
 
-### Firma - Raspberry Pi
+Der letzte Mikrocontroller, der in dieser Arbeit betrachtet wird ist der Raspberry Pi Pico 2W (siehe Abbildung x [@raspberry-pi-pico-2w-image])
 
-### Technische Daten
+#### Firma - Raspberry Pi
+
+#### Technische Daten
 
 Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Raspberry-Pi-Pico-2W-Datenblatt [@raspberry-pi-pico-datasheet]. Die Daten beziehen sich hierbei auf die zu bewertenden Kategorien, welche für die Entscheidung eines Mikrocontrollers herangenommen werden.
 
@@ -158,49 +170,45 @@ Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Ra
 
 ![Raspberry Pi Pico 2W Pinout-Diagramm](img/Schaar/Pinout-Raspberry-Pi-Pico-2W.png)
 
-Dieses Diagramm [@raspberry-pi-pico-2w-pinout] zeigt die Pin-Belegungen eines Raspberry Pi Pico 2W.
+Die Abbildung x [@raspberry-pi-pico-2w-pinout] stellt die Pin-Belegungen eines Raspberry Pi Pico 2W dar.
 
-## Vergleich der Optionen & Entscheidung
+### Vergleich der Optionen & Entscheidung
 
 In diesem Teil folgt der direkte Vergleich sowie die Entscheidung für eine der Mikrocontroller-Optionen. Jegliche Diagramme, welche zur Veranschaulichung der Daten verwendet werden, wurden mithilfe von Microsoft Excel erstellt.
 
-## Sensorenauswahl
+### Sensorenauswahl
 
 Kriterien
 
-### Maussensor / Maus
+#### Maussensor / Maus
 
 Billig, leicht nachzumachen
 
-### HC-SR04 + MPU6050 / IMU-Sensor
+#### HC-SR04 + MPU6050 / IMU-Sensor
 
 Warum eher nicht? (Schleifring), Komplexer für Nachbau
 
-## Datenaustausch
+### Datenaustausch
 
 Kriterien
 
-### ESP-Now
-
-Großteils kabellose Datenübertragung möglich
-
-### Serielle Schnittstelle
+#### Serielle Schnittstelle
 
 Übertragung von Daten zwischen Microcontroller/Godot mithilfe von serieller Schnittstelle mit Code in C#
 
-## Erstellung der Nachbauanleitung
+### Erstellung der Nachbauanleitung
 
 Herangehensweise der Erstellung, Open-Source-Bereitstellung der Anleitung, Nach Fertigstellung der Praxis
 
-# Praxis - Schaar
+## Praktischer Teil
 
 Kurzbeschreibung
 
-## Prototyping
+### Prototyping
 
 In diesem Kapitel geht es um Unverwendete Prototypen und Ansätze, Demos und andere Entwicklungsschritte, welche sich im Laufe der Arbeit am Controller ergeben haben. Anhand von ihnen werden der Entwicklungsprozess und verschiedene Iterationen dargestellt.
 
-### Arduino <-> Godot Kommunikations-Demo
+#### Arduino <-> Godot Kommunikations-Demo
 
 Für die Erstpräsentation unserer Arbeit haben wir eine Demo erstellt, anhand von der die Kommunikation zwischen einem Arduino und der Godot Engine veranschaulicht wird. Die Grundstruktur dieser Demo wurde aus einem Youtube-Video genommen [@connect-godot-arduino], in dem die serielle Übertragung der Daten erklärt und beispielhaft dargestellt wird.
 
@@ -297,7 +305,7 @@ Mithilfe des Arduino-Codes, welcher vom Sensor die Rotationsdaten nimmt und sie 
 
 Mithilfe des Arduino-Codes, werden die Rotationsdaten des MPU6050 [@arduino-guide-mpu6050] an die Serielle Schnittstelle gesendet. Der C#-Code nimmt diese Werte an und dreht anhand von ihnen ein Würfel-Objekt. Durch diese Verbindung werden die Möglichkeiten für dieses Projekt simpel und effektiv dargestellt.
 
-### Controller V1 - Demo für Sensoreingaben
+#### Controller V1 - Demo für Sensoreingaben
 
 Nachdem die Erstversion des physischen Controllers fertiggestellt wurde war natürlich eine erweiterte Simulation vonnöten, um die Eingaben auf ihre Funktion zu überprüfen.
 
@@ -305,9 +313,7 @@ Nachdem die Erstversion des physischen Controllers fertiggestellt wurde war nat�
 
 Auch wenn die zweite Simulation visuell wieder
 
-## Design des Controllers
-
-### Case Design
+### Design des Controllers
 
 Dieses Kapitel handelt von den verschiedenen Iterationen der Hülle des Controllers, sowie von den Entscheidungen, welche bei der Entwicklung getroffen worden sind.
 
@@ -335,14 +341,14 @@ Um das visuelle Design attraktiver zu gestalten wurden Sticker in Form von dem D
 
 Nachdem der 
 
-## Verbindung - Hardware & Software
+### Verbindung - Hardware & Software
 
 Technischere Details und Beschreibung für Schnittstelle(n) auf der Hardware-Seite
 
-## Debugging/Bug-Fixing
+### Debugging/Bug-Fixing
 
 Aufgetretene Fehler, Lösungsansätze
 
-## Finaler Controller
+### Finaler Controller
 
-## Audio Design
+### Audio Design

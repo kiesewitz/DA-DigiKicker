@@ -1,4 +1,5 @@
 \newpage
+\textauthor{Nikita Schaar}
 ## Dokumentation
 
 Im Abschnitt Projektdokumentation können Sie mit Hilfe eines Projektmanagementwerkzeuges Ihrer Wahl die Projektumsetzung dokumentieren. (Also ein fortlaufender Projektfortschrittsbericht)
