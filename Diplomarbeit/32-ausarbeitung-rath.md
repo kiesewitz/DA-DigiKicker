@@ -1,9 +1,11 @@
-# Theorie - Rath
+# Teilaufgabe Schüler Rath
 \textauthor{André Rath}
 
-## Einführung in Game Engines
+## Theoretischer Teil
 
-### Was ist eine Game Engine?
+### Einführung in Game Engines
+
+#### Was ist eine Game Engine?
 
 Eine Game Engine ist ein Software-Framework, das Entwicklern die grundlegenden Werkzeuge und Funktionalitäten zur Verfügung stellt, um Videospiele zu erstellen. Sie abstrahiert komplexe technische Aufgaben wie Rendering, Physik-Simulation, Audio-Management und Input-Handling und ermöglicht es Entwicklern, sich auf die eigentliche Spiellogik und das Game Design zu konzentrieren.
 
@@ -11,7 +13,7 @@ Die Kernkomponenten einer modernen Game Engine umfassen typischerweise eine Rend
 
 Zusätzlich bieten die meisten Engines einen integrierten Editor, der eine visuelle Entwicklungsumgebung bereitstellt. Dieser ermöglicht das Erstellen und Bearbeiten von Spielszenen, die Konfiguration von Objekten und das Testen des Spiels direkt in der Entwicklungsumgebung. Die Wahl der richtigen Game Engine ist eine fundamentale Entscheidung im Entwicklungsprozess und hängt von verschiedenen Faktoren ab.
 
-### Kriterien für die Engine-Auswahl
+#### Kriterien für die Engine-Auswahl
 
 Bei der Auswahl einer Game Engine spielen mehrere Faktoren eine entscheidende Rolle. Der Projektumfang und die Art des Spiels bestimmen maßgeblich, welche Engine am besten geeignet ist. Für fotorealistische 3D-Spiele mit aufwendiger Grafik bietet sich beispielsweise die *Unreal Engine* an, während für kleinere Indie-Projekte oder 2D-Spiele *Godot* eine hervorragende Alternative darstellt.
 
@@ -20,27 +22,27 @@ Die Lizenzkosten und das Geschäftsmodell sind ebenfalls wichtige Überlegungen.
 Weitere Kriterien umfassen die verfügbare Dokumentation und Community-Unterstützung, die unterstützten Plattformen für den Export, die Programmiersprachen und Scripting-Möglichkeiten sowie die Lernkurve für neue Entwickler. Auch die Integration von Drittanbieter-Tools, insbesondere für Machine Learning und KI-Entwicklung, kann je nach Projektanforderungen relevant sein.
 
 
-## Unity Engine
+### Unity Engine
 
-### Überblick und Geschichte
+#### Überblick und Geschichte
 
 *Unity* ist eine der weltweit meistverwendeten Game Engines und wurde 2005 von Unity Technologies in Dänemark entwickelt [@wikipedia-unity-engine]. Ursprünglich als Mac-exklusive Engine konzipiert, hat sich *Unity* zu einer plattformübergreifenden Lösung entwickelt, die den Export auf über 20 verschiedene Plattformen ermöglicht, darunter Windows, macOS, Linux, iOS, Android, PlayStation, Xbox, Nintendo Switch und diverse VR/AR-Geräte [@unity-official-website].
 
 Die Engine hat sich besonders im Mobile-Gaming-Bereich als Standard etabliert und wird auch für Anwendungen außerhalb der Spielebranche genutzt, etwa in der Architekturvisualisierung, im Film für Echtzeit-Rendering und in der Automobilindustrie für Simulationen. Bekannte Spiele, die mit Unity entwickelt wurden, umfassen Pokémon Go, Among Us, Cuphead, Hollow Knight und Cities: Skylines.
 
-### Architektur und Kernkonzepte
+#### Architektur und Kernkonzepte
 
 *Unity* basiert auf einem komponentenbasierten Architekturmodell, bei dem GameObjects die grundlegenden Container für alle Spielelemente darstellen. Diese GameObjects sind zunächst leere Hüllen, denen durch das Hinzufügen von Components spezifische Funktionalitäten verliehen werden. Standardkomponenten umfassen Transform für Position und Rotation, Renderer für die visuelle Darstellung, Collider für Physik-Interaktionen und diverse Script-Components für benutzerdefinierte Logik.
 
 Das Scripting in *Unity* erfolgt primär in C#, einer objektorientierten Programmiersprache von Microsoft. *Unity*-Scripts erben typischerweise von der MonoBehaviour-Klasse und nutzen Lifecycle-Methoden wie Start(), Update() und FixedUpdate() zur Implementierung der Spiellogik. Die tiefe Integration von C# ermöglicht Zugriff auf das gesamte .NET-Ökosystem und macht *Unity* zu einer mächtigen Plattform für komplexe Anwendungen.
 
-### Rendering und Grafik-Pipelines
+#### Rendering und Grafik-Pipelines
 
 *Unity* bietet mehrere Rendering-Pipelines für unterschiedliche Anforderungen. Die *Built-in Render Pipeline* ist die traditionelle Standardoption, die *Universal Render Pipeline* (*URP*) ist optimiert für breite Plattformunterstützung und mobile Geräte, während die *High Definition Render Pipeline* (*HDRP*) für visuell anspruchsvolle Projekte auf High-End-Hardware konzipiert ist.
 
 Die *URP* hat sich als beliebte Wahl für die meisten Projekte etabliert, da sie einen guten Kompromiss zwischen visueller Qualität und Performance bietet. Sie unterstützt moderne Rendering-Features wie Post-Processing-Effekte, *Shader Graph* für visuelles Shader-Design und ein skalierbares Lighting-System. Die Pipeline-Architektur ermöglicht es Entwicklern, das Rendering an ihre spezifischen Projektanforderungen anzupassen.
 
-### Asset Store und Ökosystem
+#### Asset Store und Ökosystem
 
 Ein wesentlicher Vorteil von *Unity* ist der umfangreiche *Asset Store*, ein Marktplatz mit tausenden von vorgefertigten Assets, Tools und Plugins. Entwickler können hier 3D-Modelle, Texturen, Audio-Dateien, komplette Gameplay-Systeme und Editor-Erweiterungen erwerben oder kostenlos herunterladen. Dies beschleunigt den Entwicklungsprozess erheblich, insbesondere für kleinere Teams oder Solo-Entwickler.
 
@@ -49,27 +51,27 @@ Die große Community und die umfangreiche offizielle Dokumentation machen *Unity
 ![Unity Editor Screenshot [@unity-project-window]](img/Rath/unity_engine.png)
 
 
-## Unreal Engine
+### Unreal Engine
 
-### Überblick und Geschichte
+#### Überblick und Geschichte
 
 Die *Unreal Engine* wurde 1998 von Epic Games entwickelt und ist nach *Unity* die zweithäufigst verwendete kommerzielle Game Engine [@wikipedia-unreal-engine]. Sie wurde ursprünglich für den First-Person-Shooter Unreal entwickelt und hat sich seitdem zu einer der technisch fortschrittlichsten Engines auf dem Markt entwickelt. Die Engine ist bekannt für ihre Fähigkeit, visuell beeindruckende, fotorealistische Grafiken zu erzeugen [@unreal-official-website].
 
 Bekannte Titel, die mit der *Unreal Engine* entwickelt wurden, umfassen Fortnite, PlayerUnknown's Battlegrounds und zahlreiche AAA-Produktionen. Die Engine wird auch außerhalb der Spieleentwicklung eingesetzt, etwa in der Filmindustrie für virtuelle Produktionen (The Mandalorian) und in der Automobilindustrie für Design-Visualisierungen.
 
-### Technische Highlights
+#### Technische Highlights
 
 *Unreal Engine 5* führte mehrere bahnbrechende Technologien ein [@unreal-documentation]. *Nanite* ist ein virtualisiertes Geometrie-System, das es ermöglicht, Assets mit filmischer Qualität direkt in Spielen zu verwenden, ohne aufwendige Level-of-Detail-Optimierungen manuell erstellen zu müssen. Die Technologie streamt und skaliert die Geometrie automatisch basierend auf der Bildschirmauflösung und Kameraposition.
 
 *Lumen* ist ein vollständig dynamisches Global-Illumination-System, das realistische Beleuchtung ohne vorberechnete Lightmaps ermöglicht. Änderungen an der Beleuchtung oder Geometrie werden in Echtzeit reflektiert, was den Workflow für Künstler und Level-Designer erheblich verbessert. Diese Technologien machen die *Unreal Engine* besonders attraktiv für Projekte, bei denen visuelle Qualität höchste Priorität hat.
 
-### Programmierung und Blueprints
+#### Programmierung und Blueprints
 
 Die *Unreal Engine* unterstützt zwei primäre Entwicklungsansätze: C++ für maximale Kontrolle und Performance sowie *Blueprints* für visuelles Scripting. *Blueprints* ermöglichen es Entwicklern, komplexe Spiellogik durch das Verbinden von Nodes in einem visuellen Graph zu erstellen, ohne eine Zeile Code schreiben zu müssen. Dies macht die Engine zugänglicher für Designer und Künstler ohne Programmierhintergrund.
 
 Für performancekritische Systeme bietet C++ die volle Kontrolle über die Engine. Die Kombination beider Ansätze ist üblich: C++ für die Grundsysteme und Performance-intensive Berechnungen, *Blueprints* für schnelles Prototyping und spielspezifische Logik. Die Lernkurve für die *Unreal Engine* ist steiler als bei *Unity* oder *Godot*, bietet aber entsprechend mehr Möglichkeiten für komplexe Projekte.
 
-### Lizenzmodell und Zielgruppe
+#### Lizenzmodell und Zielgruppe
 
 Die Unreal Engine ist kostenlos nutzbar, verlangt jedoch 5% Royalties auf den Bruttoumsatz nach dem ersten Million Dollar. Für viele Indie-Entwickler bedeutet dies de facto kostenlose Nutzung, während erfolgreiche Projekte entsprechend beteiligt werden. Epic Games bietet zudem Grants und Förderprogramme für vielversprechende Projekte.
 
@@ -78,21 +80,21 @@ Die Zielgruppe der *Unreal Engine* umfasst primär mittlere bis große Studios, 
 ![Unreal Engine Screenshot [@unreal-animation-screenshot]](img/Rath/unreal_engine.jpg)
 
 
-## Godot Engine
+### Godot Engine
 
-### Überblick und Geschichte
+#### Überblick und Geschichte
 
 *Godot* ist eine Open-Source Game Engine, die am 14. Januar 2014 von Juan Linietsky und Ariel Manzur erstmals öffentlich auf *GitHub* veröffentlicht wurde [@wikipedia-godot]. Die erste stabile Version 1.0 erschien am 15. Dezember 2014. Mit der Veröffentlichung als Open-Source-Projekt unter der MIT-Lizenz begann ein stetiges Wachstum der Community und der Feature-Entwicklung.
 
 Die Veröffentlichung von *Godot* 4.0 am 1. März 2023 markierte einen Meilenstein mit einem komplett überarbeiteten *Vulkan*-basierten Rendering-Backend, verbesserter 3D-Unterstützung und zahlreichen Quality-of-Life-Verbesserungen [@godot-docs-official]. *Godot* hat sich als beliebte Alternative zu den kommerziellen Engines etabliert, insbesondere nach den kontroversen Lizenzänderungen bei *Unity* im September 2023, die zu einem signifikanten Zuwachs an *Godot*-Nutzern führten [@gamefromscratch-godot-vs-unity].
 
-### Vorteile von Godot
+#### Vorteile von Godot
 
 Der größte Vorteil von *Godot* ist seine vollständige Kostenfreiheit und Open-Source-Natur. Die MIT-Lizenz erlaubt uneingeschränkte kommerzielle Nutzung ohne Lizenzgebühren oder Royalties. Entwickler können den Quellcode einsehen, modifizieren und an ihre Bedürfnisse anpassen. Dies fördert Transparenz und ermöglicht tiefes Verständnis der Engine-Funktionsweise.
 
 Die Engine ist bemerkenswert leichtgewichtig mit einer Größe von etwa 200 MB für den Editor inklusive Projektdateien und Cache, im Vergleich zu mehreren Gigabytes bei *Unity* und *Unreal Engine*. Der Export auf verschiedene Plattformen erfordert zusätzlich das Herunterladen von Export Templates (ca. 1,3 GB nach Installation). Der Editor startet in Sekunden und ist auch auf älteren oder leistungsschwächeren Rechnern performant nutzbar. Godot bietet erstklassige 2D-Unterstützung mit einem dedizierten 2D-Rendering-System, das nicht auf 3D-Projektion basiert, sowie solide 3D-Capabilities für die meisten Projektanforderungen.
 
-### Community und Entwicklung
+#### Community und Entwicklung
 
 Die *Godot*-Entwicklung erfolgt vollständig öffentlich auf *GitHub* mit transparenten Roadmaps und Issue-Tracking. Jeder kann Bugs melden, Features vorschlagen oder Code beitragen. Die Engine wird von der *Godot* Foundation verwaltet, einer gemeinnützigen Organisation, die 2022 gegründet wurde, um die langfristige Entwicklung sicherzustellen.
 
@@ -101,9 +103,9 @@ Die offizielle Dokumentation ist umfangreich und wird kontinuierlich verbessert.
 ![Godot Editor Screenshot [@godot-editor-screenshot]](img/Rath/godot_engine.jpg)
 
 
-## Godot im Detail
+### Godot im Detail
 
-### Das Node-System
+#### Das Node-System
 
 Das Herzstück der *Godot*-Architektur ist das Node-System [@godot-docs-official]. Ein Node ist das grundlegende Baustein-Element in *Godot* und repräsentiert eine einzelne, spezialisierte Funktionalität. Im Gegensatz zu *Unity*'s komponentenbasiertem Ansatz, bei dem GameObjects mit Components bestückt werden, sind *Godot*-Nodes von Grund auf für ihre spezifische Aufgabe konzipiert. Diese Designentscheidung führt zu einer klaren, intuitiven Struktur.
 
@@ -123,7 +125,7 @@ Player (CharacterBody3D)
     +--- RayCast3D
 ```
 
-### Das Scene-System
+#### Das Scene-System
 
 Scenes sind wiederverwendbare Sammlungen von Nodes, die als eigenständige Einheiten gespeichert und instanziiert werden können. Eine Scene wird als .tscn-Datei (Text Scene) oder .scn-Datei (Binary Scene) gespeichert und kann einen einzelnen Node oder komplexe Hierarchien mit hunderten von Nodes enthalten. Das Scene-System ist eines der leistungsstärksten Features von Godot.
 
@@ -149,7 +151,7 @@ func _on_spawn_timer_timeout() -> void:
 
 Dies ermöglicht effizientes Memory-Management und flexible Spielsysteme, bei denen Objekte dynamisch erstellt und zerstört werden.
 
-### Scripting mit GDScript
+#### Scripting mit GDScript
 
 *GDScript* ist *Godot*s eigene, Python-ähnliche Programmiersprache, die speziell für die Game-Entwicklung optimiert wurde [@brackeys-gdscript-tutorial]. Die Syntax ist bewusst einfach und verzichtet auf unnötige Boilerplate-Code. *GDScript* ist dynamisch typisiert, unterstützt aber auch optionale Type-Hints für bessere Editor-Unterstützung und Fehlererkennung.
 
@@ -201,7 +203,7 @@ Die enge Integration mit der Engine ist ein Hauptvorteil von *GDScript* [@clearc
 
 Wichtige *GDScript*-Konzepte umfassen die Lifecycle-Methoden `_ready()` für Initialisierung, `_process()` für Frame-Updates und `_physics_process()` für physik-relevante Berechnungen [@godotneers-gdscript]. Variablen können mit `@export` annotiert werden, um sie im Editor bearbeitbar zu machen. `@onready` ermöglicht das sichere Referenzieren von Child-Nodes nach der Initialisierung.
 
-### C# in Godot
+#### C# in Godot
 
 Neben *GDScript* unterstützt *Godot* auch C# als vollwertige Scripting-Sprache [@godot-csharp-docs]. C# bietet statische Typisierung, Zugang zum .NET-Ökosystem und ist für Entwickler mit *Unity*-Erfahrung vertraut. Die C#-Unterstützung erfordert die .NET-Version von *Godot* (separat downloadbar).
 
@@ -295,7 +297,7 @@ public partial class GameManager : Node
 }
 ```
 
-### Das Signal-System
+#### Das Signal-System
 
 Signals sind Godots Implementierung des Observer-Patterns und ermöglichen lose gekoppelte Kommunikation zwischen Nodes. Ein Signal ist ein benanntes Event, das von einem Node emittiert wird und von beliebig vielen anderen Nodes empfangen werden kann. Dies fördert modulares Design, da Nodes nicht direkt aufeinander verweisen müssen.
 
@@ -360,7 +362,7 @@ func _on_coin_collected(amount: int) -> void:
 
 Built-in Signals werden von der Engine bereitgestellt, wie `body_entered` bei Collision-Nodes oder `timeout` bei Timern. Custom Signals können mit dem `signal`-Keyword definiert werden und beliebige Parameter übertragen. Die Verbindung zwischen Signal und Receiver kann im Editor visuell oder per Code mit der `connect()`-Methode hergestellt werden.
 
-### Rendering und Shaders
+#### Rendering und Shaders
 
 *Godot* 4 verwendet eine moderne *Vulkan*-basierte Rendering-Pipeline, die signifikante Verbesserungen gegenüber dem *OpenGL*-basierten *Godot* 3 bietet. Die Engine unterstützt verschiedene Rendering-Methoden: Forward+, Mobile und Compatibility für unterschiedliche Plattform-Anforderungen. Die Forward+-Methode bietet die beste visuelle Qualität mit Unterstützung für unbegrenzte Lichtquellen.
 
@@ -393,7 +395,7 @@ void fragment() {
 
 Shader können für Canvas (2D), Spatial (3D) und Particles geschrieben werden. Der *Visual Shader Editor* ermöglicht node-basiertes Shader-Design für Entwickler ohne Shader-Programmiererfahrung.
 
-### State Machines in Godot
+#### State Machines in Godot
 
 Finite State Machines (FSM) sind ein fundamentales Designpattern für die Verwaltung komplexer Objektzustände, etwa für KI-Verhalten, Spieler-Charaktere oder UI-Systeme [@heartbeast-fsm]. *Godot* bietet mit dem *AnimationTree* einen integrierten State Machine für Animationen, für Gameplay-Logik werden State Machines typischerweise manuell implementiert.
 
@@ -477,9 +479,9 @@ func physics_update(delta: float) -> void:
 
 Diese Architektur führt zu sauberem, wartbarem Code für komplexe Verhaltensmuster.
 
-## WebRTC und Multiplayer Networking
+### WebRTC und Multiplayer Networking
 
-### Grundlagen von WebRTC
+#### Grundlagen von WebRTC
 
 *WebRTC* (Web Real-Time Communication) ist ein offener Standard für Echtzeit-Kommunikation direkt zwischen Browsern und Anwendungen ohne die Notwendigkeit von Plugins oder zusätzlicher Software [@mdn-webrtc-datachannels]. Ursprünglich von Google entwickelt und 2011 als Open-Source-Projekt veröffentlicht, ermöglicht *WebRTC* die Übertragung von Audio, Video und beliebigen Daten zwischen Peers [@wikipedia-webrtc].
 
@@ -487,7 +489,7 @@ Die Technologie basiert auf drei Hauptkomponenten: MediaStream für die Erfassun
 
 *WebRTC* verwendet standardmäßig UDP für die Datenübertragung, was minimale Latenz gewährleistet. Der DataChannel unterstützt sowohl zuverlässige (geordnete, garantierte Zustellung) als auch unzuverlässige (schnellere, aber möglicherweise verlorene Pakete) Übertragungsmodi, was Entwicklern Flexibilität für verschiedene Anwendungsfälle gibt.
 
-### NAT Traversal und Signaling
+#### NAT Traversal und Signaling
 
 Eine der größten Herausforderungen bei Peer-to-Peer-Verbindungen ist das NAT (Network Address Translation) Traversal. Die meisten Geräte befinden sich hinter Routern mit NAT, was direkte Verbindungen erschwert. *WebRTC* löst dieses Problem durch ICE (Interactive Connectivity Establishment), ein Framework das verschiedene Verbindungsmethoden kombiniert.
 
@@ -495,7 +497,7 @@ STUN (Session Traversal Utilities for NAT) Server helfen Clients, ihre öffentli
 
 Der Signaling-Prozess selbst ist nicht Teil des WebRTC-Standards und kann über beliebige Kanäle erfolgen, typischerweise WebSockets. Während des Signalings tauschen die Peers SDP (Session Description Protocol) Nachrichten aus, die Informationen über unterstützte Codecs, Verschlüsselung und Netzwerkkonfiguration enthalten.
 
-### Coturn als TURN/STUN Server
+#### Coturn als TURN/STUN Server
 
 *Coturn* ist eine Open-Source-Implementierung eines TURN und STUN Servers, die häufig für *WebRTC*-Anwendungen eingesetzt wird [@coturn-github]. Der Server kann selbst gehostet werden und bietet volle Kontrolle über die Infrastruktur sowie Unabhängigkeit von Drittanbietern.
 
@@ -519,7 +521,7 @@ verbose
 
 Die Integration in Spieleanwendungen erfolgt durch Angabe der STUN/TURN Server URLs in der ICE-Konfiguration [@coturn-wiki]. Clients versuchen zunächst eine direkte Verbindung, fallen bei Bedarf auf STUN zurück, und nutzen TURN nur als letzte Option.
 
-### WebRTC in Godot
+#### WebRTC in Godot
 
 *Godot* bietet native Unterstützung für *WebRTC* über die WebRTCPeerConnection und WebRTCDataChannel Klassen [@godot-webrtc-docs]. Diese ermöglichen die Implementierung von Peer-to-Peer Multiplayer ohne externe Plugins. Die High-Level Multiplayer API von *Godot* kann mit *WebRTC* als Transport-Layer verwendet werden.
 
@@ -585,7 +587,7 @@ func send_game_data(data: String) -> void:
 
 Für die Integration mit *Godot*s High-Level Multiplayer API existiert die WebRTCMultiplayerPeer Klasse, die *WebRTC* als Transport für das MultiplayerAPI System verwendet [@godot-highlevel-multiplayer]. Dies ermöglicht die Nutzung von RPCs und synchronisierten Variablen über *WebRTC*-Verbindungen.
 
-### Multiplayer Architekturen
+#### Multiplayer Architekturen
 
 Bei der Entwicklung von Multiplayer-Spielen gibt es verschiedene Architekturansätze. Die Client-Server-Architektur verwendet einen autoritativen Server, der den Spielzustand verwaltet und Entscheidungen trifft. Clients senden Inputs an den Server und erhalten Zustandsupdates zurück. Diese Architektur bietet guten Schutz vor Cheating, erfordert aber Server-Infrastruktur.
 
@@ -593,9 +595,9 @@ Die Peer-to-Peer-Architektur, die *WebRTC* ermöglicht, verbindet Spieler direkt
 
 Hybride Ansätze kombinieren beide Architekturen: Ein leichtgewichtiger Server übernimmt Matchmaking und Authentifizierung, während die eigentliche Spielkommunikation peer-to-peer erfolgt. Dies reduziert Serverkosten bei gleichzeitiger Beibehaltung zentraler Kontrolle über wichtige Funktionen.
 
-## Grundlagen des Reinforcement Learning
+### Grundlagen des Reinforcement Learning
 
-### Was ist Reinforcement Learning?
+#### Was ist Reinforcement Learning?
 
 Reinforcement Learning (RL) ist ein Teilgebiet des maschinellen Lernens, bei dem ein Agent durch Interaktion mit einer Umgebung lernt, optimale Entscheidungen zu treffen [@spinningup-intro]. Im Gegensatz zu Supervised Learning, wo Trainingsbeispiele mit korrekten Antworten vorliegen, erhält der Agent im RL nur numerisches Feedback in Form von Rewards, die die Qualität seiner Aktionen bewerten.
 
@@ -605,7 +607,7 @@ Das grundlegende RL-Framework besteht aus einem Agenten, der in einer Umgebung (
 
 Diese Formulierung macht RL besonders geeignet für Probleme, bei denen der optimale Lösungsweg nicht bekannt ist, aber die Qualität von Ergebnissen bewertet werden kann. Prominente Beispiele umfassen das Erlernen von Spielstrategien wie bei AlphaGo [@alphago-documentary], Roboter-Steuerung und autonomes Fahren.
 
-### Zentrale Konzepte
+#### Zentrale Konzepte
 
 Der State beschreibt alle relevanten Informationen über die aktuelle Situation der Umgebung. In einem Videospiel könnte dies die Position aller Objekte, die Gesundheit des Spielers und andere Spielvariablen umfassen. Der Observation Space definiert die Struktur und den Wertebereich aller möglichen States, die der Agent wahrnehmen kann.
 
@@ -641,7 +643,7 @@ env.close()
 
 Die Policy ist die Strategie des Agenten, die für jeden State eine Aktion (oder eine Wahrscheinlichkeitsverteilung über Aktionen) bestimmt. Das Ziel des RL-Trainings ist es, eine optimale Policy zu finden, die den erwarteten kumulativen Reward maximiert. Der Discount Factor Gamma gewichtet dabei zukünftige Rewards gegenüber unmittelbaren.
 
-### Algorithmen-Kategorien
+#### Algorithmen-Kategorien
 
 Value-based Methods wie Q-Learning und DQN (Deep Q-Network) lernen eine Value Function, die den erwarteten kumulativen Reward für jeden State (oder State-Action-Paar) schätzt.[@silver-rl-lecture1] [@sentdex-dqn] Die Policy wird implizit abgeleitet, indem immer die Aktion mit dem höchsten geschätzten Wert gewählt wird.
 
@@ -649,7 +651,7 @@ Policy-based Methods wie REINFORCE und Policy Gradient lernen die Policy direkt,
 
 Actor-Critic Methods kombinieren beide Ansätze: Ein Actor lernt die Policy, während ein Critic die Value Function schätzt. Der Critic reduziert die Varianz des Policy-Gradienten, was zu stabilerem Training führt. Moderne Algorithmen wie PPO (Proximal Policy Optimization) und A3C gehören zu dieser Kategorie.[@spinningup-ppo]
 
-### Deep Q-Networks (DQN)
+#### Deep Q-Networks (DQN)
 
 Deep Q-Networks revolutionierten das Feld des Deep Reinforcement Learning durch die Kombination von Q-Learning mit tiefen neuronalen Netzen [@sentdex-dqn]. Der bahnbrechende Erfolg von DQN wurde 2015 von DeepMind demonstriert, als ein Agent lernte, Atari-Spiele auf übermenschlichem Niveau zu spielen, nur durch Beobachtung der Pixel-Ausgabe [@silver-rl-lecture1].
 
@@ -738,7 +740,7 @@ DQN verwendet zwei wichtige Techniken für stabiles Training [@pytorch-dqn-tutor
 
 Das Target Network ist eine Kopie des Q-Networks, die seltener aktualisiert wird und für die Berechnung der Target-Q-Values verwendet wird. Dies verhindert instabile Updates, bei denen das Netzwerk seine eigenen, sich ändernden Predictions verfolgen würde. DQN ist gut geeignet für Probleme mit diskreten Action Spaces und bildbasierten States.
 
-### Proximal Policy Optimization (PPO)
+#### Proximal Policy Optimization (PPO)
 
 PPO ist ein Policy-Gradient-Algorithmus, der sich als einer der robustesten und am häufigsten verwendeten RL-Algorithmen etabliert hat [@spinningup-ppo]. Der Algorithmus bietet einen guten Kompromiss zwischen Implementierungskomplexität und Performance.
 
@@ -795,9 +797,9 @@ model.save("ppo_lunarlander")
 PPO ist besonders populär für kontinuierliche Control-Tasks, Robotik und Game AI. Die relative Einfachheit der Implementierung im Vergleich zu anderen Algorithmen wie TRPO, bei gleichzeitig vergleichbarer Performance, macht PPO zur Standardwahl für viele Anwendungen. *Stable-Baselines3* bietet eine robuste, gut getestete PPO-Implementierung [@sb3-documentation].
 
 
-## Neuronale Netze und Deep Learning
+### Neuronale Netze und Deep Learning
 
-### Grundlagen neuronaler Netze
+#### Grundlagen neuronaler Netze
 
 Neuronale Netze sind von biologischen Nervensystemen inspirierte Berechnungsmodelle, die aus miteinander verbundenen Neuronen bestehen. Ein künstliches Neuron empfängt gewichtete Inputs, summiert diese auf und wendet eine Aktivierungsfunktion an, um den Output zu berechnen. Durch das Schichten von vielen Neuronen entstehen tiefe Netze mit der Fähigkeit, komplexe Muster zu lernen. 
 
@@ -837,7 +839,7 @@ print(f"Output: {output}")
 
 Das Training neuronaler Netze erfolgt durch Backpropagation, einen Algorithmus zur effizienten Berechnung von Gradienten [@karpathy-micrograd]. Ein Loss-Function misst den Unterschied zwischen Vorhersage und Zielwert, und Gradient Descent passt die Gewichte schrittweise an, um den Loss zu minimieren. Die Lernrate kontrolliert die Schrittgröße dieser Updates.
 
-### PyTorch als Framework
+#### PyTorch als Framework
 
 *PyTorch* ist ein Open-Source Deep Learning Framework, das von Meta (Facebook) entwickelt wurde und sich als eines der führenden Frameworks für Forschung und Produktion etabliert hat [@pytorch-official-docs]. Seine dynamische Computation Graph-Architektur ermöglicht flexibles Debugging und intuitive Entwicklung.
 
@@ -884,15 +886,15 @@ for epoch in range(100):
 Für Reinforcement Learning ist *PyTorch* die bevorzugte Wahl vieler Forscher und Bibliotheken [@renotte-rl-3hours]. *Stable-Baselines3*, die Standard-RL-Bibliothek, basiert vollständig auf *PyTorch*. Die Kombination aus Flexibilität, Performance und dem umfangreichen Ökosystem macht *PyTorch* ideal für die Entwicklung und das Training von RL-Agenten.
 
 
-## Godot RL Agents
+### Godot RL Agents
 
-### Überblick und Motivation
+#### Überblick und Motivation
 
 *Godot RL Agents* ist ein Open-Source-Framework, das die Integration von Reinforcement Learning mit der *Godot* Game Engine ermöglicht [@godot-rl-agents-github]. Das Projekt wurde von Edward Beeching entwickelt [@godot-rl-agents-arxiv]. Es adressiert den Bedarf an einer zugänglichen, gut integrierten Lösung für RL in Spielumgebungen.
 
 Die Motivation für *Godot RL Agents* entstand aus der Beobachtung, dass bestehende RL-Frameworks für Spiele oft komplexe Setups erfordern oder auf spezifische Engines beschränkt sind. Die Kombination von *Godot*s Zugänglichkeit und Open-Source-Natur mit modernen RL-Algorithmen schafft eine Plattform, die sowohl für Forschung als auch für praktische Game-AI-Anwendungen geeignet ist.
 
-### Architektur und Komponenten
+#### Architektur und Komponenten
 
 Das Framework besteht aus zwei Hauptkomponenten: einem GDExtension-Plugin für *Godot* und einer Python-Bibliothek für das Training [@huggingface-godotrl]. Das *Godot*-Plugin stellt die notwendigen Nodes und Klassen bereit, um Spielumgebungen als RL-Environments zu definieren, während die Python-Seite das Training mit *Stable-Baselines3* oder anderen Frameworks übernimmt.
 
@@ -902,7 +904,7 @@ Das Framework besteht aus zwei Hauptkomponenten: einem GDExtension-Plugin für *
 
 Die Kommunikation zwischen *Godot* und Python erfolgt über einen SharedMemory-Mechanismus oder Sockets. Dieser Ansatz erlaubt paralleles Training mit mehreren *Godot*-Instanzen für beschleunigtes Lernen. Die API ist inspiriert von *Gymnasium* (ehemals OpenAI Gym), dem Standard-Interface für RL-Environments, was die Integration mit bestehenden RL-Codebasen erleichtert.
 
-### AIController und Sensoren
+#### AIController und Sensoren
 
 Der AIController ist der zentrale Node für RL-Agenten in *Godot RL Agents*. Er verwaltet die Observation- und Action-Spaces, sammelt Sensor-Daten und wendet Aktionen an:
 
@@ -993,7 +995,7 @@ func reset() -> void:
 
 Das Framework bietet verschiedene Sensor-Typen für die Observation-Erfassung. RaycastSensors simulieren Lidar-ähnliche Wahrnehmung, indem sie Strahlen in die Umgebung senden und Distanzen zu Kollisionen zurückgeben. Zusätzlich können beliebige Spielvariablen wie Position, Geschwindigkeit oder Spielstand als Observations eingebunden werden.
 
-### Training und Inference
+#### Training und Inference
 
 Das Training erfolgt typischerweise mit der Python-Bibliothek gdrl, die auf *Stable-Baselines3* aufbaut [@godot-rl-tutorial-video]:
 
@@ -1111,7 +1113,7 @@ func get_action(observations: Array) -> Array:
     return output
 ```
 
-### Reward Engineering
+#### Reward Engineering
 
 Die Definition einer geeigneten Reward-Funktion ist oft die größte Herausforderung beim Anwenden von RL auf neue Probleme. Das Reward-Signal muss das gewünschte Verhalten effektiv kommunizieren, ohne unbeabsichtigte Nebeneffekte zu fördern. *Godot RL Agents* ermöglicht flexible Reward-Definitionen direkt im *GDScript*-Code.
 
@@ -1202,20 +1204,20 @@ func increase_difficulty() -> void:
 
 
 
-# Praxis - Rath
+## Praktischer Teil
 
 
 *Hinweis: Die in diesem Teil gezeigten Code-Beispiele basieren auf dem tatsächlichen Quellcode des Projekts, wurden jedoch zur besseren Lesbarkeit gekürzt und vereinfacht. Nicht relevante Teile wie Fehlerbehandlung, Logging oder Hilfsmethoden wurden ausgelassen.*
 
-## Projektübersicht und Anforderungen
+### Projektübersicht und Anforderungen
 
-### Spielkonzept
+#### Spielkonzept
 
 DigiKicker ist ein vollständig in 3D umgesetztes Tischfußball-Spiel (Foosball), das die klassische Spielmechanik eines physischen Kickertisches in eine digitale Form überträgt. Das Projekt demonstriert die Anwendung moderner Spieleentwicklungstechnologien und kombiniert drei zentrale Aspekte: realistische Physik-Simulation, Online-Multiplayer über *WebRTC* und einen KI-Gegner, der mittels Reinforcement Learning trainiert wurde.
 
 Das Spielprinzip folgt den etablierten Regeln des Tischfußballs: Zwei Spieler steuern jeweils vier Stangen mit aufmontierten Spielerfiguren. Durch Rotation der Stangen werden die Figuren bewegt, um einen Ball ins gegnerische Tor zu befördern. Die laterale Bewegung der Stangen ermöglicht die Positionierung der Figuren entlang der Querachse des Spielfelds.
 
-### Funktionale Anforderungen
+#### Funktionale Anforderungen
 
 Die funktionalen Anforderungen gliedern sich in drei Hauptbereiche:
 
@@ -1241,7 +1243,7 @@ Die funktionalen Anforderungen gliedern sich in drei Hauptbereiche:
 - Regelbasierter Bot als Alternative für verschiedene Schwierigkeitsstufen
 - Self-Play Training für symmetrisches Lernverhalten
 
-### Nicht-funktionale Anforderungen
+#### Nicht-funktionale Anforderungen
 
 **Performance**
 
@@ -1260,7 +1262,7 @@ Die funktionalen Anforderungen gliedern sich in drei Hauptbereiche:
 - Unterstützung für Tastatur und Controller
 - Visuelle Rückmeldung zur aktiven Stangenauswahl
 
-### Technologie-Stack
+#### Technologie-Stack
 
 ```
 SPIELLOGIK & PHYSIK
@@ -1280,9 +1282,9 @@ REINFORCEMENT LEARNING
 +--- ONNX Runtime für Inference
 ```
 
-## Projektstruktur und Setup
+### Projektstruktur und Setup
 
-### Godot-Projektstruktur
+#### Godot-Projektstruktur
 
 Das Projekt folgt einer modularen Ordnerstruktur, die eine klare Trennung zwischen Szenen, Scripts, Assets und Konfigurationsdateien ermöglicht:
 
@@ -1355,7 +1357,7 @@ DigiKicker/
     +--- webrtc/ 
 ```
 
-### C#-Projekt-Setup
+#### C#-Projekt-Setup
 
 Das C#-Projekt verwendet .NET 8.0 und integriert die *ONNX Runtime* für die KI-Inferenz. Die Projektkonfiguration in der `.csproj`-Datei:
 
@@ -1376,7 +1378,7 @@ Das C#-Projekt verwendet .NET 8.0 und integriert die *ONNX Runtime* für die KI-
 
 Die *ONNX Runtime* ermöglicht die Ausführung trainierter neuronaler Netze direkt in *Godot* ohne Python-Abhängigkeit. Das Paket wird automatisch beim Build heruntergeladen und in das Export-Verzeichnis kopiert.
 
-### Autoload-Konfiguration
+#### Autoload-Konfiguration
 
 *Godot*'s Autoload-System wird genutzt, um globale Manager-Klassen als Singletons zu registrieren. Diese sind in der `project.godot` definiert:
 
@@ -1411,7 +1413,7 @@ public partial class GameManager : Node
 }
 ```
 
-### Entwicklungsumgebung
+#### Entwicklungsumgebung
 
 Die Entwicklung erfolgte mit folgenden Werkzeugen:
 
@@ -1436,9 +1438,9 @@ onnxruntime==1.23.2
 
 Die verwendeten Pakete: *Stable-Baselines3*^[https://stable-baselines3.readthedocs.io/], *Godot RL Agents*^[https://github.com/edbeeching/godot_rl_agents], *Gymnasium*^[https://gymnasium.farama.org/], *PyTorch*^[https://pytorch.org/] und *ONNX*^[https://onnx.ai/].
 
-## Spielmechanik-Implementierung
+### Spielmechanik-Implementierung
 
-### 3D-Szenenaufbau
+#### 3D-Szenenaufbau
 
 Der Spieltisch wird prozedural in der `Table.cs`-Klasse aufgebaut. Alle Dimensionen werden mit einem globalen Skalierungsfaktor (`SCALE = 5.0`) multipliziert.
 
@@ -1487,9 +1489,9 @@ private const int MIDFIELD_FIGURES = 5;
 private const int ATTACK_FIGURES = 3;
 ```
 
-### Physik-System
+#### Physik-System
 
-#### Ball-Physik
+##### Ball-Physik
 
 Der Ball ist als `RigidBody3D` implementiert und nutzt *Godot*s integrierte Physik-Engine. Die Konfiguration optimiert das Spielgefühl für reaktive, aber kontrollierbare Bewegungen:
 
@@ -1569,7 +1571,7 @@ public override void _PhysicsProcess(double delta)
 }
 ```
 
-#### Schuss-Mechanik
+##### Schuss-Mechanik
 
 Wenn eine Figur den Ball trifft, wird ein Impuls basierend auf der Rotationsgeschwindigkeit der Stange angewendet:
 
@@ -1599,7 +1601,7 @@ public void ApplyKick(Vector3 direction, float strength)
 }
 ```
 
-### Stangen-Steuerung
+#### Stangen-Steuerung
 
 Die `Rod`-Klasse verwaltet Rotation und laterale Bewegung einer Stange:
 
@@ -1687,7 +1689,7 @@ private void SpawnFigures()
 }
 ```
 
-### Input-System
+#### Input-System
 
 Der `InputManager` abstrahiert verschiedene Eingabegeräte und ermöglicht sowohl Tastatur- als auch Controller-Steuerung:
 
@@ -1734,7 +1736,7 @@ public Vector2 GetRodInput(int player, int rodIndex)
 }
 ```
 
-### Kamera-System
+#### Kamera-System
 
 Die Kamera folgt dem Ball mit sanfter Interpolation und bietet eine isometrische Perspektive:
 
@@ -1769,7 +1771,7 @@ public partial class CameraController : Node3D
 }
 ```
 
-### Tor-Erkennung
+#### Tor-Erkennung
 
 Tore werden über `Area3D`-Trigger-Zonen erkannt, die sich im Inneren der Torräume befinden:
 
@@ -1806,15 +1808,15 @@ public partial class Goal : Area3D
 }
 ```
 
-### Lebenszyklus eines Spiels
+#### Lebenszyklus eines Spiels
 
 Der `GameManager` verwaltet den Spielzustand über ein Enum mit vier möglichen Zuständen: `Menu`, `Playing`, `Paused` und `GameOver`. Der Countdown nach Spielstart oder nach einem Tor wird separat über Flags gesteuert.
 
 ![Lebenszyklus eines Spiels](img/Rath/Lebenszyklus-Spiel.png)
 
-## Multiplayer-Implementierung
+### Multiplayer-Implementierung
 
-### Netzwerk-Architektur
+#### Netzwerk-Architektur
 
 DigiKicker verwendet eine Peer-to-Peer-Architektur basierend auf *WebRTC*. Diese Entscheidung eliminiert die Notwendigkeit eines dedizierten Spielservers und reduziert die Latenz, da Spielzustandsdaten direkt zwischen den Spielern ausgetauscht werden.
 
@@ -1822,7 +1824,7 @@ DigiKicker verwendet eine Peer-to-Peer-Architektur basierend auf *WebRTC*. Diese
 
 Das Diagramm zeigt den vollständigen Verbindungsaufbau: Nach dem Signaling über den PHP-Server wird versucht, eine direkte P2P-Verbindung herzustellen. Der STUN-Server hilft dabei, die öffentliche IP zu ermitteln. Sollte aufgrund von NAT-Restriktionen keine direkte Verbindung möglich sein, wird der TURN-Server als Relay verwendet.
 
-### Signaling-Server
+#### Signaling-Server
 
 Der Signaling-Prozess wird über ein PHP-Backend abgewickelt, das auf einem eigenen Server gehostet ist. Die Implementierung besteht aus mehreren Endpunkten:
 
@@ -1836,7 +1838,7 @@ Der Signaling-Prozess wird über ein PHP-Backend abgewickelt, das auf einem eige
 
 Das PHP-Backend speichert offene Lobbys und abgeschlossene Matches in einer MySQL-Datenbank.
 
-### STUN/TURN-Server mit Coturn
+#### STUN/TURN-Server mit Coturn
 
 Für NAT-Traversal wird ein eigener *Coturn*-Server betrieben, der sowohl STUN- als auch TURN-Dienste bereitstellt:
 
@@ -1857,7 +1859,7 @@ Die Authentifizierung erfolgt über Long-Term Credentials mit Benutzername und P
 
 *Coturn* speichert aktive Sessions temporär im Arbeitsspeicher und löscht diese automatisch nach Verbindungsende.
 
-### WebRTC-Implementierung in Godot
+#### WebRTC-Implementierung in Godot
 
 Der `OnlineMultiplayerManager` koordiniert den gesamten Verbindungsaufbau:
 
@@ -1934,7 +1936,7 @@ func send_game_state(state: Dictionary) -> void:
     data_channel.put_packet(json.to_utf8_buffer())
 ```
 
-### Spielzustand-Synchronisation
+#### Spielzustand-Synchronisation
 
 Die Synchronisation erfolgt über regelmäßige Zustandsupdates, die Position und Rotation aller Spielobjekte enthalten:
 
@@ -1979,7 +1981,7 @@ func _on_game_state_received(state: Dictionary) -> void:
         rod.ApplyNetworkState(rod_data["lateral"], rod_data["rotation"])
 ```
 
-### Latenz-Kompensation
+#### Latenz-Kompensation
 
 Für netzwerk-gesteuerte Stangen wird Interpolation verwendet, um ruckfreie Bewegungen zu gewährleisten:
 
@@ -2015,7 +2017,7 @@ private void HandleNetworkInterpolation(float delta)
 }
 ```
 
-### Ping-Messung
+#### Ping-Messung
 
 Die Verbindungsqualität wird kontinuierlich durch Ping-Messungen überwacht:
 
@@ -2047,15 +2049,15 @@ func _handle_pong(msg: Dictionary) -> void:
     emit_signal("ping_updated", current_ping_ms, connection_type)
 ```
 
-## KI-Gegner mit Reinforcement Learning
+### KI-Gegner mit Reinforcement Learning
 
-### Training-Environment Setup
+#### Training-Environment Setup
 
 Das Training nutzt das *Godot RL Agents* Framework, das eine Brücke zwischen *Godot* und Python-basierten RL-Bibliotheken schlägt. Die Trainingsszene `RLTraining.tscn` enthält zwei AI-Controller für Self-Play:
 
 ![RL Training Setup](img/Rath/RL-Training-Setup.png)
 
-### Observation Space
+#### Observation Space
 
 Der Observation Space definiert, welche Informationen der Agent über den Spielzustand erhält. Er umfasst 20 kontinuierliche Werte:
 
@@ -2114,7 +2116,7 @@ func get_obs() -> Dictionary:
 
 Die Spiegelung der X-Koordinaten für das rote Team ist entscheidend für Self-Play-Training: Beide Agenten sehen das Spiel aus ihrer eigenen Perspektive, wodurch ein einziges trainiertes Modell für beide Seiten verwendet werden kann.
 
-### Action Space
+#### Action Space
 
 Der Action Space besteht aus 8 kontinuierlichen Werten im Bereich [-1, 1]:
 
@@ -2137,7 +2139,7 @@ func set_action(action: Dictionary) -> void:
         rod_actions[i] = Vector2(lateral, rotation)
 ```
 
-### Reward Function
+#### Reward Function
 
 Die Reward-Funktion ist so gestaltet, dass sie sowohl das Erzielen von Toren belohnt als auch dynamisches Spielverhalten fördert:
 
@@ -2180,7 +2182,7 @@ func _physics_process(delta: float) -> void:
     _last_ball_position = ball.global_position
 ```
 
-### Training-Script
+#### Training-Script
 
 Das Python-Trainingsskript verwendet *Stable-Baselines3* mit dem PPO-Algorithmus:
 
@@ -2251,7 +2253,7 @@ def main():
     export_model_as_onnx(model, "foosball_ai.onnx")
 ```
 
-### Hyperparameter und Konfiguration
+#### Hyperparameter und Konfiguration
 
 Die PPO-Hyperparameter beeinflussen das Trainingsverhalten maßgeblich. Die wichtigsten Parameter und ihre Funktion:
 
@@ -2273,7 +2275,7 @@ Die PPO-Hyperparameter beeinflussen das Trainingsverhalten maßgeblich. Die wich
 
 **target_kl:** Maximale erlaubte KL-Divergenz zwischen alter und neuer Policy. Stoppt Updates frühzeitig bei zu großen Änderungen.
 
-### Training-Monitoring
+#### Training-Monitoring
 
 Das Training wird mit *TensorBoard* überwacht. Ein eigener Callback protokolliert zusätzliche Stabilitätsmetriken:
 
@@ -2302,7 +2304,7 @@ class StabilityMonitorCallback(BaseCallback):
 
 Die Abbildung zeigt den mittleren Episode-Reward (ep_rew_mean) verschiedener Trainingsläufe über die Anzahl der Steps. Die grüne Linie repräsentiert das längste Training mit über 50 Millionen Steps und einer Trainingszeit von etwa 6,5 Stunden. Der Reward stabilisiert sich bei diesem Lauf um den Wert -5. Die negativen Werte resultieren aus dem Reward-Shaping, bei dem zeitbasierte Bestrafungen den Agenten zu schnellerem Spielabschluss motivieren sollen. Ein Wert von -5 ist dabei kein schlechtes Zeichen. Anders als bei klassischem RL, wo der Mean Reward typischerweise kontinuierlich steigt, bleibt er beim gespiegelten Self-Play-Training in einem bestimmten Bereich. Dies liegt daran, dass beide Seiten gleichzeitig lernen: Wenn die KI besser angreift, verbessert sich auch ihre Verteidigung, wodurch der Reward schwankt statt monoton zu steigen. Die verschiedenen Kurven zeigen unterschiedliche Hyperparameter-Konfigurationen und verdeutlichen, wie sensibel das Training auf diese reagiert. Die Abbildung zeigt einen Großteil der trainierten Modelle, jedoch nicht alle.
 
-### ONNX-Export und Integration
+#### ONNX-Export und Integration
 
 Nach erfolgreichem Training wird das Modell im *ONNX*-Format exportiert:
 
@@ -2395,9 +2397,9 @@ public override void _PhysicsProcess(double delta)
 }
 ```
 
-## User Interface
+### User Interface
 
-### Hauptmenü
+#### Hauptmenü
 
 Das Hauptmenü bietet Zugang zu allen Spielmodi und Einstellungen. Die verfügbaren Optionen sind:
 
@@ -2413,7 +2415,7 @@ Das Hauptmenü bietet Zugang zu allen Spielmodi und Einstellungen. Die verfügba
 
 - **Exit:** Beendet die Anwendung.
 
-### In-Game HUD
+#### In-Game HUD
 
 Das HUD zeigt während des Spiels relevante Informationen an:
 
@@ -2453,7 +2455,7 @@ public partial class HUD : Control
 }
 ```
 
-### Pause-Menü
+#### Pause-Menü
 
 Das Pausemenü wird durch Drücken von ESC aktiviert und pausiert das Spiel:
 
@@ -2482,7 +2484,7 @@ public partial class PauseMenu : Control
 }
 ```
 
-### Online-Lobby
+#### Online-Lobby
 
 Die Online-Lobby ermöglicht das Erstellen und Beitreten von Matches:
 
@@ -2522,9 +2524,9 @@ func _on_opponent_joined(joiner_name: String) -> void:
     start_button.visible = true
 ```
 
-## Testing und Qualitätssicherung
+### Testing und Qualitätssicherung
 
-### Gameplay-Testing
+#### Gameplay-Testing
 
 Das Gameplay wurde in verschiedenen Szenarien getestet:
 
@@ -2533,7 +2535,7 @@ Das Gameplay wurde in verschiedenen Szenarien getestet:
 - Lokaler Mehrspieler (zwei Spieler an einem PC)
 - Online-Mehrspieler über verschiedene Netzwerkkonfigurationen
 
-### Netzwerk-Testing
+#### Netzwerk-Testing
 
 Für das Netzwerk-Testing wurden folgende Szenarien geprüft:
 
@@ -2542,15 +2544,15 @@ Für das Netzwerk-Testing wurden folgende Szenarien geprüft:
 - Verhalten bei Verbindungsabbruch
 - Latenz-Simulation mit künstlicher Verzögerung
 
-## Deployment und Distribution
+### Deployment und Distribution
 
-### Plattform-Export
+#### Plattform-Export
 
 Das Projekt wurde primär für Windows exportiert und getestet. *Godot* 4.5 unterstützt jedoch auch den Export für macOS und Linux, sodass diese Plattformen mit geringem Aufwand ebenfalls bedient werden können.
 
 Der Export erfolgt über *Godot*s integrierten Export-Dialog, der entsprechende Export-Templates für die jeweilige Zielplattform benötigt.
 
-### Besonderheiten beim Export
+#### Besonderheiten beim Export
 
 Bei der Distribution von DigiKicker sind folgende Besonderheiten zu beachten:
 
@@ -2573,9 +2575,9 @@ DigiKicker/
     +--- foosball_ai.onnx.data
 ```
 
-## Herausforderungen und Lösungen
+### Herausforderungen und Lösungen
 
-### Physik-Stabilität
+#### Physik-Stabilität
 
 **Problem:** Bei hohen Geschwindigkeiten tunnelte der Ball manchmal durch Wände.
 
@@ -2590,7 +2592,7 @@ if (speed > MAX_VELOCITY)
 }
 ```
 
-### RL-Training-Instabilität
+#### RL-Training-Instabilität
 
 **Problem:** Die Policy-Standardabweichung explodierte während des Trainings, was zu divergierendem Verhalten führte.
 
@@ -2608,7 +2610,7 @@ model = PPO(
 )
 ```
 
-### WebRTC NAT-Traversal
+#### WebRTC NAT-Traversal
 
 **Problem:** Direkte P2P-Verbindungen scheiterten bei restriktiven NAT-Konfigurationen.
 
@@ -2627,7 +2629,7 @@ const TURN_SERVERS := [{
 
 **Zusätzlicher Bug:** Ein weiteres Problem war, dass die *WebRTC*-Verbindung ohne explizite Angabe des `credentialType`-Feldes nicht funktionierte. Der Wert muss auf `"password"` gesetzt werden, damit die Long-Term Credentials korrekt vom TURN-Server akzeptiert werden.
 
-### Observation-Spiegelung für Self-Play
+#### Observation-Spiegelung für Self-Play
 
 **Problem:** Beim Self-Play-Training mussten beide Agenten das Spiel aus ihrer eigenen Perspektive sehen.
 
@@ -2639,13 +2641,13 @@ obs.append(mirror * ball_pos.x / 6.0)
 obs.append(mirror * ball_vel.x / 10.0)
 ```
 
-### Stangen-Steuerung und Physik-Interaktion
+#### Stangen-Steuerung und Physik-Interaktion
 
 **Problem:** Die Implementierung der Stangen-Steuerung erwies sich als aufwendiger Debugging-Prozess. Die Interaktion zwischen der Stangen-Bewegung und der dynamischen Ball-Physik führte zu zahlreichen Edge Cases: Figuren konnten den Ball einklemmen, Rotationen verursachten unberechenbare Impulse, und die laterale Bewegung interagierte nicht konsistent mit dem Ball.
 
 **Lösung:** Die Probleme wurden iterativ durch umfangreiches Testing und schrittweise Anpassungen behoben. Zentrale Verbesserungen waren die Einführung von Geschwindigkeitsbegrenzungen für die Stangen-Rotation, die Berechnung der Schussimpulse basierend auf der tatsächlichen Rotationsgeschwindigkeit statt der Eingabe, und die Implementierung einer kurzen Kick-Immunität nach dem Ball-Reset.
 
-### WebRTC-Verbindung nicht ordnungsgemäß beendet
+#### WebRTC-Verbindung nicht ordnungsgemäß beendet
 
 **Problem:** Nach Beendigung eines Online-Spiels wurde die *WebRTC*-Verbindung nicht korrekt geschlossen. Dies führte zu einem kritischen Bug: Wenn ein Spieler anschließend ein Singleplayer-Spiel startete und dabei das Team wählte, das zuvor der Online-Gegner kontrolliert hatte, konnte der ehemalige Gegner das Spiel weiterhin über die offene Verbindung steuern.
 

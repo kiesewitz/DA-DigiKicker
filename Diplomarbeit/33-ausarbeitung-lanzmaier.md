@@ -1,7 +1,7 @@
 # Teilaufgabe Schüler Lanzmaier
 \textauthor{Luan Lanzmaier}
 
-## Theorie
+## Theoretischer Teil
 
 Im Theorieteil werden die Grundlagen für die grafische Umsetzung der Tischfußball‑Simulation sowie die Multiplayer‑Grundlagen beschrieben. Dazu zählen die Auswahl von Verbindungsmodellen, Entscheidungen für Multiplayer‑Spielprinzipien, der Unterschied zwischen Offline‑ und Echtzeit‑Rendering sowie zentrale Optimierungsprinzipien für Game‑Assets (High‑/Low‑Poly, Normal Maps, Retopology und Reduktion von Draw Calls).
 
@@ -57,7 +57,7 @@ Retopology erstellt aus einem detaillierten High Poly Modell eine vereinfachte L
 
 Jedes zusätzliche Material erzeugt in der Engine einen eigenen Render‑Aufruf. Durch das Zusammenführen mehrerer Materialien in ein einziges Material (Texture Atlas) reduzieren wir die sogenannten Draw Calls und steigern die Performance. Dieser Ansatz wird in der praktischen Umsetzung beim Backen der Maps direkt eingesetzt.
 
-## Praktische Arbeit
+## Praktischer Teil
 
 Im Praxisteil wird die Umsetzung der Assets und der Prototypen beschrieben, inklusive der Integration des Multiplayer‑Modells in der Engine, damit mehrere Spieler gemeinsam spielen können. Dazu zählen die Modellierung in Blender, die Optimierung der Polygonanzahl, die Multiplayer‑Integration in der Engine, das Erstellen und Baken von Texture Maps sowie der Import und die Prüfung der Assets in der Godot‑Engine.
 
