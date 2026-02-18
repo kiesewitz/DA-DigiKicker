@@ -118,7 +118,131 @@ Abbildung x [@arduino-nano-pinout] stellt das Pin-Layout eines Arduino Nano ESP3
 
 Der nächste Mikrocontroller ist das ESP-32 Dev Kit C V4 [@esp32-data] (siehe Abbildung x [@esp32-devkit-c-image]), welcher wie der zuvor betrachtete Mikrocontroller auf einem ESP32 - genauer gesagt, einem ESP32-WROOM-32 - basiert ist, weshalb für die Programmierung die Arduino Language sowie MicroPython verwendet werden kann. Wie allen ESP32-basierten Controllern ist es auch diesem möglich, von dem Protokoll "ESP-Now" Gebrauch zu machen. 
 
-Hierbei handelt es sich um ein eigens entwickeltes Protokoll von Espressif Systems, welches es mehreren Geräten erlaubt, sich untereinander zu verständigen. Das Protokoll [@esp-now-protocol] ist auf dem 802.11 Wi-Fi Standard basiert, benötigt jedoch keinen zusätzlichen Access Point für die Kommunikation.
+#### ESP-NOW-Protokoll
+
+Bei ESP-Now handelt es sich um ein eigens entwickeltes Protokoll von Espressif Systems, welches es mehreren Geräten erlaubt, sich untereinander zu verständigen. Das Protokoll [@esp-now-protocol] [@esp-now-introduction] ist auf dem 802.11 Wi-Fi Standard basiert, benötigt jedoch keinen zusätzlichen Access Point für die Kommunikation. Die maximale "Payload-Größe" beträgt hierbei 250 Bytes, wobei die Datenübertragung jedoch sinngemäß schneller ist, je kleiner die Payload ist.
+
+TechTerms.com, eine Website für so gut wie alle technischen Begriffe rund um IT, definiert den Begriff Payload [@payload-definition] wie folgt:
+
+> The term "payload" in computing terms can mean several different things. 
+> 1) In computer networking, a payload is the part of a data packet containing the transmitted data.
+>
+> 2) In computer security, a payload is the part of a computer virus or other malware containing the code that carries out the virus's harmful activity.
+
+Payload hat in dem hier verwendeten Kontext jedoch nichts mit der zweiten Definition zu tun, sondern bezieht sich auf die tatsächliche Datengröße versendeter Pakete.
+
+> A payload is the part of a protocol data unit (PDU) that contains the transmitted data or message. When one device sends data over a network, it needs to combine that data with a header into a packet.
+
+Der "Header" einer Dateneinheit beinhaltet Daten über die Herkunft bzw. das Ziel dieser sowie die Reihenfolge, in der die versendeten Pakete rekonstruiert werden müssen. Bei ihm geht es also nur um Informationen zur Route einer PDU und nicht um ihren Inhalt.
+
+Da die maximale Größe dieser Payload 250 Bytes beträgt, wird dieses Protokoll nicht für die Übertragung größerer Dateimengen verwendet, eignet sich aber sehr gut für das Senden kleinerer Daten, wie z. B. von Sensoren. Aus diesem Grund eignet sich das Protokoll für die Realisierung dieser Arbeit gut, da hierbei nur kleine Daten zu Dreh- und Schiebebewegungen versendet werden müssen.
+
+ESP-Now ermöglicht Master-Slave-Beziehungen zwischen Boards, für Kommunikation in eine Richtung, aber auch Kommunikation zwischen zwei oder mehreren Boards in beide Richtungen.
+
+![ESP-Now Kommunikation](img/Schaar/ESP-Now-Connections.png)
+
+In Abbildung x [@esp-now-introduction] wird die Kommunikation mehrerer ESP-32-Controller in beide Richtungen dargestellt. Dies ist zwar nur eine simple Visualisierung, zeigt jedoch dass die Verbindung vieler Mikrocontroller dadurch einfach ermöglicht wird. Dadurch ergeben sich zahlreiche Möglichkeiten für zusammenhängende Systeme, wie z. B. die Messung und Übermittlung verschiedener Sensordaten in einem Smart Home.
+
+Hier folgen nun beispielhafte Code-Snippets [@esp-now-introduction] zur Realisierung des ESP-Now-Protokolls (in One-Way-Form) in C-Code, so wie er auf einem Mikrocontroller laufen würde:
+
+```C
+#include "WiFi.h"
+
+void setup(){
+ Serial.begin(115200);
+ WiFi.mode(WIFI_MODE_STA);
+ Serial.println(WiFi.macAddress());
+}
+
+void loop(){}
+```
+
+Mit diesem Code wird mithilfe der WiFi-Library die MAC-Adresse des Empfänger-Gerätes ermittelt, welche im folgenden Code verwendet wird. Gehen wir nun beispielhaft davon aus, dass hierbei die Adresse **66:94:6B:59:97:35** herauskommt.
+
+```C
+#include <esp_now.h>
+#include <WiFi.h>
+
+/* 
+  Die hier eingetragenen Werte entsprechen der
+  ermittelten MAC-Adresse aus dem vorherigen Snippet
+*/
+uint8_t broadcastAddress[] = {0x66, 0x94, 0x6B, 0x59, 0x97, 0x35};
+
+char msg[] = "Hello World!";
+
+esp_now_peer_info_t peerInfo;
+
+void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
+  Serial.print("\r\nDelivery Status: ");
+  Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivered Successfully" : "Delivery Fail");
+}
+ 
+void setup() {
+  Serial.begin(115200);
+  WiFi.mode(WIFI_STA);
+  if (esp_now_init() != ESP_OK) {
+    Serial.println("Error initializing ESP-NOW");
+    return;
+  }
+
+  esp_now_register_send_cb(OnDataSent);
+  memcpy(peerInfo.peer_addr, broadcastAddress, 6);
+  peerInfo.channel = 0; 
+  peerInfo.encrypt = false;
+         
+  if (esp_now_add_peer(&peerInfo) != ESP_OK){
+    Serial.println("Failed to add peer");
+    return;
+  }
+}
+ 
+void loop() {
+  esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &msg, sizeof(msg));
+
+  if (result == ESP_OK) {
+    Serial.println("Sent Successfully");
+  }
+  else {
+    Serial.println("Error while sending data");
+  }
+  delay(1000);
+}
+```
+
+Dieser Code wird auf dem Mikrocontroller aufgerufen, der die Message - in diesem Fall ein ganz simples "Hello World!" - im Sekundentakt versendet. Hierbei werden die Daten verschickt und es wird eine Erfolgs- bzw. Fehlernachricht je nach Ergebnis ausgegeben.
+
+```C
+#include <esp_now.h>
+#include <WiFi.h>
+
+typedef struct struct_message {
+    char a[32];
+} struct_message;
+
+struct_message myData;
+
+void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
+  memcpy(&myData, incomingData, sizeof(myData));
+  Serial.println(myData.a);
+}
+
+
+void setup() {
+  Serial.begin(115200);
+  WiFi.mode(WIFI_STA);
+  if (esp_now_init() != ESP_OK) {
+    Serial.println("Error initializing ESP-NOW");
+    return;
+  }
+  esp_now_register_recv_cb(OnDataRecv);
+}
+ 
+void loop() {}
+```
+
+Dieses kurze Snippet ist alles, was auf der Seite des Empfängers laufen muss, damit dieser die Nachrichten vom Sender empfangen kann.
+
 
 #### Firma - Espressif Systems
 

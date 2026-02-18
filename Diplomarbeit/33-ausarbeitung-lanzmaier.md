@@ -246,8 +246,11 @@ Der erste Schritt ist es, die Farben aller Materials auf eine Texture Map zu pro
 !Wichtig: Unter der "Image Editor Ansicht" muss man jede neu erstellte Texture Map unter "Image -> Save As" abspeichern, weil das "Image Texture Node" nach jedem Baking-Vorgang die Texture Map überschreibt.
 
 ![Diffuse Map Character-Asset](img/Lanzmaier/CharacterColorMap.png)
+
 ![Normal Map Character-Asset](img/Lanzmaier/CharacterNormalMap.png)
+
 ![Roughness Map Character-Asset](img/Lanzmaier/CharacterRoughnessMap.png)
+
 Nachdem man alle Texture Maps erstellt hat, muss man unter "Edit -> Preferences -> Add-ons" den "Node Wrangler" aktivieren, damit man gleich alle Texturen einfach in ein neues Material einbetten kann. In der "Shader Editor Ansicht" kann man nun ein neues Material erstellen. Um die Texture Maps einfach hinzufügen zu können, muss man die "Principled BSDF Node" anklicken und "Ctrl+Shift+T" drücken, um den Explorer aufzumachen. Nun wählt man alle abgespeicherten Maps aus und drückt "Enter".
 
 ![Fertig modelliertes Character-Asset](img/Lanzmaier/BlenderModelAndMaterialNodes.png)
