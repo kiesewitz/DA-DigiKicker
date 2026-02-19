@@ -133,7 +133,7 @@ Das Konzept "Everything is a Scene" bedeutet, dass sowohl ein einzelner Spieler-
 
 Die Instanziierung von Scenes zur Laufzeit ist ein häufiges Pattern:
 
-```gdscript
+```{caption="Scene zur Laufzeit instanziieren in GDScript" .gd}
 # GDScript: Scene zur Laufzeit instanziieren
 extends Node3D
 
@@ -155,7 +155,7 @@ Dies ermöglicht effizientes Memory-Management und flexible Spielsysteme, bei de
 
 *GDScript* ist *Godot*s eigene, Python-ähnliche Programmiersprache, die speziell für die Game-Entwicklung optimiert wurde [@brackeys-gdscript-tutorial]. Die Syntax ist bewusst einfach und verzichtet auf unnötige Boilerplate-Code. *GDScript* ist dynamisch typisiert, unterstützt aber auch optionale Type-Hints für bessere Editor-Unterstützung und Fehlererkennung.
 
-```gdscript
+```{caption="Vollständiger 3D Player Controller in GDScript" .gd}
 # GDScript: Vollständiger Player Controller
 extends CharacterBody3D
 
@@ -207,7 +207,7 @@ Wichtige *GDScript*-Konzepte umfassen die Lifecycle-Methoden `_ready()` für Ini
 
 Neben *GDScript* unterstützt *Godot* auch C# als vollwertige Scripting-Sprache [@godot-csharp-docs]. C# bietet statische Typisierung, Zugang zum .NET-Ökosystem und ist für Entwickler mit *Unity*-Erfahrung vertraut. Die C#-Unterstützung erfordert die .NET-Version von *Godot* (separat downloadbar).
 
-```csharp
+```{caption="Player Controller als C#-Klasse in Godot" .cs}
 // C# in Godot: Player Controller
 using Godot;
 
@@ -258,7 +258,7 @@ C# in *Godot* verwendet eine leicht andere API als *GDScript*, folgt aber densel
 
 Ein wichtiger Aspekt bei der Arbeit mit C# in *Godot* sind Autoloads (Singletons) für global zugängliche Systeme [@jetbrains-autoloads]. Diese werden in den Projekteinstellungen konfiguriert und stehen dann in allen Scripts zur Verfügung:
 
-```csharp
+```{caption="C# Autoload-Singleton als GameManager" .cs}
 // C# Autoload/Singleton Beispiel: GameManager
 using Godot;
 
@@ -301,7 +301,7 @@ public partial class GameManager : Node
 
 Signals sind Godots Implementierung des Observer-Patterns und ermöglichen lose gekoppelte Kommunikation zwischen Nodes. Ein Signal ist ein benanntes Event, das von einem Node emittiert wird und von beliebig vielen anderen Nodes empfangen werden kann. Dies fördert modulares Design, da Nodes nicht direkt aufeinander verweisen müssen.
 
-```gdscript
+```{caption="Eigene Signals definieren und verwenden in GDScript" .gd}
 # GDScript: Custom Signals definieren und verwenden
 extends CharacterBody3D
 class_name Player
@@ -332,7 +332,7 @@ func collect_coin(value: int) -> void:
     coin_collected.emit(value)
 ```
 
-```gdscript
+```{caption="UI-Script das auf Spieler-Signals reagiert" .gd}
 # UI-Script das auf Signals reagiert
 extends Control
 
@@ -368,7 +368,7 @@ Built-in Signals werden von der Engine bereitgestellt, wie `body_entered` bei Co
 
 Für Shader-Entwicklung bietet *Godot* eine eigene Shading-Sprache, die *GLSL* ähnelt, aber vereinfacht ist [@godotneers-shaders]:
 
-```glsl
+```{caption="Einfacher Dissolve-Effekt als Godot Spatial Shader" .glsl}
 // Godot Shader: Einfacher Dissolve-Effekt
 shader_type spatial;
 
@@ -399,7 +399,7 @@ Shader können für Canvas (2D), Spatial (3D) und Particles geschrieben werden. 
 
 Finite State Machines (FSM) sind ein fundamentales Designpattern für die Verwaltung komplexer Objektzustände, etwa für KI-Verhalten, Spieler-Charaktere oder UI-Systeme [@heartbeast-fsm]. *Godot* bietet mit dem *AnimationTree* einen integrierten State Machine für Animationen, für Gameplay-Logik werden State Machines typischerweise manuell implementiert.
 
-```gdscript
+```{caption="State Machine Basisklasse in GDScript" .gd}
 # GDScript: State Machine Basisklasse
 class_name State
 extends Node
@@ -419,7 +419,7 @@ func physics_update(_delta: float) -> void:
     pass
 ```
 
-```gdscript
+```{caption="StateMachine Manager für Zustandsübergänge in GDScript" .gd}
 # StateMachine Manager
 class_name StateMachine
 extends Node
@@ -457,7 +457,7 @@ func transition_to(state_name: String) -> void:
     current_state.enter()
 ```
 
-```gdscript
+```{caption="Konkreter IdleState mit Übergang zu Walk und Jump" .gd}
 # Konkreter State: IdleState
 class_name IdleState
 extends State
@@ -503,7 +503,7 @@ Der Signaling-Prozess selbst ist nicht Teil des WebRTC-Standards und kann über 
 
 Die Konfiguration von *Coturn* umfasst typischerweise die Festlegung von Listening-Ports, Realm-Einstellungen für die Authentifizierung, und optional TLS-Zertifikate für verschlüsselte Verbindungen. Für Produktionsumgebungen ist die Einrichtung von Authentifizierung und Rate-Limiting wichtig, um Missbrauch zu verhindern.
 
-```bash
+```{caption="Beispielkonfiguration eines Coturn TURN/STUN Servers" .conf}
 # Beispiel Coturn Konfiguration (turnserver.conf)
 listening-port=3478
 tls-listening-port=5349
@@ -525,7 +525,7 @@ Die Integration in Spieleanwendungen erfolgt durch Angabe der STUN/TURN Server U
 
 *Godot* bietet native Unterstützung für *WebRTC* über die WebRTCPeerConnection und WebRTCDataChannel Klassen [@godot-webrtc-docs]. Diese ermöglichen die Implementierung von Peer-to-Peer Multiplayer ohne externe Plugins. Die High-Level Multiplayer API von *Godot* kann mit *WebRTC* als Transport-Layer verwendet werden.
 
-```gdscript
+```{caption="WebRTC Peer Connection Setup mit ICE-Konfiguration in GDScript" .gd}
 # GDScript: WebRTC Peer Connection Setup
 extends Node
 
@@ -613,7 +613,7 @@ Der State beschreibt alle relevanten Informationen über die aktuelle Situation 
 
 Actions sind die möglichen Entscheidungen, die der Agent treffen kann. Der Action Space kann diskret sein, etwa bei der Wahl zwischen links, rechts, oder springen, oder kontinuierlich, etwa bei der Steuerung eines Lenkrads mit beliebigen Winkeln. Die Wahl zwischen diskreten und kontinuierlichen Action Spaces beeinflusst die verwendbaren Algorithmen und die Komplexität des Lernproblems [@gymnasium-docs].
 
-```python
+```{caption="Gymnasium Environment Interface mit Interaktionsschleife" .py}
 # Python: Gymnasium Environment Interface
 import gymnasium as gym
 import numpy as np
@@ -655,7 +655,7 @@ Actor-Critic Methods kombinieren beide Ansätze: Ein Actor lernt die Policy, wä
 
 Deep Q-Networks revolutionierten das Feld des Deep Reinforcement Learning durch die Kombination von Q-Learning mit tiefen neuronalen Netzen [@sentdex-dqn]. Der bahnbrechende Erfolg von DQN wurde 2015 von DeepMind demonstriert, als ein Agent lernte, Atari-Spiele auf übermenschlichem Niveau zu spielen, nur durch Beobachtung der Pixel-Ausgabe [@silver-rl-lecture1].
 
-```python
+```{caption="Einfaches Deep Q-Network (DQN) mit Experience Replay in PyTorch" .py}
 # Python: Einfaches DQN mit PyTorch
 import torch
 import torch.nn as nn
@@ -746,7 +746,7 @@ PPO ist ein Policy-Gradient-Algorithmus, der sich als einer der robustesten und 
 
 Die Kernidee von PPO ist das Clipping der Policy-Updates, um zu große Änderungen zu verhindern. Frühere Policy-Gradient-Methoden litten unter dem Problem, dass zu große Updates die Policy zerstören konnten. PPO begrenzt das Verhältnis zwischen neuer und alter Policy, was zu stabilem Training führt, auch mit größeren Lernraten.
 
-```python
+```{caption="PPO-Training mit Stable-Baselines3 und Evaluation-Callback" .py}
 # Python: PPO Training mit Stable-Baselines3
 from stable_baselines3 import PPO
 from stable_baselines3.common.env_util import make_vec_env
@@ -805,7 +805,7 @@ Neuronale Netze sind von biologischen Nervensystemen inspirierte Berechnungsmode
 
 Die Architektur eines Feedforward-Netzes besteht aus einem Input Layer, das die Eingabedaten empfängt, einem oder mehreren Hidden Layers, die Zwischenrepräsentationen berechnen, und einem Output Layer, das die finale Vorhersage liefert. Die Stärke neuronaler Netze liegt in ihrer Fähigkeit, automatisch relevante Features aus den Rohdaten zu extrahieren. [@karpathy-micrograd]
 
-```python
+```{caption="Einfaches Feedforward-Netz mit drei Schichten in PyTorch" .py}
 # Python: Einfaches Neuronales Netz mit PyTorch
 import torch
 import torch.nn as nn
@@ -845,7 +845,7 @@ Das Training neuronaler Netze erfolgt durch Backpropagation, einen Algorithmus z
 
 Die Kernkonzepte von *PyTorch* umfassen Tensors als mehrdimensionale Arrays mit GPU-Beschleunigung, Automatic Differentiation für die automatische Gradientenberechnung und ein modulares System zur Definition von Netzwerk-Architekturen [@pytorch-tutorials]. Die API ist Python-nativ und erlaubt natürliche Kontrollflussstrukturen innerhalb von Modellen.
 
-```python
+```{caption="Training Loop mit Forward- und Backward-Pass in PyTorch" .py}
 # Python: Training Loop mit PyTorch
 import torch
 import torch.nn as nn
@@ -908,7 +908,7 @@ Die Kommunikation zwischen *Godot* und Python erfolgt über einen SharedMemory-M
 
 Der AIController ist der zentrale Node für RL-Agenten in *Godot RL Agents*. Er verwaltet die Observation- und Action-Spaces, sammelt Sensor-Daten und wendet Aktionen an:
 
-```gdscript
+```{caption="AIController Setup mit Observation, Action Space und Reward in GDScript" .gd}
 # GDScript: AI Controller Setup
 extends AIController3D
 
@@ -999,7 +999,7 @@ Das Framework bietet verschiedene Sensor-Typen für die Observation-Erfassung. R
 
 Das Training erfolgt typischerweise mit der Python-Bibliothek gdrl, die auf *Stable-Baselines3* aufbaut [@godot-rl-tutorial-video]:
 
-```python
+```{caption="Godot RL Trainingsskript mit parallelen Environments und ONNX-Export" .py}
 # Python: Godot RL Training Script
 import argparse
 from stable_baselines3 import PPO
@@ -1092,7 +1092,7 @@ if __name__ == "__main__":
 
 Trainierte Modelle können im *ONNX*-Format exportiert werden, einem standardisierten Format für Machine Learning Modelle [@pytorch-onnx-intro]. *ONNX* ermöglicht die Inference direkt in *Godot* ohne Python-Abhängigkeit, was für den finalen Einsatz in Spielen essentiell ist [@sb3-export-docs]:
 
-```gdscript
+```{caption="ONNX-Modell für KI-Inferenz direkt in Godot laden und ausführen" .gd}
 # GDScript: ONNX Inference in Godot
 extends Node
 
@@ -1117,7 +1117,7 @@ func get_action(observations: Array) -> Array:
 
 Die Definition einer geeigneten Reward-Funktion ist oft die größte Herausforderung beim Anwenden von RL auf neue Probleme. Das Reward-Signal muss das gewünschte Verhalten effektiv kommunizieren, ohne unbeabsichtigte Nebeneffekte zu fördern. *Godot RL Agents* ermöglicht flexible Reward-Definitionen direkt im *GDScript*-Code.
 
-```gdscript
+```{caption="Komplexe Reward-Funktion mit Distanz-Shaping, Zeitstrafe und Kollisionsstrafe" .gd}
 # GDScript: Komplexe Reward-Funktion
 extends AIController3D
 
@@ -1164,7 +1164,7 @@ Typische Reward-Komponenten in Spielen umfassen positive Rewards für Zielerreic
 
 Curriculum Learning ist eine Technik, bei der die Schwierigkeit der Aufgabe während des Trainings schrittweise erhöht wird. In *Godot* kann dies durch dynamische Anpassung der Environment-Parameter implementiert werden:
 
-```gdscript
+```{caption="Curriculum Learning mit stufenweiser Schwierigkeitserhöhung in GDScript" .gd}
 # GDScript: Curriculum Learning
 extends Node
 
@@ -1361,7 +1361,7 @@ DigiKicker/
 
 Das C#-Projekt verwendet .NET 8.0 und integriert die *ONNX Runtime* für die KI-Inferenz. Die Projektkonfiguration in der `.csproj`-Datei:
 
-```xml
+```{caption="C#-Projektdatei mit ONNX Runtime als NuGet-Abhängigkeit" .csproj}
 <Project Sdk="Godot.NET.Sdk/4.5.1">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -1382,7 +1382,7 @@ Die *ONNX Runtime* ermöglicht die Ausführung trainierter neuronaler Netze dire
 
 *Godot*'s Autoload-System wird genutzt, um globale Manager-Klassen als Singletons zu registrieren. Diese sind in der `project.godot` definiert:
 
-```ini
+```{caption="Autoload-Konfiguration der globalen Singleton-Manager in project.godot" .ini}
 [autoload]
 GameManager="*res://scripts/autoload/GameManager.cs"
 AudioManager="*res://scripts/autoload/AudioManager.cs"
@@ -1392,7 +1392,7 @@ StatsManager="*res://scripts/autoload/StatsManager.cs"
 
 Der GameManager verwaltet den zentralen Spielzustand und definiert wichtige Enumerationen:
 
-```csharp
+```{caption="GameManager-Klasse mit Zustandsenumerationen und Event-Signalen" .cs}
 public partial class GameManager : Node
 {
     public enum GameState { Menu, Countdown, Playing, Paused, GameOver }
@@ -1452,7 +1452,7 @@ Anfangs war das Spielfeld sehr klein skaliert, was zu fehlerhafter Schattendarst
 
 Die Einführung des Skalierungsfaktors ermöglicht zudem einfache Größenanpassungen des gesamten Spielfelds durch Änderung einer einzigen Konstante:
 
-```csharp
+```{caption="Table-Klasse mit globalem Skalierungsfaktor und Tischdimensionen" .cs}
 public partial class Table : Node3D
 {
     private const float SCALE = 5.0f;
@@ -1471,7 +1471,7 @@ public partial class Table : Node3D
 
 Die Stangenpositionen folgen dem Standard-Tischfußball-Layout mit acht Stangen:
 
-```csharp
+```{caption="Stangenpositionen und Figurenanzahl nach Standard-Tischfußball-Layout" .cs}
 // Stangenpositionen entlang der X-Achse (von Red-Tor zu Blue-Tor)
 private const float ROD_POS_1 = -1.00f * SCALE;  // Red Goalkeeper
 private const float ROD_POS_2 = -0.70f * SCALE;  // Red Defense
@@ -1495,7 +1495,7 @@ private const int ATTACK_FIGURES = 3;
 
 Der Ball ist als `RigidBody3D` implementiert und nutzt *Godot*s integrierte Physik-Engine. Die Konfiguration optimiert das Spielgefühl für reaktive, aber kontrollierbare Bewegungen:
 
-```csharp
+```{caption="Ball-Klasse mit Physikkonfiguration als RigidBody3D" .cs}
 public partial class Ball : RigidBody3D
 {
     private const float BALL_RADIUS = 0.035f * SCALE;  // 0.175 Einheiten
@@ -1534,7 +1534,7 @@ public partial class Ball : RigidBody3D
 
 Die `_PhysicsProcess`-Methode implementiert wichtige Sicherheitsmechanismen:
 
-```csharp
+```{caption="Physik-Update des Balls mit Geschwindigkeitsbegrenzung und Stabilitätslogik" .cs}
 public override void _PhysicsProcess(double delta)
 {
     // Geschwindigkeitsbegrenzung
@@ -1575,7 +1575,7 @@ public override void _PhysicsProcess(double delta)
 
 Wenn eine Figur den Ball trifft, wird ein Impuls basierend auf der Rotationsgeschwindigkeit der Stange angewendet:
 
-```csharp
+```{caption="Schuss-Mechanik mit impulsbasierter Kraftanwendung auf den Ball" .cs}
 public void ApplyKick(Vector3 direction, float strength)
 {
     // Schuss-Immunität nach Reset prüfen
@@ -1605,7 +1605,7 @@ public void ApplyKick(Vector3 direction, float strength)
 
 Die `Rod`-Klasse verwaltet Rotation und laterale Bewegung einer Stange:
 
-```csharp
+```{caption="Rod-Klasse mit Rotation und lateraler Stangenbewegung" .cs}
 public partial class Rod : Node3D
 {
     public enum RodType { Goalkeeper, Defense, Midfield, Attack }
@@ -1655,7 +1655,7 @@ public partial class Rod : Node3D
 
 Die maximale laterale Bewegung wird dynamisch beim Spawn der Figuren berechnet:
 
-```csharp
+```{caption="Dynamische Figurenverteilung und Berechnung des maximalen Lateral-Offsets" .cs}
 private void SpawnFigures()
 {
     // Dynamischen Abstand basierend auf Figurenanzahl
@@ -1693,7 +1693,7 @@ private void SpawnFigures()
 
 Der `InputManager` abstrahiert verschiedene Eingabegeräte und ermöglicht sowohl Tastatur- als auch Controller-Steuerung:
 
-```csharp
+```{caption="InputManager mit Unterstützung für Tastatur und Controller-Eingaben" .cs}
 public enum InputDevice
 {
     Keyboard,
@@ -1740,7 +1740,7 @@ public Vector2 GetRodInput(int player, int rodIndex)
 
 Die Kamera folgt dem Ball mit sanfter Interpolation und bietet eine isometrische Perspektive:
 
-```csharp
+```{caption="CameraController folgt dem Ball mit sanfter Interpolation" .cs}
 public partial class CameraController : Node3D
 {
     private const float CAMERA_HEIGHT = 7.5f;
@@ -1775,7 +1775,7 @@ public partial class CameraController : Node3D
 
 Tore werden über `Area3D`-Trigger-Zonen erkannt, die sich im Inneren der Torräume befinden:
 
-```csharp
+```{caption="Tor-Erkennung über Area3D-Trigger-Zone mit Punktevergabe" .cs}
 public partial class Goal : Area3D
 {
     [Export] public GameManager.Team ScoringTeam { get; set; }
@@ -1863,7 +1863,7 @@ Die Authentifizierung erfolgt über Long-Term Credentials mit Benutzername und P
 
 Der `OnlineMultiplayerManager` koordiniert den gesamten Verbindungsaufbau:
 
-```gdscript
+```{caption="OnlineMultiplayerManager mit WebRTC-Verbindungsaufbau und ICE-Konfiguration" .gd}
 extends Node
 class_name OnlineMultiplayerManager
 
@@ -1916,7 +1916,7 @@ func _setup_peer_connection() -> void:
 
 Der DataChannel wird für die bidirektionale Kommunikation konfiguriert:
 
-```gdscript
+```{caption="DataChannel-Konfiguration für unzuverlässige, latenzarme Übertragung" .gd}
 func _create_data_channel() -> void:
     data_channel = peer_connection.create_data_channel("game_data", {
         "negotiated": true,
@@ -1940,7 +1940,7 @@ func send_game_state(state: Dictionary) -> void:
 
 Die Synchronisation erfolgt über regelmäßige Zustandsupdates, die Position und Rotation aller Spielobjekte enthalten:
 
-```gdscript
+```{caption="Spielzustand-Synchronisation mit 30 Hz über WebRTC DataChannel" .gd}
 # NetworkGameSync.gd
 extends Node
 
@@ -1985,7 +1985,7 @@ func _on_game_state_received(state: Dictionary) -> void:
 
 Für netzwerk-gesteuerte Stangen wird Interpolation verwendet, um ruckfreie Bewegungen zu gewährleisten:
 
-```csharp
+```{caption="Netzwerk-Interpolation für ruckfreie Stangen- und Rotationsbewegungen" .cs}
 // Rod.cs - Netzwerk-Interpolation
 private void HandleNetworkInterpolation(float delta)
 {
@@ -2021,7 +2021,7 @@ private void HandleNetworkInterpolation(float delta)
 
 Die Verbindungsqualität wird kontinuierlich durch Ping-Messungen überwacht:
 
-```gdscript
+```{caption="Ping-Messung mit gleitendem Durchschnitt über fünf Messungen" .gd}
 func _send_ping() -> void:
     ping_id += 1
     ping_send_time = Time.get_ticks_msec()
@@ -2061,7 +2061,7 @@ Das Training nutzt das *Godot RL Agents* Framework, das eine Brücke zwischen *G
 
 Der Observation Space definiert, welche Informationen der Agent über den Spielzustand erhält. Er umfasst 20 kontinuierliche Werte:
 
-```gdscript
+```{caption="Observation Space des Foosball-KI-Controllers mit 20 normalisierten Werten" .gd}
 ## FoosballAIController.gd
 
 func get_obs_space() -> Dictionary:
@@ -2120,7 +2120,7 @@ Die Spiegelung der X-Koordinaten für das rote Team ist entscheidend für Self-P
 
 Der Action Space besteht aus 8 kontinuierlichen Werten im Bereich [-1, 1]:
 
-```gdscript
+```{caption="Action Space mit 8 kontinuierlichen Steuerwerten für alle vier Stangen" .gd}
 func get_action_space() -> Dictionary:
     # 4 Rods * 2 Actions (lateral, rotation) = 8 kontinuierliche Actions
     return {
@@ -2143,7 +2143,7 @@ func set_action(action: Dictionary) -> void:
 
 Die Reward-Funktion ist so gestaltet, dass sie sowohl das Erzielen von Toren belohnt als auch dynamisches Spielverhalten fördert:
 
-```gdscript
+```{caption="Reward-Funktion des Foosball-Agenten mit Tor- und Idle-Strafen" .gd}
 # Belohnungen und Strafen
 const GOAL_REWARD := 3.0        # Tor erzielt
 const CONCEDE_PENALTY := -2.0   # Gegentor kassiert
@@ -2186,7 +2186,7 @@ func _physics_process(delta: float) -> void:
 
 Das Python-Trainingsskript verwendet *Stable-Baselines3* mit dem PPO-Algorithmus:
 
-```python
+```{caption="PPO-Trainingsskript für den Foosball-KI-Agenten mit SDE und ONNX-Export" .py}
 # train_foosball.py
 
 from stable_baselines3 import PPO
@@ -2279,7 +2279,7 @@ Die PPO-Hyperparameter beeinflussen das Trainingsverhalten maßgeblich. Die wich
 
 Das Training wird mit *TensorBoard* überwacht. Ein eigener Callback protokolliert zusätzliche Stabilitätsmetriken:
 
-```python
+```{caption="TensorBoard-Callback zur Überwachung der Policy-Standardabweichung" .py}
 class StabilityMonitorCallback(BaseCallback):
     def __init__(self, check_freq: int = 1000):
         super().__init__()
@@ -2308,7 +2308,7 @@ Die Abbildung zeigt den mittleren Episode-Reward (ep_rew_mean) verschiedener Tra
 
 Nach erfolgreichem Training wird das Modell im *ONNX*-Format exportiert:
 
-```python
+```{caption="ONNX-Export des trainierten Modells für Godot-Inference" .py}
 from godot_rl.wrappers.onnx.stable_baselines_export import export_model_as_onnx
 
 export_model_as_onnx(model, "foosball_ai.onnx")
@@ -2316,7 +2316,7 @@ export_model_as_onnx(model, "foosball_ai.onnx")
 
 Die Integration in *Godot* erfolgt über den `RLBotController`:
 
-```csharp
+```{caption="RLBotController lädt das ONNX-Modell und führt KI-Inferenz in C# aus" .cs}
 public partial class RLBotController : Node
 {
     [Export] public string ModelPath = "res://models/foosball_ai.onnx";
@@ -2370,7 +2370,7 @@ Für flüssiges Gameplay werden zwei Optimierungen angewendet:
 
 **Action Smoothing:** Die Aktionen werden interpoliert, um ruckartiges Verhalten zu vermeiden:
 
-```csharp
+```{caption="Action Repeat und Smoothing für flüssiges KI-Verhalten bei der Inferenz" .cs}
 private const float ACTION_SMOOTHING = 0.15f;
 private const int ACTION_REPEAT = 4;
 
@@ -2419,7 +2419,7 @@ Das Hauptmenü bietet Zugang zu allen Spielmodi und Einstellungen. Die verfügba
 
 Das HUD zeigt während des Spiels relevante Informationen an:
 
-```csharp
+```{caption="HUD-Klasse mit Punktestand, Timer und Signal-Callbacks" .cs}
 public partial class HUD : Control
 {
     private Label _redScoreLabel;
@@ -2459,7 +2459,7 @@ public partial class HUD : Control
 
 Das Pausemenü wird durch Drücken von ESC aktiviert und pausiert das Spiel:
 
-```csharp
+```{caption="PauseMenu pausiert das Spiel via ESC und setzt den Spielzustand zurück" .cs}
 public partial class PauseMenu : Control
 {
     public override void _Input(InputEvent @event)
@@ -2488,7 +2488,7 @@ public partial class PauseMenu : Control
 
 Die Online-Lobby ermöglicht das Erstellen und Beitreten von Matches:
 
-```gdscript
+```{caption="Online-Lobby-Menü für Match-Erstellung und Beitreten mit Statusanzeige" .gd}
 # OnlineMenu.gd
 extends Control
 
@@ -2583,7 +2583,7 @@ DigiKicker/
 
 **Lösung:** Aktivierung von Continuous Collision Detection (CCD) und Geschwindigkeitsbegrenzung:
 
-```csharp
+```{caption="Lösung für Ball-Tunneling durch Continuous Collision Detection" .cs}
 ContinuousCd = true;
 
 if (speed > MAX_VELOCITY)
@@ -2598,7 +2598,7 @@ if (speed > MAX_VELOCITY)
 
 **Lösung:** Verwendung von State-Dependent Exploration (SDE) und niedrigerer initialer Standardabweichung:
 
-```python
+```{caption="PPO-Konfiguration gegen Trainingsinstabilität mit State-Dependent Exploration" .py}
 policy_kwargs = dict(
     log_std_init=-1.0,  # exp(-1) = (ungefähr) 0.37 statt 1.0
 )
@@ -2616,7 +2616,7 @@ model = PPO(
 
 **Lösung:** Einrichtung eines eigenen TURN-Servers als Fallback:
 
-```gdscript
+```{caption="TURN-Server-Konfiguration als Fallback bei restriktiven NAT-Einstellungen" .gd}
 const TURN_SERVERS := [{
     "urls": "turn:server-ip:3478?transport=udp",
     "username": "example_user",
