@@ -664,18 +664,16 @@ $endfor$
 
 
 $for(da-appendix)$
-%\subsection{$da-appendix.abschnitt$}
 \stepcounter{subsection}
 \phantomsection
 \addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}$da-appendix.abschnitt$}
-%\includepdf[
-%    clip=0mm 0mm 0mm 0mm,
-%    pages=$if(da-appendix.seiten)$$da-appendix.seiten$$else$-$endif$,
-%    frame,
-%    scale=.73,
-%    pagecommand={\begin{center}\translate{attachment}: $da-appendix.abschnitt$\\\begin{tiny}$da-appendix.pdf-file$\end{tiny}\end{center}}
-% ]{pdfs/$da-appendix.pdf-file$}
-%\includepdf[pages=$if(da-appendix.seiten)$$da-appendix.seiten$$else$-$endif$]{source/pdfs/$da-appendix.pdf-file$}
+\includepdf[
+    clip=0mm 0mm 0mm 0mm,
+    pages=$if(da-appendix.seiten)$$da-appendix.seiten$$else$-$endif$,
+    frame,
+    scale=.73,
+    pagecommand={\begin{center}\translate{attachment}: $da-appendix.abschnitt$\\\begin{tiny}$da-appendix.pdf-file$\end{tiny}\end{center}}
+]{pdfs/$da-appendix.pdf-file$}
 $endfor$
 $endif$
 

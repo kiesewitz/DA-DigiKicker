@@ -607,3 +607,4 @@ Aufgetretene Fehler, Lösungsansätze
 ### Erstellung der Nachbauanleitung
 
 Herangehensweise der Erstellung, Open-Source-Bereitstellung der Anleitung, Nach Fertigstellung der Praxis
+

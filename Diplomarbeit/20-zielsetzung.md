@@ -7,3 +7,4 @@ Diese Arbeit beschäftigt sich mit der Entwicklung einer digitalen Simulation ei
 ## Nicht-Ziele
 
 Kein Ziel dieser Arbeit ist es, einen digitalen Klon eines Tischfußballtisches zu schaffen, welcher sich so realitätsnah wie möglich anfühlt, da der Fokus auf einer spielerischen Simulation mit einem stilisierten Design liegt.
+
