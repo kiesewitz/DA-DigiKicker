@@ -433,7 +433,7 @@ Der Raspberry Pi Pico 2W ist nicht nur anhand von diesem faktischen Vergleich f√
 
 ### Sensorenauswahl
 
-In diesem Kapitel....
+Im folgenden Kapitel wird es um die Faktoren....
 
 #### Maussensor / Maus
 
