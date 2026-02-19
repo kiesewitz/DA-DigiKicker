@@ -12,16 +12,19 @@ da-author:
   nachname: Schaar
   klasse: 5AHWIN
   thema: Erstellung eines Controllers zur Steuerung der Simulation
+  ki-tools: []
 
 - vorname: André 
   nachname: Rath
   klasse: 5AHWIN
   thema: Entwicklung einer spielbaren Simulation eines Tischfußballtisches
+  ki-tools: []
 
 - vorname: Luan 
   nachname: Lanzmaier
   klasse: 5BHWIN
   thema: Implementierung eines Multiplayer-Modus und visuelles Design der Simulation
+  ki-tools: []
 
 da-betreuer:
 - paraffe: HG
@@ -33,6 +36,8 @@ da-betreuer:
 da-kurzfassung-de: Hier kommt eine deutsche Kurzfassung hin.
 
 da-kurzfassung-en: Hier kommt eine englische Kurzfassung hin.
+
+da-kiquellen: []
 
 da-appendix:
 - abschnitt: Datasheet Arduino Nano ESP32
@@ -54,7 +59,7 @@ da-appendix:
 - abschnitt: Betreuungsprotokolle
   pdf-file: betreuungsprotokolle.pdf
 
-  # Diplomarbeitsvereinbarungen müssen zum Schluss sein
+# Diplomarbeitsvereinbarungen müssen zum Schluss sein
 
 - abschnitt: Diplomarbeitsvereinbarung Englisch
   pdf-file: HTL-DA-Doku-EN.pdf
