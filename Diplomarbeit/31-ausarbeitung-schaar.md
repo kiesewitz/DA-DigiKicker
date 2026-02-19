@@ -3,7 +3,7 @@
 
 ## Theoretischer Teil
 
-Das folgende Kapitel befasst sich mit jeglicher Theorie rund um diese Diplomarbeit. Beschrieben werden sowohl Werkzeuge und Programme als auch jegliche Bauteile und wichtige Hardware, welche verwendet wurden.
+Das folgende Kapitel befasst sich mit jeglicher Theorie rund um diese Diplomarbeit. Beschrieben werden sowohl Werkzeuge und Programme als auch jegliche Bauteile und wichtige Hardware, welche verwendet bzw. in Betracht gezogen wurden.
 
 ### Projektmanagement
 
@@ -17,7 +17,7 @@ In diesem Kapitel wird der Begriff Mikrocontroller erklärt und die Unterschiede
 
 #### Was sind Mikrocontroller?
 
-Um Mikrocontroller [@microcontroller-definition] zu erklären, muss erst ihr Unterschied zu Mikroprozessoren beleuchtet werden. Mikroprozessoren sind so wie die "größeren" Prozessoren - In diesem Fall sowohl auf physikalische Größe als auch auf Leistung bezogen - die Recheneinheit eines Systems. Während Mikroprozessoren ausschließlich rechnerische Aufgaben bearbeiten und für andere Funktionen separate Teile (RAM, ROM, Timer-Module, etc.) benötigen, fungieren Mikrocontroller als ein fertiges Paket, welches die verschiedenen Teile verbaut hat.
+Um Mikrocontroller [@microcontroller-definition] zu erklären, muss erst ihr Unterschied zu Mikroprozessoren beleuchtet werden. Mikroprozessoren sind so wie die "größeren" Prozessoren - in diesem Fall sowohl auf physikalische Größe als auch auf Leistung bezogen - die Recheneinheit eines Systems. Während Mikroprozessoren ausschließlich rechnerische Aufgaben bearbeiten und für andere Funktionen separate Teile (RAM, ROM, Timer-Module, etc.) benötigen, fungieren Mikrocontroller als ein fertiges Paket, welches die verschiedenen Teile verbaut hat.
 
 ![Mikroprozessor vs. Mikrocontroller](img/Schaar/Difference_Microprocessor_Microcontroller.png)
 
@@ -43,7 +43,7 @@ Für die Gesamtbewertung werden vorerst für die Kosten Punkte zwischen 1 und 30
 
 ![Punkteverteilung Mikrocontroller](img/Schaar/PointWeightsMicrocontrollers.png)
 
-In Abbildung x (erstellt in Microsoft Excel) sind die Anteile der Bewertungskategorien an der finalen Punktezahl visuell dargestellt. Wie man erkennt, machen die Kosten hierbei den größten Anteil aus, während die Eigenschaften, welche sich auf die Übertragung der Eingaben beziehen, mit jeweils 17 % auch eine relativ hohe Gewichtung besitzen. Da wie bereits erwähnt die Stromversorgung vernachlässigbar ist, macht sie mit 6 % keinen allzu großen Anteil an der Gesamtpunktzahl aus. Bei diesen Anteilen wird für alle Kategorien vom theoretisch maximalen Ergebnis an Punkten ausgegangen (51 Punkte bei perfekter Bewertung in allen Kategorien).
+In Abbildung x (erstellt in Microsoft Excel) sind die Anteile der Bewertungskategorien an der finalen Punktezahl visuell dargestellt. Wie man erkennt, machen die Kosten hierbei den größten Anteil aus, während die Eigenschaften, welche sich auf die Übertragung der Eingaben beziehen, mit jeweils 22 % auch eine relativ hohe Gewichtung besitzen. Da wie bereits erwähnt die Stromversorgung vernachlässigbar ist, macht sie mit 7 % keinen allzu großen Anteil an der Gesamtpunktzahl aus. Bei diesen Anteilen wird für alle Kategorien vom theoretisch maximalen Ergebnis an Punkten ausgegangen (41 Punkte bei perfekter Bewertung in allen Kategorien).
 
 ### Arduino Nano ESP32
 
@@ -55,14 +55,14 @@ Während die primäre Programmiersprache des Arduino Nano ESP32 zwar eine simpli
 
 Beispiel:  Einzelne Array-Elemente können nicht wie in CPython gelöscht werden.
 
-```Python
+```{caption="Beispiel für Unterschied zwischen Micro- und CPython - Array" .py}
 a = array.array("b", (1, 2, 3))
 del a[1]
 ```
 
 Während dieser Ausdruck in CPython zu einer Löschung des Elements am Index 1 geführt hätte bekommt man in MicroPython einen Error.
 
-```
+```{caption="Error-Message | Beispiel für Unterschied zwischen Micro- und CPython - Array" .txt}
 Traceback (most recent call last):
   File "<stdin>", line 11, in <module>
 TypeError: 'array' object doesn't support item deletion
@@ -145,7 +145,7 @@ In Abbildung x [@esp-now-introduction] wird die Kommunikation mehrerer ESP-32-Co
 
 Hier folgen nun beispielhafte Code-Snippets [@esp-now-introduction] zur Realisierung des ESP-Now-Protokolls (One-Way-Form) in C-Code, so wie er auf einem Mikrocontroller laufen würde:
 
-```C
+```{caption="Beispiel ESP-Now One Way Kommunikation - Ermittlung der MAC-Adresse" .c}
 #include "WiFi.h"
 
 void setup(){
@@ -159,7 +159,7 @@ void loop(){}
 
 Mit diesem Code wird mithilfe der WiFi-Library die MAC-Adresse des Empfänger-Gerätes ermittelt, welche im folgenden Code verwendet wird. Gehen wir nun beispielhaft davon aus, dass hierbei die Adresse **66:94:6B:59:97:35** herauskommt. Diese Adresse wird nun zur weiteren Verwendung im folgenden Code in ein Array gespeichert.
 
-```C
+```{caption="Beispiel ESP-Now One Way Kommunikation - Sender-Code" .c}
 #include <esp_now.h>
 #include <WiFi.h>
 
@@ -212,7 +212,7 @@ void loop() {
 
 Dieser Code wird auf dem Mikrocontroller aufgerufen, der die Message - in diesem Fall ein ganz simples "Hello World!" - im Sekundentakt versendet. Hierbei werden die Daten verschickt und es wird eine Erfolgs- bzw. Fehlernachricht je nach Ergebnis ausgegeben. In der ```esp_now_peer_info_t```-Variable werden die Informationen zu "Peers" - bezeichnet die zusammenhängenden Mikrocontroller, welche die versendeten Informationen erhalten - gespeichert.
 
-```C
+```{caption="Beispiel ESP-Now One Way Kommunikation - Empfänger-Code" .c}
 #include <esp_now.h>
 #include <WiFi.h>
 
@@ -287,7 +287,7 @@ Da (Micro-)Python als Programmiersprache weitaus einsteigerfreundlicher als ande
 
 Dank der ```gpiozero```/```picozero```-Library [@gpiozero-library] [@picozero-library] - ```picozero``` ist hierbei eine abgeänderte Version der ```gpiozero```-Library, welche ihre grundlegende Struktur wiederverwendet, aber für den Raspberry Pi Pico optimiert ist - wird das Interfacing verschiedener GPIO-Geräte mit dem Raspberry Pi Pico ein leichtes. Diese Library hat viele Funktionen für die verschiedensten Input-/Output-Teile, welche die Nutzung dieser auch für unerfahrene Programmierer:innen ermöglichen und bei der Entwicklung viel Code ersparen.
 
-```Python
+```{caption="LED steuern mithilfe von picozero-Library" .py}
 from picozero import RGBLED
 from time import sleep
 
@@ -303,7 +303,7 @@ pop() # Call the pop function
 
 Dieses simple Beispiel von der Raspberry Pi Code Club Website [@raspberry-pi-code-club] zeigt, wie einfach es ist, mithilfe der Library eine LED in der Farbe lila zum Leuchten zu bringen. Man muss nur eine Variable als LED initialisieren, indem man die dazugehörigen Pins für jede Farbe angibt und daraufhin ihre Farbe eingeben und sie wieder ausschalten.
 
-```Python
+```{caption="Steuerung Bewegungssensor mit picozero-Library" .py}
 from picozero import MotionSensor
 
 pir = MotionSensor(4)
@@ -314,8 +314,7 @@ print("Motion detected!")
 
 Das vorherige Beispiel war für eine LED, also ein Output-Bauteil, während dieses für einen Bewegungsmelder ist, der auf ein Signal wartet. Da dieser Code ohne Leerzeilen nur 4 Zeilen lang ist, wird klar, dass mit dieser Library viele Projekte ohne allzu viel eigene Tüftelarbeit realisierbar sind. Bei diesem Beispiel wird nur der Pin des Sensors initialisiert und danach eine Methode aufgerufen, die das Programm stoppt, bis eine Bewegung wahrgenommen wird und danach eine Nachricht ausgibt.
 
-**Programm in C (Arduino Language)**
-```C
+```{caption="Verwendung eines Ultraschallsensors in C (Arduino Language)" .c}
 const int trigPin = 17;
 const int echoPin = 18;
 
@@ -347,8 +346,7 @@ void loop() {
 }
 ```
 
-**Programm in MicroPython mit ```picozero```-Library**
-```Python
+```{caption="Verwendung eines Ultraschallsensors in MicroPython mit picozero" .py}
 from picozero import DistanceSensor
 from time import sleep
 
@@ -401,7 +399,37 @@ Die Abbildung x [@raspberry-pi-pico-2w-pinout] stellt die Pin-Belegungen eines R
 
 ### Vergleich der Optionen & Entscheidung
 
-In diesem Teil folgt der direkte Vergleich sowie die Entscheidung für eine der Mikrocontroller-Optionen. Jegliche Diagramme und Berechnungen, welche zur Veranschaulichung und Ermittlung der Daten verwendet werden, wurden mithilfe von Microsoft Excel erstellt. Die Daten für den Vergleich der Preise werden durch einen Vergleich von mehreren Händlerangeboten pro Mikrocontroller ermittelt.
+In diesem Teil folgt der direkte Vergleich sowie die Entscheidung für eine der Mikrocontroller-Optionen. Jegliche Diagramme und Berechnungen, welche zur Veranschaulichung und Ermittlung der Daten verwendet werden, wurden mithilfe von Microsoft Excel erstellt. Die Daten für den Vergleich der Preise werden durch einen Vergleich von mehreren Händlerangeboten pro Mikrocontroller ermittelt. Für die exakten Berechnungen und Händler-Daten wird an dieser Stelle auf die Tabellenberechnungen im Anhang verwiesen.
+
+![Punkteverteilung - Mikrocontroller](img/Schaar/PointDistributionMicrocontrollers.png)
+
+Die Punkteverteilung, wie sie in Abbildung x (siehe Anhang für Berechnungen) ersichtlich ist, ergibt sich aus:
+
+**1. Kosten (~49% der möglichen Gesamtpunkte)**
+
+**2. Prozessorleistung (~22% der möglichen Gesamtpunkte)**
+
+**3. Datenübertragung (~22% der möglichen Gesamtpunkte)**
+
+**4. Stromverbrauch (~7% der möglichen Gesamtpunkte)**
+
+Für den genauen Vergleich der Prozessorleistung, Datenübertragung und dem Stromverbrauch wird hierbei wieder auf die Datenblätter im Anhang verwiesen.
+
+Die durchschnittlichen Kosten (in €) und die sich daraus ergebenden Punkte jedes Mikrocontrollers belaufen sich nach dem Vergleich verschiedener Online-Händler auf die folgenden Beträge:
+
+| Mikrocontroller | Preis H1 | Preis H2 | Preis H3 | **Durchschnittspreis** | **Punkte** |
+|--|--|--|--|--|--|
+| Arduino Nano ESP32 | 21,60€ | 16,60€ | 19,97€ | **19,39€** | **6** |
+| ESP32 DevKit C V4 | 13,00€ | 13,99€ | 11,90€ | **12,96€** | **8** |
+| Raspberry Pi Pico 2W | 7,60€ | 8,00€ | 8,57€ | **8,06€** | **13** |
+
+: Kostenvergleich Mikrocontroller
+
+![Gesamtpunktzahl - Mikrocontroller](img/Schaar/PointsSumMicrocontrollers.png)
+
+Nach dem Addieren aller Teilpunktzahlen der Kategorien ergibt sich für die Gesamtpunktzahl und die finale Entscheidung dieses Ergebnis. Den ersten Platz belegt mit einem klaren Vorsprung der **Raspberry Pi Pico 2W** weshalb er für die finale Entscheidung für einen Mikrocontroller für den Bau eines Controllers ausgewählt wird. Das **ESP32 DevKit C** belegt den zweiten Platz, während der **Arduino Nano ESP32** insgesamt am schlechtesten abschneidet.
+
+Der Raspberry Pi Pico 2W ist nicht nur anhand von diesem faktischen Vergleich für die Entwicklung sehr angenehm, sondern auch wegen der umfassenden Code-Library ```picozero```, welche die Entwicklung für diesen stark vereinfacht. Hiermit endet das Subkapitel über die Entscheidung für den Mikrocontroller, der für diese Diplomarbeit am Besten geeignet ist. Als nächstes werden die möglichen Sensoren zur Messung der Eingabesignale genauer beleuchtet.
 
 ### Sensorenauswahl
 
@@ -423,10 +451,6 @@ Kriterien
 
 Übertragung von Daten zwischen Microcontroller/Godot mithilfe von serieller Schnittstelle mit Code in C#
 
-### Erstellung der Nachbauanleitung
-
-Herangehensweise der Erstellung, Open-Source-Bereitstellung der Anleitung, Nach Fertigstellung der Praxis
-
 ## Praktischer Teil
 
 Kurzbeschreibung
@@ -441,7 +465,7 @@ Für die Erstpräsentation unserer Arbeit haben wir eine Demo erstellt, anhand v
 
 Am Arduino werden die Signale von einem MPU6050-Sensor eingelesen und über die Serielle Schnittstelle übertragen.
 
-```c++
+```{caption="Kommunikations-Demo Arduino <-> Godot - Arduino-Code" .c}
 // ...
 
 Adafruit_MPU6050 mpu;
@@ -486,7 +510,7 @@ void loop() {
 
 In Godot wird das ganze über ein C#-Skript aufgenommen und ein 3D-Würfel wird anhand von den übernommenen Rotationswerten korrekt gedreht, obwohl hierbei teilweise noch Kalibrationsfehler vorkommen.
 
-```c#
+```{caption="Kommunikations-Demo Arduino <-> Godot - C-Sharp-Code" .cs}
 using Godot;
 using System;
 using System.IO.Ports;
@@ -579,3 +603,7 @@ Aufgetretene Fehler, Lösungsansätze
 ### Finaler Controller
 
 ### Audio Design
+
+### Erstellung der Nachbauanleitung
+
+Herangehensweise der Erstellung, Open-Source-Bereitstellung der Anleitung, Nach Fertigstellung der Praxis

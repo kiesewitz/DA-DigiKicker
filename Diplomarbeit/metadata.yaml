@@ -37,10 +37,6 @@ da-kurzfassung-de: Hier kommt eine deutsche Kurzfassung hin.
 da-kurzfassung-en: Hier kommt eine englische Kurzfassung hin.
 
 da-appendix:
-- abschnitt: Technische Dokumentation
-  pdf-file: 
-  seiten: 
-
 - abschnitt: Datasheet Arduino Nano ESP32
   pdf-file: Schaar/Datasheet-Arduino-Nano-ESP32.pdf
   seiten: 1-2
@@ -53,8 +49,11 @@ da-appendix:
   pdf-file: Schaar/Datasheet-Raspberry-Pi-Pico-2W.pdf
   seiten: 3-6
 
+- abschnitt: Tabellenberechnungen Mikrocontroller
+  pdf-file: Schaar/Tabellenberechnungen_Mikrocontroller_Schaar.pdf
+
 - abschnitt: Betreuungsprotokolle
-  pdf-file: 
+  pdf-file: betreuungsprotokolle.pdf
 
 - abschnitt: Diplomarbeitsvereinbarung Englisch
   pdf-file: HTL-DA-Doku-DE.pdf
