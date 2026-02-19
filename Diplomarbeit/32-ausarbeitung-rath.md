@@ -207,7 +207,7 @@ Wichtige *GDScript*-Konzepte umfassen die Lifecycle-Methoden `_ready()` für Ini
 
 Neben *GDScript* unterstützt *Godot* auch C# als vollwertige Scripting-Sprache [@godot-csharp-docs]. C# bietet statische Typisierung, Zugang zum .NET-Ökosystem und ist für Entwickler mit *Unity*-Erfahrung vertraut. Die C#-Unterstützung erfordert die .NET-Version von *Godot* (separat downloadbar).
 
-```{caption="Player Controller als C#-Klasse in Godot" .cs}
+```{caption="Player Controller als C\#-Klasse in Godot" .cs}
 // C# in Godot: Player Controller
 using Godot;
 
@@ -258,7 +258,7 @@ C# in *Godot* verwendet eine leicht andere API als *GDScript*, folgt aber densel
 
 Ein wichtiger Aspekt bei der Arbeit mit C# in *Godot* sind Autoloads (Singletons) für global zugängliche Systeme [@jetbrains-autoloads]. Diese werden in den Projekteinstellungen konfiguriert und stehen dann in allen Scripts zur Verfügung:
 
-```{caption="C# Autoload-Singleton als GameManager" .cs}
+```{caption="C\# Autoload-Singleton als GameManager" .cs}
 // C# Autoload/Singleton Beispiel: GameManager
 using Godot;
 
@@ -1361,7 +1361,7 @@ DigiKicker/
 
 Das C#-Projekt verwendet .NET 8.0 und integriert die *ONNX Runtime* für die KI-Inferenz. Die Projektkonfiguration in der `.csproj`-Datei:
 
-```{caption="C#-Projektdatei mit ONNX Runtime als NuGet-Abhängigkeit" .csproj}
+```{caption="C\#-Projektdatei mit ONNX Runtime als NuGet-Abhängigkeit" .csproj}
 <Project Sdk="Godot.NET.Sdk/4.5.1">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -2316,7 +2316,7 @@ export_model_as_onnx(model, "foosball_ai.onnx")
 
 Die Integration in *Godot* erfolgt über den `RLBotController`:
 
-```{caption="RLBotController lädt das ONNX-Modell und führt KI-Inferenz in C# aus" .cs}
+```{caption="RLBotController lädt das ONNX-Modell und führt KI-Inferenz in C\# aus" .cs}
 public partial class RLBotController : Node
 {
     [Export] public string ModelPath = "res://models/foosball_ai.onnx";
