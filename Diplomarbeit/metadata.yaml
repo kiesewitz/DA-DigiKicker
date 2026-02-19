@@ -53,11 +53,11 @@ da-appendix:
   seiten: 3-6
 
 - abschnitt: Tabellenberechnungen Mikrocontroller
-  pdf-file: Schaar/Tabellenberechnungen_Mikrocontroller_Schaar.pdf
+  pdf-file: Schaar/Tabellenberechnungen-Mikrocontroller-Schaar.pdf
   seiten: 1
 
 - abschnitt: Betreuungsprotokolle
-  pdf-file: betreuungsprotokolle.pdf
+  pdf-file: 
 
 # Diplomarbeitsvereinbarungen müssen zum Schluss sein
 
