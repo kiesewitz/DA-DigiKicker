@@ -41,13 +41,25 @@ da-appendix:
   pdf-file: 
   seiten: 
 
+- abschnitt: Datasheet Arduino Nano ESP32
+  pdf-file: Schaar/Datasheet-Arduino-Nano-ESP32.pdf
+  seiten: 1-2
+
+- abschnitt: Datasheet ESP32-WROOM-32
+  pdf-file: Schaar/Datasheet-ESP32-Wroom-32.pdf
+  seiten: 1-3
+
+- abschnitt: Datasheet Raspberry Pi Pico 2W
+  pdf-file: Schaar/Datasheet-Raspberry-Pi-Pico-2W.pdf
+  seiten: 3-6
+
 - abschnitt: Betreuungsprotokolle
-  pdf-file:   
+  pdf-file: 
 
 - abschnitt: Diplomarbeitsvereinbarung Englisch
-  pdf-file: [pdfs/HTL-DA-Doku-DE.pdf]
+  pdf-file: HTL-DA-Doku-DE.pdf
 
 - abschnitt: Diplomarbeitsvereinbarung Deutsch
-  pdf-file: [pdfs/HTL-DA-Doku-EN.pdf]
+  pdf-file: HTL-DA-Doku-EN.pdf
   
 ---

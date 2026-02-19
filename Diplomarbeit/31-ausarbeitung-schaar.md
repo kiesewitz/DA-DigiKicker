@@ -33,7 +33,7 @@ Mikrocontroller sind in den verschiedensten Systemen zu zahlreichen Zwecken verb
 
 Um die Leistung der verschiedenen Mikrocontroller vergleichbar zu machen, müssen vorerst Kriterien festgelegt werden, anhand von denen die verschiedenen Optionen verglichen werden. Diese sollten bestmöglich messbar und objektiv vergleichbar sein, um eine gute Basis für die Auswahl zu schaffen. Mithilfe dieser Kriterien werden Punkte vergeben, anhand von denen eine Wahl getroffen wird.
 
-Eine gut vergleichbare Eigenschaft sind die Kosten, bei denen eine Reduktion sowohl für das Entwicklerteam als auch für Endbenutzer, welche das Projekt zu Hause replizieren wollen, vorteilhaft ist. Um die Kosten in direkter Relation zu vergleichen, wird die Formel $Punkte = min(30, ceil(\frac{100}{Kosten}))$ zur Bewertung verwendet. Mit ihr wird 100 durch die Kosten dividiert und das Ergebnis gerundet, sodass eine Punktezahl herauskommt. Danach wird dieser Wert auf maximal 30 gesetzt, sodass nicht mehr Punkte möglich sind, auch wenn niedrigere Kosten bestehen. Dieser Ansatz wurde gewählt, da er simpel zu berechnen ist und Kostenunterschiede in der Punktzahl sichtbar macht.
+Eine gut vergleichbare Eigenschaft sind die Kosten, bei denen eine Reduktion sowohl für das Entwicklerteam als auch für Endbenutzer, welche das Projekt zu Hause replizieren wollen, vorteilhaft ist. Um die Kosten in direkter Relation zu vergleichen, wird die Formel $Punkte = min(20, ceil(\frac{100}{Kosten}))$ zur Bewertung verwendet. Mit ihr wird 100 durch die Kosten dividiert und das Ergebnis gerundet, sodass eine Punktezahl herauskommt. Danach wird dieser Wert auf maximal 20 gesetzt, sodass nicht mehr Punkte möglich sind, auch wenn niedrigere Kosten bestehen. Dieser Ansatz wurde gewählt, da er simpel zu berechnen ist und Kostenunterschiede in der Punktzahl sichtbar macht.
 
 Für ein angenehmes Spielerlebnis ist eine schnelle und zuverlässige Übertragung der Eingaben wichtig. Daher werden die Prozessorleistung zur Verarbeitung der Eingaben sowie die Übertragungszeiten für den Austausch der Daten als weitere Vergleichsbasis verwendet.
 
@@ -95,7 +95,7 @@ Zusätzlich zu diesen Errungenschaften ist er der Autor des Buchs "Getting Start
 
 #### Technische Daten
 
-Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Arduino-Nano-ESP32-Datenblatt [@arduino-nano-datasheet]. Die Daten beziehen sich hierbei auf die zu bewertenden Kategorien, welche für die Entscheidung eines Mikrocontrollers herangenommen werden.
+Alle hier tabellarisch angegebenen Spezifikationen stammen aus dem offiziellen Arduino-Nano-ESP32-Datenblatt [@arduino-nano-datasheet]. Die Daten beziehen sich hierbei auf einen Teil der zu bewertenden Kategorien, welche für die Entscheidung eines Mikrocontrollers herangenommen werden. Für die exakten Daten, die für die Entscheidungen herangenommen werden, wird auf die Datenblätter im Anhang dieser Arbeit verwiesen.
 
 | Controllereigenschaft         | Wert / Größe                                        |
 |------------------------------:|:----------------------------------------------------|
@@ -143,7 +143,7 @@ ESP-Now ermöglicht Master-Slave-Beziehungen zwischen Boards, für Kommunikation
 
 In Abbildung x [@esp-now-introduction] wird die Kommunikation mehrerer ESP-32-Controller in beide Richtungen dargestellt. Dies ist zwar nur eine simple Visualisierung, zeigt jedoch dass die Verbindung vieler Mikrocontroller dadurch einfach ermöglicht wird. Dadurch ergeben sich zahlreiche Möglichkeiten für zusammenhängende Systeme, wie z. B. die Messung und Übermittlung verschiedener Sensordaten in einem Smart Home.
 
-Hier folgen nun beispielhafte Code-Snippets [@esp-now-introduction] zur Realisierung des ESP-Now-Protokolls (in One-Way-Form) in C-Code, so wie er auf einem Mikrocontroller laufen würde:
+Hier folgen nun beispielhafte Code-Snippets [@esp-now-introduction] zur Realisierung des ESP-Now-Protokolls (One-Way-Form) in C-Code, so wie er auf einem Mikrocontroller laufen würde:
 
 ```C
 #include "WiFi.h"
@@ -157,7 +157,7 @@ void setup(){
 void loop(){}
 ```
 
-Mit diesem Code wird mithilfe der WiFi-Library die MAC-Adresse des Empfänger-Gerätes ermittelt, welche im folgenden Code verwendet wird. Gehen wir nun beispielhaft davon aus, dass hierbei die Adresse **66:94:6B:59:97:35** herauskommt.
+Mit diesem Code wird mithilfe der WiFi-Library die MAC-Adresse des Empfänger-Gerätes ermittelt, welche im folgenden Code verwendet wird. Gehen wir nun beispielhaft davon aus, dass hierbei die Adresse **66:94:6B:59:97:35** herauskommt. Diese Adresse wird nun zur weiteren Verwendung im folgenden Code in ein Array gespeichert.
 
 ```C
 #include <esp_now.h>
@@ -210,7 +210,7 @@ void loop() {
 }
 ```
 
-Dieser Code wird auf dem Mikrocontroller aufgerufen, der die Message - in diesem Fall ein ganz simples "Hello World!" - im Sekundentakt versendet. Hierbei werden die Daten verschickt und es wird eine Erfolgs- bzw. Fehlernachricht je nach Ergebnis ausgegeben.
+Dieser Code wird auf dem Mikrocontroller aufgerufen, der die Message - in diesem Fall ein ganz simples "Hello World!" - im Sekundentakt versendet. Hierbei werden die Daten verschickt und es wird eine Erfolgs- bzw. Fehlernachricht je nach Ergebnis ausgegeben. In der ```esp_now_peer_info_t```-Variable werden die Informationen zu "Peers" - bezeichnet die zusammenhängenden Mikrocontroller, welche die versendeten Informationen erhalten - gespeichert.
 
 ```C
 #include <esp_now.h>
@@ -241,18 +241,22 @@ void setup() {
 void loop() {}
 ```
 
-Dieses kurze Snippet ist alles, was auf der Seite des Empfängers laufen muss, damit dieser die Nachrichten vom Sender empfangen kann.
+Dieses kurze Snippet ist alles, was auf der Seite des Empfängers laufen muss, damit dieser die Nachrichten vom Sender empfangen kann. Zuerst wird eine Datenstruktur mit ```struct_message myData;``` erstellt, in der die empfangenen Daten gespeichert werden. Sobald per ESP-Now Informationen eingelangen wird die ```void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len)```-Methode aufgerufen, welche zuerst die eingehenden Daten in die erstellte Variable speichert und diese danach ausgibt.
+
+Auch wenn dieses kurze Beispiel keine komplexe Aufgabe erledigt, wird trotzdem veranschaulicht, dass es nicht sehr aufwendig ist mithilfe von ESP-Now Daten zwischen Mikrocontrollern zu versenden.
 
 
 #### Firma - Espressif Systems
 
-Das ESP-32 DevKit C ist Teil der großen ESP32-Familie an Mikrocontrollern, welche von Espressif Systems [@espressif-about] entwickelt wird. Die Firma arbeitet an innovativen Lösungen rund um IoT und arbeitet in den letzten Jahren mehr und mehr an KI-Integration für Mikrocontroller. Sie veröffentlichen ihre Ressourcen und Modelle Open-Source und tragen damit maßgeblich zur globalen Weiterentwicklung von Mikrocontrollern, Embedded Systems und IoT bei. Ihre Produktlösungen umfassen Smart Home Systeme, IoT Security, Machine Vision, Deep Learning, Speech AI und viele weitere 
+Das ESP-32 DevKit C ist Teil der großen ESP32-Familie an Mikrocontrollern, welche von Espressif Systems [@espressif-about] entwickelt wird. Die Firma arbeitet an innovativen Lösungen rund um IoT und arbeitet in den letzten Jahren mehr und mehr an KI-Integration für Mikrocontroller. Sie veröffentlichen ihre Ressourcen und Modelle Open-Source und tragen damit maßgeblich zur globalen Weiterentwicklung von Mikrocontrollern, Embedded Systems und IoT bei. Ihre Produktlösungen umfassen Smart Home Systeme, IoT Security, Machine Vision, Deep Learning, Speech AI und viele weitere Anwendungen. 
 
 Teo Swee Ann hat die Firma im Jahr 2008 in Shanghai gegründet und ist bis heute der CEO bei Espressif Systems. 2016 wird dann der originale ESP32-Mikrocontroller veröffentlicht, welcher durch seine WLAN- & Bluetooth-Kapazitäten revolutionär ist. Seither wurden der Familie allerlei neue und spezialisierte Mikrocontroller hinzugefügt, wodurch für Projekte verschiedenster Größenordnungen Optionen existieren.
 
+Espressif Systems bemühen sich durch verschiedene Projekte umweltfreundlicher zu sein. Durch konstante Forschung versuchen sie den Energieverbrauch ihrer Produkte sowie den produktionsbedingten Materialverlust zu minimieren. Außerdem haben sie ein Wildlife Protection Programm gestartet, um die Leben von bedrohten Tierarten zu wahren.
+
 #### Technische Daten
 
-Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen ESP32-WROOM-32-Datenblatt [@esp32-datasheet]. Die Daten beziehen sich hierbei auf die zu bewertenden Kategorien, welche für die Entscheidung eines Mikrocontrollers herangenommen werden.
+Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen ESP32-WROOM-32-Datenblatt [@esp32-datasheet]. Die Daten beziehen sich hierbei auf einen Teil der zu bewertenden Kategorien, welche für die Entscheidung eines Mikrocontrollers herangenommen werden. Für die exakten Daten, die für die Entscheidungen herangenommen werden, wird auf die Datenblätter im Anhang dieser Arbeit verwiesen.
 
 | Controllereigenschaft         | Wert / Größe                                        |
 |------------------------------:|:----------------------------------------------------|
@@ -273,13 +277,112 @@ In Abbildung x [@esp32-pinout] werden die Pin-Belegungen eines ESP32-WROOM-32 da
 
 ![Raspberry Pi Pico 2W](img/Schaar/Raspberry-Pi-Pico-2W-IRL.png)
 
-Der letzte Mikrocontroller, der in dieser Arbeit betrachtet wird ist der Raspberry Pi Pico 2W (siehe Abbildung x [@raspberry-pi-pico-2w-image])
+Der letzte Mikrocontroller, der in dieser Arbeit betrachtet wird, ist der Raspberry Pi Pico 2W [@raspberry-pi-pico-documentation] (siehe Abbildung x [@raspberry-pi-pico-2w-image]). Dieser Controller verwendet keinen ESP-32 basierten Chip für kabellose Datenübertragung, sondern einen Infineon CYW43439 in Kombination mit einer ABRACON-lizensierten Antenne.
+
+Für die Programmierung eines Pi Pico kann sowohl C/C++ als auch MicroPython verwendet werden, gleich wie bei den vorherigen Mikrocontrollern auch. Während bei den anderen beiden jedoch vorwiegend C/C++ verwendet wird, werden Programme auf dem Pi Pico primär in MicroPython geschrieben, was vorwiegend daran liegt, dass die Programmiersprache nativ auf dem Controller läuft. Für C/C++ ist eine robuste SDK verfügbar, die eher für erfahrenere Entwickler gedacht ist, aber trotzdem alle Funktionen des Pico nutzbar macht.
+
+![Raspberry Pi Code Club](img/Schaar/Raspberry-Pi-Code-Club.png)
+
+Da (Micro-)Python als Programmiersprache weitaus einsteigerfreundlicher als andere Sprachen ist, wird der Raspberry Pi Pico gerne für den Einstieg in die Hardware-Programmierung genommen. Dafür gibt es auf der offiziellen Raspberry Pi Code Club Seite [@raspberry-pi-code-club] viele Projekte, welche wichtige Kernkonzepte der Low-Level-Programmierung erklären (siehe Abbildung x [@raspberry-pi-code-club]).
+
+Dank der ```gpiozero```/```picozero```-Library [@gpiozero-library] [@picozero-library] - ```picozero``` ist hierbei eine abgeänderte Version der ```gpiozero```-Library, welche ihre grundlegende Struktur wiederverwendet, aber für den Raspberry Pi Pico optimiert ist - wird das Interfacing verschiedener GPIO-Geräte mit dem Raspberry Pi Pico ein leichtes. Diese Library hat viele Funktionen für die verschiedensten Input-/Output-Teile, welche die Nutzung dieser auch für unerfahrene Programmierer:innen ermöglichen und bei der Entwicklung viel Code ersparen.
+
+```Python
+from picozero import RGBLED
+from time import sleep
+
+rgb = RGBLED(red=1, green=2, blue=3) # Pin numbers
+
+def pop():
+    rgb.color = (255, 0, 255) # Purple
+    sleep(2)
+    rgb.off()
+
+pop() # Call the pop function
+```
+
+Dieses simple Beispiel von der Raspberry Pi Code Club Website [@raspberry-pi-code-club] zeigt, wie einfach es ist, mithilfe der Library eine LED in der Farbe lila zum Leuchten zu bringen. Man muss nur eine Variable als LED initialisieren, indem man die dazugehörigen Pins für jede Farbe angibt und daraufhin ihre Farbe eingeben und sie wieder ausschalten.
+
+```Python
+from picozero import MotionSensor
+
+pir = MotionSensor(4)
+
+pir.wait_for_motion()
+print("Motion detected!")
+```
+
+Das vorherige Beispiel war für eine LED, also ein Output-Bauteil, während dieses für einen Bewegungsmelder ist, der auf ein Signal wartet. Da dieser Code ohne Leerzeilen nur 4 Zeilen lang ist, wird klar, dass mit dieser Library viele Projekte ohne allzu viel eigene Tüftelarbeit realisierbar sind. Bei diesem Beispiel wird nur der Pin des Sensors initialisiert und danach eine Methode aufgerufen, die das Programm stoppt, bis eine Bewegung wahrgenommen wird und danach eine Nachricht ausgibt.
+
+**Programm in C (Arduino Language)**
+```C
+const int trigPin = 17;
+const int echoPin = 18;
+
+double duration, cm;
+
+void setup(void) {
+  Serial.begin(9600);
+
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+}
+
+void loop() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(5);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+ 
+  pinMode(echoPin, INPUT);
+  duration = pulseIn(echoPin, HIGH);
+
+  cm = (duration/2) / 29.1;
+
+  Serial.print("Distance: ");
+  Serial.println(cm);
+  
+  delay(1000);
+}
+```
+
+**Programm in MicroPython mit ```picozero```-Library**
+```Python
+from picozero import DistanceSensor
+from time import sleep
+
+sensor = DistanceSensor(echo=18, trigger=17)
+while True:
+    print('Distance: ', sensor.distance * 100)
+    sleep(1)
+```
+
+Diese beiden Code-Segmente erfüllen dieselbe Funktion, während das erste in C bzw. Arduino Language - wie sie z. B. auf einem Arduino Nano ESP32 laufen würde - und das zweite in MicroPython mit der ```picozero```-Library geschrieben ist. Direkt erkennbar ist, dass hierbei bei dem MicroPython-Code für den/die Programmierer:in weitaus weniger zu tun ist als beim C-Code. 
+
+Natürlich gibt es für viele Sensoren auch in C Libraries welche einen großen Teil dieses zusätzlichen Aufwandes entfernen, jedoch ist keine so simple und weitreichende Library für die gleiche Menge an verschiedenen Sensoren verfügbar wie in MicroPython. Grundsätzlich ist es also persönliche Präferenz, in welcher Sprache programmiert wird, jedoch ist MicroPython in Kombination mit der ```picozero```-Library auf jeden Fall sehr viel einfacher in der Zurechtfindung.
 
 #### Firma - Raspberry Pi
 
+Gleich wie die anderen Geräte der Raspberry-Pi-Familie ist auch der Raspberry Pi Pico 2W ein Gerät von der Raspberry Pi Foundation [@raspberry-pi-about] [@raspberry-pi-story]. Die Raspberry Pi Foundation wurde 2012 gegründet, um einerseits neue und besser ausgebildete Schüler an die University of Cambridge zu bringen und andererseits um junge Menschen mithilfe von kostengünstiger Hardware an die Programmierung heranzuführen.
+
+Konzipiert und entwickelt wurde der erste Raspberry Pi damals von einem Team an der University of Cambridge. Ein paar der treibenden Kräfte in diesem Team sind/waren Eben Upton, Robert Mullins und Alan Mycroft sowie zahlreiche weitere Entwickler. Für die Entwicklung des Computers stellte das Team damals 4 Anforderungen auf:
+
+**1. Programmierbare Hardware**
+
+**2. Spaß bei der Entwicklung**
+
+**3. Leistbar für alle**
+
+**4. Robustheit**
+
+Für das Team war es von Anfang an wichtig, diese Anforderungen bei der Entwicklung einzuhalten. Auf dem Gerät sollte es möglich sein zu programmieren, während die Entwicklung für die Kinder und Jugendlichen auch noch Spaß machen sollte. Als Preis hatten sie von Anfang an 25 Dollar im Kopf, da dies für sie ein Betrag war, der für die meisten Familien tragbar wäre. Der vierte Punkt musste für sie auch erreicht werden, da der Raspberry Pi ein Gerät werden sollte, das unter anderem von Kindern jeden Tag verwendet werden würde, weshalb es stabil sein müsste.
+
+14 Jahre später werden immer noch neue Geräte entwickelt und die Bemühungen der Foundation, die Entwicklung von Hardware- und Software-Projekten einfach zugänglich und verständlich zu machen, gehen bis heute international weiter. Nur in der UK wurden bereits über 26.000 Lehrer unterstützt und auf der ganzen Welt werden offizielle Projekte durchgeführt, um junge Menschen zu informieren.
+
 #### Technische Daten
 
-Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Raspberry-Pi-Pico-2W-Datenblatt [@raspberry-pi-pico-datasheet]. Die Daten beziehen sich hierbei auf die zu bewertenden Kategorien, welche für die Entscheidung eines Mikrocontrollers herangenommen werden.
+Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Raspberry-Pi-Pico-2W-Datenblatt [@raspberry-pi-pico-datasheet]. Die Daten beziehen sich hierbei auf einen Teil der zu bewertenden Kategorien, welche für die Entscheidung eines Mikrocontrollers herangenommen werden. Für die exakten Daten, die für die Entscheidungen herangenommen werden, wird auf die Datenblätter im Anhang dieser Arbeit verwiesen.
 
 | Controllereigenschaft         | Wert / Größe                                        |
 |------------------------------:|:----------------------------------------------------|
@@ -298,7 +401,7 @@ Die Abbildung x [@raspberry-pi-pico-2w-pinout] stellt die Pin-Belegungen eines R
 
 ### Vergleich der Optionen & Entscheidung
 
-In diesem Teil folgt der direkte Vergleich sowie die Entscheidung für eine der Mikrocontroller-Optionen. Jegliche Diagramme, welche zur Veranschaulichung der Daten verwendet werden, wurden mithilfe von Microsoft Excel erstellt.
+In diesem Teil folgt der direkte Vergleich sowie die Entscheidung für eine der Mikrocontroller-Optionen. Jegliche Diagramme und Berechnungen, welche zur Veranschaulichung und Ermittlung der Daten verwendet werden, wurden mithilfe von Microsoft Excel erstellt. Die Daten für den Vergleich der Preise werden durch einen Vergleich von mehreren Händlerangeboten pro Mikrocontroller ermittelt.
 
 ### Sensorenauswahl
 
