@@ -433,15 +433,59 @@ Der Raspberry Pi Pico 2W ist nicht nur anhand von diesem faktischen Vergleich f�
 
 ### Sensorenauswahl
 
-Im folgenden Kapitel wird es um die Faktoren....
+Da nun die Auswahl für den optimalen Mikrocontroller getroffen wurde, ist es an der Zeit, eine Entscheidung für den bzw. die verwendeten Sensor(-en) in dem zu bauenden Controller zu machen. Da jedoch jeder Sensor viele Eigenschaften besitzt und es für ein solches Projekt viele verschiedene Lösungsansätze gibt, werden in diesem Kapitel die Vor- und Nachteile der verschiedenen Optionen beleuchtet.
+
+Am Ende soll wie im vorherigen Kapitel wieder eine Entscheidung getätigt werden, welche Sensorenauswahl im Endprodukt verbaut werden soll. Da die Sensoren sich in ihrer kompletten Funktionsweise nahezu überhaupt nicht ähneln, kann hierbei kein Vergleich gemeinsamer Eigenschaften durchgeführt werden. Deshalb wird die Entscheidung in diesem Kapitel eher nach persönlicher Expertise und logischer bzw. physikalischer Möglichkeit - statt wie zuvor nach messbaren Daten und Leistungsindikatoren - getroffen.
+
+#### Entfernungssensor + IMU-Sensor oder Drehgeber
+
+Für den ersten möglichen Ansatz wäre eine Kombination aus einem Entfernungssensor (Laser-/Ultraschallsensor) und einem IMU-Sensor oder Drehgeber gedacht. Mit einer Kombination dieser Sensoren sollte es möglich sein, alle rotatorischen und translatorischen Eingaben, die bei dem Stab eines Tischfußballtisches anfallen, korrekt zu digitalisieren. 
+
+Bevor der Lösungsansatz erklärt werden kann, müssen die verschiedenen Sensoren mit ihren Funktionen erklärt werden. Hier folgt nun für jeden angesprochenen Sensor eine kurze Erklärung bzw. Veranschaulichung der Anwendung des jeweiligen Sensors.
+
+##### Laser-/Ultraschallsensor
+
+Laser- [@laser-sensors-all-types] [@how-laser-sensors-work] und Ultraschallsensoren [@what-is-ultrasonic-sensor] [@ultrasonic-with-arduino] werden in dieser Ausarbeitung zusammen erklärt, da die hier betrachteten Versionen dieser Sensoren demselben physikalischen Prinzip folgen. Auch wenn es verschiedene Lasersensoren gibt, sind die meisten herkömmlich zugänglichen - gleich wie die schallbasierten Bauteile - nach dem ToF-Prinzip aufgebaut.
+
+![Laser- und Ultraschallsensor - ToF-Prinzip](img/Schaar/Ultrasonic-Laser-Sensor-ToF-Principle.png)
+
+In Abbildung x wird dargestellt, wie sowohl der Ultraschallsensor als auch der Lasersensor nach demselben Prinzip funktionieren. Dieses Prinzip ist das vorher schon erwähnte ***Time-of-Flight-Prinzip***.
+
+Die Messung mithilfe des Time-of-Flight-Prinzips funktioniert bei jedem Sensor gleich.
+
+$Geschwindigkeit = \frac{Weg}{Zeit}$
+
+Die allgemeine Formel für die Geschwindigkeit wird zu Beginn genommen und zur allgemeinen Formel für den Weg umgeformt.
+
+$Weg = {Geschwindigkeit}\times{Zeit}$
+
+Grundsätzlich würde der Weg, den die Ultraschallwellen bzw. die Lichtstrahlen zurücklegen der jeweiligen Geschwindigkeit (Schall-/Lichtgeschwindigkeit) mal der Zeit, die für die Überbrückung der Strecke benötigt wird, entsprechen. Da die in diesem Fall für die Messung jedoch die Wellen/Strahlen zum Objekt hin- und wieder zurückfliegen müssen, würde laut der allgemeinen Weg-Formel bei jeder Messung der doppelte Weg herauskommen.
+
+$Weg = \frac{({Geschwindigkeit}\times{Zeit})}{2}$
+
+Um das Problem des doppelten Weges zu umgehen muss das Ergebnis der Multiplikation von Geschwindigkeit und Zeit einfach durch 2 dividiert werden. So ergibt sich die Formel, nach der jeder ToF-basierte Sensor den Abstand zu Objekten misst.
+
+Auch wenn die beiden Sensoren das selbe Grundprinzip aufweisen unterscheiden sie sich in ihren Anwendungszwecken, Kosten und den physikalischen Vor- und Nachteilen, die sie mit sich bringen. [@laser-vs-ultrasonic]
+
+**Ultraschallsensor**
+
+- Ultraschallsensoren werden gerne in Situationen verwendet, wo physikalische Störungen wie Staub, Luftfeuchtigkeit oder schlechte Lichtbedingungen (z. B. zu helles Umfeld) auftreten. Sie sind tendenziell weitaus leistbarer als viele Laser-Sensoren und werden deshalb auch im Hobby-Bereich öfter verwendet. Da Ultraschallsensoren billiger und robuster gegenüber physikalischen Gegebenheiten sind - auch reflektive Oberflächen verfälschen die Messung nicht - werden sie z. B. oft zur Messung von Füllständen von Flüssigkeiten oder Abständen zu anderen Fahrzeugen als Parkhilfe verwendet.
+
+**Lasersensor**
+
+- Da Laser-Sensoren üblicherweise teurer aber auch weitaus genauer sind (Wenige mm bis um gegenüber cm bei US) werden sie in Systemen verwendet, die eine weitaus höhere Präzision benötigen. Auch für weite Entfernungen oder Messungen, bei denen die höchstmögliche Geschwindigkeit essenziell ist, werden sie verwendet. Dank diesen Eigenschaften werden Laser-Sensoren z. B. in der Herstellung von Autoteilen zur Qualitätssicherung, bei der Landschaftsvermessung oder auf der Zielgeraden beim Formel 1 - zusätzlich zu Induktionsschleifen (Timing Loops) in der Strecke - zur Zeitmessung verwendet.
+
+##### IMU-Sensor
+
+Eine IMU [@imu-and-robotics] ist eine inertiale Messeinheit (engl. **I**nertial **M**easurement **U**nit), mit der die Beschleunigung, die Winkelgeschwindigkeit sowie die Orientierung des Sensors gemessen wird. Dies funktioniert durch eine Kombination aus Gyroskopen, Beschleunigungsmessern und Magnetometern.
+
+##### Drehgeber
+
+
 
 #### Maussensor / Maus
 
 Billig, leicht nachzumachen
-
-#### HC-SR04 + MPU6050 / IMU-Sensor
-
-Warum eher nicht? (Schleifring), Komplexer für Nachbau
 
 ### Datenaustausch
 
