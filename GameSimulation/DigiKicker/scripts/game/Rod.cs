@@ -116,7 +116,7 @@ public partial class Rod : Node3D
 	public override void _Ready()
 	{
 		GD.Print($"===== Rod._Ready() START for Team {Team}, Type {Type} =====");
-
+		
 		// Figuren-Scene laden
 		_figureScene = GD.Load<PackedScene>("res://scenes/game/Figure.tscn");
 
@@ -135,8 +135,13 @@ public partial class Rod : Node3D
 		GD.Print($"InputManager found: {_inputManager != null}");
 
 		// Node-Referenzen abrufen
-		_rodMesh = GetNode<MeshInstance3D>("RodMesh");
+		_rodMesh = GetNode<MeshInstance3D>("Bar");
 		_figureSlots = GetNode<Node3D>("FigureSlots");
+		
+		if(Team == GameManager.Team.Blue) {
+			_rodMesh.RotationDegrees = new Vector3(0, -90, 90);
+		}
+		
 
 		GD.Print($"Node references - RodMesh: {_rodMesh != null}, FigureSlots: {_figureSlots != null}");
 		GD.Print($"Rod GlobalPosition: {GlobalPosition}");
@@ -210,14 +215,15 @@ public partial class Rod : Node3D
 		if (_rodMesh == null)
 			return;
 
+		
 		// Zylinder-Mesh für Stange erstellen
-		var cylinderMesh = new CylinderMesh();
-		cylinderMesh.TopRadius = 0.014f;  // Etwas dickere Stange für bessere Sichtbarkeit
-		cylinderMesh.BottomRadius = 0.014f;
-		cylinderMesh.Height = ROD_LENGTH;
-		cylinderMesh.RadialSegments = 8;
+		// var cylinderMesh = new CylinderMesh();
+		// cylinderMesh.TopRadius = 0.014f;  // Etwas dickere Stange für bessere Sichtbarkeit
+		// cylinderMesh.BottomRadius = 0.014f;
+		// cylinderMesh.Height = ROD_LENGTH;
+		// cylinderMesh.RadialSegments = 8;
 
-		_rodMesh.Mesh = cylinderMesh;
+		// _rodMesh.Mesh = cylinderMesh;
 
 		// HINWEIS: RodMesh-Rotation ist in Rod.tscn Scene-Datei gesetzt (90 Grad um X-Achse)
 		// Dies richtet den Zylinder entlang der Z-Achse aus (Tischbreite)
@@ -228,10 +234,10 @@ public partial class Rod : Node3D
 			: new Color(0.2f, 0.4f, 1.0f); // Blau
 
 		// Normal-Material erstellen (metallisches Grau)
-		_normalMaterial = new StandardMaterial3D();
-		_normalMaterial.AlbedoColor = new Color(0.6f, 0.6f, 0.65f);
-		_normalMaterial.Metallic = 0.8f;
-		_normalMaterial.Roughness = 0.3f;
+		// _normalMaterial = new StandardMaterial3D();
+		// _normalMaterial.AlbedoColor = new Color(0.6f, 0.6f, 0.65f);
+		// _normalMaterial.Metallic = 0.8f;
+		// _normalMaterial.Roughness = 0.3f;
 
 		// InPair-Material erstellen (dezentes Team-Farb-Leuchten)
 		_inPairMaterial = new StandardMaterial3D();
@@ -252,7 +258,8 @@ public partial class Rod : Node3D
 		_activeMaterial.EmissionEnergyMultiplier = 2.0f; // Hohe Intensität
 
 		// Normal-Material standardmäßig anwenden
-		_rodMesh.SetSurfaceOverrideMaterial(0, _normalMaterial);
+		// _rodMesh.SetSurfaceOverrideMaterial(0, _normalMaterial);
+		
 	}
 
 	/// <summary>
@@ -261,6 +268,7 @@ public partial class Rod : Node3D
 	/// </summary>
 	private void SpawnFigures()
 	{
+
 		GD.Print($"SpawnFigures() called - FigureCount: {FigureCount}");
 
 		if (_figureScene == null || _figureSlots == null)
@@ -565,7 +573,7 @@ public partial class Rod : Node3D
 	/// <param name="state">Der neue Auswahl-Status (Normal, InPair oder Active)</param>
 	public void SetSelectionState(SelectionState state)
 	{
-		if (_rodMesh == null || !GodotObject.IsInstanceValid(_rodMesh) || _normalMaterial == null || _inPairMaterial == null || _activeMaterial == null)
+		if (_rodMesh == null || !GodotObject.IsInstanceValid(_rodMesh) || _inPairMaterial == null || _activeMaterial == null)
 			return;
 
 		_selectionState = state;
@@ -578,6 +586,8 @@ public partial class Rod : Node3D
 			SelectionState.Active => _activeMaterial,
 			_ => _normalMaterial
 		};
+						;
+
 
 		_rodMesh.SetSurfaceOverrideMaterial(0, material);
 		GD.Print($"Rod {Team} {Type} selection state changed to {state}");

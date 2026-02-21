@@ -8,6 +8,8 @@ using System;
 public partial class Figure : Node3D
 {
 	[Export] public GameManager.Team Team { get; set; }
+	[Export] public Texture2D RedTexture;
+	[Export] public Texture2D BlueTexture;
 
 	// Figuren-Dimensionen
 	private const float FIGURE_SCALE = 0.45f;
@@ -234,12 +236,12 @@ public partial class Figure : Node3D
 		switch (Team)
 		{
 			case GameManager.Team.Red:
-				material.AlbedoColor = new Color(0.8f, 0.1f, 0.1f); // Helles Rot
+				material.AlbedoTexture = RedTexture;
 				GD.Print("Setting RED material");
 				break;
 
 			case GameManager.Team.Blue:
-				material.AlbedoColor = new Color(0.1f, 0.3f, 0.9f); // Helles Blau
+				material.AlbedoTexture = BlueTexture;
 				GD.Print("Setting BLUE material");
 				break;
 

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bqjso4nvet6c7"
-path="res://.godot/imported/Figure.glb-e91d7d70e4972feabd0aa986104b4459.scn"
+uid="uid://crmlha262rmlv"
+path="res://.godot/imported/stange.glb-6965e671f5f311de9a7898fc3bcc56a1.scn"
 
 [deps]
 
-source_file="res://assets/models/figures/Figure.glb"
-dest_files=["res://.godot/imported/Figure.glb-e91d7d70e4972feabd0aa986104b4459.scn"]
+source_file="res://assets/models/rods/stange.glb"
+dest_files=["res://.godot/imported/stange.glb-6965e671f5f311de9a7898fc3bcc56a1.scn"]
 
 [params]
 
