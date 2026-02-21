@@ -5,251 +5,178 @@
 
 ### Projektauftrag
 
-Hier beschreiben Sie die allgemeinen Informationen zu Ihrem Maturaprojekt. Hier beschreiben sie den Projektkontext, nämlich die Ausgangssituation und Problembeschreibung
+Die Digitalisierung eines Tischfußballtisches ist die grundlegende Aufgabenstellung dieser Diplomarbeit. Nach einigem Recherchieren haben wir festgestellt, dass technologisch-unterstützte Tischfußballtische mit eingebauter Gegner-KI existieren, ein Projekt nach unserer Idee jedoch noch von keinem entwickelt wurde. 
 
+Die Hauptfrage der Arbeit ist dabei, ob solch ein virtueller Tisch zuverlässig funktionieren kann und in welchen Hinsichten er sich vom Original unterscheidet. Als Lösung ist es vorgesehen, eine digitale Simulation des Tischfußballtisches in Form eines Spiels zu entwickeln, welche über einen physischen Controller gesteuert wird. Dieser soll in einer eigens entwickelten Hülle gebaut werden, die einem echten Tisch in puncto Spielgefühl so nahekommen soll wie möglich. Das Design der Umhüllung soll nach eigenem Geschmack stilisiert, jedoch attraktiv gestaltet werden. Bei der Simulation wird ein größerer Fokus auf stilisierte Grafiken und eine nicht komplett realistische Darstellung der Spielwelt gelegt, damit sich das Endprodukt nicht wie ein bloßes digitales Abbild anfühlt.
 
 #### Projektziele
 
-Das Projektziel beschreibt den erwünschten Zustand (Sollzustand) nach dem erfolgreichen Abschluss des Projektes. Das Ziel wird wohlbedacht formuliert und durch aktives Handeln aller Projektbeteiligten erreicht. Projektziele sollten gemeinsam mit allen Projektbeteiligten erarbeitet werden.
+* Entwicklung einer digitalen Simulation eines Tischfußballtisches in Form eines Spiels
 
-#### Nicht-Ziele bzw. nicht Inhalte
+* Entwicklung eines physischen Controllers zur Steuerung der Simulation auf Basis von  Sensoren und Mikrocontrollern, in einer eigens entwickelten Hülle, die einem echten Tischfußballtisch vom Spielgefühl und Aussehen ähneln soll
 
-Nicht-Ziele sind aus mehreren Gründen wichtig. Erstens helfen sie beim Erwartungsmanagement. Zweitens schaffen sie Klarheit darüber, was erledigt werden soll. Und drittens erhöhen Nicht-Ziele die Transparenz. Denn wenn man schon früh im Projekt explizit die Bereiche definiert, die das Projekt nicht bearbeiten soll, kann dadurch eine Diskussion über genau diese Randbereiche entstehen. 
+* Umsetzung eines Einzelspielermodus, sodass ein Spieler jederzeit alleine spielen bzw. trainieren kann
+
+* Erstellung und Training eines KI-Modells, welches als künstlicher Gegner fungiert
+
+* Implementierung eines Mehrspielermodus für das gemeinsame Spiel mit anderen Personen, sowohl lokal als auch über eine drahtlose Verbindung
+
+* Gestaltung stilisierter Grafiken, Designs und visueller Assets für eine nicht komplett realistische Darstellung der Spielwelt
+
+#### Nicht-Ziele
+
+* Kein digitaler Klon eines Tischfußballtisches, der sich so realitätsnah wie möglich anfühlt, da der Fokus auf einer spielerischen Simulation mit stilisiertem Design liegt
 
 #### Projektnutzen
 
-Wie soll ein Außenstehender ein Projekt genehmigen, wenn nicht klar formuliert ist, WARUM das Projekt überhaupt durchgeführt werden soll? Auch hier ist es wichtig, möglichst konkret zu werden. Einen Projektnutzen z.B. mit „neueste Technik“ zu bezeichnen, ist nicht ausreichend.
+Für die HTL Leoben entsteht ein Projekt, welches z. B. beim Tag der offenen Tür präsentiert werden kann. Damit könnte man Interessierten Einblicke in mögliche Ergebnisse einer Laufbahn an der Schule geben. Da es eine sehr themenübergreifende Arbeit ist, können Informationen zu Hardware- /Spieleentwicklung und Netzwerkkommunikation anhand von Beispielen in der Arbeit einfach erklärt werden. Außerdem könnte dieses Projekt von zukünftigen Klassen für eine Diplomarbeit erweitert werden und schafft so der Schule zusätzlichen Mehrwert.
 
-#### Projektauftraggeber/in
+Technisch gesehen wird durch die Entwicklung des physischen Controllers untersucht/demonstriert, inwieweit sich das Spielgefühl von einem echten Tischfußballtisch auf eine digitale Umgebung übertragen lässt. Diese Erkenntnisse sind auch über das Projekt hinaus von Interesse und möglicherweise ließen sich Teile davon in der tatsächlichen Industrie wiederverwenden. Da die Diplomarbeit Open-Source ist und sich dadurch jede:r Interessent:in daran probieren kann, es weiterzuentwickeln, ist es für den generellen technischen Fortschritt zusätzlich nützlich.
 
-Hier beschreiben Sie wer der Projektauftraggeber ist. Falls es eine externe Firma ist können Sie hier eine kurze Beschreibung des Unternehmens (sofern Projektrelevant) einfügen.
+Für den Endnutzer bietet die Arbeit einen konkreten Vorteil im Vergleich zu einem klassischen Tischfußballtisch: Ein Spieler kann jederzeit und ohne weitere Mitspieler gegen eine KI trainieren, während gleichzeitig die Möglichkeit besteht, mit anderen Personen lokal oder drahtlos gegeneinander anzutreten.
+
+#### Projektauftraggeber
+
+Die Diplomarbeit "DigiKicker - Digitalisierung eines Tischfußballtisches" findet in Zusammenarbeit mit der HTL Leoben statt. Sie wird betreut von Ing. DI(FH) Günther Hutter, Msc. in der Rolle des Hauptbetreuers, sowie DI Dr. mont Thomas Messner als Zweitbetreuer.
 
 #### Projekttermine
 
-Welche Termine sind Fixtermine und was sollte an diesen Terminen stattfinden ? Beispiele hierfür sind z.B: Präsentationen, Projektende, Zwischenabgaben, fest eingeplante Besprechungen / Reviews (die auch Projektrelevant sind) die auf keinen Fall vergessen werden dürfen
-
-
-
-| Termin     | Inhalt                          |
-|-----------:|:--------------------------------|
-| 2020-12-24 | Weihnachten                     |
-| 20XX-12-24 | Projektstart                    |
-| 20XX-10-24 | Projektpräsentation             |
-| 20XX-10-24 | Erreichung Meilenstein I        |
-| 20XX-10-24 | Erste Zwischenpräsentation      |
-| 20XX-10-24 | Erreichung Meilenstein II       |
-| 20XX-10-24 | Erreichung Meilenstein III      |
-| 20XX-10-24 | Zweite Zwischenpräsentation     |
-| 20XX-10-24 | Abgabe Endversion an Betreuer   |
-| 20XX-10-24 | Abgabe Gebundene Version        |
-| 20XX-10-24 | ...                             |
+| Termin | Inhalt |
+|--:|:--|
+| 12.09.2025 | DA-Portal befüllt |
+| 10.11.2025 | 1. DA-Präsentation |
+| 09.01.2026 | DA-Erstversion elektronisch an Betreuer übermittelt |
+| 26.02.2026 | 2. DA-Präsentation |
+| 06.03.2026 | DA-Abgabe |
+| 23.03.2026 | DA-Durchsicht mit Betreuer |
+| 27.03.2026 | DA-Portal mit Hr. Messner abgeschlossen |
+| 07.04.2026 | Abgabe – Bibliotheksversion der DA |
+| 08.04.2026 | 3. DA-Präsentation |
 
 : Projektterminübersicht
 
 
 #### Projektkosten
 
-Hier dokumentieren Sie welche Kosten fallen Für Ihr Projekt an und wer kommt für diese Kosten auf ?
+Die Preise welche für die Gesamtkosten der Hardware herangezogen wurden entsprechen jenen, die im Kapitel "Vergleich der Optionen & Entscheidung" genauer aufgelistet sind. Für die 3D-Druck-Filamentkosten wird sich an aktuellen Preisen orientiert. Für eine genaue Aufschlüsselung der geplanten Projektkosten - in Form von einer Tabellenkalkulation [@table-calculations-total-cost] - wird wieder auf den Anhang verwiesen.
 
-| Meilenstein  | Kostenart | Menge  | Preis   | Gesamtkosten | Deckung durch |
+| Kostenstelle  | Kostenart | Menge  | Preis   | Gesamtkosten | Deckung durch |
 |:-------------|:---------:|:------:|--------:|-------------:|---------------|
-| Prototyp     | Personal  |  10.00 |   15.00 | 150.00      | Schüler       |
-| Prototyp     | Hardware  |  1     |  254.00 | 254.00      | Projektpartner|
-| DA-Schreiben | Druck     |  3     |   26.00 |  53.00      | Schüler       |
+| Fertiger Controller | Hardware | 2 | 135.21€ | 270.42€ | Schüler |
+| Gebundene DA-Abgabe | Druck | 4 | 27.90€ | 111.60€ | Schüler |
+| Gebundene DA-Abgabe | Druck | 1 | 27.90€ | 27.90€ | Schulischen Betreuer |
 
- : Geplante Projektkosten
- 
-Am ende sollten Sie eine Projektkostensumme ermitteln und hier angeben damit man sagen kann
-__Das Projekt kostet in Summe so und so viel Euro__. 
+: Geplante Projektkosten
 
+**Das Projekt sollte in Summe ungefähr 409.92 € kosten.**
 
-Am Ende der Diplomarbeit fügen Sie hier noch eine Liste der tatsächlich angefallenen Kosten ein.
+| Kostenstelle  | Kostenart | Menge  | Preis   | Gesamtkosten | Deckung durch |
+|:-------------|:---------:|:------:|--------:|-------------:|---------------|
+| Fertiger Controller | Hardware | 2 | xx.xx€ | xx.xx€ | Schüler |
+| Gebundene DA-Abgabe | Druck | 4 | xx.xx€ | xx.xx€ | Schüler |
+| Gebundene DA-Abgabe | Druck | 1 | xx.xx€ | xx.xx€ | Schulischen Betreuer |
+
+: Tatsächliche Projektkosten
+
+**Das Projekt kostet in Summe: xx.xx €**
 
 #### Projektrisiken
 
-Hier geben Sie an welche Risiken auf Ohr Projekt zutreffen können, und auch wie wahrscheinlich es ist das dieses Risiko eintritt.
-Eine Übersicht über Risiken finden sie hier: https://projekte-leicht-gemacht.de/blog/pm-in-der-praxis/130-projektrisiken-beispiele/
-
-Hier ein Beispiel:
-
-| Risiko         | EW  | Auswirkungen     | Maßnahmen     |
-|:--------------:|:---:| :----------------|:--------------|
-| Überziehen der Kosten | 15% | Erhöhte Kosten für Schüler | Budgetierung |
-| Ungenaue Schätzungen | 30% | Ungenaue Schätzungen führen zu Problem bezüglich Terminen und Budget. | Schätzungen mit Fachkollegen absprechen|
-| Verzögerungen beim Aufbau von Hard- und Software | 10% | Prototyp wird nicht rechtzeitig zur Endpräsentation fertig | Früh genug anfangen |
+| Risiko | EW | Auswirkungen | Maßnahmen |
+|:--------------:|:---:|:----------------|:--------------|
+| Verzögerungen bei KI-Entwicklung | 15% | KI-Gegner nicht rechtzeitig zur Präsentation fertig | Frühzeitig mit Training beginnen, Komplexität bei Bedarf reduzieren |
+| Verbindungsprobleme bei Mehrspielermodus | 25% | Gegeneinanderspielen online nicht möglich | Lokalen Mehrspielermodus als Fallback sicherstellen |
+| Schlechte Sensorgenauigkeit | 35% | Gefühl weicht stark von echtem Tischfußballtisch ab | Frühes Testen und Kalibrieren der Sensoren |
+| Verzögerung durch Probleme im Team | 25% | Termine gefährdet | Regelmäßige Meetings und klare Aufgabenverteilung |
 
 : Projektrisiken
 
 ### Projektorganisation
 
 #### Projektbeteiligte
-Hier wird definiert wer (welche Personen) an diesem Projekt beteiligt im Prinzip beteiligt ist.
+Diese Tabelle stellt alle Personen - mit ihrer dazugehörigen Organisation und ihren Kontaktdaten - dar, die an dieser Diplomarbeit beteiligt sind.
 
 | Vorname     | Nachname     | Organisation | Kontaktinfos      |
 |:------------|:-------------|:-------------|:------------------|
-| Joltawan    | Barodscheff  | HTL Leoben   | jb@htl-leoben.at  |
-| Frank       | Borland      | Firma XY     | frank@borla.nd    |
-| ...         | ...          | ...          | ...               |
+| Nikita Crain Mustafa | Schaar | HTL Leoben | 211wita20@o365.htl-leoben.at |
+| André | Rath | HTL Leoben | 211wita19@o365.htl-leoben.at |
+| Luan | Lanzmaier | HTL Leoben | 211witb14@o365.htl-leoben.at |
+| Günther | Hutter | HTL Leoben | hg@o365.htl-leoben.at |
+| Thomas | Messner | HTL Leoben | me@o365.htl-leoben.at |
 
 : Projektbeteiligte
 
-Unter Kontaktinfos können neben der Emailadresse natürlich auch noch andere Informationen wie Telefonnunmmer, Postanschrift, usw. stehen. ... Im Prinzip alles was notwendig ist um die Person zu erreichen wenn es notwendig ist. 
-
 #### Projektrollen
 
-Hier werden den Kontakten von oben konkrete Rollen zuewiesen.
+Hier werden die konkreten Rollen im Projekt der Kontakte aus der oberen Tabelle aufgelistet.
 
 | Projektrolle           | Rollenbeschreibung     | Name              |
 |------------------------|------------------------|-------------------|
-| Projektleiter | Verantwortlicher für Einhaltung des Projektrahmens | Joltawan Barodscheff |
-| Auftraggeber | Auftraggeber der internen Diplomarbeit | Frank Borland |
-| Betreuer | Schulischer Betreuer | G. Hutter |
-| Betreuer | Schulischer Betreuer | A. Poetscher |
+| Projektleiter | Verantwortlicher für Einhaltung des Projektrahmens / Erfüllung eigener Teilaufgabe | Nikita C. M. Schaar |
+| Projektmitglied | Erfüllung eigener Teilaufgabe | André Rath |
+| Projektmitglied | Erfüllung eigener Teilaufgabe | Luan Lanzmaier |
+| Auftraggeber | Auftraggeber der internen Diplomarbeit | HTL Leoben |
+| Betreuer | Schulischer Betreuer | Günther Hutter |
+| Betreuer | Schulischer Betreuer | Thomas Messner |
 
 : Projektrollen
 
-Gerne können Sie hier auch noch zusätzlich eine Grafik oder ein Organisationsdiagramm einbauen.
-
-![Projektorganisationsdiagramm](img/projektorganisation.png){width=50%}
+![Projektorganisationsdiagramm](img/Project-Organization-Diagram-DigiKicker.png)
 
 ### Vorgehen bei Änderungen
 
-Hier dokumentieren sie betreffend des Meilensteinplans oder der Anwendungsfälle: 
-
-* Wer wird informiert, 
-* wer muss zustimmen, 
-* wo werden die Änderungen wie vermerkt?
-
-Das dient in erster Linie dazu um ein einheitliches Vorgehen definiert zu haben.
+- Wer wird informiert
+  - Alle Projektbeteiligten
+- Wer muss zustimmen
+  - Projektleiter od. Haupt- bzw. Nebenbetreuer bei möglicher Verhinderung
+- Wo werden die Änderungen wie vermerkt?
+  - Github Repository mittels Commits
+  - Bei schwerwiegenden Änderungen in der Umsetzung des Projektes wird direkt in der Arbeit darauf eingegangen
 
 ## Meilensteine
 
-Der Begriff taucht im Projektmanagement sehr häufig auf. Meilensteine sind wichtige Punkte im Projektverlauf. Oft werden sie auch als Prüfpunkte bezeichnet.
+### 12.09.2025: DA-Portal befüllt
 
-Generell kann ein Meilenstein ein Ereignis sein, an dem
+- Projektbeschreibung und Teammitglieder im DA-Portal eingetragen
+- Grundlegende Projektdaten vollständig erfasst
 
-* etwas abgeschlossen ist,
-* etwas begonnen wird oder
-* über die weitere Vorgehensweise entschieden wird
+### 10.11.2025: 1. DA-Präsentation
 
-Meilensteine werden meist am Ende von Projektphasen definiert. Auch innerhalb von Phasen kann es zusätzliche Meilensteine geben.
+- Aktueller Projektfortschritt wurde Schülern, Professoren, Hr. Hofer und Fr. Gmundtner präsentiert
+- Bisherige Ergebnisse und Zwischenstände sind dokumentiert
+- Feedback des Betreuers entgegengenommen
 
-Meilensteine verlaufen nie über eine Zeitdauer. Nie. Sie sind lediglich Entscheidungspunkte
+### 09.01.2026: DA-Erstversion elektronisch an Betreuer übermittelt
 
-Hier ein Beispiel wie die Meilensteine im Fall einer aussehen können
+- Erste Zwischenabgabe der Diplomarbeit ist fertig
+- Dokument wurde elektronisch an Prof. Hutter übermittelt
 
-### 2020-09-15: Projektmanagement abgeschlossen
+### 26.02.2026: 2. DA-Präsentation
 
-- Projekthandbuch ist fertig
-- Serverinfrastruktur ist hergestellt
-- Bestellungen sind abgessendet
+- Nahezu fertige DA wurde Schülern, Professoren, Hr. Hofer und Fr. Gmundtner präsentiert
+- Präsentation nach Feedback der 1. Präsentation geupdatet
 
-### 2020-11-01: Genehmigung der DA
+### 06.03.2026: DA-Abgabe
 
-- Einreichen des Antrags durch die Schüler/innen
-- DA Dokumentation wurde ausgefüllt und unterschrieben
+- Diplomarbeit ist finalisiert und korrigiert
+- Dokument liegt in abgabefertiger Form vor
 
-### 2020-11-26: Literaturrecherche abgeschlossen
+### 23.03.2026: DA-Durchsicht mit Betreuer
 
-- Literatur zum Thema XY gesucht und in bibtex vermerkt
-- Aktellen Stand der Forschung erhoben
-- Verschriftlichung des Literaturteils begonnen 
+- Diplomarbeit wurde gemeinsam mit Prof. Hutter durchgesehen
+- Freigabe für die finale Einreichung wurde erteilt
 
-### 2020-12-17: Prototyp ist funktionell
+### 27.03.2026: DA-Portal mit Hr. Messner abgeschlossen
 
-- DB mit Tabelle für Benutzer.
-- DB Kommunikation zur Anwendung (inkl. Dokumentation)
-- Es gibt in der Anwendung einen /Admin/ Benutzer. Dieser Benutzer kann weitere Benutzer in den Rollen /Lehrende/ und bzw. oder /Studierende/ anlegen.
-      
-### 2021-01-10: Applikation fertiggestellt
+- Alle Einträge im DA-Portal sind finalisiert
+- Abschluss des Portals gemeinsam mit Prof. Messner durchgeführt
 
-- Lehrende sind dazu in der Lage Tests anzulegen.
-- Studenten können einen ihnen zugewiesenen Test absolvieren.
+### 07.04.2026: Abgabe – Bibliotheksversion der DA
 
-### 2021-01-10: Review und Überarbeitung fertig
+- Gebundene Bibliotheksversion der Diplomarbeit ist abgegeben
 
-- Der Quellcode ist gemeinsam mit den Projektpartnern reviewt
-- Quellcodedokumentation abgeschlossen (Javadoc)
-- Projekt baut auf eigenem Buildserver (Continous Integration)
+### 08.04.2026: 3. DA-Präsentation
 
-### 2021-02-03: Diploarbeit fertig verschriftlicht 
+- Finale Arbeit wurde Schülern, Professoren, Hr. Hofer und Fr. Gmundtner präsentiert
+- Letztes Feedback für die Verteidigung der DA erhalten
 
-- Stilfehler sind behoben
-- DA Dokumentationsblatt ist unterschrieben, eingescannt und im Hauptdokument enthalten 
-- Praxisteil ist ebgeschlossen und verschriftlicht
-- Informationen sind im DA Portal eingegeben
-- Unterschriebene DA Betreuungsprotokolle sind in der DA enthalten
-- DA liegt dem Betreuer in ausgedruckter Form vor
-    
-
-## Anwendungsfälle
-
-Hier beschreiben Sie die Anwendungsfälle (=UseCases) Ihrer Anwendung / Diplomarbeit. Dabei sollte die Beschreibung auf hohem Niveau (also ohne implementierungsspezifische Details) erfolgen und typischerweise so benannt sein, wie die Ziele aus Sicht der Akteure heißen: Mitglied anmelden, Geld abheben, Auto zurückgeben.
-
-Jeder Anwendungsfall wird im selben Muster beschrieben. In den folgenden Absätzen ist zuerst eine allgemeine Beschreibung eines solchen Anwendungsfalls zu finden und dann ein Beispiel dazu.
-
-Damit man auch versteht wer mit welchem Anwendungsfall agiert bietet es sich an hier eine Übersichtsgrafik zu erstellen:
-
-
-
-\newpage
-### Anwendungsfallname
-Anwendungsfälle haben einen eindeutigen Namen aus dem man auf den Inhalt des Anwendungsfalls schließen kann. Wenn Sie agil arbeiten dann stellt ein Anwendungsfall eine UserStory dar welche im Backlog liegt und im Laufe des Projekts (in einem Sprint) abgearbeitet wird.
-
-#### Kurzbeschreibung
-Hier erfolgt eine kurze Beschreibung, was im Anwendungsfall passiert. Kurz bedeutet, dass es zwei oder drei Zeilen sind, selten mehr.
-      
-#### Trigger
-Der fachliche Grund bzw. die Gründe dafür, dass dieser Anwendungsfall ausgeführt 
-
-#### Vorbedingung
-Alle Bedingungen, die erfüllt sein müssen, damit dieser Anwendungsfall ausgeführt werden kann. Gibt es keine Vorbedingungen, so steht hier "keine".
-      
-#### Nachbedingung
-Der Zustand, der nach einem erfolgreichen Durchlauf des Anwendungsfalls erwartet wird.
-
-#### Akteure
-Akteure sind beteiligte Personen oder Systeme außerhalb (!) des beschriebenen Systems. Z. B. Anwender, angemeldeter Anwender, Kunde, System, Abrechnungsprozess.
-
-#### Standardablauf
-Hier wird das typische Szenario dargestellt, das leicht zu verstehen oder der am häufigsten vorkommende Fall ist. An seinem Ende steht die Zielerreichung des Primärakteurs. Die Ablaufschritte werden nummeriert und meist in strukturierter Sprache beschrieben. Ablaufpläne können jedoch ebenfalls benutzt werden, wenn es angebracht erscheint. Mittels der UML können diese Ablaufschritte in Aktivitätsdiagrammen oder Anwendungsfall-orientierten Sequenzdiagrammen dargestellt werden.
-
-#### Fehlersituationen
-Dies sind Szenarien, die sich außerhalb des Standardablaufs auch bei der (versuchten) Zielerreichung des Anwendungsfalls ereignen können. Sie werden meistens als konditionale Verzweigungen der normalen Ablaufschritte dargestellt. An ihrem Ende steht ein Misserfolg, die Zielerreichung des Primärakteurs oder eine Rückkehr zum Standardablauf.
-
-#### Systemzustand im Fehlerfall
-Der Zustand, der nach einem erfolglosen Durchlauf des Anwendungsfalls erwartet wird.
-
-
-\newpage
-### Benutzer Anlegen
-
-#### Kurzbeschreibung
-Der Benutzer "Admin" kann auf Anfrage einen neuen Benutzer als "Lehrende" und bzw. oder "Studierende" anlegen
-
-#### Trigger
-Admin legt auf Anfrage eines Benutzers einen neuen Account an
-
-#### Vorbedingung
-Benutzer als "Admin" angemeldet
-      
-#### Nachbedingung
-Es existiert ein Eintrag in der DB Benutzer Tabelle für den neu erstellten Benutzer. (Dieser kann sich anschließend in der Anwendung anmelden)
-
-#### Akteure
-* Admin
-
-#### Fehlersituationen
-Admin bricht die Aktion ab
-
-#### Systemzustand im Fehlerfall
-Benutzer wird nicht angelegt und wird verworfen
-
-#### Standardablauf:
-
-1. Admin drückt Button, um einen neuen Benutzer anzulegen
-2. Es öffnet sich ein Formular, indem die nötigen Benutzer-Informationen eingegeben werden (Name, Adresse, Telephonnummer, E-Mail, Geburtsdatum, Passwort-Hash, Rolle). Der neue Benutzer muss mindestens einer der Rollen "Lehrende" und "Studierende" angehören
-
-#### Alternativabläufe:
-
-* Admin drückt den Button, um die Aktion abzubrechen 

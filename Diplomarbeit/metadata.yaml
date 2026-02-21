@@ -8,7 +8,7 @@ da-keywords: HTLLE
 bibliography: [literatur.bib]
 
 da-author:
-- vorname: Nikita 
+- vorname: Nikita Crain Mustafa
   nachname: Schaar
   klasse: 5AHWIN
   thema: Erstellung eines Controllers zur Steuerung der Simulation
@@ -56,6 +56,10 @@ da-appendix:
 
 - abschnitt: Tabellenberechnungen Mikrocontroller
   pdf-file: Schaar/Tabellenberechnungen-Mikrocontroller-Schaar.pdf
+  seiten: 1
+
+- abschnitt: Tabellenberechnungen Projektgesamtkosten
+  pdf-file: Schaar/Tabellenberechnungen-Gesamtkosten-DA-Schaar.pdf
   seiten: 1
 
 #- abschnitt: Betreuungsprotokolle

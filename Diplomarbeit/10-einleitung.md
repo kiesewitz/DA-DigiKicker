@@ -1,4 +1,5 @@
 # Einleitung
+\textauthor{Nikita Schaar}
 
 **"DigiKicker - Digitalisierung eines Tischfußballtisches"** wird als Diplomarbeit von Luan Lanzmaier, André Rath und Nikita Schaar bearbeitet und verfasst. Die Zuständigkeiten der Teammitglieder sind eingeteilt in die verschiedenen Teile des Projektes. 
 

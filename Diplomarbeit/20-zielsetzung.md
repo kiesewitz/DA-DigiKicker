@@ -1,4 +1,5 @@
 # Zielsetzung
+\textauthor{Nikita Schaar}
 
 ## Hauptziele
 

@@ -399,7 +399,7 @@ Die Abbildung x [@raspberry-pi-pico-2w-pinout] stellt die Pin-Belegungen eines R
 
 ### Vergleich der Optionen & Entscheidung
 
-In diesem Teil folgt der direkte Vergleich sowie die Entscheidung für eine der Mikrocontroller-Optionen. Jegliche Diagramme und Berechnungen, welche zur Veranschaulichung und Ermittlung der Daten verwendet werden, wurden mithilfe von Microsoft Excel erstellt. Die Daten für den Vergleich der Preise werden durch einen Vergleich von mehreren Händlerangeboten pro Mikrocontroller ermittelt. Für die exakten Berechnungen und Händler-Daten wird an dieser Stelle auf die Tabellenberechnungen im Anhang verwiesen.
+In diesem Teil folgt der direkte Vergleich sowie die Entscheidung für eine der Mikrocontroller-Optionen. Jegliche Diagramme und Berechnungen, welche zur Veranschaulichung und Ermittlung der Daten verwendet werden, wurden mithilfe von Microsoft Excel erstellt. Die Daten für den Vergleich der Preise werden durch einen Vergleich von mehreren Händlerangeboten pro Mikrocontroller ermittelt. Für die exakten Berechnungen und Händler-Daten wird an dieser Stelle auf die Tabellenberechnungen [@table-calculations-microcontrollers] im Anhang verwiesen.
 
 ![Punkteverteilung - Mikrocontroller](img/Schaar/PointDistributionMicrocontrollers.png)
 
@@ -477,11 +477,15 @@ Auch wenn die beiden Sensoren das selbe Grundprinzip aufweisen unterscheiden sie
 
 ##### IMU-Sensor
 
-Eine IMU [@imu-and-robotics] ist eine inertiale Messeinheit (engl. **I**nertial **M**easurement **U**nit), mit der die Beschleunigung, die Winkelgeschwindigkeit sowie die Orientierung des Sensors gemessen wird. Dies funktioniert durch eine Kombination aus Gyroskopen, Beschleunigungsmessern und Magnetometern.
+Eine IMU [@imu-and-robotics] ist eine inertiale Messeinheit (engl. **I**nertial **M**easurement **U**nit), mit der die Beschleunigung, die Winkelgeschwindigkeit sowie die Orientierung des Sensors gemessen wird. Dies funktioniert durch eine Kombination aus Gyroskopen, Beschleunigungsmessern und oft Magnetometern.
+
+![Roll-, Nick- und Gier-Winkel](img/Schaar/Roll-Pitch-Yaw.png)
+
+In Abbildung x [@arduino-guide-mpu6050] sind die Winkel, welche zur Erfassung der vorher genannten Eigenschaften bei einem IMU verwendet werden, dargestellt. Die Winkel werden auf Deutsch als Roll-, Nick- und Gier-Winkel [@yaw-pitch-and-roll] bezeichnet. Diese Begriffe kommen ursprünglich aus der Luft- und Seefahrt und bezeichnen die Bewegungen, die ein Fahrzeug um die jeweilige Achse macht. Ein Flugzeug oder Schiff kann um die x-Achse "rollen", um die y-Achse "nicken" - wie wenn man als Mensch mit dem Kopf auf und ab nickt - und um die z-Achse "gieren". Auch wenn diese Winkeldarstellung ursprünglich also aus der (Aero-) Nautik kommt, wird sie heutzutage überall dort verwendet, wo die Lage eines Fahrzeugs oder Objekts im Raum beschrieben werden muss.
 
 ##### Drehgeber
 
-
+Der letzte betrachtete Sensor, der in dieser Konstellation möglicherweise zur Verwendung kommen würde, wäre der Drehgeber.
 
 #### Maussensor / Maus
 
