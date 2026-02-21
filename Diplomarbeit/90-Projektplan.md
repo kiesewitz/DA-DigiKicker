@@ -84,10 +84,10 @@ Die Preise welche für die Gesamtkosten der Hardware herangezogen wurden entspre
 
 | Risiko | EW | Auswirkungen | Maßnahmen |
 |:--------------:|:---:|:----------------|:--------------|
-| Verzögerungen bei KI-Entwicklung | 15% | KI-Gegner nicht rechtzeitig zur Präsentation fertig | Frühzeitig mit Training beginnen, Komplexität bei Bedarf reduzieren |
-| Verbindungsprobleme bei Mehrspielermodus | 25% | Gegeneinanderspielen online nicht möglich | Lokalen Mehrspielermodus als Fallback sicherstellen |
-| Schlechte Sensorgenauigkeit | 35% | Gefühl weicht stark von echtem Tischfußballtisch ab | Frühes Testen und Kalibrieren der Sensoren |
-| Verzögerung durch Probleme im Team | 25% | Termine gefährdet | Regelmäßige Meetings und klare Aufgabenverteilung |
+| Verzögerungen bei KI-Entwicklung | 15% | KI-Gegner nicht rechtzeitig fertig | Früh mit Training beginnen bzw. Komplexität reduzieren |
+| Multiplayer-Verbindungsprobleme | 25% | Kein Online-Spiel möglich | Lokalen Multiplayer funktionell machen |
+| Schlechte Sensorgenauigkeit | 35% | Gefühl weicht von echtem Tisch ab | Frühes Testen/Kalibrieren der Sensoren |
+| Probleme im Team | 25% | Termine gefährdet | Regelmäßige Meetings und klare Aufgabenverteilung |
 
 : Projektrisiken
 
@@ -125,11 +125,11 @@ Hier werden die konkreten Rollen im Projekt der Kontakte aus der oberen Tabelle 
 
 ### Vorgehen bei Änderungen
 
-- Wer wird informiert
+* Wer wird informiert
   - Alle Projektbeteiligten
-- Wer muss zustimmen
+* Wer muss zustimmen
   - Projektleiter od. Haupt- bzw. Nebenbetreuer bei möglicher Verhinderung
-- Wo werden die Änderungen wie vermerkt?
+* Wo werden die Änderungen wie vermerkt?
   - Github Repository mittels Commits
   - Bei schwerwiegenden Änderungen in der Umsetzung des Projektes wird direkt in der Arbeit darauf eingegangen
 

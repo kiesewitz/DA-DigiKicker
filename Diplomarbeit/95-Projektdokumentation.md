@@ -3,24 +3,6 @@
 
 ## Dokumentation
 
-Im Abschnitt Projektdokumentation können Sie mit Hilfe eines Projektmanagementwerkzeuges Ihrer Wahl die Projektumsetzung dokumentieren. (Also ein fortlaufender Projektfortschrittsbericht)
-
-Normalerweise werden Sie die UserStories in mehrere SubTasks zerreissen und dann in einem agilen verfahen (Scrum, Kanban, was auch immer ihnen am geeignetsten erscheint) abarbeiten. Dazu können Sie natürlich eine Softwahre Ihrer Wahl verwenden.
-
-Am Ende sollten sie aber für jeden Projektabschnitt (Das ist die Zeit zwischen den Meilensteinen) eine Dokumentation entstehen aus der ersichtlich ist
-
-* Berichtszeitraum
-* Durchgeführte Arbeiten im Berichtszeitraum sowie die Aufwände der einzelnen Personen
-* Projektstatus (Im Plan, Schwierigkeiten, Risiko)
-* Gesamtstatus sowie die möglicherweise notwendigen Maßnahmen für
-    - Leistungsziele
-    - Terminziele
-    - Kostenziele
-    - Teamarbeit
-* Nächste Schritte und notwendige Entscheidungen
-
-Im folgenden Abschnitt ist ein solcher Fortschritt illustriert.
-
 ### Use Cases
 
 Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screenshot des Anwendungsfalls angefügt, um ihn besser zu visualisieren. Alle Screenshots stammen aus der Simulation.
@@ -30,14 +12,18 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 ![Menüpunkt auswählen](img/Schaar/UseCases-Screenshots/menu-choice.png)
 
 **Beschreibung:** Der Benutzer wählt im Hauptmenü einen Menüpunkt aus.
+
 **Trigger:** Benutzer startet die Anwendung
+
 **Bedingungen:** Anwendung ist gestartet
+
 **Ablauf:**
 
 1. Benutzer öffnet die Anwendung und sieht das Hauptmenü
 2. Benutzer wählt zwischen Singleplayer, Multiplayer, Options, Statistics, Controller oder Quit
 
 **Alternative:** Keine Eingabe des Benutzers
+
 **Ergebnis:** Benutzer gelangt in das gewählte Untermenü
 
 #### Singleplayer-Spiel einstellen und starten
@@ -45,8 +31,11 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 ![Singleplayer-Match konfigurieren](img/Schaar/UseCases-Screenshots/configure-singleplayer.png)
 
 **Beschreibung:** Der Benutzer konfiguriert ein Singleplayer-Match im Menü und startet es.
+
 **Trigger:** Benutzer wählt "Singleplayer" im Hauptmenü
+
 **Bedingungen:** Anwendung ist gestartet
+
 **Ablauf:**
 
 1. Benutzer öffnet das Singleplayer-Menü
@@ -57,6 +46,7 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 6. Benutzer klickt auf "Start Game"
 
 **Alternative:** Benutzer klickt auf "Back" und kehrt zum Hauptmenü zurück
+
 **Ergebnis:** Singleplayer-Match startet mit den gewählten Einstellungen gegen den COM-Gegner (algorithmisch oder trainierte KI)
 
 #### Multiplayer-Modus auswählen
@@ -64,14 +54,18 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 ![Multiplayer-Modus wählen](img/Schaar/UseCases-Screenshots/multiplayer-mode-choice.png)
 
 **Beschreibung:** Der Benutzer wählt zwischen lokalem oder Online-Multiplayer.
+
 **Trigger:** Benutzer wählt "Multiplayer" im Hauptmenü
+
 **Bedingungen:** Anwendung ist gestartet (bei Online-Mehrspieler zusätzlich Internetverbindung)
+
 **Ablauf:**
 
 1. Benutzer öffnet das Multiplayer-Menü
 2. Benutzer wählt zwischen "Lokales Spiel" (ein Bildschirm, zwei Spieler an einem PC) und "Online Multiplayer" (Peer-to-Peer WebRTC über das Internet)
 
 **Alternative:** Benutzer kehrt mit "Zurück" ins Hauptmenü zurück
+
 **Ergebnis:** Benutzer gelangt in den gewählten Mehrspielermodus
 
 #### Lokales Multiplayer-Spiel einstellen und starten
@@ -79,8 +73,11 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 ![Lokales Multiplayer-Match konfigurieren](img/Schaar/UseCases-Screenshots/configure-local-multiplayer.png)
 
 **Beschreibung:** Zwei Spieler konfigurieren ein lokales Multiplayer-Spiel und starten es.
+
 **Trigger:** Benutzer wählt "Lokales Spiel" im Multiplayer-Menü
+
 **Bedingungen:** Anwendung ist aktiv, mehr als ein Eingabegerät ist verbunden
+
 **Ablauf:**
 
 1. Benutzer öffnet das Menü für den lokalen Multiplayer
@@ -91,6 +88,7 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 6. Benutzer klickt auf "Start Game"
 
 **Alternative:** Benutzer klickt auf "Back" und kehrt zum Multiplayer-Menü zurück
+
 **Ergebnis:** Lokales Multiplayer-Match startet mit den gewählten Einstellungen, beide Spieler steuern ihr Team über das jeweils zugewiesene Eingabegerät
 
 #### Online Multiplayer-Spiel erstellen oder beitreten
@@ -98,8 +96,11 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 ![Online-Multiplayer-Match konfigurieren oder beitreten](img/Schaar/UseCases-Screenshots/configure-or-join-online-multiplayer.png)
 
 **Beschreibung:** Der Benutzer erstellt ein Online-Match oder tritt einem bestehenden bei.
+
 **Trigger:** Benutzer wählt "Online Multiplayer" im Multiplayer-Menü
+
 **Bedingungen:** Internetverbindung ist verfügbar
+
 **Ablauf:**
 
 1. Benutzer gibt einen Spielernamen ein
@@ -108,6 +109,7 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 5. Benutzer startet das Spiel mit "Spiel starten"
 
 **Alternative:** Keine Verbindung möglich
+
 **Ergebnis:** Beide Spieler sind verbunden und das Online-Spiel startet
 
 #### Spieleinstellungen anpassen
@@ -115,8 +117,11 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 ![Anpassen der Spieleinstellungen](img/Schaar/UseCases-Screenshots/configure-game-settings.png)
 
 **Beschreibung:** Der Benutzer passt Audio- und Videoeinstellungen der Anwendung an.
+
 **Trigger:** Benutzer wählt "Options" im Hauptmenü
+
 **Bedingungen:** Anwendung ist aktiv
+
 **Ablauf:**
 
 1. Benutzer öffnet das Options-Menü
@@ -126,6 +131,7 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 5. Benutzer kehrt mit "Back" ins Hauptmenü zurück
 
 **Alternative:** Benutzer verlässt das Menü ohne Änderungen
+
 **Ergebnis:** Einstellungen sind gespeichert und aktiv
 
 #### Statistiken einsehen und zurücksetzen
@@ -133,8 +139,11 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 ![Anzeige der Spielstatistiken](img/Schaar/UseCases-Screenshots/game-statistics-list.png)
 
 **Beschreibung:** Der Benutzer sieht bisherige Spielstatistiken und kann diese zurücksetzen.
+
 **Trigger:** Benutzer wählt "Statistics" im Hauptmenü
+
 **Bedingungen:** Anwendung ist aktiv
+
 **Ablauf:**
 
 1. Benutzer öffnet das Statistics-Menü
@@ -142,6 +151,7 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 3. Benutzer kann die Statistiken über "Reset Statistics" zurücksetzen
 
 **Alternative:** Keine Statistiken vorhanden (alle Werte sind 0)
+
 **Ergebnis:** Statistiken werden angezeigt oder erfolgreich zurückgesetzt
 
 #### Eingabe-Einstellungen konfigurieren
@@ -149,8 +159,11 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 ![Konfiguration der Eingabe-Einstellungen](img/Schaar/UseCases-Screenshots/configure-input-settings.png)
 
 **Beschreibung:** Der Benutzer konfiguriert die Steuerung für Tastatur oder Controller.
+
 **Trigger:** Benutzer wählt "Controller" im Hauptmenü
+
 **Bedingungen:** Anwendung ist aktiv, Eingabegeräte sind verbunden
+
 **Ablauf:**
 
 1. System zeigt verbundene Geräte an (z.B. Keyboard, Xbox Controller, Hardware-Kicker-Controller)
@@ -159,6 +172,7 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 4. Benutzer kann die Einstellungen über "Reset to Default" zurücksetzen
 
 **Alternative:** Kein Eingabegerät erkannt
+
 **Ergebnis:** Steuerungskonfiguration ist gespeichert und aktiv
 
 #### Single-/Multiplayer-Match spielen
@@ -166,8 +180,11 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 ![Spielen eines Single-/Multiplayer-Matches](img/Schaar/UseCases-Screenshots/match-in-progress.png)
 
 **Beschreibung:** Der Benutzer spielt ein Match in der Tischfußball-Simulation.
+
 **Trigger:** Benutzer startet ein Spiel über "Singleplayer" oder "Multiplayer"
+
 **Bedingungen:** Spiel wurde konfiguriert und gestartet
+
 **Ablauf:**
 
 1. Spiel zeigt den 3D-Tisch mit roten und blauen Spielfiguren
@@ -176,6 +193,7 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 4. Spiel erkennt Tore und aktualisiert den Spielstand
 
 **Alternative:** Spielabbruch durch User-Eingabe oder verlorene Verbindung
+
 **Ergebnis:** Partie wird bis zum Erreichen der Siegbedingung gespielt und das Ergebnis wird angezeigt
 
 
@@ -198,7 +216,7 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 | Leistungsziele | Im Zeitplan | - |
 | Terminziele | Alles erreicht | - |
 | Kostenziele | Unter Budget | - |
-| Teamarbeit | optimal | - |
+| Teamarbeit | Optimal | - |
 
 :Projektstatus am 2025-11-11
 
@@ -233,9 +251,9 @@ Keine notwendigen Entscheidungen, da alles zeitnah erreicht wurde.
 | Dimension           | Status            |  Maßnahmen             |
 |:--------------------|:------------------|:-----------------------|
 | Leistungsziele | Leicht in Verzug | Mehr Arbeitsstunden in nächster Zeit |
-| Terminziele | erreicht | - |
+| Terminziele | Erreicht | - |
 | Kostenziele | Unter Budget | - |
-| Teamarbeit | leichte Holprigkeiten | bessere Absprache bzw. Zusammenarbeit |
+| Teamarbeit | Leichte Schwierigkeiten | bessere Absprache bzw. Zusammenarbeit |
 
 :Projektstatus am 2026-01-09
 
@@ -269,9 +287,9 @@ Keine notwendigen Entscheidungen, da alles zeitnah erreicht wurde.
 | Dimension           | Status            |  Maßnahmen             |
 |:--------------------|:------------------|:-----------------------|
 | Leistungsziele | Leicht in Verzug | Schnelle Finalisierung des Projektes |
-| Terminziele | erreicht | - |
+| Terminziele | Erreicht | - |
 | Kostenziele | Unter Budget | - |
-| Teamarbeit | etwas holprig | Termineinhaltung und Zusammenarbeit aller Mitglieder |
+| Teamarbeit | Leichte Schwierigkeiten | Termineinhaltung + Zusammenarbeit im Team |
 
 :Projektstatus am 2026-02-20
 

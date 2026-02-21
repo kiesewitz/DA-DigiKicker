@@ -441,11 +441,11 @@ Am Ende soll wie im vorherigen Kapitel wieder eine Entscheidung getätigt werden
 
 Für den ersten möglichen Ansatz wäre eine Kombination aus einem Entfernungssensor (Laser-/Ultraschallsensor) und einem IMU-Sensor oder Drehgeber gedacht. Mit einer Kombination dieser Sensoren sollte es möglich sein, alle rotatorischen und translatorischen Eingaben, die bei dem Stab eines Tischfußballtisches anfallen, korrekt zu digitalisieren. 
 
-Bevor der Lösungsansatz erklärt werden kann, müssen die verschiedenen Sensoren mit ihren Funktionen erklärt werden. Hier folgt nun für jeden angesprochenen Sensor eine kurze Erklärung bzw. Veranschaulichung der Anwendung des jeweiligen Sensors.
+Bevor der Lösungsansatz erklärt werden kann, müssen die verschiedenen Sensoren mit ihren Funktionen erklärt werden. Hier folgt nun für jeden angesprochenen Sensor eine kurze Erklärung bzw. Veranschaulichung der jeweiligen Anwendungsbereiche.
 
-##### Laser-/Ultraschallsensor
+**Laser-/Ultraschallsensor**
 
-Laser- [@laser-sensors-all-types] [@how-laser-sensors-work] und Ultraschallsensoren [@what-is-ultrasonic-sensor] [@ultrasonic-with-arduino] werden in dieser Ausarbeitung zusammen erklärt, da die hier betrachteten Versionen dieser Sensoren demselben physikalischen Prinzip folgen. Auch wenn es verschiedene Lasersensoren gibt, sind die meisten herkömmlich zugänglichen - gleich wie die schallbasierten Bauteile - nach dem ToF-Prinzip aufgebaut.
+Laser- [@laser-sensors-all-types] [@how-laser-sensors-work] und Ultraschallsensoren [@what-is-ultrasonic-sensor] [@ultrasonic-with-arduino] werden in dieser Ausarbeitung zusammen erklärt, da die hier betrachteten Versionen dieser Sensoren demselben physikalischen Prinzip folgen. Auch wenn es verschiedene Lasersensoren gibt, sind die meisten herkömmlich zugänglichen - gleich wie die Ultraschallsensoren - nach dem ToF-Prinzip aufgebaut.
 
 ![Laser- und Ultraschallsensor - ToF-Prinzip](img/Schaar/Ultrasonic-Laser-Sensor-ToF-Principle.png)
 
@@ -455,11 +455,11 @@ Die Messung mithilfe des Time-of-Flight-Prinzips funktioniert bei jedem Sensor g
 
 $Geschwindigkeit = \frac{Weg}{Zeit}$
 
-Die allgemeine Formel für die Geschwindigkeit wird zu Beginn genommen und zur allgemeinen Formel für den Weg umgeformt.
+Die allgemeine Formel für die Geschwindigkeit wird zu Beginn genommen und zur Formel für den Weg umgeformt.
 
 $Weg = {Geschwindigkeit}\times{Zeit}$
 
-Grundsätzlich würde der Weg, den die Ultraschallwellen bzw. die Lichtstrahlen zurücklegen der jeweiligen Geschwindigkeit (Schall-/Lichtgeschwindigkeit) mal der Zeit, die für die Überbrückung der Strecke benötigt wird, entsprechen. Da die in diesem Fall für die Messung jedoch die Wellen/Strahlen zum Objekt hin- und wieder zurückfliegen müssen, würde laut der allgemeinen Weg-Formel bei jeder Messung der doppelte Weg herauskommen.
+Grundsätzlich würde der Weg, den die Ultraschallwellen bzw. die Lichtstrahlen zurücklegen der jeweiligen Geschwindigkeit (Schall-/Lichtgeschwindigkeit) mal der Zeit, die für die Überbrückung der Strecke benötigt wird, entsprechen. Da jedoch in diesem Fall für die Messung die Wellen/Strahlen zum Objekt hin- und wieder zurückfliegen müssen, würde laut der allgemeinen Weg-Formel bei jeder Messung der doppelte Weg herauskommen.
 
 $Weg = \frac{({Geschwindigkeit}\times{Zeit})}{2}$
 
@@ -467,25 +467,73 @@ Um das Problem des doppelten Weges zu umgehen muss das Ergebnis der Multiplikati
 
 Auch wenn die beiden Sensoren das selbe Grundprinzip aufweisen unterscheiden sie sich in ihren Anwendungszwecken, Kosten und den physikalischen Vor- und Nachteilen, die sie mit sich bringen. [@laser-vs-ultrasonic]
 
-**Ultraschallsensor**
+*Ultraschallsensor*:
 
-- Ultraschallsensoren werden gerne in Situationen verwendet, wo physikalische Störungen wie Staub, Luftfeuchtigkeit oder schlechte Lichtbedingungen (z. B. zu helles Umfeld) auftreten. Sie sind tendenziell weitaus leistbarer als viele Laser-Sensoren und werden deshalb auch im Hobby-Bereich öfter verwendet. Da Ultraschallsensoren billiger und robuster gegenüber physikalischen Gegebenheiten sind - auch reflektive Oberflächen verfälschen die Messung nicht - werden sie z. B. oft zur Messung von Füllständen von Flüssigkeiten oder Abständen zu anderen Fahrzeugen als Parkhilfe verwendet.
+![Ultraschallsensor - HC-SR04](img/Schaar/HC-SR04-Sensor.jpg)
 
-**Lasersensor**
+- Ultraschallsensoren (wie z. B. der HC-SR04 - siehe Abbildung x [@hc-sr04-image]) werden gerne in Situationen verwendet, wo physikalische Störungen wie Staub, Luftfeuchtigkeit oder schlechte Lichtbedingungen (z. B. zu helles Umfeld) auftreten. Sie sind tendenziell weitaus leistbarer als viele Laser-Sensoren und werden deshalb auch im Hobby-Bereich öfter verwendet. Da Ultraschallsensoren billiger und robuster gegenüber physikalischen Gegebenheiten sind - auch reflektive Oberflächen verfälschen die Messung nicht - werden sie z. B. oft zur Messung von Füllständen von Flüssigkeiten oder Abständen zu anderen Fahrzeugen als Parkhilfe verwendet.
 
-- Da Laser-Sensoren üblicherweise teurer aber auch weitaus genauer sind (Wenige mm bis um gegenüber cm bei US) werden sie in Systemen verwendet, die eine weitaus höhere Präzision benötigen. Auch für weite Entfernungen oder Messungen, bei denen die höchstmögliche Geschwindigkeit essenziell ist, werden sie verwendet. Dank diesen Eigenschaften werden Laser-Sensoren z. B. in der Herstellung von Autoteilen zur Qualitätssicherung, bei der Landschaftsvermessung oder auf der Zielgeraden beim Formel 1 - zusätzlich zu Induktionsschleifen (Timing Loops) in der Strecke - zur Zeitmessung verwendet.
+*Lasersensor*:
 
-##### IMU-Sensor
+![Lasersensor - KY-008](img/Schaar/KY-008-Sensor.jpg)
+
+- Da Laser-Sensoren (wie z. B. der KY-008 - siehe Abbildung x [@ky-008-image]) üblicherweise teurer aber auch weitaus genauer sind (Wenige Milli- bis Mikrometer gegenüber Zentimeter bei US) werden sie in Systemen verwendet, die eine weitaus höhere Präzision benötigen. Auch für weite Entfernungen oder Messungen, bei denen die höchstmögliche Geschwindigkeit essenziell ist, werden sie verwendet. Dank diesen Eigenschaften werden Laser-Sensoren z. B. in der Herstellung von Autoteilen zur Qualitätssicherung, bei der Landschaftsvermessung oder auf der Zielgeraden beim Formel 1 - zusätzlich zu Induktionsschleifen (Timing Loops) in der Strecke - zur Zeitmessung verwendet.
+
+
+**IMU-Sensor**
 
 Eine IMU [@imu-and-robotics] ist eine inertiale Messeinheit (engl. **I**nertial **M**easurement **U**nit), mit der die Beschleunigung, die Winkelgeschwindigkeit sowie die Orientierung des Sensors gemessen wird. Dies funktioniert durch eine Kombination aus Gyroskopen, Beschleunigungsmessern und oft Magnetometern.
 
 ![Roll-, Nick- und Gier-Winkel](img/Schaar/Roll-Pitch-Yaw.png)
 
-In Abbildung x [@arduino-guide-mpu6050] sind die Winkel, welche zur Erfassung der vorher genannten Eigenschaften bei einem IMU verwendet werden, dargestellt. Die Winkel werden auf Deutsch als Roll-, Nick- und Gier-Winkel [@yaw-pitch-and-roll] bezeichnet. Diese Begriffe kommen ursprünglich aus der Luft- und Seefahrt und bezeichnen die Bewegungen, die ein Fahrzeug um die jeweilige Achse macht. Ein Flugzeug oder Schiff kann um die x-Achse "rollen", um die y-Achse "nicken" - wie wenn man als Mensch mit dem Kopf auf und ab nickt - und um die z-Achse "gieren". Auch wenn diese Winkeldarstellung ursprünglich also aus der (Aero-) Nautik kommt, wird sie heutzutage überall dort verwendet, wo die Lage eines Fahrzeugs oder Objekts im Raum beschrieben werden muss.
+In Abbildung x [@arduino-guide-mpu6050] sind die Winkel, welche bei einem IMU mithilfe seiner verschiedenen Sensoren erfasst werden, dargestellt. Die Winkel werden auf Deutsch als Roll-, Nick- und Gier-Winkel [@yaw-pitch-and-roll] bezeichnet. Diese Begriffe kommen ursprünglich aus der Luft- und Seefahrt und bezeichnen die Bewegungen, die ein Fahrzeug um die jeweilige Achse macht. Ein Flugzeug oder Schiff kann um die X-Achse "rollen", um die Y-Achse "nicken" - wie wenn man als Mensch den Kopf auf und ab bewegt - und um die Z-Achse "gieren". Auch wenn diese Winkeldarstellung ursprünglich also aus der (Aero-) Nautik kommt, wird sie heutzutage überall dort verwendet, wo die Lage eines Fahrzeugs oder Objekts im Raum beschrieben werden muss.
 
-##### Drehgeber
+Da eine IMU aus mehreren Unterkomponenten besteht, werden diese im folgenden Abschnitt kurz erläutert. [@imu-and-robotics] [@arduino-guide-mpu6050]
 
-Der letzte betrachtete Sensor, der in dieser Konstellation möglicherweise zur Verwendung kommen würde, wäre der Drehgeber.
+*Beschleunigungsmesser*:
+
+* Ein Beschleunigungsmesser ist ein elektromechanisches Gerät, welches zur Messung von Beschleunigungskräften verwendet wird. Diese Kräfte können entweder statisch sein - wie die Schwerkraft - oder dynamisch, wie Bewegungs- oder Schwingungskräfte. Wenn sich ein Objekt im Ruhezustand befindet entspricht die  Beschleunigung auf der Z-Achse normalerweise der Schwerkraft ($9.81 m/s^2$), während die Beschleunigungen auf der X- und Y-Achse null sein sollten. Mithilfe der Schwerkraft können über trigonometrische Berechnungen der Roll- und Nick-Winkel bestimmt werden.
+
+*Gyroskop*:
+
+* Um die Orientierung und Winkelgeschwindigkeit eines Objektes zu messen verwendet man ein Gyroskop. Es misst die Rotationsgeschwindigkeit - also die Änderung der Winkelposition über die Zeit - in rad/s entlang der X-, Y- und Z-Achse. Durch Kombination der Messwerte von Gyroskop und Beschleunigungsmesser lässt sich die Orientierung des Sensors besser bestimmen, als es mit nur einem der Sensoren möglich wäre.
+
+*Magnetometer*:
+
+- Mithilfe von einem Magnetometer lassen sich sowohl die Richtung als auch die Stärke von Magnetfeldern bestimmen. Einfach gesagt verhält es sich wie ein elektronischer Kompass, der die relative Änderung eines Magnetfeldes zu einem gegebenen Standort misst. Weil Beschleunigungsmesser und Gyroskop alleine den Gier-Winkel nicht bestimmen können, übernimmt genau hier das Magnetometer. Durch das Erdmagnetfeld ist - gleich wie für den Roll- und Nick-Winkel die Schwerkraft - eine konstante horizontale Kraft gegeben. Anhand von dieser lässt sich der Gier-Winkel bestimmen. Was jedoch zu beachten ist, ist, dass das Magnetometer durch äußere Magnetfelder, z. B. von Motoren oder metallischen Strukturen gestört werden kann, was möglicherweise zu Messfehlern führt.
+
+![IMU-Sensor - MPU6050](img/Schaar/MPU6050-Sensor.png)
+
+In Abbildung x [@arduino-guide-mpu6050] ist ein typischer IMU-Sensor des Typs MPU-6050 dargestellt. Dieser weitverbreitete Sensor vereint einen Beschleunigungsmesser und ein Gyroskop mit jeweils 3 Achsen auf einem einzigen Chip und ist damit ein Beispiel für eine IMU vom Typ I. [@imu-and-robotics] Das bedeutet, dass es dem MPU6050 nicht möglich ist - ohne eine ungenaue und fehlerbehaftete Integrationsrechnung - den Gier-Winkel zu bestimmen. Eine IMU vom Typ II hat zusätzlich noch ein Magnetometer, welches mit 3 zusätzlichen Achsen den Freiheitsgrad des Sensors auf neun erhöht. Damit ist es dann auch möglich, den fehlenden Winkel zu messen.
+
+Ein weiterer wichtiger Aspekt bei der Verwendung von IMU-Sensoren ist der sogenannte ***Drift-Fehler***. [@imu-and-robotics] Da jede Messung auf den vorherigen Werten aufbaut, häufen sich kleinste Messfehler mit der Zeit an und führen zu immer größeren Abweichungen. Dieses Problem lässt sich durch Filtermethoden wie dem Kalman-Filter abmildern. Er stellt auf Basis eines Modells Hypothesen für den nächsten Messwert auf, vergleicht diesen mit dem tatsächlich gemessenen Wert und passt sein Modell entsprechend an.
+
+
+**Drehgeber**
+
+Ein Drehgeber [@how-rotary-encoders-work] [@how-rotary-encoders-work-second-source] (engl. Rotary Encoder) ist ein elektromechanisches Bauteil. Er wandelt die Winkelposition und/oder Bewegung einer Achse in ein digitales Ausgangssignal um. Äußerlich sieht ein Drehgeber wie ein gewöhnliches Potentiometer aus, unterscheidet sich aber in einem wesentlichen Punkt. Während ein Potentiometer in beide Drehrichtungen einen mechanischen Endpunkt hat, kann ein Drehgeber endlos in beide Richtungen gedreht werden. Ohne diese Eigenschaft würde er für dieses Projekt überhaupt nicht infrage kommen.
+
+Mit einem Drehgeber lassen sich drei Eigenschaften [@how-rotary-encoders-work] einer Achse erfassen:
+
+* Die **Winkelposition** = Die aktuelle Drehung der Achse entlang des kreisförmigen Weges.
+* Die **Drehrichtung** = Ob die Achse im oder gegen den Uhrzeigersinn gedreht wird (engl. *clockwise* / *counter clockwise*).
+* Die **Winkelgeschwindigkeit** = Die Geschwindigkeit, mit der sich die Achse dreht.
+
+![Drehgeber - KY-040](img/Schaar/KY-040-Sensor.png)
+
+Wie diese Informationen gewonnen werden, lässt sich an der internen Funktionsweise des Sensors erkennen. Beim Drehen werden zwei Kontakte - beim KY-040-Drehgeber (siehe Abbildung x [@ky-040-rotary-encoder]) die Signalausgänge CLK und DT - nacheinander geschlossen. Anhand von der Reihenfolge, in der diese beiden Kontakte Signale erhalten, lässt sich die Drehrichtung bestimmen. Durch den zeitlichen Abstand zwischen den Schaltvorgängen lässt sich die Winkelgeschwindigkeit ableiten. Weil die Auswertung des Sensors softwareseitig erfolgen muss, ist für die Verwendung zwingend ein Mikrocontroller notwendig.
+
+![Inkrementeller/Absoluter Drehgeber](img/Schaar/Rotary-Encoder-Inner-Workings.jpg)
+
+Es wird zwischen zwei Typen von Drehgebern unterschieden (siehe Abbildung x [@how-rotary-encoders-work-second-source]):  ***Absolute*** Drehgeber kennen ihre Position sofort nach dem Einschalten, sind aber aufwendiger gebaut und dadurch teurer in der Herstellung. ***Inkrementelle*** Drehgeber - die in der Praxis weitaus verbreiteter sind - melden sofort Geschwindigkeit und Drehrichtung, kennen ihre absolute Ausgangsposition aber nicht. Deswegen benötigen diese entweder einen Referenzpunkt oder setzen beim Einschalten eine Nullposition, von der aus gemessen wird.
+
+---
+
+Nachdem wir nun die Sensoren für den ersten möglichen Aufbau des Controllers kennengelernt haben, sehen wir uns den theoretischen Aufbau anhand von einer Skizze genauer an.
+
+![Querschnitt - Möglicher Controller-Aufbau](img/Schaar/Controller-Possible-Solution-Sensors.jpg)
+
+In Abbildung x, einer händisch angefertigten Skizze, ist der mögliche Aufbau des Controllers zur Steuerung der Simulation dargestellt.
 
 #### Maussensor / Maus
 
