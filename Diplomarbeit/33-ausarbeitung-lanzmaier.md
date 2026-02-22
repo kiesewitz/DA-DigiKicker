@@ -9,11 +9,7 @@ Im Theorieteil werden die Grundlagen für die grafische Umsetzung der Tischfußb
 
 ### Auswahl eines Verbindungsmodells
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 8aad28656755912c8bfe028d69fb762821ef9302
 #### P2P
 
 Verwendung eines eigenen Servers nicht benötigt, aber Skalierbarkeit auf mehrere Teilnehmer immer schwieriger, da die einzelnen Netzwerkgeschwindigkeiten immer auf den Teilnehmer mit der geringsten Leistung "gedrosselt" werden => Spielfluss kann von einem/mehreren Teilnehmern stark verlangsamt werden.
@@ -27,7 +23,6 @@ Zusätzliche Serverkosten, dafür aber stabilerer Spielfluss, da er nicht vom Ne
 Jegliche Entscheidungen (und deren Hintergründe) hinsichtlich des Designs der Spielprinzipien für den Mehrspieler-Modus (eigene Minispiele, verschiedene Modi, etc.)
 
 ### Unterschied Offline Rendering vs Echtzeit-Rendering
-<<<<<<< HEAD
 
 #### Definition Rendering
 
@@ -62,8 +57,6 @@ Normal Maps täuschen Details auf einer Oberfläche vor, ohne die Geometrie tats
 Retopology erstellt aus einem detaillierten High Poly Modell eine vereinfachte Low Poly Version mit deutlich weniger Polygonen. Kombiniert mit Normal Maps sieht das Ergebnis genauso gut aus, braucht aber viel weniger Rechenleistung. Das ist der Schlüssel zur Performance bei Game-Assets.
 
 ## Praktische Arbeit
-=======
->>>>>>> 8aad28656755912c8bfe028d69fb762821ef9302
 
 #### Definition Rendering
 
