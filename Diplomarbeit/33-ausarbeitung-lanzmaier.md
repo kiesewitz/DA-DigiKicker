@@ -5,8 +5,15 @@
 
 Im Theorieteil werden die Grundlagen für die grafische Umsetzung der Tischfußball‑Simulation sowie die Multiplayer‑Grundlagen beschrieben. Dazu zählen die Auswahl von Verbindungsmodellen, Entscheidungen für Multiplayer‑Spielprinzipien, der Unterschied zwischen Offline‑ und Echtzeit‑Rendering sowie zentrale Optimierungsprinzipien für Game‑Assets (High‑/Low‑Poly, Normal Maps, Retopology und Reduktion von Draw Calls).
 
+
+
 ### Auswahl eines Verbindungsmodells
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 8aad28656755912c8bfe028d69fb762821ef9302
 #### P2P
 
 Verwendung eines eigenen Servers nicht benötigt, aber Skalierbarkeit auf mehrere Teilnehmer immer schwieriger, da die einzelnen Netzwerkgeschwindigkeiten immer auf den Teilnehmer mit der geringsten Leistung "gedrosselt" werden => Spielfluss kann von einem/mehreren Teilnehmern stark verlangsamt werden.
@@ -20,6 +27,43 @@ Zusätzliche Serverkosten, dafür aber stabilerer Spielfluss, da er nicht vom Ne
 Jegliche Entscheidungen (und deren Hintergründe) hinsichtlich des Designs der Spielprinzipien für den Mehrspieler-Modus (eigene Minispiele, verschiedene Modi, etc.)
 
 ### Unterschied Offline Rendering vs Echtzeit-Rendering
+<<<<<<< HEAD
+
+#### Definition Rendering
+
+Rendering ist im Grunde der Prozess, bei dem ein Computer 3D-Modelle in 2D-Bilder umwandelt, die man auf dem Bildschirm sieht. Grafikkarten (GPU) verwenden dafür ein Verfahren namens Rasterisierung. Dabei berechnet die GPU die Positionen der 3D-Objekte um und berechnet dann noch Farben, Texturen und Schatten dazu, um ein fertiges Bild zu bekommen.
+
+Eine wichtige Rolle spielen dabei sogenannte Shaders – das sind kleine Programme, die festlegen, wie Licht, Reflektionen und Texturen aussehen. Es gibt auch noch fortgeschrittene Techniken wie Raytracing, die noch realistischere Ergebnisse liefern, indem sie den Weg von Lichtstrahlen nachbilden. Je nachdem, wofür man das Rendering braucht, muss man unterschiedliche Methoden wählen – manche Anwendungen brauchen schnelle Ergebnisse, andere können sich Zeit für bessere Qualität nehmen.
+
+#### Offline Rendering (Vorrendern)
+
+Offline Rendering ist darauf ausgelegt, Bilder mit maximaler Qualität darzustellen. Durch die hohe Qualität dauert das Offline Rendering länger. Ein Rechner kann sich beliebig viel Zeit nehmen, um ein einzelnes Bild zu berechnen – manchmal Stunden oder sogar Tage pro Frame. Dies ermöglicht eine extrem hohe visuelle Qualität mit maximalen Details, realistischen Lichtsimulationen und komplexen Effekten. Typische Anwendungsbereiche sind Filmproduktionen oder Animationen.
+
+#### Echtzeit Rendering
+
+Echtzeit Rendering bezeichnet die Berechnung und Darstellung von Bildern in der Interaktion mit einem Nutzer. Ein Computer muss dabei ein neues Bild in wenigen Millisekunden berechnen und anzeigen - typischerweise 30 bis 60 oder mehr Bilder pro Sekunde. Dies ist notwendig, damit eine Anwendung flüssig und reaktionsschnell wirkt. Beispiele dafür sind Computerspiele oder Virtual Reality.
+
+#### Unterschiede und Auswirkungen auf die Asset-Erstellung
+
+In Echtzeit-Anwendungen wie Computerspielen unterscheidet sich die Asset-Erstellung deshalb grundlegend von der für Offline-Renderings. Während bei vorgerenderten Szenen Rechenzeit eine untergeordnete Rolle spielt und maximale Detailgetreue priorisiert wird, müssen Spiel-Assets innerhalb weniger Millisekunden berechnet und dargestellt werden. Dies bedeutet, dass die visuellen Qualitätsansprüche den Performance-Anforderungen untergeordnet werden müssen. Daraus ergeben sich strenge Anforderungen an die Polygonanzahl (Geometrische Komplexität), die Materialanzahl (Draw Calls) und die Texturgröße – alle diese Faktoren beeinflussen direkt die Rechengeschwindigkeit der Engine und damit die erreichbare Bildrate (FPS).
+
+#### High Poly vs. Low Poly
+
+Bei der Erstellung von 3D-Assets für Spiele muss man immer einen Kompromiss zwischen visueller Qualität und Performance finden. High Poly Modelle haben viele Polygone und sehen sehr detailliert aus, brauchen aber viel Rechenleistung. Low Poly Modelle haben deutlich weniger Polygone und rendern schneller, sehen aber weniger detailliert aus. Da Echtzeit-Rendering wie in Spielen sehr schnell sein muss, kann man nicht einfach High Poly Modelle verwenden – das würde die Bildrate zu sehr senken.
+
+Die Lösung ist, mit beiden Versionen zu arbeiten: Man erstellt zuerst ein High Poly Modell mit allen Details und berechnet davon eine Normal Map. Diese Normal Map wird dann auf ein Low Poly Modell angewendet. Für das Auge sieht das Low Poly Modell dann so aus, als wäre es High Poly, obwohl es viel weniger Polygone hat. Auf diese Weise kann man geometrische Details (Polygone) sparen und trotzdem visuell anspruchsvolle Ergebnisse erzielen. Dieser Prozess nennt sich Retopology und ist einer der wichtigsten Optimierungsschritte bei der Asset-Erstellung für Spiele.
+
+#### Normal Mapping als Approximation
+
+Normal Maps täuschen Details auf einer Oberfläche vor, ohne die Geometrie tatsächlich zu verändern. Mithilfe von Lichtrechnungen sieht ein einfaches Modell detailliert aus, obwohl es wenig Polygone hat. Das funktioniert, weil wir hauptsächlich Licht und Schatten wahrnehmen.
+
+#### Retopology als Optimierungsstrategie
+
+Retopology erstellt aus einem detaillierten High Poly Modell eine vereinfachte Low Poly Version mit deutlich weniger Polygonen. Kombiniert mit Normal Maps sieht das Ergebnis genauso gut aus, braucht aber viel weniger Rechenleistung. Das ist der Schlüssel zur Performance bei Game-Assets.
+
+## Praktische Arbeit
+=======
+>>>>>>> 8aad28656755912c8bfe028d69fb762821ef9302
 
 #### Definition Rendering
 
@@ -285,11 +329,11 @@ Auch bei den Materials auf der Vorderseite wird der "Alpha Value" auf 0 gesetzt,
 
 ### UV‑Unwrapping und Texturierung
 
-Wie bei den Spielfiguren werden die Farben und Materialinformationen auf Texture Maps gebacken, sodass möglichst wenige Materialien in der Engine benötigt werden. Das reduziert Draw Calls und beschleunigt das Rendering. Für die Linienmarkierungen und transparente Flächen wird die Emission‑ bzw. Alpha‑Information in einer Map zusammengeführt.
+Wie bei den Spielfiguren werden die Farben und Materialinformationen auf Texture Maps gebacken, sodass möglichst wenige Materialien in der Engine benötigt werden. Das reduziert Draw Calls und beschleunigt das Rendering. Für die Linienmarkierungen und transparente Flächen wird die Emission‑ bzw. Alpha‑Information in einer Map zusammengeführt. Die Tischplatte bleibt bewusst Low‑Poly, da sie großflächig ist und im Spiel mehrfach sichtbar sein kann.
 
 ### Optimierung und Engine‑Test
 
-Die Tischplatte bleibt bewusst Low‑Poly, da sie großflächig ist und im Spiel mehrfach sichtbar sein kann. Abschließend wird das Asset in der Engine importiert und auf Skalierung, Hitboxen und visuelle Konsistenz mit den Spielfiguren überprüft.
+Die fertigen Assets werden als .glb Datei exportiert. Die Godot-Engine interpretiert .glb Dateien automatisch in sogenannte "Game-Scenes", aus denen man leicht Hitboxen für das Spiel generieren kann. Aus .glb Dateien kann man nun in der Engine neue, vererbte .tscn Szenen erstellen, denen man Scripts zuweisen kann und die für die finale Simulation verwendet werden.
 
 ![Fertig modelliertes Character-Asset](img/Lanzmaier/BlenderModelAndMaterialNodes.png)
 
