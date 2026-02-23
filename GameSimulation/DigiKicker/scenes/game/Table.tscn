@@ -1,77 +1,85 @@
-[gd_scene format=3 uid="uid://6bulimd1qqf3"]
+[gd_scene format=3 uid="uid://cdxsfh2y0vswl"]
 
 [ext_resource type="Script" uid="uid://bai2fdx665pqa" path="res://scripts/game/Table.cs" id="1_5sutu"]
+[ext_resource type="ArrayMesh" uid="uid://dhjrmovnkqqsc" path="res://assets/models/table/table_mesh.tres" id="2_5ktsa"]
 [ext_resource type="Script" uid="uid://cy4u2evs2vui1" path="res://scripts/game/Goal.cs" id="2_bqvlv"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bqvlv"]
+points = PackedVector3Array(0.47881654, 0.048550606, 1.0663114, -0.47881648, 0.048550606, 1.0663114, 0.008717716, -0.052720964, 0.8407806, 0.47881654, -0.052720964, 0.60137427, 0.47881654, 0.048550606, -1.049411, -0.47881648, -0.052720964, 0.60137427, -0.008811384, -0.052720964, 0.8407806, -0.47881648, 0.048550606, -1.049411, 0.47881654, -0.052720964, -0.5848882, 0.008717716, -0.052720964, -0.82408744, -0.47881648, -0.052720964, -0.5848882, -0.008811384, -0.052720964, -0.82408744)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wws4t"]
 
-[node name="Table" type="Node3D" unique_id=632620742]
+[node name="Table" type="Node3D" unique_id=433625276]
 script = ExtResource("1_5sutu")
 
-[node name="TableBody" type="StaticBody3D" parent="." unique_id=127432843]
+[node name="TableBody" type="StaticBody3D" parent="." unique_id=452291280]
 
-[node name="TableMesh" type="MeshInstance3D" parent="TableBody" unique_id=23621594]
+[node name="TableMesh" type="MeshInstance3D" parent="TableBody" unique_id=1005210436]
+mesh = ExtResource("2_5ktsa")
 
-[node name="TableCollider" type="CollisionShape3D" parent="TableBody" unique_id=1415823837]
+[node name="StaticBody3D" type="StaticBody3D" parent="TableBody/TableMesh" unique_id=317127509]
 
-[node name="Walls" type="Node3D" parent="." unique_id=1623543027]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TableBody/TableMesh/StaticBody3D" unique_id=1004442844]
+shape = SubResource("ConvexPolygonShape3D_bqvlv")
 
-[node name="WallNorth" type="StaticBody3D" parent="Walls" unique_id=1169323004]
+[node name="Walls" type="Node3D" parent="." unique_id=394720497]
 
-[node name="WallNorthMesh" type="MeshInstance3D" parent="Walls/WallNorth" unique_id=408632641]
+[node name="WallNorth" type="StaticBody3D" parent="Walls" unique_id=1921898921]
 
-[node name="WallNorthCollider" type="CollisionShape3D" parent="Walls/WallNorth" unique_id=1600426399]
+[node name="WallNorthMesh" type="MeshInstance3D" parent="Walls/WallNorth" unique_id=2124892379]
 
-[node name="WallSouth" type="StaticBody3D" parent="Walls" unique_id=1910371065]
+[node name="WallNorthCollider" type="CollisionShape3D" parent="Walls/WallNorth" unique_id=343685816]
 
-[node name="WallSouthMesh" type="MeshInstance3D" parent="Walls/WallSouth" unique_id=131016547]
+[node name="WallSouth" type="StaticBody3D" parent="Walls" unique_id=567827930]
 
-[node name="WallSouthCollider" type="CollisionShape3D" parent="Walls/WallSouth" unique_id=938690212]
+[node name="WallSouthMesh" type="MeshInstance3D" parent="Walls/WallSouth" unique_id=1222838037]
 
-[node name="Goals" type="Node3D" parent="." unique_id=487873828]
+[node name="WallSouthCollider" type="CollisionShape3D" parent="Walls/WallSouth" unique_id=143715804]
 
-[node name="GoalRed" type="Node3D" parent="Goals" unique_id=521413422]
+[node name="Goals" type="Node3D" parent="." unique_id=1596282503]
 
-[node name="GoalFrame" type="StaticBody3D" parent="Goals/GoalRed" unique_id=2030888199]
+[node name="GoalRed" type="Node3D" parent="Goals" unique_id=474654688]
 
-[node name="GoalFrameMesh" type="MeshInstance3D" parent="Goals/GoalRed/GoalFrame" unique_id=741668614]
+[node name="GoalFrame" type="StaticBody3D" parent="Goals/GoalRed" unique_id=1025189615]
 
-[node name="GoalFrameCollider" type="CollisionShape3D" parent="Goals/GoalRed/GoalFrame" unique_id=1185331841]
+[node name="GoalFrameMesh" type="MeshInstance3D" parent="Goals/GoalRed/GoalFrame" unique_id=1853507620]
 
-[node name="GoalBack" type="StaticBody3D" parent="Goals/GoalRed" unique_id=1092251293]
+[node name="GoalFrameCollider" type="CollisionShape3D" parent="Goals/GoalRed/GoalFrame" unique_id=876200891]
 
-[node name="GoalBackMesh" type="MeshInstance3D" parent="Goals/GoalRed/GoalBack" unique_id=1424395498]
+[node name="GoalBack" type="StaticBody3D" parent="Goals/GoalRed" unique_id=553866242]
 
-[node name="GoalBackCollider" type="CollisionShape3D" parent="Goals/GoalRed/GoalBack" unique_id=336515679]
+[node name="GoalBackMesh" type="MeshInstance3D" parent="Goals/GoalRed/GoalBack" unique_id=619380016]
 
-[node name="GoalTrigger" type="Area3D" parent="Goals/GoalRed" unique_id=435704708]
+[node name="GoalBackCollider" type="CollisionShape3D" parent="Goals/GoalRed/GoalBack" unique_id=1696267604]
+
+[node name="GoalTrigger" type="Area3D" parent="Goals/GoalRed" unique_id=1136162754]
 script = ExtResource("2_bqvlv")
 DefendingTeam = 1
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Goals/GoalRed/GoalTrigger" unique_id=656152907]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Goals/GoalRed/GoalTrigger" unique_id=1953270396]
 shape = SubResource("BoxShape3D_wws4t")
 
-[node name="GoalBlue" type="Node3D" parent="Goals" unique_id=2000242836]
+[node name="GoalBlue" type="Node3D" parent="Goals" unique_id=332321219]
 
-[node name="GoalFrame" type="StaticBody3D" parent="Goals/GoalBlue" unique_id=677456941]
+[node name="GoalFrame" type="StaticBody3D" parent="Goals/GoalBlue" unique_id=1829446530]
 
-[node name="GoalFrameMesh" type="MeshInstance3D" parent="Goals/GoalBlue/GoalFrame" unique_id=1709268180]
+[node name="GoalFrameMesh" type="MeshInstance3D" parent="Goals/GoalBlue/GoalFrame" unique_id=393889691]
 
-[node name="GoalFrameCollider" type="CollisionShape3D" parent="Goals/GoalBlue/GoalFrame" unique_id=1770736626]
+[node name="GoalFrameCollider" type="CollisionShape3D" parent="Goals/GoalBlue/GoalFrame" unique_id=245511578]
 
-[node name="GoalBack" type="StaticBody3D" parent="Goals/GoalBlue" unique_id=619370861]
+[node name="GoalBack" type="StaticBody3D" parent="Goals/GoalBlue" unique_id=1222661428]
 
-[node name="GoalBackMesh" type="MeshInstance3D" parent="Goals/GoalBlue/GoalBack" unique_id=1998482465]
+[node name="GoalBackMesh" type="MeshInstance3D" parent="Goals/GoalBlue/GoalBack" unique_id=1044820881]
 
-[node name="GoalBackCollider" type="CollisionShape3D" parent="Goals/GoalBlue/GoalBack" unique_id=1715170683]
+[node name="GoalBackCollider" type="CollisionShape3D" parent="Goals/GoalBlue/GoalBack" unique_id=194163727]
 
-[node name="GoalTrigger" type="Area3D" parent="Goals/GoalBlue" unique_id=1923686438]
+[node name="GoalTrigger" type="Area3D" parent="Goals/GoalBlue" unique_id=767594905]
 script = ExtResource("2_bqvlv")
 DefendingTeam = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Goals/GoalBlue/GoalTrigger" unique_id=300289253]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Goals/GoalBlue/GoalTrigger" unique_id=1994744866]
 shape = SubResource("BoxShape3D_wws4t")
 
-[node name="TeamRed" type="Node3D" parent="." unique_id=753800105]
+[node name="TeamRed" type="Node3D" parent="." unique_id=732460969]
 
-[node name="TeamBlue" type="Node3D" parent="." unique_id=1559351970]
+[node name="TeamBlue" type="Node3D" parent="." unique_id=1395126573]

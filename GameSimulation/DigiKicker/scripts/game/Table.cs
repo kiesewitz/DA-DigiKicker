@@ -12,7 +12,7 @@ public partial class Table : Node3D
 	// Tisch-Dimensionen
 	private const float TABLE_LENGTH = 2.4f * SCALE;
 	private const float TABLE_WIDTH = 1.2f * SCALE;
-	private const float TABLE_HEIGHT = 0.1f * SCALE;
+	private const float TABLE_HEIGHT = 0.2f * SCALE;
 
 	// Wand-Dimensionen
 	private const float WALL_HEIGHT = 0.2f * SCALE;  // Höhere Wände für bessere Sichtbarkeit
@@ -264,27 +264,22 @@ public partial class Table : Node3D
 	{
 		// Haupt-Tischkörper einrichten
 		var tableMesh = _tableBody.GetNode<MeshInstance3D>("TableMesh");
-		var tableCollider = _tableBody.GetNode<CollisionShape3D>("TableCollider");
+
 
 		if (tableMesh != null)
 		{
-			var boxMesh = new BoxMesh();
-			boxMesh.Size = new Vector3(TABLE_LENGTH, TABLE_HEIGHT, TABLE_WIDTH);
-			tableMesh.Mesh = boxMesh;
+			Vector3 meshSize = tableMesh.Mesh.GetAabb().Size;
 
-			// Tisch-Material setzen (grüne Spieloberfläche)
-			var material = new StandardMaterial3D();
-			material.AlbedoColor = new Color(0.2f, 0.6f, 0.2f); // Grün
-			tableMesh.SetSurfaceOverrideMaterial(0, material);
+			tableMesh.Scale = new Vector3(
+				TABLE_LENGTH / meshSize.X,
+				TABLE_HEIGHT,
+				TABLE_WIDTH / meshSize.Z
+			);
+
 			tableMesh.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
 		}
+		
 
-		if (tableCollider != null)
-		{
-			var boxShape = new BoxShape3D();
-			boxShape.Size = new Vector3(TABLE_LENGTH - GOAL_DEPTH * 2, TABLE_HEIGHT, TABLE_WIDTH);
-			tableCollider.Shape = boxShape;
-		}
 
 		// Tischkörper Physics konfigurieren
 		if (_tableBody != null)
