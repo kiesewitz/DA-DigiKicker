@@ -7,9 +7,7 @@ Das folgende Kapitel befasst sich mit jeglicher Theorie rund um diese Diplomarbe
 
 ### Projektmanagement
 
-Die Zuständigkeit für das Projektmanagement der Arbeit "DigiKicker - Digitalisierung eines Tischfußballtisches" lag bei dem Schüler Schaar. Der Ansatz des Managements war hierbei agil mit regelmäßigen Besprechungen über den Projektstand (Diese Kurzbeschreibung noch etwas erweitern).
-
-Für die detailreiche Dokumentation des Projektmanagements wird auf Seite xxx verwiesen.
+Die Zuständigkeit für das Projektmanagement der Arbeit "DigiKicker - Digitalisierung eines Tischfußballtisches" lag bei dem Schüler Schaar. Der Ansatz des Managements war hierbei agil mit regelmäßigen Besprechungen über den Projektstand. Für die detailreiche Dokumentation des Projektmanagements wird auf den Abschnitt "Projekthandbuch" auf Seite xxx verwiesen.
 
 ### Mikrocontroller
 
@@ -533,19 +531,43 @@ Nachdem wir nun die Sensoren für den ersten möglichen Aufbau des Controllers k
 
 ![Querschnitt - Möglicher Controller-Aufbau](img/Schaar/Controller-Possible-Solution-Sensors.jpg)
 
-In Abbildung x, einer händisch angefertigten Skizze, ist der mögliche Aufbau des Controllers zur Steuerung der Simulation dargestellt.
+In Abbildung x, einer händisch angefertigten Skizze, ist ein möglicher Aufbau des Controllers zur Steuerung der Simulation dargestellt. Die Messung der translatorischen Eingaben - das Hineinschieben bzw. Herausziehen des Drehstabes - würde in diesem Entwurf mithilfe eines Laser- oder Ultraschallsensors gemessen werden. Grundsätzlich wäre es nicht weiter wichtig, welcher der beiden Sensoren hierfür verwendet werden würde, jedoch wäre hier die Tendenz eher bei einem Ultraschallsensor. Das liegt daran, dass wie bereits erwähnt der Kostenunterschied zwischen den beiden Sensorarten nicht unmerklich ist und für den Anwendungsbereich ein Ultraschallsensor auf jeden Fall reichen müsste. Zur verbesserten Abstandsmessung würde sich hier am Ende des Stabes eine größere Fläche eignen, um die Ultraschallwellen besser reflektieren zu können.
+
+Die rotatorischen Eingaben (Drehen des Stabes) sollen hierbei entweder anhand von einem Drehgeber oder einem IMU-Sensor gemessen werden. Für beide dieser Sensoren bräuchte es zusätzliche Teile, die verbaut werden müssten, um ihre Verwendung zu ermöglichen.
+
+![Linearführung](img/Schaar/Roll-Bearing-Rail.png)
+
+Im Falle, dass ein Drehgeber zur Messung der Rotation des Stabes verwendet wird, bräuchte dieser eine Schiene oder eine Art Führung (siehe Abbildung x [@roll-bearing-rail]), die unter dem Stab fest positioniert ist. An dieser Führung müsste der Drehgeber fest verbaut sein, sodass sich dieser nicht mit dem Stab mit dreht, sondern von einer stabilen Position aus die Drehung messen kann.
+
+![Elektrischer Schleifring](img/Schaar/Slip-Ring.png)
+
+Für den Fall, dass für die Messung der Drehung ein IMU-Sensor verwendet wird, bräuchte man hierbei einen Schleifring (siehe Abbildung x [@electrical-slip-ring]) oder etwas Ähnliches. Da sich der IMU mit dem Stab mitdrehen würde, bräuchte man hier einen Schleifring, mithilfe dessen Stromversorgung auch bei drehenden Teilen möglich ist. Durch ihn würden sich Kabel nicht verdrehen, sondern die benötigte Spannung mithilfe der eingebauten Drahtbürsten - egal wie der Stab gedreht ist - bereitstellen.
+
+Ein Problem, welches mit Schleifringen besteht, ist der Verschleiß. Da sie über mechanische Teile, die konstant aneinander gerieben werden, die Spannung übertragen, werden sie mit der Zeit automatisch "aufgebraucht". Auch wenn moderne Schleifringe zwar gut funktionieren, ist gerade bei diesem Projekt, wo der Drehstab oft sehr schnell gedreht wird, keine Sicherheit gegeben, dass es mit einem Schleifring zuverlässig funktioniert. 
+
+Aus den genannten Gründen würde die Entscheidung für den Rotationssensor in diesem Fall auf den Drehgeber fallen. Dieser ist einerseits zuverlässiger und andererseits wäre ein IMU-Sensor voraussichtlich auch von den innewohnenden Funktionen her übertrieben, da nur die Drehung auf einer Achse gemessen werden muss. Falls dieser Ansatz also für die finale Konstruktion des Controllers herangezogen werden würde, läge die Wahl der Sensoren bei einem ***Drehgeber mit fest verbauter Schiene*** - für die Drehung des Stabes - sowie einem ***Ultraschallsensor*** zur Messung der Schiebebewegungen.
 
 #### Maussensor / Maus
 
-Billig, leicht nachzumachen
+Die zweite mögliche Herangehensweise beim Controller-Aufbau ist weitaus simpler, sollte der ersten in puncto Funktionalität jedoch in nichts nachstehen. Hier wäre der einzige Sensor bzw. das einzige Eingabegerät eine schlichte Computermaus. Auch wenn dieser Ansatz zuerst möglicherweise unorthodox wirkt sollte es mithilfe einer Maus möglich sein, sowohl rotatorische als auch translatorische Bewegungen an die Simulation zu übertragen.
 
-### Datenaustausch
+![Computermaus - Erklärung](img/Schaar/Computer-Mouse-Description-TurnStick.png)
 
-Kriterien
+In Abbildung x ist links die generelle Funktion einer Maus visualisiert. Mit ihr lassen sich Bewegungen in alle Richtungen an einen PC oder Laptop übertragen, mit denen dann alle möglichen Programme bedient werden können. Da bei dem Drehstab im Grunde genommen nichts anderes passiert als einfache Bewegungen nach links/rechts bzw. vor/zurück, kann eine standardmäßige Computermaus ganz einfach zu einem perfekten Sensor umfunktioniert werden.
 
-#### Serielle Schnittstelle
+Wenn die Maus direkt über dem Stab in einer festen Position platziert wird, können Schiebebewegungen nach vorne und hinten direkt über die USB-Schnittstelle an die Simulation gesendet werden. Für die Drehbewegungen funktioniert es im Grunde genommen gleich, nur ist zu beachten, dass eine Drehung des Stabes nach rechts - also im Uhrzeigersinn - in diesem Fall zu einer Bewegung des Maus-Cursors nach links verursacht. Das liegt daran, dass für die Maus der Untergrund, über dem sie sich befindet (in diesem Falle der Drehstab), sich nach rechts verschiebt, was für sie eine Bewegung nach links bedeutet. Bis auf diese simple Umkehrung der Bewegungsrichtung funktioniert die Erkennung aller Bewegungen jedoch extrem simpel.
 
-Übertragung von Daten zwischen Microcontroller/Godot mithilfe von serieller Schnittstelle mit Code in C#
+![Computermaus - Unterseite](img/Schaar/Computer-Mouse-Bottom.jpg)
+
+![Computermaus - Ausgebauter Sensor](img/Schaar/Mouse-Sensor-Description.jpg)
+
+Auf den Abbildungen x und y lässt sich das Herzstück einer Computermaus - einmal ein- und einmal ausgebaut - erkennen: Der optische Sensor. Auch wenn es je nach Hersteller verschiedene Arten dieser Sensoren gibt, funktionieren alle prinzipiell ziemlich gleich. Um das Projekt für den Nachbau so simpel zu halten wie möglich, wird bei diesem Ansatz jedoch eher eine komplette Maus verwendet, sodass kein Sensor ausgebaut werden muss.
+
+Um die Eingaben der Maus dann letztendlich in einem Format zu übertragen, welches einfach weiterzuverarbeiten ist, wird die Microsoft Raw Input API [@about-raw-input] [@windows-input] verwendet. Bei dieser handelt es sich um eine API, mit der die Eingaben von HIDs (Human Input Device) direkt an ein Programm weitergegeben werden können. Dies sollte man für den Fall von einem Spiel, bei dem es um Präzision geht, nicht über die Windows-Eingaben selbst erledigen. Das liegt daran, dass Windows auf den Cursor Funktionen wie Beschleunigung anwendet, sodass zwar die Nutzung als tatsächlicher Cursor verbessert wird, die Präzision jedoch maßgeblich beeinträchtigt wird.
+
+---
+
+Auch wenn für den finalen Controller beide Ansätze ausprobiert und verglichen werden, wäre der zweite Ansatz auf Basis einer Maus für den Nachbau weitaus nützlicher. Hierbei müsste sehr viel weniger Arbeit auf der Seite des/der Nachbauenden verrichtet werden, was es wahrscheinlicher machen würde, dass das Projekt nachgebaut wird. Mit dieser Analyse wird der Theoretische Teil der Arbeit am Controller konkludiert. Nun folgt der Praktische Teil.
 
 ## Praktischer Teil
 
