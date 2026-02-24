@@ -126,12 +126,12 @@ Hier werden die konkreten Rollen im Projekt der Kontakte aus der oberen Tabelle 
 ### Vorgehen bei Änderungen
 
 * Wer wird informiert
-  * Alle Projektbeteiligten
+    * Alle Projektbeteiligten
 * Wer muss zustimmen
-  * Projektleiter od. Haupt- bzw. Nebenbetreuer bei möglicher Verhinderung
+    * Projektleiter od. Haupt- bzw. Nebenbetreuer bei möglicher Verhinderung
 * Wo werden die Änderungen wie vermerkt?
-  * Github Repository mittels Commits
-  *s Bei schwerwiegenden Änderungen in der Umsetzung des Projektes wird direkt in der Arbeit darauf eingegangen
+    * Github Repository mittels Commits
+    * Bei schwerwiegenden Änderungen in der Umsetzung des Projektes wird direkt in der Arbeit darauf eingegangen
 
 ## Meilensteine
 
