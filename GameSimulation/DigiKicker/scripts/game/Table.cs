@@ -12,7 +12,7 @@ public partial class Table : Node3D
 	// Tisch-Dimensionen
 	private const float TABLE_LENGTH = 2.4f * SCALE;
 	private const float TABLE_WIDTH = 1.2f * SCALE;
-	private const float TABLE_HEIGHT = 0.2f * SCALE;
+	private const float TABLE_HEIGHT = 0.1f * SCALE;
 
 	// Wand-Dimensionen
 	private const float WALL_HEIGHT = 0.2f * SCALE;  // Höhere Wände für bessere Sichtbarkeit
