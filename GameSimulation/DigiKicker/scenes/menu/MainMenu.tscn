@@ -12,33 +12,27 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_script")
 
 [node name="Background" type="ColorRect" parent="."]
+z_index = -1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.12, 0.12, 0.18, 1)
-z_index = -1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -50,7 +44,6 @@ theme_override_constants/separation = 15
 
 [node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-mouse_filter = 2
 theme_override_font_sizes/font_size = 48
 text = "DigiKicker"
 horizontal_alignment = 1
@@ -100,23 +93,36 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
 [node name="GameSetupMenu" parent="SubMenuContainer" instance=ExtResource("2_gamesetup")]
 visible = false
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="OptionsMenu" parent="SubMenuContainer" instance=ExtResource("3_options")]
 visible = false
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="StatsMenu" parent="SubMenuContainer" instance=ExtResource("4_stats")]
 visible = false
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ControllerMenu" parent="SubMenuContainer" instance=ExtResource("5_controller")]
 visible = false
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="OnlineMenu" parent="SubMenuContainer" instance=ExtResource("6_online")]
 visible = false
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
