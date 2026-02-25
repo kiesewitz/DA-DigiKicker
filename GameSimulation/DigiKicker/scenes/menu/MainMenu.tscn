@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2snxxy5kvgmt"]
+[gd_scene format=3 uid="uid://b2snxxy5kvgmt"]
 
 [ext_resource type="Script" uid="uid://bufi3rv4ev8bi" path="res://scripts/menu/MainMenu.cs" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://bgv3ec8shjeke" path="res://scenes/menu/GameSetupMenu.tscn" id="2_gamesetup"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dsa35mt1w7rv8" path="res://scenes/menu/ControllerMenu.tscn" id="5_controller"]
 [ext_resource type="PackedScene" uid="uid://dkp5x2mq8j7y4" path="res://scenes/menu/OnlineMenu.tscn" id="6_online"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=412491502]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,7 +17,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_script")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=2144670284]
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -28,7 +28,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.12, 0.12, 0.18, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=994341190]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,58 +37,58 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1268468302]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 15
 
-[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1007230601]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "DigiKicker"
 horizontal_alignment = 1
 
-[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=144241733]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ButtonContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="ButtonContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1992336749]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 8
 
-[node name="BtnSingleplayer" type="Button" parent="CenterContainer/VBoxContainer/ButtonContainer"]
+[node name="BtnSingleplayer" type="Button" parent="CenterContainer/VBoxContainer/ButtonContainer" unique_id=1878356271]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 text = "Singleplayer"
 
-[node name="BtnMultiplayer" type="Button" parent="CenterContainer/VBoxContainer/ButtonContainer"]
+[node name="BtnMultiplayer" type="Button" parent="CenterContainer/VBoxContainer/ButtonContainer" unique_id=580304588]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 text = "Multiplayer"
 
-[node name="BtnOptions" type="Button" parent="CenterContainer/VBoxContainer/ButtonContainer"]
+[node name="BtnOptions" type="Button" parent="CenterContainer/VBoxContainer/ButtonContainer" unique_id=1111970454]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 text = "Options"
 
-[node name="BtnStatistics" type="Button" parent="CenterContainer/VBoxContainer/ButtonContainer"]
+[node name="BtnStatistics" type="Button" parent="CenterContainer/VBoxContainer/ButtonContainer" unique_id=1756844162]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 text = "Statistics"
 
-[node name="BtnController" type="Button" parent="CenterContainer/VBoxContainer/ButtonContainer"]
+[node name="BtnController" type="Button" parent="CenterContainer/VBoxContainer/ButtonContainer" unique_id=261719664]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 text = "Controller"
 
-[node name="BtnQuit" type="Button" parent="CenterContainer/VBoxContainer/ButtonContainer"]
+[node name="BtnQuit" type="Button" parent="CenterContainer/VBoxContainer/ButtonContainer" unique_id=1086477423]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 text = "Quit"
 
-[node name="SubMenuContainer" type="Control" parent="."]
+[node name="SubMenuContainer" type="Control" parent="." unique_id=808349116]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,31 +97,31 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="GameSetupMenu" parent="SubMenuContainer" instance=ExtResource("2_gamesetup")]
+[node name="GameSetupMenu" parent="SubMenuContainer" unique_id=2070114941 instance=ExtResource("2_gamesetup")]
 visible = false
 layout_mode = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OptionsMenu" parent="SubMenuContainer" instance=ExtResource("3_options")]
+[node name="OptionsMenu" parent="SubMenuContainer" unique_id=1761350765 instance=ExtResource("3_options")]
 visible = false
 layout_mode = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StatsMenu" parent="SubMenuContainer" instance=ExtResource("4_stats")]
+[node name="StatsMenu" parent="SubMenuContainer" unique_id=1899428734 instance=ExtResource("4_stats")]
 visible = false
 layout_mode = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ControllerMenu" parent="SubMenuContainer" instance=ExtResource("5_controller")]
+[node name="ControllerMenu" parent="SubMenuContainer" unique_id=26948450 instance=ExtResource("5_controller")]
 visible = false
 layout_mode = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OnlineMenu" parent="SubMenuContainer" instance=ExtResource("6_online")]
+[node name="OnlineMenu" parent="SubMenuContainer" unique_id=857447552 instance=ExtResource("6_online")]
 visible = false
 layout_mode = 1
 grow_horizontal = 2

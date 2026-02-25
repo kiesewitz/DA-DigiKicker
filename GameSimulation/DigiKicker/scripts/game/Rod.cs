@@ -15,8 +15,8 @@ public partial class Rod : Node3D
 {
 	private const float SCALE = 5.0f;
 	private const float FIGURE_SCALE = 0.45f;
-	private const float TABLE_HEIGHT = 0.1f * SCALE;
-
+	private const float TABLE_HEIGHT = 0.02f * SCALE;
+	
 	/// <summary>
 	/// Stangen-Typ bestimmt Position und Figurenanzahl.
 	/// </summary>
@@ -343,6 +343,7 @@ public partial class Rod : Node3D
 			baseCircle.SetSurfaceOverrideMaterial(0, baseMat);
 
 			// An diese Stange binden, damit es sich mit Stange bewegt (X/Y) aber flach bleibt
+						
 			AddChild(baseCircle);
 			_indicatorPairs.Add((figure, baseCircle));
 

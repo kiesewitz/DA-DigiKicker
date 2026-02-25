@@ -26,7 +26,7 @@ public partial class Ball : RigidBody3D
 	private const float MIN_VELOCITY_THRESHOLD = 0.02f;
 
 	// Tisch-Dimensionen für Reset-Position und Grenzen
-	private const float TABLE_HEIGHT = 0.1f * SCALE;
+	private const float TABLE_HEIGHT = 0.02f * SCALE;
 	private const float RESET_Y = TABLE_HEIGHT / 2f + BALL_RADIUS + 0.05f;
 	private const float TABLE_LENGTH = 2.4f * SCALE;
 	private const float TABLE_WIDTH = 1.2f * SCALE;
