@@ -1,5 +1,8 @@
 # Final Controller Measurements (Closed)
 
+**Total Width**: 664mm
+
+**Total Length**: 380mm
 
 
 # Final Controller Measurements (Open)
