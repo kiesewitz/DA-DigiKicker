@@ -1,11 +1,27 @@
-# Final Controller Measurements (Closed)
+# Controller Measurements for FreeCAD
+In this document, some of the most important measurements of the open/closed versions of the Final Controller, as well as the Single Stick Controller prototype. They are documented here to make further modeling
+
+## Final Controller Measurements (Closed)
 
 **Total Width**: 664mm
 
 **Total Length**: 380mm
 
+**Inner Rectangle Width**: 644mm
 
-# Final Controller Measurements (Open)
+**Inner Rectangle Length**: 360mm
+
+**Floor Thickness**: 15mm
+
+**Mouse Mount Part Pad Height**: 15mm
+
+**Mouse Mount Part Pad Width**: 40mm
+
+**Mouse Mount Part Pad Length**: 60mm
+
+**Turn Stick Hole Radius**: 8mm
+
+## Final Controller Measurements (Open)
 
 **Total Width**: 664mm
 
@@ -36,7 +52,7 @@
 **Turn Stick Hole Radius**: 8mm
 
 
-# Single Stick Controller Measurements
+## Single Stick Controller Measurements
 
 **Total Width**: 166mm
 
