@@ -15,15 +15,14 @@ public partial class Table : Node3D
 	private const float TABLE_HEIGHT = 0.02f * SCALE;
 
 	// Wand-Dimensionen
-	private const float WALL_HEIGHT = 0.2f * SCALE;  // Höhere Wände für bessere Sichtbarkeit
-	private const float WALL_HEIGHT_SOUTH = 0.15f * SCALE;  // Erhöht von 0.08f um Ball-Flucht zu verhindern
-	private const float WALL_THICKNESS = 0.08f * SCALE;
+	private const float WALL_HEIGHT = 0.25f * SCALE;  // Höhere Wände für bessere Sichtbarkeit
+	private const float WALL_THICKNESS = 0.07f * SCALE;
 
 	// Tor-Dimensionen
-	private const float GOAL_WIDTH = (TABLE_WIDTH - WALL_THICKNESS * 2) * 0.35f; // Schmalere Toröffnung
-	private const float GOAL_HEIGHT = 0.25f * SCALE;      // Höhe der Toröffnung
+	private const float GOAL_WIDTH = (TABLE_WIDTH - WALL_THICKNESS * 2) * 0.5f; // Schmalere Toröffnung
+	private const float GOAL_HEIGHT = 0.2f * SCALE;      // Höhe der Toröffnung
 	private const float GOAL_DEPTH = 0.15f * SCALE;       // Tiefe des Tors (wie weit es nach hinten geht)
-	private const float GOAL_FRAME_THICKNESS = 0.03f * SCALE; // Dicke der Torpfosten
+	private const float GOAL_FRAME_THICKNESS = 0.05f * SCALE; // Dicke der Torpfosten
 	private const float GOAL_BACK_THICKNESS = 0.02f * SCALE;  // Dicke der Rückwand
 
 	// Rod-Dimensionen
@@ -296,40 +295,33 @@ public partial class Table : Node3D
 		// Torpfosten äußere Kante liegt bei: GOAL_WIDTH / 2 + GOAL_FRAME_THICKNESS
 		// Hauptwand innere Kante liegt bei: TABLE_WIDTH / 2
 		float goalPostOuterEdge = GOAL_WIDTH / 2 + GOAL_FRAME_THICKNESS;
-		float sideWallLength = Mathf.Max(0.01f, TABLE_WIDTH / 2 - goalPostOuterEdge);
+		float sideWallLength = TABLE_WIDTH+0.7f;
 		float sideWallZPosNorth = goalPostOuterEdge + sideWallLength / 2;
 		float sideWallZPosSouth = -sideWallZPosNorth;
 
 		// Hauptwand-Länge - spannt sich zwischen den Tor-Seitenwänden (ohne Ecken)
-		float mainWallLength = TABLE_LENGTH;
+		float mainWallLength = TABLE_LENGTH+0.7f;
+		float goalSideWallX = TABLE_LENGTH / 2 + WALL_THICKNESS / 2;
+		float mainWallThickness = WALL_THICKNESS / 1.9f * 2.39018f;
 
 		// Seitenwände einrichten (Nord/Süd) - horizontale Hauptwände entlang des Tisches
 		// WallNorth (positive Z) ist spielerseitig (Camera schaut von positive Z) - diese niedriger machen
-		SetupWall("WallNorth", new Vector3(0, WALL_HEIGHT_SOUTH / 2, TABLE_WIDTH / 2 + WALL_THICKNESS / 2), mainWallLength, WALL_HEIGHT_SOUTH, WALL_THICKNESS);
-		SetupWall("WallSouth", new Vector3(0, WALL_HEIGHT / 2, -TABLE_WIDTH / 2 - WALL_THICKNESS / 2), mainWallLength, WALL_HEIGHT, WALL_THICKNESS);
+		SetupWall("WallNorth", new Vector3(0, (WALL_HEIGHT / 2)-0.5f, TABLE_WIDTH / 2 + WALL_THICKNESS / 2), mainWallLength, WALL_HEIGHT, WALL_THICKNESS);
+		SetupWall("WallSouth", new Vector3(0, WALL_HEIGHT / 2, -TABLE_WIDTH / 2 - WALL_THICKNESS / 2), mainWallLength, WALL_HEIGHT, mainWallThickness);
+		SetupWall("WallEast", new Vector3(-goalSideWallX, WALL_HEIGHT / 2, 0), WALL_THICKNESS, WALL_HEIGHT, sideWallLength);
+		SetupWall("WallWest", new Vector3(goalSideWallX, WALL_HEIGHT / 2, 0), WALL_THICKNESS, WALL_HEIGHT, sideWallLength);
 
 		// Tor-Seitenwände - braune Wände neben den Toröffnungen (gleich wie Tischrahmen)
-		float goalSideWallX = TABLE_LENGTH / 2 + WALL_THICKNESS / 2;
 
 		// West Tor-Seitenwände (Red-Tor) - braun wie der Rest des Tisches
-		SetupWall("WallWestNorth", new Vector3(-goalSideWallX, WALL_HEIGHT / 2, sideWallZPosNorth), WALL_THICKNESS, WALL_HEIGHT, sideWallLength);
-		SetupWall("WallWestSouth", new Vector3(-goalSideWallX, WALL_HEIGHT / 2, sideWallZPosSouth), WALL_THICKNESS, WALL_HEIGHT, sideWallLength);
 
 		// East Tor-Seitenwände (Blue-Tor) - braun wie der Rest des Tisches
-		SetupWall("WallEastNorth", new Vector3(goalSideWallX, WALL_HEIGHT / 2, sideWallZPosNorth), WALL_THICKNESS, WALL_HEIGHT, sideWallLength);
-		SetupWall("WallEastSouth", new Vector3(goalSideWallX, WALL_HEIGHT / 2, sideWallZPosSouth), WALL_THICKNESS, WALL_HEIGHT, sideWallLength);
 
 		// Eck-Blöcke - füllen die Lücken an den vier Ecken des Tischrahmens
 		// Positioniert an der Kreuzung von Hauptwänden und Tor-Seitenwänden
-		float cornerX = TABLE_LENGTH / 2 + WALL_THICKNESS / 2;
-		float cornerZNorth = TABLE_WIDTH / 2 + WALL_THICKNESS / 2;
-		float cornerZSouth = -TABLE_WIDTH / 2 - WALL_THICKNESS / 2;
 
 		// Eckhöhen entsprechen den angrenzenden Wandhöhen
-		SetupCorner("CornerNW", new Vector3(-cornerX, WALL_HEIGHT_SOUTH / 2, cornerZNorth), new Vector3(WALL_THICKNESS, WALL_HEIGHT_SOUTH, WALL_THICKNESS));
-		SetupCorner("CornerNE", new Vector3(cornerX, WALL_HEIGHT_SOUTH / 2, cornerZNorth), new Vector3(WALL_THICKNESS, WALL_HEIGHT_SOUTH, WALL_THICKNESS));
-		SetupCorner("CornerSW", new Vector3(-cornerX, WALL_HEIGHT / 2, cornerZSouth), new Vector3(WALL_THICKNESS, WALL_HEIGHT, WALL_THICKNESS));
-		SetupCorner("CornerSE", new Vector3(cornerX, WALL_HEIGHT / 2, cornerZSouth), new Vector3(WALL_THICKNESS, WALL_HEIGHT, WALL_THICKNESS));
+		
 	}
 
 	/// <summary>
@@ -339,35 +331,9 @@ public partial class Table : Node3D
 	private void SetupWall(string wallName, Vector3 position, float length, float height, float thickness)
 	{
 		var wall = _walls.GetNodeOrNull<StaticBody3D>(wallName);
-		MeshInstance3D wallMesh;
-		CollisionShape3D wallCollider;
 
-		// Falls Wand nicht in Scene existiert, dynamisch erstellen
-		if (wall == null)
-		{
-			GD.Print($"Wall {wallName} not found in scene, creating dynamically...");
-			wall = new StaticBody3D();
-			wall.Name = wallName;
-			_walls.AddChild(wall);
-			wall.Owner = GetTree().EditedSceneRoot;
-
-			// Mesh und Collider Children erstellen
-			wallMesh = new MeshInstance3D();
-			wallMesh.Name = $"{wallName}Mesh";
-			wall.AddChild(wallMesh);
-			wallMesh.Owner = GetTree().EditedSceneRoot;
-
-			wallCollider = new CollisionShape3D();
-			wallCollider.Name = $"{wallName}Collider";
-			wall.AddChild(wallCollider);
-			wallCollider.Owner = GetTree().EditedSceneRoot;
-		}
-		else
-		{
-			// Node-Namen in Table.tscn sind WallNorthMesh/WallNorthCollider, etc.
-			wallMesh = wall.GetNodeOrNull<MeshInstance3D>($"{wallName}Mesh");
-			wallCollider = wall.GetNodeOrNull<CollisionShape3D>($"{wallName}Collider");
-		}
+		// Node-Namen in Table.tscn ist WallNorthMesh
+		var wallMesh = wall.GetNodeOrNull<MeshInstance3D>($"{wallName}Mesh");
 
 		wall.Position = position;
 		wall.PhysicsMaterialOverride = _wallMaterial;
@@ -382,30 +348,16 @@ public partial class Table : Node3D
 			return;
 		}
 
-		if (wallCollider == null)
-		{
-			GD.PrintErr($"WallCollider for {wallName} not found!");
-			return;
-		}
 
-		// Wand-Mesh erstellen
-		var boxMesh = new BoxMesh();
-		boxMesh.Size = new Vector3(length, height, thickness);
-		wallMesh.Mesh = boxMesh;
+		Vector3 meshSize=wallMesh.Mesh.GetAabb().Size;
+		
+		
+		wallMesh.Scale = new Vector3(
+			length / meshSize.X,
+			($"{wallName}Mesh"!="WallNorthMesh") ? (height / meshSize.Y) : (meshSize.Y),
+			thickness / meshSize.Z
+		);
 
-		// Wand-Collision erstellen
-		var boxShape = new BoxShape3D();
-		boxShape.Size = new Vector3(length, height, thickness);
-		wallCollider.Shape = boxShape;
-
-		// Wand-Material anwenden (braune/Holz-Farbe)
-		var material = _wallMaterialVisual ?? new StandardMaterial3D
-		{
-			AlbedoColor = new Color(0.4f, 0.3f, 0.2f),
-			Metallic = 0.1f,
-			Roughness = 0.8f
-		};
-		wallMesh.SetSurfaceOverrideMaterial(0, material);
 
 		GD.Print($"Wall {wallName} configured at position {position} with size ({length}, {height}, {thickness})");
 	}
@@ -506,77 +458,28 @@ public partial class Table : Node3D
 
 		// Torrahmen einrichten - Pfosten und Querlatte an der Toröffnung
 		var goalFrame = goal.GetNodeOrNull<StaticBody3D>("GoalFrame");
-		if (goalFrame != null)
-		{
-			goalFrame.PhysicsMaterialOverride = _goalMaterial;
 
-			// Existierende Children löschen um Duplikate beim Reload zu verhindern
-			foreach (Node child in goalFrame.GetChildren())
-			{
-				if (child is MeshInstance3D)
-					child.QueueFree();
-			}
 
-			// Existierendes Mesh löschen
-			var frameMesh = goalFrame.GetNodeOrNull<MeshInstance3D>("GoalFrameMesh");
-			if (frameMesh != null)
-				frameMesh.Mesh = null;
 
-			// Frame an der Toröffnung positionieren - bündig mit Tischkante
-			goalFrame.Position = new Vector3(0, GOAL_HEIGHT / 2, 0);
+		var frameMesh = goalFrame.GetNodeOrNull<MeshInstance3D>("GoalFrameMesh");
+		Vector3 meshSize=frameMesh.Mesh.GetAabb().Size;
+		
+		frameMesh.Scale = new Vector3(
+			GOAL_FRAME_THICKNESS/meshSize.X,
+			GOAL_HEIGHT/meshSize.Y,
+			GOAL_WIDTH/meshSize.Z
+		);
+		
+		frameMesh.SetSurfaceOverrideMaterial(0, goalMaterial);
 
-			// Linken Pfosten erstellen (Süd-Seite der Toröffnung)
-			var leftPost = new MeshInstance3D();
-			var leftPostMesh = new BoxMesh();
-			leftPostMesh.Size = new Vector3(GOAL_FRAME_THICKNESS, GOAL_HEIGHT, GOAL_FRAME_THICKNESS);
-			leftPost.Mesh = leftPostMesh;
-			leftPost.Position = new Vector3(xDirection * GOAL_FRAME_THICKNESS / 2, 0, -GOAL_WIDTH / 2 - GOAL_FRAME_THICKNESS / 2);
-			leftPost.SetSurfaceOverrideMaterial(0, goalMaterial);
-			goalFrame.AddChild(leftPost);
 
-			// Create right post (north side of goal opening)
-			var rightPost = new MeshInstance3D();
-			var rightPostMesh = new BoxMesh();
-			rightPostMesh.Size = new Vector3(GOAL_FRAME_THICKNESS, GOAL_HEIGHT, GOAL_FRAME_THICKNESS);
-			rightPost.Mesh = rightPostMesh;
-			rightPost.Position = new Vector3(xDirection * GOAL_FRAME_THICKNESS / 2, 0, GOAL_WIDTH / 2 + GOAL_FRAME_THICKNESS / 2);
-			rightPost.SetSurfaceOverrideMaterial(0, goalMaterial);
-			goalFrame.AddChild(rightPost);
+		goalFrame.Position = new Vector3(0, GOAL_HEIGHT / 2, 0);
 
-			// Create crossbar (top) - connects the two posts
-			var crossbar = new MeshInstance3D();
-			var crossbarMesh = new BoxMesh();
-			crossbarMesh.Size = new Vector3(GOAL_FRAME_THICKNESS, GOAL_FRAME_THICKNESS, GOAL_WIDTH + GOAL_FRAME_THICKNESS * 2);
-			crossbar.Mesh = crossbarMesh;
-			crossbar.Position = new Vector3(xDirection * GOAL_FRAME_THICKNESS / 2, GOAL_HEIGHT / 2 - GOAL_FRAME_THICKNESS / 2, 0);
-			crossbar.SetSurfaceOverrideMaterial(0, goalMaterial);
-			goalFrame.AddChild(crossbar);
 
-			// Create collision shapes for the posts
-			var frameCollider = goalFrame.GetNodeOrNull<CollisionShape3D>("GoalFrameCollider");
-			if (frameCollider != null)
-			{
-				// Create compound collision for posts
-				var leftCollider = new CollisionShape3D();
-				var leftShape = new BoxShape3D();
-				leftShape.Size = new Vector3(GOAL_FRAME_THICKNESS, GOAL_HEIGHT, GOAL_FRAME_THICKNESS);
-				leftCollider.Shape = leftShape;
-				leftCollider.Position = new Vector3(xDirection * GOAL_FRAME_THICKNESS / 2, 0, -GOAL_WIDTH / 2 - GOAL_FRAME_THICKNESS / 2);
-				goalFrame.AddChild(leftCollider);
 
-				var rightCollider = new CollisionShape3D();
-				var rightShape = new BoxShape3D();
-				rightShape.Size = new Vector3(GOAL_FRAME_THICKNESS, GOAL_HEIGHT, GOAL_FRAME_THICKNESS);
-				rightCollider.Shape = rightShape;
-				rightCollider.Position = new Vector3(xDirection * GOAL_FRAME_THICKNESS / 2, 0, GOAL_WIDTH / 2 + GOAL_FRAME_THICKNESS / 2);
-				goalFrame.AddChild(rightCollider);
 
-				// Disable the original collider
-				frameCollider.Shape = null;
-			}
+		GD.Print($"{goalName} - Goal frame created");
 
-			GD.Print($"{goalName} - Goal frame created");
-		}
 
 		// Setup Goal Back - invisible collision only (to stop ball)
 		var goalBack = goal.GetNodeOrNull<StaticBody3D>("GoalBack");

@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d03q8rjwvmw0u"
-path.s3tc="res://.godot/imported/Figure_Image.png-3315cb20443aa4fa0cafa31270dab429.s3tc.ctex"
+uid="uid://b143j3dnm7iy5"
+path.s3tc="res://.godot/imported/plate_PlateColor.png-PlateInv.png-364d4a21cb8d8600c8141680b521a4ca.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "8597d4e7e65352a302b63e07bc01a7da"
+"md5": "4b8b1f7091169d45dde577c3a728d81c"
 }
 
 [deps]
 
-source_file="res://assets/models/figures/Figure_Image.png"
-dest_files=["res://.godot/imported/Figure_Image.png-3315cb20443aa4fa0cafa31270dab429.s3tc.ctex"]
+source_file="res://assets/models/table/plate_PlateColor.png-PlateInv.png"
+dest_files=["res://.godot/imported/plate_PlateColor.png-PlateInv.png-364d4a21cb8d8600c8141680b521a4ca.s3tc.ctex"]
 
 [params]
 

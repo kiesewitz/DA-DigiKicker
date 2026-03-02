@@ -3,9 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cob30ftvunkqs"
-path.etc2="res://.godot/imported/CompleteCharacterRed (1)_CharacterNormal.png-cee8d7a32e3dc82bb933b316eb8c6d53.etc2.ctex"
+path.s3tc="res://.godot/imported/CompleteCharacterRed (1)_CharacterNormal.png-cee8d7a32e3dc82bb933b316eb8c6d53.s3tc.ctex"
 metadata={
-"imported_formats": ["etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/figures/CompleteCharacterRed (1)_CharacterNormal.png"
-dest_files=["res://.godot/imported/CompleteCharacterRed (1)_CharacterNormal.png-cee8d7a32e3dc82bb933b316eb8c6d53.etc2.ctex"]
+dest_files=["res://.godot/imported/CompleteCharacterRed (1)_CharacterNormal.png-cee8d7a32e3dc82bb933b316eb8c6d53.s3tc.ctex"]
 
 [params]
 

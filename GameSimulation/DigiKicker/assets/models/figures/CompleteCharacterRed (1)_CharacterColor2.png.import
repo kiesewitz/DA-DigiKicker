@@ -3,9 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://73e7meroap4y"
-path.etc2="res://.godot/imported/CompleteCharacterRed (1)_CharacterColor2.png-a62eef12282d02cea6d472695002c42a.etc2.ctex"
+path.s3tc="res://.godot/imported/CompleteCharacterRed (1)_CharacterColor2.png-a62eef12282d02cea6d472695002c42a.s3tc.ctex"
 metadata={
-"imported_formats": ["etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +15,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/figures/CompleteCharacterRed (1)_CharacterColor2.png"
-dest_files=["res://.godot/imported/CompleteCharacterRed (1)_CharacterColor2.png-a62eef12282d02cea6d472695002c42a.etc2.ctex"]
+dest_files=["res://.godot/imported/CompleteCharacterRed (1)_CharacterColor2.png-a62eef12282d02cea6d472695002c42a.s3tc.ctex"]
 
 [params]
 
