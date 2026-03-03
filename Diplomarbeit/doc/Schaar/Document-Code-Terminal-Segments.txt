@@ -1,0 +1,141 @@
+Document - Code / Terminal segments for written thesis:
+
+=====================================================================================================================================
+
+PS C:\Users\kiese\OneDrive\Dokumente\Schule\Diplomarbeit\Diplomarbeit_Tischkicker> ssh kiesel-pi@10.0.0.29
+The authenticity of host '10.0.0.29 (10.0.0.29)' can't be established.
+ED25519 key fingerprint is SHA256:GHhSfFvXV8KVu+5Q9JExUgyPl706HUwRtlNLMATUo7o.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.0.0.29' (ED25519) to the list of known hosts.
+kiesel-pi@10.0.0.29's password:
+Linux kiesel-pi 6.12.47+rpt-rpi-v8 #1 SMP PREEMPT Debian 1:6.12.47-1+rpt1 (2025-09-16) aarch64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+kiesel-pi@kiesel-pi:~ $ ls
+Bilder  Desktop  Dokumente  Downloads  Musik  Öffentlich  Videos  Vorlagen
+kiesel-pi@kiesel-pi:~ $ cd Desktop
+kiesel-pi@kiesel-pi:~/Desktop $ ls
+test
+kiesel-pi@kiesel-pi:~/Desktop $ cat test
+
+=====================================================================================================================================
+
+import struct
+import select
+import threading
+import serial
+from collections import defaultdict
+
+MOUSE_PATHS = [
+    "/dev/input/mouse0",
+    "/dev/input/mouse1",
+    "/dev/input/mouse2",
+    "/dev/input/mouse3",
+]
+
+SERIAL_PORT = "/dev/ttyS0"
+BAUD_RATE = 9600
+
+state = defaultdict(lambda: (0, 0, 0))
+state_lock = threading.Lock()
+
+ser = serial.Serial(SERIAL_PORT, baudrate=BAUD_RATE, timeout=1)
+
+def build_packet(idx, button, x, y):
+    """
+    Build a compact binary packet:
+    [0xFF] [mouse_id] [button] [x] [y] [checksum]
+    0xFF is a start byte to help the receiver sync.
+    Checksum is XOR of all data bytes.
+    """
+    data = bytes([idx, button, x, y])
+    checksum = 0
+    for b in data:
+        checksum ^= b
+    return bytes([0xFF]) + data + bytes([checksum])
+
+def read_mice(files):
+    """Use select() to read only mice that have data ready."""
+    while True:
+        readable, _, _ = select.select(files, [], [], 0.1)
+        for f in readable:
+            idx = files.index(f)
+            data = f.read(3)
+            if len(data) == 3:
+                button, x, y = struct.unpack('BBB', data)
+                with state_lock:
+                    state[idx] = (button, x, y)
+
+def report():
+    """Print and send state over serial at a controlled rate."""
+    while True:
+        with state_lock:
+            snapshot = dict(state)
+
+        for idx, (button, x, y) in snapshot.items():
+            print(f'mouse{idx}: x={x:3}, y={y:3}, button={button:08b}')
+
+            packet = build_packet(idx, button, x, y)
+            try:
+                ser.write(packet)
+            except serial.SerialException as e:
+                print(f"Serial error: {e}")
+
+        threading.Event().wait(0.05)
+
+files = [open(p, "rb") for p in MOUSE_PATHS]
+
+reader = threading.Thread(target=read_mice, args=(files,), daemon=True)
+reporter = threading.Thread(target=report, daemon=True)
+
+reader.start()
+reporter.start()
+reader.join()
+
+=====================================================================================================================================
+
+kiesel-pi@kiesel-pi:~ $ sudo systemctl daemon-reload
+kiesel-pi@kiesel-pi:~ $ sudo systemctl enable mouse_input_read.service
+kiesel-pi@kiesel-pi:~ $ sudo systemctl start mouse_input_read.service
+
+kiesel-pi@kiesel-pi:~ $ sudo systemctl status mouse_input_read.service
+● mouse_input_read.service - Four Mouse Input Read
+     Loaded: loaded (/etc/systemd/system/mouse_input_read.service; enabled; preset: enabled)
+     Active: active (running) since Tue 2026-03-03 23:11:09 CET; 11min ago
+ Invocation: 0b373c3d092e4c1e9920e05f9e7eef9b
+   Main PID: 2670 (python)
+      Tasks: 3 (limit: 3918)
+        CPU: 3.997s
+     CGroup: /system.slice/mouse_input_read.service
+             └─2670 /usr/bin/python /home/kiesel-pi/mouse_input_read.py
+
+Mär 03 23:23:05 kiesel-pi python[2670]: mouse3: x=  0, y=  1, button=00001000
+Mär 03 23:23:05 kiesel-pi python[2670]: mouse0: x=254, y=  2, button=00011000
+Mär 03 23:23:05 kiesel-pi python[2670]: mouse2: x=255, y=255, button=00111000
+Mär 03 23:23:05 kiesel-pi python[2670]: mouse3: x=  0, y=  1, button=00001000
+Mär 03 23:23:05 kiesel-pi python[2670]: mouse0: x=254, y=  2, button=00011000
+Mär 03 23:23:05 kiesel-pi python[2670]: mouse2: x=255, y=255, button=00111000
+Mär 03 23:23:05 kiesel-pi python[2670]: mouse3: x=  0, y=  1, button=00001000
+Mär 03 23:23:05 kiesel-pi python[2670]: mouse0: x=254, y=  2, button=00011000
+Mär 03 23:23:05 kiesel-pi python[2670]: mouse2: x=255, y=255, button=00111000
+Mär 03 23:23:05 kiesel-pi python[2670]: mouse3: x=  0, y=  1, button=00001000
+
+=====================================================================================================================================
+
+[Unit]
+Description=Four Mouse Input Read
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /home/kiesel-pi/mouse_input_read.py
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
