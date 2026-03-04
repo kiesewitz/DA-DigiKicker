@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b143j3dnm7iy5"
 path.s3tc="res://.godot/imported/plate_PlateColor.png-PlateInv.png-364d4a21cb8d8600c8141680b521a4ca.s3tc.ctex"
+path.etc2="res://.godot/imported/plate_PlateColor.png-PlateInv.png-364d4a21cb8d8600c8141680b521a4ca.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/models/table/plate_PlateColor.png-PlateInv.png"
-dest_files=["res://.godot/imported/plate_PlateColor.png-PlateInv.png-364d4a21cb8d8600c8141680b521a4ca.s3tc.ctex"]
+dest_files=["res://.godot/imported/plate_PlateColor.png-PlateInv.png-364d4a21cb8d8600c8141680b521a4ca.s3tc.ctex", "res://.godot/imported/plate_PlateColor.png-PlateInv.png-364d4a21cb8d8600c8141680b521a4ca.etc2.ctex"]
 
 [params]
 

@@ -20,7 +20,25 @@ Zusätzliche Serverkosten, dafür aber stabilerer Spielfluss, da er nicht vom Ne
 
 ### Entscheidungen für Multiplayer-Spielprinzipien
 
-Jegliche Entscheidungen (und deren Hintergründe) hinsichtlich des Designs der Spielprinzipien für den Mehrspieler-Modus (eigene Minispiele, verschiedene Modi, etc.)
+Wegen der vielen Online-Tutorials und der Kompatibilität mit der Godot-Engine, wurde für die Simulation die Lösung mit der WebRTC-Library gewählt. WebRTC ist ein Peer-To-Peer Netzwerk Protokoll speziell für Videospiele.
+
+#### Vorteile von WebRTC:
+
+Es gibt eine Vielzahl von Online Tutorials, an denen man sich richten kann.
+
+WebRTC besitzt eine große Community, was es leichter macht, Fehler, die bereits bei anderen häufig aufgetreten sind, auszubessern.
+
+Die Library nutzt das UDP Protokoll, wodurch ein sehr schneller Datenaustausch möglich ist.
+
+Folgende Arten von Datenaustausch sind möglich:
+
+"Reliable Messages": Jede Nachricht kommt garantiert und in richtiger Reihenfolge an - hohe Latenz 
+"Unreliable Messages": Nachrichten können verloren gehen, in falscher Reihenfolge ankommen oder gar nicht ankommen - niedrige Latenz
+"Partially Reliable Messages": Mittelweg zwischen "Reliable Messages" und "Unreliable Messages" - nur eine begrenzte Anzahl von Datenpaketen werden, wenn sie verloren gehen, erneut gesendet ODER es gibt einen fixen Timer, der bestimmt, wie lange ein Datenpaket für einen Austausch brauchen darf - wenn es länger braucht, wird es verworfen.
+
+WebRTC hat "NAT hole punching" miteingebunden.
+"NAT hole punching" bezeichnet die direkte Verbindung zwischen zwei Parteien bei denen mindestens eine der zwei Parteien hinter einem Router bzw. einer Firewall ist. Dies funktioniert mit einem sogenannten "STUN/TURN Server", der die NAT Adressen beider Parteien speichert und diese dem jeweils anderem Peer weitergibt. Dadurch wissen beide Parteien wohin sie ihre Datenpakete schicken müssen.
+
 
 ### Unterschied Offline Rendering vs Echtzeit-Rendering
 
