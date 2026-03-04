@@ -9,7 +9,6 @@ Im Theorieteil werden die Grundlagen für die grafische Umsetzung der Tischfußb
 
 ### Auswahl eines Verbindungsmodells
 
-
 #### P2P
 
 Verwendung eines eigenen Servers nicht benötigt, aber Skalierbarkeit auf mehrere Teilnehmer immer schwieriger, da die einzelnen Netzwerkgeschwindigkeiten immer auf den Teilnehmer mit der geringsten Leistung "gedrosselt" werden => Spielfluss kann von einem/mehreren Teilnehmern stark verlangsamt werden.
@@ -20,7 +19,7 @@ Zusätzliche Serverkosten, dafür aber stabilerer Spielfluss, da er nicht vom Ne
 
 ### Entscheidungen für Multiplayer-Spielprinzipien
 
-Wegen der vielen Online-Tutorials und der Kompatibilität mit der Godot-Engine, wurde für die Simulation die Lösung mit der WebRTC-Library gewählt. WebRTC ist ein Peer-To-Peer Netzwerk Protokoll speziell für Videospiele.
+Wegen der vielen Online-Tutorials und der Kompatibilität mit der Godot-Engine, wurde für die Simulation die Lösung mit der WebRTC API gewählt. WebRTC ist ein Peer-To-Peer Netzwerk Protokoll speziell für Videospiele und bietet eine gute Kompatibilität mit der Godot-Engine.
 
 #### Vorteile von WebRTC:
 
@@ -28,7 +27,7 @@ Es gibt eine Vielzahl von Online Tutorials, an denen man sich richten kann.
 
 WebRTC besitzt eine große Community, was es leichter macht, Fehler, die bereits bei anderen häufig aufgetreten sind, auszubessern.
 
-Die Library nutzt das UDP Protokoll, wodurch ein sehr schneller Datenaustausch möglich ist.
+WebRTC nutzt standardmäßig das UDP Protokoll, wodurch ein sehr schneller Datenaustausch möglich ist.
 
 Folgende Arten von Datenaustausch sind möglich:
 
@@ -36,8 +35,11 @@ Folgende Arten von Datenaustausch sind möglich:
 "Unreliable Messages": Nachrichten können verloren gehen, in falscher Reihenfolge ankommen oder gar nicht ankommen - niedrige Latenz
 "Partially Reliable Messages": Mittelweg zwischen "Reliable Messages" und "Unreliable Messages" - nur eine begrenzte Anzahl von Datenpaketen werden, wenn sie verloren gehen, erneut gesendet ODER es gibt einen fixen Timer, der bestimmt, wie lange ein Datenpaket für einen Austausch brauchen darf - wenn es länger braucht, wird es verworfen.
 
-WebRTC hat "NAT hole punching" miteingebunden.
-"NAT hole punching" bezeichnet die direkte Verbindung zwischen zwei Parteien bei denen mindestens eine der zwei Parteien hinter einem Router bzw. einer Firewall ist. Dies funktioniert mit einem sogenannten "STUN/TURN Server", der die NAT Adressen beider Parteien speichert und diese dem jeweils anderem Peer weitergibt. Dadurch wissen beide Parteien wohin sie ihre Datenpakete schicken müssen.
+#### ICE (Interactive Connectivity Establishment)
+
+Die WebRTC API nutzt das ICE Framework, um Datenaustausch zwischen zwei Parteien sicherzustellen. ICE ermöglicht dies mit dem sogenannten "NAT Hole Punching". NAT hole punching bezeichnet die direkte Verbindung zwischen zwei Parteien bei denen mindestens eine der zwei Parteien hinter einem Router bzw. einer Firewall ist. Dies funktioniert mit einem sogenannten "STUN/TURN Server", der die NAT Adressen beider Parteien kurzfristig speichert und diese dem jeweils anderen Peer freigibt. Wenn die direkte Verbindung fehlschlägt, wird der Datenaustausch auf den TURN Server ausgelegt.
+
+![alt text](image.png)
 
 
 ### Unterschied Offline Rendering vs Echtzeit-Rendering
@@ -336,17 +338,20 @@ Für die Tore und die Löcher, an denen der Ball reingeworfen wird, verwendet ma
 
 !Wichtig: Damit die Hitbox für das Spielfeld in der Engine richtig erstellt werden kann, muss über den Bodenmarkierungen, die jetzt weiter unten liegen, einen unsichtbaren Boden erstellen. Dafür erstellt man ein neues Material und stellt den "Alpha Value" auf 0.
 
-Auch bei den Materials auf der Vorderseite wird der "Alpha Value" auf 0 gesetzt, sodass man während der Simulation alles sehen kann. Alle Materialien werden auch hier einer "Diffuse Map zugeordnet. Die verschiedenen "Alpha-Values" werden auf einer "Emission Map" dargestellt.
+Auch bei den Materials an der vorderen Wand werden die "Alpha Values" auf 0 gesetzt, sodass man während der Simulation alles sehen kann.
 
-### UV‑Unwrapping und Texturierung
+### Optimierung und Export in die Game-Engine
 
-Wie bei den Spielfiguren werden die Farben und Materialinformationen auf Texture Maps gebacken, sodass möglichst wenige Materialien in der Engine benötigt werden. Das reduziert Draw Calls und beschleunigt das Rendering. Für die Linienmarkierungen und transparente Flächen wird die Emission‑ bzw. Alpha‑Information in einer Map zusammengeführt. Die Tischplatte bleibt bewusst Low‑Poly, da sie großflächig ist und im Spiel mehrfach sichtbar sein kann.
+Da das bereits existierende Skript für die Tischplatte so funktioniert, dass die Physik und die Position separat für Die Tischfläche, die Wände und die Tore aufgesetzt werden, muss man diese Teile der Tischplatte in einzelne Meshes aufteilen. Diese Parts werden dementsprechend auch separat als sogenannte "PackedScenes" exportiert.
 
-### Optimierung und Engine‑Test
+!Wichtig: Beim Exportieren muss man darauf achten, dass das "Origin" der Mesh im Mittelpunkt liegt und keine unsaubere Topologie vorliegt. Es kann sonst passieren, dass die Mesh nach dem Export in der Engine trotz richtiger Handlierung falsch positioniert ist oder visuelle Bugs vorkommen.
 
-Die fertigen Assets werden als .glb Datei exportiert. Die Godot-Engine interpretiert .glb Dateien automatisch in sogenannte "Game-Scenes", aus denen man leicht Hitboxen für das Spiel generieren kann. Aus .glb Dateien kann man nun in der Engine neue, vererbte .tscn Szenen erstellen, denen man Scripts zuweisen kann und die für die finale Simulation verwendet werden.
+In Godot kann man aus einer PackedScene ein "MeshArray" Objekt erstellen, in dem man aus der PackedScene eine sogenannte "Inherited Scene" erstellt und diese dann wiederrum als "MeshArray" abspeichert. Dieses MeshArray kann man einfach an eine "MeshInstance3D" anhängen und somit in der Simulation darstellen. Die Collision Shape für die Mesh kann man in der 3D-Ansicht generieren lassen.
 
-![Fertig modelliertes Character-Asset](img/Lanzmaier/BlenderModelAndMaterialNodes.png)
+Im Skript lässt sich die Form der Mesh folgendermaßen verändern:
+
+
+
 
 ### Optisches Design/Arrangement des Spiels
 
