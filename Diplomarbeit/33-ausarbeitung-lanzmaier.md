@@ -350,7 +350,37 @@ In Godot kann man aus einer PackedScene ein "MeshArray" Objekt erstellen, in dem
 
 Im Skript lässt sich die Form der Mesh folgendermaßen verändern:
 
+```
+var tableMesh = _tableBody.GetNode<MeshInstance3D>("TableMesh");
 
+// Prüfen, ob Mesh in der Scene vorhanden ist.
+if (tableMesh != null)
+	{
+	// Aktuelle Dimensionen der Mesh
+	Vector3 meshSize = tableMesh.Mesh.GetAabb().Size;
+
+	// Anpassung der Dimensionen auf die gewünschten Maße
+	tableMesh.Scale = new Vector3(
+		TABLE_LENGTH / meshSize.X,
+		TABLE_HEIGHT / meshSize.Y,
+		TABLE_WIDTH / meshSize.Z
+	);
+
+	}
+```
+
+Zuerst wird sich die Referenz der Mesh mit .GetNode geholt. Die gewünschten Dimensionen müssen mit den aktuellen Dimensionen der Mesh dividiert werden, da der neue Vektor mit den Maßen der bereits bestehenden Mesh multipliziert wird. Wenn die bereits bestehenden Maße nicht 1x1x1 entsprechen, nimmt das Mesh eine unerwünschte Form an.
+
+Die Position von Wänden lässt sich folgendermaßen ändern:
+
+```
+private void SetupWall(string wallName, Vector3 position, float length, float height, float thickness)
+{
+	...
+	wall.Position = position;
+	...
+}
+```	
 
 
 ### Optisches Design/Arrangement des Spiels

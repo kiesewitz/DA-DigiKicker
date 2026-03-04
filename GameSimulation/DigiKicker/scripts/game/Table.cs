@@ -264,7 +264,6 @@ public partial class Table : Node3D
 		// Haupt-Tischkörper einrichten
 		var tableMesh = _tableBody.GetNode<MeshInstance3D>("TableMesh");
 
-
 		if (tableMesh != null)
 		{
 			Vector3 meshSize = tableMesh.Mesh.GetAabb().Size;
@@ -275,7 +274,6 @@ public partial class Table : Node3D
 				TABLE_WIDTH / meshSize.Z
 			);
 
-			tableMesh.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
 		}
 		
 
