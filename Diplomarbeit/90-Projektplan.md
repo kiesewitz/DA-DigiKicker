@@ -121,7 +121,9 @@ Hier werden die konkreten Rollen im Projekt der Kontakte aus der oberen Tabelle 
 
 : Projektrollen
 
-![Projektorganisationsdiagramm](img/Project-Organization-Diagram-DigiKicker.png)
+![Projektorganisationsdiagramm\label{fig:project-organization-diagram}](img/Project-Organization-Diagram-DigiKicker.png)
+
+Die Abbildung \ref{fig:project-organization-diagram} stellt die Projektrollen in Form von einem Projektorganisationsdiagramm zusätzlich zur Tabellenauflistung grafisch dar.
 
 ### Vorgehen bei Änderungen
 

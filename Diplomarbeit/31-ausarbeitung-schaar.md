@@ -17,9 +17,9 @@ In diesem Kapitel wird der Begriff Mikrocontroller erklärt und die Unterschiede
 
 Um Mikrocontroller [@microcontroller-definition] zu erklären, muss erst ihr Unterschied zu Mikroprozessoren beleuchtet werden. Mikroprozessoren sind so wie die "größeren" Prozessoren - in diesem Fall sowohl auf physikalische Größe als auch auf Leistung bezogen - die Recheneinheit eines Systems. Während Mikroprozessoren ausschließlich rechnerische Aufgaben bearbeiten und für andere Funktionen separate Teile (RAM, ROM, Timer-Module, etc.) benötigen, fungieren Mikrocontroller als ein fertiges Paket, welches die verschiedenen Teile verbaut hat.
 
-![Mikroprozessor vs. Mikrocontroller](img/Schaar/Difference-Microprocessor-Microcontroller.png)
+![Mikroprozessor vs. Mikrocontroller\label{fig:microcontroller-microprocessor}](img/Schaar/Difference-Microprocessor-Microcontroller.png)
 
-Wie in Abbildung x [@microcontroller-microprocessor] ersichtlich, ist links der Mikroprozessor bzw. die CPU (Central Processing Unit) zentral, benötigt jedoch extern verbundene Teile, sodass alle Aufgaben ausgeführt werden können. Ihm gegenübergestellt wird der Mikrocontroller, bei dem veranschaulicht wird, dass es sich hierbei um ein fertiges System handelt, bei dem alle Teile in diesem Ökosystem fest verbaut sind. Um eine Analogie zum menschlichen Körper zu bilden wäre in diesem Fall der Mikroprozessor das Gehirn alleine und der Mikrocontroller ein vollständiger Körper, welcher zur Funktion auf keine zusätzlichen Hilfsmittel angewiesen ist.
+Wie in Abbildung \ref{fig:microcontroller-microprocessor} [@microcontroller-microprocessor] ersichtlich, ist links der Mikroprozessor bzw. die CPU (Central Processing Unit) zentral, benötigt jedoch extern verbundene Teile, sodass alle Aufgaben ausgeführt werden können. Ihm gegenübergestellt wird der Mikrocontroller, bei dem veranschaulicht wird, dass es sich hierbei um ein fertiges System handelt, bei dem alle Teile in diesem Ökosystem fest verbaut sind. Um eine Analogie zum menschlichen Körper zu bilden wäre in diesem Fall der Mikroprozessor das Gehirn alleine und der Mikrocontroller ein vollständiger Körper, welcher zur Funktion auf keine zusätzlichen Hilfsmittel angewiesen ist.
 
 Tendenziell sind Mikroprozessoren für leistungsintensivere Anwendungszwecke angedacht als Mikrocontroller (z. B. grafische Berechnungen, Multitasking). Mikrocontroller sind durch ihre autonome Struktur in puncto Kosten, Stromverbrauch und Größe beliebt und bringen viele Möglichkeiten mit ohne unnötig hohe Komplexität. Aufgrund von diesen Faktoren werden Mikrocontroller sehr gerne in eingebetteten Systemen (Embedded Systems) [@embedded-systems] verwendet. 
 
@@ -106,15 +106,15 @@ Alle hier tabellarisch angegebenen Spezifikationen stammen aus dem offiziellen A
 
 : Arduino Nano ESP32 - Eigenschaften
 
-![Arduino Nano ESP32 Pinout-Diagramm](img/Schaar/Pinout-Arduino-Nano-ESP32.png)
+![Arduino Nano ESP32 Pinout-Diagramm\label{fig:arduino-nano-esp32-pinout}](img/Schaar/Pinout-Arduino-Nano-ESP32.png)
 
-Abbildung x [@arduino-nano-pinout] stellt das Pin-Layout eines Arduino Nano ESP32 dar.
+Abbildung \ref{fig:arduino-nano-esp32-pinout} [@arduino-nano-pinout] stellt das Pin-Layout eines Arduino Nano ESP32 dar.
 
 ### ESP-32 DevKit C
 
-![ESP-32 DevKit C V4](img/Schaar/ESP32-DevKit-C-V4-IRL.png)
+![ESP-32 DevKit C V4\label{fig:esp32-devkit-c}](img/Schaar/ESP32-DevKit-C-V4-IRL.png)
 
-Der nächste Mikrocontroller ist das ESP-32 Dev Kit C V4 [@esp32-data] (siehe Abbildung x [@esp32-devkit-c-image]), welcher wie der zuvor betrachtete Mikrocontroller auf einem ESP32 - genauer gesagt, einem ESP32-WROOM-32 - basiert ist, weshalb für die Programmierung die Arduino Language sowie MicroPython verwendet werden kann. Wie allen ESP32-basierten Controllern ist es auch diesem möglich, von dem Protokoll "ESP-Now" Gebrauch zu machen. 
+Der nächste Mikrocontroller ist das ESP-32 Dev Kit C V4 [@esp32-data] (siehe Abbildung \ref{fig:esp32-devkit-c} [@esp32-devkit-c-image]), welcher wie der zuvor betrachtete Mikrocontroller auf einem ESP32 - genauer gesagt, einem ESP32-WROOM-32 - basiert ist, weshalb für die Programmierung die Arduino Language sowie MicroPython verwendet werden kann. Wie allen ESP32-basierten Controllern ist es auch diesem möglich, von dem Protokoll "ESP-Now" Gebrauch zu machen. 
 
 #### ESP-NOW-Protokoll
 
@@ -137,9 +137,9 @@ Da die maximale Größe dieser Payload 250 Bytes beträgt, wird dieses Protokoll
 
 ESP-Now ermöglicht Master-Slave-Beziehungen zwischen Boards, für Kommunikation in eine Richtung, aber auch Kommunikation zwischen zwei oder mehreren Boards in beide Richtungen.
 
-![ESP-Now Kommunikation](img/Schaar/ESP-Now-Connections.png)
+![ESP-Now Kommunikation\label{fig:esp-now-communication}](img/Schaar/ESP-Now-Connections.png)
 
-In Abbildung x [@esp-now-introduction] wird die Kommunikation mehrerer ESP-32-Controller in beide Richtungen dargestellt. Dies ist zwar nur eine simple Visualisierung, zeigt jedoch dass die Verbindung vieler Mikrocontroller dadurch einfach ermöglicht wird. Dadurch ergeben sich zahlreiche Möglichkeiten für zusammenhängende Systeme, wie z. B. die Messung und Übermittlung verschiedener Sensordaten in einem Smart Home.
+In Abbildung \ref{fig:esp-now-communication} [@esp-now-introduction] wird die Kommunikation mehrerer ESP-32-Controller in beide Richtungen dargestellt. Dies ist zwar nur eine simple Visualisierung, zeigt jedoch dass die Verbindung vieler Mikrocontroller dadurch einfach ermöglicht wird. Dadurch ergeben sich zahlreiche Möglichkeiten für zusammenhängende Systeme, wie z. B. die Messung und Übermittlung verschiedener Sensordaten in einem Smart Home.
 
 Hier folgen nun beispielhafte Code-Snippets [@esp-now-introduction] zur Realisierung des ESP-Now-Protokolls (One-Way-Form) in C-Code, so wie er auf einem Mikrocontroller laufen würde:
 
@@ -267,21 +267,21 @@ Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen ES
 
 : ESP32-WROOM-32 - Eigenschaften
 
-![ESP32-WROOM-32 Pinout-Diagramm](img/Schaar/Pinout-ESP32-DevBoard.jpg)
+![ESP32-WROOM-32 Pinout-Diagramm\label{fig:esp32-wroom-32-pinout}](img/Schaar/Pinout-ESP32-DevBoard.jpg)
 
-In Abbildung x [@esp32-pinout] werden die Pin-Belegungen eines ESP32-WROOM-32 dargestellt.
+In Abbildung \ref{fig:esp32-wroom-32-pinout} [@esp32-pinout] werden die Pin-Belegungen eines ESP32-WROOM-32 dargestellt.
 
 ### Raspberry Pi Pico 2W
 
-![Raspberry Pi Pico 2W](img/Schaar/Raspberry-Pi-Pico-2W-IRL.png)
+![Raspberry Pi Pico 2W\label{fig:raspberry-pi-pico-2w}](img/Schaar/Raspberry-Pi-Pico-2W-IRL.png)
 
-Der letzte Mikrocontroller, der in dieser Arbeit betrachtet wird, ist der Raspberry Pi Pico 2W [@raspberry-pi-pico-documentation] (siehe Abbildung x [@raspberry-pi-pico-2w-image]). Dieser Controller verwendet keinen ESP-32 basierten Chip für kabellose Datenübertragung, sondern einen Infineon CYW43439 in Kombination mit einer ABRACON-lizensierten Antenne.
+Der letzte Mikrocontroller, der in dieser Arbeit betrachtet wird, ist der Raspberry Pi Pico 2W [@raspberry-pi-pico-documentation] (siehe Abbildung \ref{fig:raspberry-pi-pico-2w} [@raspberry-pi-pico-2w-image]). Dieser Controller verwendet keinen ESP-32 basierten Chip für kabellose Datenübertragung, sondern einen Infineon CYW43439 in Kombination mit einer ABRACON-lizensierten Antenne.
 
 Für die Programmierung eines Pi Pico kann sowohl C/C++ als auch MicroPython verwendet werden, gleich wie bei den vorherigen Mikrocontrollern auch. Während bei den anderen beiden jedoch vorwiegend C/C++ verwendet wird, werden Programme auf dem Pi Pico primär in MicroPython geschrieben, was vorwiegend daran liegt, dass die Programmiersprache nativ auf dem Controller läuft. Für C/C++ ist eine robuste SDK verfügbar, die eher für erfahrenere Entwickler gedacht ist, aber trotzdem alle Funktionen des Pico nutzbar macht.
 
-![Raspberry Pi Code Club](img/Schaar/Raspberry-Pi-Code-Club.png)
+![Raspberry Pi Code Club\label{fig:raspberry-pi-code-club}](img/Schaar/Raspberry-Pi-Code-Club.png)
 
-Da (Micro-)Python als Programmiersprache weitaus einsteigerfreundlicher als andere Sprachen ist, wird der Raspberry Pi Pico gerne für den Einstieg in die Hardware-Programmierung genommen. Dafür gibt es auf der offiziellen Raspberry Pi Code Club Seite [@raspberry-pi-code-club] viele Projekte, welche wichtige Kernkonzepte der Low-Level-Programmierung erklären (siehe Abbildung x [@raspberry-pi-code-club]).
+Da (Micro-)Python als Programmiersprache weitaus einsteigerfreundlicher als andere Sprachen ist, wird der Raspberry Pi Pico gerne für den Einstieg in die Hardware-Programmierung genommen. Dafür gibt es auf der offiziellen Raspberry Pi Code Club Seite [@raspberry-pi-code-club] viele Projekte, welche wichtige Kernkonzepte der Low-Level-Programmierung erklären (siehe Abbildung \ref{fig:raspberry-pi-code-club} [@raspberry-pi-code-club]).
 
 Dank der ```gpiozero```/```picozero```-Library [@gpiozero-library] [@picozero-library] - ```picozero``` ist hierbei eine abgeänderte Version der ```gpiozero```-Library, welche ihre grundlegende Struktur wiederverwendet, aber für den Raspberry Pi Pico optimiert ist - wird das Interfacing verschiedener GPIO-Geräte mit dem Raspberry Pi Pico ein leichtes. Diese Library hat viele Funktionen für die verschiedensten Input-/Output-Teile, welche die Nutzung dieser auch für unerfahrene Programmierer:innen ermöglichen und bei der Entwicklung viel Code ersparen.
 
@@ -391,17 +391,17 @@ Alle hier tabellarisch angegebenen Spezifikationen kommen aus dem offiziellen Ra
 
 : Raspberry Pi Pico 2W - Eigenschaften
 
-![Raspberry Pi Pico 2W Pinout-Diagramm](img/Schaar/Pinout-Raspberry-Pi-Pico-2W.png)
+![Raspberry Pi Pico 2W Pinout-Diagramm\label{fig:raspberry-pi-pico-2w-pinout}](img/Schaar/Pinout-Raspberry-Pi-Pico-2W.png)
 
-Die Abbildung x [@raspberry-pi-pico-2w-pinout] stellt die Pin-Belegungen eines Raspberry Pi Pico 2W dar.
+Die Abbildung \ref{fig:raspberry-pi-pico-2w-pinout} [@raspberry-pi-pico-2w-pinout] stellt die Pin-Belegungen eines Raspberry Pi Pico 2W dar.
 
 ### Vergleich der Optionen & Entscheidung
 
 In diesem Teil folgt der direkte Vergleich sowie die Entscheidung für eine der Mikrocontroller-Optionen. Jegliche Diagramme und Berechnungen, welche zur Veranschaulichung und Ermittlung der Daten verwendet werden, wurden mithilfe von Microsoft Excel erstellt. Die Daten für den Vergleich der Preise werden durch einen Vergleich von mehreren Händlerangeboten pro Mikrocontroller ermittelt. Für die exakten Berechnungen und Händler-Daten wird an dieser Stelle auf die Tabellenberechnungen [@table-calculations-microcontrollers] im Anhang verwiesen.
 
-![Punkteverteilung - Mikrocontroller](img/Schaar/PointDistributionMicrocontrollers.png)
+![Punkteverteilung - Mikrocontroller\label{fig:point-distribution}](img/Schaar/PointDistributionMicrocontrollers.png)
 
-Die Punkteverteilung, wie sie in Abbildung x (siehe Anhang für Berechnungen) ersichtlich ist, ergibt sich aus:
+Die Punkteverteilung, wie sie in Abbildung \ref{fig:point-distribution} (siehe Anhang für Berechnungen) ersichtlich ist, ergibt sich aus:
 
 **1. Kosten (~49% der möglichen Gesamtpunkte)**
 
@@ -423,9 +423,9 @@ Die durchschnittlichen Kosten (in €) und die sich daraus ergebenden Punkte jed
 
 : Kostenvergleich Mikrocontroller
 
-![Gesamtpunktzahl - Mikrocontroller](img/Schaar/PointsSumMicrocontrollers.png)
+![Gesamtpunktzahl - Mikrocontroller\label{fig:full-points-microcontroller}](img/Schaar/PointsSumMicrocontrollers.png)
 
-Nach dem Addieren aller Teilpunktzahlen der Kategorien ergibt sich für die Gesamtpunktzahl und die finale Entscheidung dieses Ergebnis. Den ersten Platz belegt mit einem klaren Vorsprung der **Raspberry Pi Pico 2W** weshalb er für die finale Entscheidung für einen Mikrocontroller für den Bau eines Controllers ausgewählt wird. Das **ESP32 DevKit C** belegt den zweiten Platz, während der **Arduino Nano ESP32** insgesamt am schlechtesten abschneidet.
+Nach dem Addieren aller Teilpunktzahlen der Kategorien ergibt sich für die Gesamtpunktzahl (siehe Abbildung \ref{fig:full-points-microcontroller}) und die finale Entscheidung dieses Ergebnis. Den ersten Platz belegt mit einem klaren Vorsprung der **Raspberry Pi Pico 2W** weshalb er für die finale Entscheidung für einen Mikrocontroller für den Bau eines Controllers ausgewählt wird. Das **ESP32 DevKit C** belegt den zweiten Platz, während der **Arduino Nano ESP32** insgesamt am schlechtesten abschneidet.
 
 Der Raspberry Pi Pico 2W ist nicht nur anhand von diesem faktischen Vergleich für die Entwicklung sehr angenehm, sondern auch wegen der umfassenden Code-Library ```picozero```, welche die Entwicklung für diesen stark vereinfacht. Hiermit endet das Subkapitel über die Entscheidung für den Mikrocontroller, der für diese Diplomarbeit am Besten geeignet ist. Als nächstes werden die möglichen Sensoren zur Messung der Eingabesignale genauer beleuchtet.
 
@@ -445,9 +445,9 @@ Bevor der Lösungsansatz erklärt werden kann, müssen die verschiedenen Sensore
 
 Laser- [@laser-sensors-all-types] [@how-laser-sensors-work] und Ultraschallsensoren [@what-is-ultrasonic-sensor] [@ultrasonic-with-arduino] werden in dieser Ausarbeitung zusammen erklärt, da die hier betrachteten Versionen dieser Sensoren demselben physikalischen Prinzip folgen. Auch wenn es verschiedene Lasersensoren gibt, sind die meisten herkömmlich zugänglichen - gleich wie die Ultraschallsensoren - nach dem ToF-Prinzip aufgebaut.
 
-![Laser- und Ultraschallsensor - ToF-Prinzip](img/Schaar/Ultrasonic-Laser-Sensor-ToF-Principle.png)
+![Laser- und Ultraschallsensor - ToF-Prinzip\label{fig:tof-principle}](img/Schaar/Ultrasonic-Laser-Sensor-ToF-Principle.png)
 
-In Abbildung x wird dargestellt, wie sowohl der Ultraschallsensor als auch der Lasersensor nach demselben Prinzip funktionieren. Dieses Prinzip ist das vorher schon erwähnte ***Time-of-Flight-Prinzip***.
+In Abbildung \ref{fig:tof-principle} wird dargestellt, wie sowohl der Ultraschallsensor als auch der Lasersensor nach demselben Prinzip funktionieren. Dieses Prinzip ist das vorher schon erwähnte ***Time-of-Flight-Prinzip***.
 
 Die Messung mithilfe des Time-of-Flight-Prinzips funktioniert bei jedem Sensor gleich.
 
@@ -467,24 +467,24 @@ Auch wenn die beiden Sensoren das selbe Grundprinzip aufweisen unterscheiden sie
 
 *Ultraschallsensor*:
 
-![Ultraschallsensor - HC-SR04](img/Schaar/HC-SR04-Sensor.jpg)
+![Ultraschallsensor - HC-SR04\label{fig:ultrasound-hc-sr04}](img/Schaar/HC-SR04-Sensor.jpg)
 
-- Ultraschallsensoren (wie z. B. der HC-SR04 - siehe Abbildung x [@hc-sr04-image]) werden gerne in Situationen verwendet, wo physikalische Störungen wie Staub, Luftfeuchtigkeit oder schlechte Lichtbedingungen (z. B. zu helles Umfeld) auftreten. Sie sind tendenziell weitaus leistbarer als viele Laser-Sensoren und werden deshalb auch im Hobby-Bereich öfter verwendet. Da Ultraschallsensoren billiger und robuster gegenüber physikalischen Gegebenheiten sind - auch reflektive Oberflächen verfälschen die Messung nicht - werden sie z. B. oft zur Messung von Füllständen von Flüssigkeiten oder Abständen zu anderen Fahrzeugen als Parkhilfe verwendet.
+- Ultraschallsensoren (wie z. B. der HC-SR04 - siehe Abbildung \ref{fig:ultrasound-hc-sr04} [@hc-sr04-image]) werden gerne in Situationen verwendet, wo physikalische Störungen wie Staub, Luftfeuchtigkeit oder schlechte Lichtbedingungen (z. B. zu helles Umfeld) auftreten. Sie sind tendenziell weitaus leistbarer als viele Laser-Sensoren und werden deshalb auch im Hobby-Bereich öfter verwendet. Da Ultraschallsensoren billiger und robuster gegenüber physikalischen Gegebenheiten sind - auch reflektive Oberflächen verfälschen die Messung nicht - werden sie z. B. oft zur Messung von Füllständen von Flüssigkeiten oder Abständen zu anderen Fahrzeugen als Parkhilfe verwendet.
 
 *Lasersensor*:
 
-![Lasersensor - KY-008](img/Schaar/KY-008-Sensor.jpg)
+![Lasersensor - KY-008\label{fig:laser-ky-008}](img/Schaar/KY-008-Sensor.jpg)
 
-- Da Laser-Sensoren (wie z. B. der KY-008 - siehe Abbildung x [@ky-008-image]) üblicherweise teurer aber auch weitaus genauer sind (Wenige Milli- bis Mikrometer gegenüber Zentimeter bei US) werden sie in Systemen verwendet, die eine weitaus höhere Präzision benötigen. Auch für weite Entfernungen oder Messungen, bei denen die höchstmögliche Geschwindigkeit essenziell ist, werden sie verwendet. Dank diesen Eigenschaften werden Laser-Sensoren z. B. in der Herstellung von Autoteilen zur Qualitätssicherung, bei der Landschaftsvermessung oder auf der Zielgeraden beim Formel 1 - zusätzlich zu Induktionsschleifen (Timing Loops) in der Strecke - zur Zeitmessung verwendet.
+- Da Laser-Sensoren (wie z. B. der KY-008 - siehe Abbildung \ref{fig:laser-ky-008} [@ky-008-image]) üblicherweise teurer aber auch weitaus genauer sind (Wenige Milli- bis Mikrometer gegenüber Zentimeter bei US) werden sie in Systemen verwendet, die eine weitaus höhere Präzision benötigen. Auch für weite Entfernungen oder Messungen, bei denen die höchstmögliche Geschwindigkeit essenziell ist, werden sie verwendet. Dank diesen Eigenschaften werden Laser-Sensoren z. B. in der Herstellung von Autoteilen zur Qualitätssicherung, bei der Landschaftsvermessung oder auf der Zielgeraden beim Formel 1 - zusätzlich zu Induktionsschleifen (Timing Loops) in der Strecke - zur Zeitmessung verwendet.
 
 
 **IMU-Sensor**
 
 Eine IMU [@imu-and-robotics] ist eine inertiale Messeinheit (engl. **I**nertial **M**easurement **U**nit), mit der die Beschleunigung, die Winkelgeschwindigkeit sowie die Orientierung des Sensors gemessen wird. Dies funktioniert durch eine Kombination aus Gyroskopen, Beschleunigungsmessern und oft Magnetometern.
 
-![Roll-, Nick- und Gier-Winkel](img/Schaar/Roll-Pitch-Yaw.png)
+![Roll-, Nick- und Gier-Winkel\label{fig:roll-pitch-yaw}](img/Schaar/Roll-Pitch-Yaw.png)
 
-In Abbildung x [@arduino-guide-mpu6050] sind die Winkel, welche bei einem IMU mithilfe seiner verschiedenen Sensoren erfasst werden, dargestellt. Die Winkel werden auf Deutsch als Roll-, Nick- und Gier-Winkel [@yaw-pitch-and-roll] bezeichnet. Diese Begriffe kommen ursprünglich aus der Luft- und Seefahrt und bezeichnen die Bewegungen, die ein Fahrzeug um die jeweilige Achse macht. Ein Flugzeug oder Schiff kann um die X-Achse "rollen", um die Y-Achse "nicken" - wie wenn man als Mensch den Kopf auf und ab bewegt - und um die Z-Achse "gieren". Auch wenn diese Winkeldarstellung ursprünglich also aus der (Aero-) Nautik kommt, wird sie heutzutage überall dort verwendet, wo die Lage eines Fahrzeugs oder Objekts im Raum beschrieben werden muss.
+In Abbildung \ref{fig:roll-pitch-yaw} [@arduino-guide-mpu6050] sind die Winkel, welche bei einem IMU mithilfe seiner verschiedenen Sensoren erfasst werden, dargestellt. Die Winkel werden auf Deutsch als Roll-, Nick- und Gier-Winkel [@yaw-pitch-and-roll] bezeichnet. Diese Begriffe kommen ursprünglich aus der Luft- und Seefahrt und bezeichnen die Bewegungen, die ein Fahrzeug um die jeweilige Achse macht. Ein Flugzeug oder Schiff kann um die X-Achse "rollen", um die Y-Achse "nicken" - wie wenn man als Mensch den Kopf auf und ab bewegt - und um die Z-Achse "gieren". Auch wenn diese Winkeldarstellung ursprünglich also aus der (Aero-) Nautik kommt, wird sie heutzutage überall dort verwendet, wo die Lage eines Fahrzeugs oder Objekts im Raum beschrieben werden muss.
 
 Da eine IMU aus mehreren Unterkomponenten besteht, werden diese im folgenden Abschnitt kurz erläutert. [@imu-and-robotics] [@arduino-guide-mpu6050]
 
@@ -500,9 +500,9 @@ Da eine IMU aus mehreren Unterkomponenten besteht, werden diese im folgenden Abs
 
 - Mithilfe von einem Magnetometer lassen sich sowohl die Richtung als auch die Stärke von Magnetfeldern bestimmen. Einfach gesagt verhält es sich wie ein elektronischer Kompass, der die relative Änderung eines Magnetfeldes zu einem gegebenen Standort misst. Weil Beschleunigungsmesser und Gyroskop alleine den Gier-Winkel nicht bestimmen können, übernimmt genau hier das Magnetometer. Durch das Erdmagnetfeld ist - gleich wie für den Roll- und Nick-Winkel die Schwerkraft - eine konstante horizontale Kraft gegeben. Anhand von dieser lässt sich der Gier-Winkel bestimmen. Was jedoch zu beachten ist, ist, dass das Magnetometer durch äußere Magnetfelder, z. B. von Motoren oder metallischen Strukturen gestört werden kann, was möglicherweise zu Messfehlern führt.
 
-![IMU-Sensor - MPU6050](img/Schaar/MPU6050-Sensor.png)
+![IMU-Sensor - MPU6050\label{fig:imu-mpu6050}](img/Schaar/MPU6050-Sensor.png)
 
-In Abbildung x [@arduino-guide-mpu6050] ist ein typischer IMU-Sensor des Typs MPU-6050 dargestellt. Dieser weitverbreitete Sensor vereint einen Beschleunigungsmesser und ein Gyroskop mit jeweils 3 Achsen auf einem einzigen Chip und ist damit ein Beispiel für eine IMU vom Typ I. [@imu-and-robotics] Das bedeutet, dass es dem MPU6050 nicht möglich ist - ohne eine ungenaue und fehlerbehaftete Integrationsrechnung - den Gier-Winkel zu bestimmen. Eine IMU vom Typ II hat zusätzlich noch ein Magnetometer, welches mit 3 zusätzlichen Achsen den Freiheitsgrad des Sensors auf neun erhöht. Damit ist es dann auch möglich, den fehlenden Winkel zu messen.
+In Abbildung \ref{fig:imu-mpu6050} [@arduino-guide-mpu6050] ist ein typischer IMU-Sensor des Typs MPU-6050 dargestellt. Dieser weitverbreitete Sensor vereint einen Beschleunigungsmesser und ein Gyroskop mit jeweils 3 Achsen auf einem einzigen Chip und ist damit ein Beispiel für eine IMU vom Typ I. [@imu-and-robotics] Das bedeutet, dass es dem MPU6050 nicht möglich ist - ohne eine ungenaue und fehlerbehaftete Integrationsrechnung - den Gier-Winkel zu bestimmen. Eine IMU vom Typ II hat zusätzlich noch ein Magnetometer, welches mit 3 zusätzlichen Achsen den Freiheitsgrad des Sensors auf neun erhöht. Damit ist es dann auch möglich, den fehlenden Winkel zu messen.
 
 Ein weiterer wichtiger Aspekt bei der Verwendung von IMU-Sensoren ist der sogenannte ***Drift-Fehler***. [@imu-and-robotics] Da jede Messung auf den vorherigen Werten aufbaut, häufen sich kleinste Messfehler mit der Zeit an und führen zu immer größeren Abweichungen. Dieses Problem lässt sich durch Filtermethoden wie dem Kalman-Filter abmildern. Er stellt auf Basis eines Modells Hypothesen für den nächsten Messwert auf, vergleicht diesen mit dem tatsächlich gemessenen Wert und passt sein Modell entsprechend an.
 
@@ -517,31 +517,31 @@ Mit einem Drehgeber lassen sich drei Eigenschaften [@how-rotary-encoders-work] e
 * Die **Drehrichtung** = Ob die Achse im oder gegen den Uhrzeigersinn gedreht wird (engl. *clockwise* / *counter clockwise*).
 * Die **Winkelgeschwindigkeit** = Die Geschwindigkeit, mit der sich die Achse dreht.
 
-![Drehgeber - KY-040](img/Schaar/KY-040-Sensor.png)
+![Drehgeber - KY-040\label{fig:rotary-encoder-ky-040}](img/Schaar/KY-040-Sensor.png)
 
-Wie diese Informationen gewonnen werden, lässt sich an der internen Funktionsweise des Sensors erkennen. Beim Drehen werden zwei Kontakte - beim KY-040-Drehgeber (siehe Abbildung x [@ky-040-rotary-encoder]) die Signalausgänge CLK und DT - nacheinander geschlossen. Anhand von der Reihenfolge, in der diese beiden Kontakte Signale erhalten, lässt sich die Drehrichtung bestimmen. Durch den zeitlichen Abstand zwischen den Schaltvorgängen lässt sich die Winkelgeschwindigkeit ableiten. Weil die Auswertung des Sensors softwareseitig erfolgen muss, ist für die Verwendung zwingend ein Mikrocontroller notwendig.
+Wie diese Informationen gewonnen werden, lässt sich an der internen Funktionsweise des Sensors erkennen. Beim Drehen werden zwei Kontakte - beim KY-040-Drehgeber (siehe Abbildung \ref{fig:rotary-encoder-ky-040} [@ky-040-rotary-encoder]) die Signalausgänge CLK und DT - nacheinander geschlossen. Anhand von der Reihenfolge, in der diese beiden Kontakte Signale erhalten, lässt sich die Drehrichtung bestimmen. Durch den zeitlichen Abstand zwischen den Schaltvorgängen lässt sich die Winkelgeschwindigkeit ableiten. Weil die Auswertung des Sensors softwareseitig erfolgen muss, ist für die Verwendung zwingend ein Mikrocontroller notwendig.
 
-![Inkrementeller/Absoluter Drehgeber](img/Schaar/Rotary-Encoder-Inner-Workings.jpg)
+![Inkrementeller/Absoluter Drehgeber\label{fig:rotary-encoder-incremental-absolute}](img/Schaar/Rotary-Encoder-Inner-Workings.jpg)
 
-Es wird zwischen zwei Typen von Drehgebern unterschieden (siehe Abbildung x [@how-rotary-encoders-work-second-source]):  ***Absolute*** Drehgeber kennen ihre Position sofort nach dem Einschalten, sind aber aufwendiger gebaut und dadurch teurer in der Herstellung. ***Inkrementelle*** Drehgeber - die in der Praxis weitaus verbreiteter sind - melden sofort Geschwindigkeit und Drehrichtung, kennen ihre absolute Ausgangsposition aber nicht. Deswegen benötigen diese entweder einen Referenzpunkt oder setzen beim Einschalten eine Nullposition, von der aus gemessen wird.
+Es wird zwischen zwei Typen von Drehgebern unterschieden (siehe Abbildung \ref{fig:rotary-encoder-incremental-absolute} [@how-rotary-encoders-work-second-source]):  ***Absolute*** Drehgeber kennen ihre Position sofort nach dem Einschalten, sind aber aufwendiger gebaut und dadurch teurer in der Herstellung. ***Inkrementelle*** Drehgeber - die in der Praxis weitaus verbreiteter sind - melden sofort Geschwindigkeit und Drehrichtung, kennen ihre absolute Ausgangsposition aber nicht. Deswegen benötigen diese entweder einen Referenzpunkt oder setzen beim Einschalten eine Nullposition, von der aus gemessen wird.
 
 ---
 
 Nachdem wir nun die Sensoren für den ersten möglichen Aufbau des Controllers kennengelernt haben, sehen wir uns den theoretischen Aufbau anhand von einer Skizze genauer an.
 
-![Querschnitt - Möglicher Controller-Aufbau](img/Schaar/Controller-Possible-Solution-Sensors.jpg)
+![Querschnitt - Möglicher Controller-Aufbau\label{fig:side-view-possible-controller}](img/Schaar/Controller-Possible-Solution-Sensors.jpg)
 
-In Abbildung x, einer händisch angefertigten Skizze, ist ein möglicher Aufbau des Controllers zur Steuerung der Simulation dargestellt. Die Messung der translatorischen Eingaben - das Hineinschieben bzw. Herausziehen des Drehstabes - würde in diesem Entwurf mithilfe eines Laser- oder Ultraschallsensors gemessen werden. Grundsätzlich wäre es nicht weiter wichtig, welcher der beiden Sensoren hierfür verwendet werden würde, jedoch wäre hier die Tendenz eher bei einem Ultraschallsensor. Das liegt daran, dass wie bereits erwähnt der Kostenunterschied zwischen den beiden Sensorarten nicht unmerklich ist und für den Anwendungsbereich ein Ultraschallsensor auf jeden Fall reichen müsste. Zur verbesserten Abstandsmessung würde sich hier am Ende des Stabes eine größere Fläche eignen, um die Ultraschallwellen besser reflektieren zu können.
+In Abbildung \ref{fig:side-view-possible-controller}, einer händisch angefertigten Skizze, ist ein möglicher Aufbau des Controllers zur Steuerung der Simulation dargestellt. Die Messung der translatorischen Eingaben - das Hineinschieben bzw. Herausziehen des Drehstabes - würde in diesem Entwurf mithilfe eines Laser- oder Ultraschallsensors gemessen werden. Grundsätzlich wäre es nicht weiter wichtig, welcher der beiden Sensoren hierfür verwendet werden würde, jedoch wäre hier die Tendenz eher bei einem Ultraschallsensor. Das liegt daran, dass wie bereits erwähnt der Kostenunterschied zwischen den beiden Sensorarten nicht unmerklich ist und für den Anwendungsbereich ein Ultraschallsensor auf jeden Fall reichen müsste. Zur verbesserten Abstandsmessung würde sich hier am Ende des Stabes eine größere Fläche eignen, um die Ultraschallwellen besser reflektieren zu können.
 
 Die rotatorischen Eingaben (Drehen des Stabes) sollen hierbei entweder anhand von einem Drehgeber oder einem IMU-Sensor gemessen werden. Für beide dieser Sensoren bräuchte es zusätzliche Teile, die verbaut werden müssten, um ihre Verwendung zu ermöglichen.
 
-![Linearführung](img/Schaar/Roll-Bearing-Rail.png)
+![Linearführung\label{fig:linear-rail}](img/Schaar/Roll-Bearing-Rail.png)
 
-Im Falle, dass ein Drehgeber zur Messung der Rotation des Stabes verwendet wird, bräuchte dieser eine Schiene oder eine Art Führung (siehe Abbildung x [@roll-bearing-rail]), die unter dem Stab fest positioniert ist. An dieser Führung müsste der Drehgeber fest verbaut sein, sodass sich dieser nicht mit dem Stab mit dreht, sondern von einer stabilen Position aus die Drehung messen kann.
+Im Falle, dass ein Drehgeber zur Messung der Rotation des Stabes verwendet wird, bräuchte dieser eine Schiene oder eine Art Führung (siehe Abbildung \ref{fig:linear-rail} [@roll-bearing-rail]), die unter dem Stab fest positioniert ist. An dieser Führung müsste der Drehgeber fest verbaut sein, sodass sich dieser nicht mit dem Stab mit dreht, sondern von einer stabilen Position aus die Drehung messen kann.
 
-![Elektrischer Schleifring](img/Schaar/Slip-Ring.png)
+![Elektrischer Schleifring\label{fig:electrical-slip-ring}](img/Schaar/Slip-Ring.png)
 
-Für den Fall, dass für die Messung der Drehung ein IMU-Sensor verwendet wird, bräuchte man hierbei einen Schleifring (siehe Abbildung x [@electrical-slip-ring]) oder etwas Ähnliches. Da sich der IMU mit dem Stab mitdrehen würde, bräuchte man hier einen Schleifring, mithilfe dessen Stromversorgung auch bei drehenden Teilen möglich ist. Durch ihn würden sich Kabel nicht verdrehen, sondern die benötigte Spannung mithilfe der eingebauten Drahtbürsten - egal wie der Stab gedreht ist - bereitstellen.
+Für den Fall, dass für die Messung der Drehung ein IMU-Sensor verwendet wird, bräuchte man hierbei einen Schleifring (siehe Abbildung \ref{fig:electrical-slip-ring} [@electrical-slip-ring]) oder etwas Ähnliches. Da sich der IMU mit dem Stab mitdrehen würde, bräuchte man hier einen Schleifring, mithilfe dessen Stromversorgung auch bei drehenden Teilen möglich ist. Durch ihn würden sich Kabel nicht verdrehen, sondern die benötigte Spannung mithilfe der eingebauten Drahtbürsten - egal wie der Stab gedreht ist - bereitstellen.
 
 Ein Problem, welches mit Schleifringen besteht, ist der Verschleiß. Da sie über mechanische Teile, die konstant aneinander gerieben werden, die Spannung übertragen, werden sie mit der Zeit automatisch "aufgebraucht". Auch wenn moderne Schleifringe zwar gut funktionieren, ist gerade bei diesem Projekt, wo der Drehstab oft sehr schnell gedreht wird, keine Sicherheit gegeben, dass es mit einem Schleifring zuverlässig funktioniert. 
 
@@ -551,17 +551,17 @@ Aus den genannten Gründen würde die Entscheidung für den Rotationssensor in d
 
 Die zweite mögliche Herangehensweise beim Controller-Aufbau ist weitaus simpler, sollte der ersten in puncto Funktionalität jedoch in nichts nachstehen. Hier wäre der einzige Sensor bzw. das einzige Eingabegerät eine schlichte Computermaus. Auch wenn dieser Ansatz zuerst möglicherweise unorthodox wirkt sollte es mithilfe einer Maus möglich sein, sowohl rotatorische als auch translatorische Bewegungen an die Simulation zu übertragen.
 
-![Computermaus - Erklärung](img/Schaar/Computer-Mouse-Description-TurnStick.png)
+![Computermaus - Erklärung\label{fig:computer-mouse-description}](img/Schaar/Computer-Mouse-Description-TurnStick.png)
 
-In Abbildung x ist links die generelle Funktion einer Maus visualisiert. Mit ihr lassen sich Bewegungen in alle Richtungen an einen PC oder Laptop übertragen, mit denen dann alle möglichen Programme bedient werden können. Da bei dem Drehstab im Grunde genommen nichts anderes passiert als einfache Bewegungen nach links/rechts bzw. vor/zurück, kann eine standardmäßige Computermaus ganz einfach zu einem perfekten Sensor umfunktioniert werden.
+In Abbildung \ref{fig:computer-mouse-description} ist links die generelle Funktion einer Maus visualisiert. Mit ihr lassen sich Bewegungen in alle Richtungen an einen PC oder Laptop übertragen, mit denen dann alle möglichen Programme bedient werden können. Da bei dem Drehstab im Grunde genommen nichts anderes passiert als einfache Bewegungen nach links/rechts bzw. vor/zurück, kann eine standardmäßige Computermaus ganz einfach zu einem perfekten Sensor umfunktioniert werden.
 
 Wenn die Maus direkt über dem Stab in einer festen Position platziert wird, können Schiebebewegungen nach vorne und hinten direkt über die USB-Schnittstelle an die Simulation gesendet werden. Für die Drehbewegungen funktioniert es im Grunde genommen gleich, nur ist zu beachten, dass eine Drehung des Stabes nach rechts - also im Uhrzeigersinn - in diesem Fall zu einer Bewegung des Maus-Cursors nach links verursacht. Das liegt daran, dass für die Maus der Untergrund, über dem sie sich befindet (in diesem Falle der Drehstab), sich nach rechts verschiebt, was für sie eine Bewegung nach links bedeutet. Bis auf diese simple Umkehrung der Bewegungsrichtung funktioniert die Erkennung aller Bewegungen jedoch extrem simpel.
 
-![Computermaus - Unterseite](img/Schaar/Computer-Mouse-Bottom.jpg)
+![Computermaus - Unterseite\label{fig:computer-mouse-bottom}](img/Schaar/Computer-Mouse-Bottom.jpg)
 
-![Computermaus - Ausgebauter Sensor](img/Schaar/Mouse-Sensor-Description.jpg)
+![Computermaus - Ausgebauter Sensor\label{fig:computer-mouse-sensor}](img/Schaar/Mouse-Sensor-Description.jpg)
 
-Auf den Abbildungen x und y lässt sich das Herzstück einer Computermaus - einmal ein- und einmal ausgebaut - erkennen: Der optische Sensor. Auch wenn es je nach Hersteller verschiedene Arten dieser Sensoren gibt, funktionieren alle prinzipiell ziemlich gleich. Um das Projekt für den Nachbau so simpel zu halten wie möglich, wird bei diesem Ansatz jedoch eher eine komplette Maus verwendet, sodass kein Sensor ausgebaut werden muss.
+Auf den Abbildungen \ref{fig:computer-mouse-bottom} und \ref{fig:computer-mouse-sensor} lässt sich das Herzstück einer Computermaus - einmal ein- und einmal ausgebaut - erkennen: Der optische Sensor. Auch wenn es je nach Hersteller verschiedene Arten dieser Sensoren gibt, funktionieren alle prinzipiell ziemlich gleich. Um das Projekt für den Nachbau so simpel zu halten wie möglich, wird bei diesem Ansatz jedoch eher eine komplette Maus verwendet, sodass kein Sensor ausgebaut werden muss.
 
 Um die Eingaben der Maus dann letztendlich in einem Format zu übertragen, welches einfach weiterzuverarbeiten ist, wird die Microsoft Raw Input API [@about-raw-input] [@windows-input] verwendet. Bei dieser handelt es sich um eine API, mit der die Eingaben von HIDs (Human Input Device) direkt an ein Programm weitergegeben werden können. Dies sollte man für den Fall von einem Spiel, bei dem es um Präzision geht, nicht über die Windows-Eingaben selbst erledigen. Das liegt daran, dass Windows auf den Cursor Funktionen wie Beschleunigung anwendet, sodass zwar die Nutzung als tatsächlicher Cursor verbessert wird, die Präzision jedoch maßgeblich beeinträchtigt wird.
 
@@ -676,9 +676,9 @@ Mithilfe des Arduino-Codes, werden die Rotationsdaten des MPU6050 [@arduino-guid
 
 #### Controller V1 - Demo für Sensoreingaben
 
-Nachdem die Erstversion des physischen Controllers fertiggestellt wurde war natürlich eine erweiterte Simulation vonnöten, um die Eingaben auf ihre Funktion zu überprüfen.
+Nachdem die Erstversion des physischen Controllers fertiggestellt wurde war natürlich eine erweiterte Simulation vonnöten, um die Eingaben auf ihre Funktion zu überprüfen. Die erste rudimentäre digitale Darstellung des Controllers ist hierbei in Abbildung \ref{fig:simulation-v1} dargestellt.
 
-![Simulation V1](img/Schaar/ControllerV1Demo.png)
+![Simulation V1\label{fig:simulation-v1}](img/Schaar/ControllerV1Demo.png)
 
 Auch wenn die zweite Simulation visuell wieder
 
@@ -688,25 +688,25 @@ Dieses Kapitel handelt von den verschiedenen Iterationen der Hülle des Controll
 
 Zu Beginn war die Zurechtfindung in der neu gewählten CAD-Umgebung "FreeCAD" ungewöhnlich, jedoch war es nicht schwierig sich daran anzupassen. Die Wahl für FreeCAD entstand, da das ganze Projekt so gut es geht mit Open Source Software realisiert werden sollte.
 
-Zuallererst wurde ein Prototyp entwickelt, der nur zur Bestimmung der grundlegenden Abmessungen des Controllers diente und deshalb nichts außer einer vagen Ähnlichkeit zu einem Tischfußballtisch hat.
+Zuallererst wurde ein Prototyp entwickelt, der nur zur Bestimmung der grundlegenden Abmessungen des Controllers diente und deshalb nichts außer einer vagen Ähnlichkeit zu einem Tischfußballtisch hat (siehe Abbildung \ref{fig:controller-prototype-0.0}).
 
-![Prototyp 0.0](img/Schaar/ControllerV0Closed.png)
+![Prototyp 0.0\label{fig:controller-prototype-0.0}](img/Schaar/ControllerV0Closed.png)
 
 Für die ersten Prototypen ist das Design auf einen Drehstab reduziert, da dieser sich für Testzwecke besser eignet und das endgültige Design auf vier Stäbe hochskaliert werden kann.
 
 Da diese rudimentäre Erstdarstellung jedoch selbst für Testzwecke noch unzureichend war, ist als nächstes eine erweiterte Version 1.0 designt worden, welche dem Bildnis eines Tischfußballtisches in mehreren Hinsichten ähnelt.
 
-![Prototyp 1.0 Closed](img/Schaar/ControllerV1Closed.png) ![Prototyp 1.0 Open](img/Schaar/ControllerV1Open.png)
+![Prototyp 1.0 - Geschlossener Deckel\label{fig:controller-prototype-1.0-closed}](img/Schaar/ControllerV1Closed.png) ![Prototyp 1.0 Open](img/Schaar/ControllerV1Open.png)
 
-![Prototyp 1.0 Open Backside](img/Schaar/ControllerV1OpenBackSide.png)
+![Prototyp 1.0 - Ansicht von hinten rechts mit geöffnetem Deckel\label{fig:controller-prototype-1.0-open-backside}](img/Schaar/ControllerV1OpenBackSide.png)
 
-Diese Version weist einen Drehstab, eine Plattform für elektronische Bauteile, eine Trennwand zur Stabilisierung des Stabes sowie ein Loch für Kabel auf, sodass die Stromversorgung mit geschlossenem Deckel ermöglicht wird. Das erweiterte Design wurde dann, zur Erleichterung des Designprozesses und der Darstellung der Grundidee mithilfe eines BambuLab X1C 3D-Druckers ausgedruckt.
+Diese Version (siehe Abbildungen \ref{fig:controller-prototype-1.0-closed} & \ref{fig:controller-prototype-1.0-open-backside}) weist einen Drehstab, eine Plattform für elektronische Bauteile, eine Trennwand zur Stabilisierung des Stabes sowie ein Loch für Kabel auf, sodass die Stromversorgung mit geschlossenem Deckel ermöglicht wird. Das erweiterte Design wurde dann, zur Erleichterung des Designprozesses und der Darstellung der Grundidee mithilfe eines BambuLab X1C 3D-Druckers ausgedruckt.
 
-![Prototyp 1.0 Open IRL](img/Schaar/ControllerV1OpenIRL.jpg)
+![Prototyp 1.0 - Geöffneter 3D-Druck\label{fig:controller-prototype-1.0-open-irl}](img/Schaar/ControllerV1OpenIRL.jpg)
 
-![Prototyp 1.0 Closed IRL](img/Schaar/ControllerV1ClosedIRL.jpg)
+![Prototyp 1.0 - Geschlossener 3D-Druck\label{fig:controller-prototype-1.0-closed-irl}](img/Schaar/ControllerV1ClosedIRL.jpg)
 
-Um das visuelle Design attraktiver zu gestalten wurden Sticker in Form von dem DigiKicker-Logo auf dem Deckel und der Rückseite angebracht.
+Der fertige 3D-Druck des ersten Prototypen ist hier auf den Abbildungen \ref{fig:controller-prototype-1.0-open-irl} und \ref{fig:controller-prototype-1.0-closed-irl} dargestellt. Um das visuelle Design attraktiver zu gestalten wurden Sticker in Form von dem DigiKicker-Logo auf dem Deckel und der Rückseite angebracht.
 
 Nachdem der 
 
