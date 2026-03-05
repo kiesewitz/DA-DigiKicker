@@ -268,10 +268,10 @@ public partial class Table : Node3D
 		{
 			Vector3 meshSize = tableMesh.Mesh.GetAabb().Size;
 
-			tableMesh.Scale = new Vector3(
-				TABLE_LENGTH / meshSize.X,
-				TABLE_HEIGHT / meshSize.Y,
-				TABLE_WIDTH / meshSize.Z
+			_tableBody.Scale = new Vector3(
+				TABLE_LENGTH,
+				TABLE_HEIGHT,
+				TABLE_WIDTH
 			);
 
 		}

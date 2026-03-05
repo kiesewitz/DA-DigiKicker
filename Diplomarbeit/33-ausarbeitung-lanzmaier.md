@@ -5,8 +5,6 @@
 
 Im Theorieteil werden die Grundlagen für die grafische Umsetzung der Tischfußball‑Simulation sowie die Multiplayer‑Grundlagen beschrieben. Dazu zählen die Auswahl von Verbindungsmodellen, Entscheidungen für Multiplayer‑Spielprinzipien, der Unterschied zwischen Offline‑ und Echtzeit‑Rendering sowie zentrale Optimierungsprinzipien für Game‑Assets (High‑/Low‑Poly, Normal Maps, Retopology und Reduktion von Draw Calls).
 
-
-
 ### Auswahl eines Verbindungsmodells
 
 #### P2P
@@ -19,7 +17,7 @@ Zusätzliche Serverkosten, dafür aber stabilerer Spielfluss, da er nicht vom Ne
 
 ### Entscheidungen für Multiplayer-Spielprinzipien
 
-Wegen der vielen Online-Tutorials und der Kompatibilität mit der Godot-Engine, wurde für die Simulation die Lösung mit der WebRTC API gewählt. WebRTC ist ein Peer-To-Peer Netzwerk Protokoll speziell für Videospiele und bietet eine gute Kompatibilität mit der Godot-Engine.
+Wegen der vielen Online-Tutorials und der Kompatibilität mit der Godot-Engine, wurde für die Simulation die Lösung mit der WebRTC API gewählt. WebRTC ist ein Peer-To-Peer Netzwerk Protokoll speziell für Videospiele und bietet eine gute Kompatibilität mit der Godot-Engine. [@godot-webrtc-docs]
 
 #### Vorteile von WebRTC:
 
@@ -33,22 +31,22 @@ Folgende Arten von Datenaustausch sind möglich:
 
 "Reliable Messages": Jede Nachricht kommt garantiert und in richtiger Reihenfolge an - hohe Latenz 
 "Unreliable Messages": Nachrichten können verloren gehen, in falscher Reihenfolge ankommen oder gar nicht ankommen - niedrige Latenz
-"Partially Reliable Messages": Mittelweg zwischen "Reliable Messages" und "Unreliable Messages" - nur eine begrenzte Anzahl von Datenpaketen werden, wenn sie verloren gehen, erneut gesendet ODER es gibt einen fixen Timer, der bestimmt, wie lange ein Datenpaket für einen Austausch brauchen darf - wenn es länger braucht, wird es verworfen.
+"Partially Reliable Messages": Mittelweg zwischen "Reliable Messages" und "Unreliable Messages" - nur eine begrenzte Anzahl von Datenpaketen werden, wenn sie verloren gehen, erneut gesendet ODER es gibt einen fixen Timer, der bestimmt, wie lange ein Datenpaket für einen Austausch brauchen darf - wenn es länger braucht, wird es verworfen. [@stun-and-turn-servers] [@web-rtc-data-channels]
 
 #### ICE (Interactive Connectivity Establishment)
 
-Die WebRTC API nutzt das ICE Framework, um Datenaustausch zwischen zwei Parteien sicherzustellen. ICE ermöglicht dies mit dem sogenannten "NAT Hole Punching". NAT hole punching bezeichnet die direkte Verbindung zwischen zwei Parteien bei denen mindestens eine der zwei Parteien hinter einem Router bzw. einer Firewall ist. Dies funktioniert mit einem sogenannten "STUN/TURN Server", der die NAT Adressen beider Parteien kurzfristig speichert und diese dem jeweils anderen Peer freigibt. Wenn die direkte Verbindung fehlschlägt, wird der Datenaustausch auf den TURN Server ausgelegt.
+Die WebRTC API nutzt das ICE Framework, um Datenaustausch zwischen zwei Parteien sicherzustellen. ICE ermöglicht dies mit dem sogenannten "NAT Hole Punching". NAT hole punching bezeichnet die direkte Verbindung zwischen zwei Parteien bei denen mindestens eine der zwei Parteien hinter einem Router bzw. einer Firewall ist. Dies funktioniert mit einem sogenannten "STUN/TURN Server", der die NAT Adressen beider Parteien kurzfristig speichert und diese dem jeweils anderen Peer freigibt. Wenn die direkte Verbindung fehlschlägt, wird der Datenaustausch auf den TURN Server ausgelegt. [@stun-and-turn-servers]
 
-![alt text](image.png)
+![ICE - Grafische Darstellung [@stun-and-turn-servers]](image.png)
 
 
 ### Unterschied Offline Rendering vs Echtzeit-Rendering
 
 #### Definition Rendering
 
-Rendering ist im Grunde der Prozess, bei dem ein Computer 3D-Modelle in 2D-Bilder umwandelt, die man auf dem Bildschirm sieht. Grafikkarten (GPU) verwenden dafür ein Verfahren namens Rasterisierung. Dabei berechnet die GPU die Positionen der 3D-Objekte um und berechnet dann noch Farben, Texturen und Schatten dazu, um ein fertiges Bild zu bekommen.
+Rendering ist im Grunde der Prozess, bei dem ein Computer 3D-Modelle in 2D-Bilder umwandelt, die man auf dem Bildschirm sieht. Grafikkarten (GPU) verwenden dafür ein Verfahren namens Rasterisierung. Dabei berechnet die GPU die Positionen der 3D-Objekte um und berechnet dann noch Farben, Texturen und Schatten dazu, um ein fertiges Bild zu bekommen. 
 
-Eine wichtige Rolle spielen dabei sogenannte Shaders – das sind kleine Programme, die festlegen, wie Licht, Reflektionen und Texturen aussehen. Es gibt auch noch fortgeschrittene Techniken wie Raytracing, die noch realistischere Ergebnisse liefern, indem sie den Weg von Lichtstrahlen nachbilden. Je nachdem, wofür man das Rendering braucht, muss man unterschiedliche Methoden wählen – manche Anwendungen brauchen schnelle Ergebnisse, andere können sich Zeit für bessere Qualität nehmen.
+Eine wichtige Rolle spielen dabei sogenannte Shaders – das sind kleine Programme, die festlegen, wie Licht, Reflektionen und Texturen aussehen. Es gibt auch noch fortgeschrittene Techniken wie Raytracing, die noch realistischere Ergebnisse liefern, indem sie den Weg von Lichtstrahlen nachbilden. Je nachdem, wofür man das Rendering braucht, muss man unterschiedliche Methoden wählen – manche Anwendungen brauchen schnelle Ergebnisse, andere können sich Zeit für bessere Qualität nehmen. [@rendering-definition]
 
 #### Offline Rendering (Vorrendern)
 
@@ -57,6 +55,7 @@ Offline Rendering ist darauf ausgelegt, Bilder mit maximaler Qualität darzustel
 #### Echtzeit Rendering
 
 Echtzeit Rendering bezeichnet die Berechnung und Darstellung von Bildern in der Interaktion mit einem Nutzer. Ein Computer muss dabei ein neues Bild in wenigen Millisekunden berechnen und anzeigen - typischerweise 30 bis 60 oder mehr Bilder pro Sekunde. Dies ist notwendig, damit eine Anwendung flüssig und reaktionsschnell wirkt. Beispiele dafür sind Computerspiele oder Virtual Reality.
+[@realtime-offline-rendering]
 
 #### Unterschiede und Auswirkungen auf die Asset-Erstellung
 
@@ -66,7 +65,7 @@ In Echtzeit-Anwendungen wie Computerspielen unterscheidet sich die Asset-Erstell
 
 Bei der Erstellung von 3D-Assets für Spiele muss man immer einen Kompromiss zwischen visueller Qualität und Performance finden. High Poly Modelle haben viele Polygone und sehen sehr detailliert aus, brauchen aber viel Rechenleistung. Low Poly Modelle haben deutlich weniger Polygone und rendern schneller, sehen aber weniger detailliert aus. Da Echtzeit-Rendering wie in Spielen sehr schnell sein muss, kann man nicht einfach High Poly Modelle verwenden – das würde die Bildrate zu sehr senken.
 
-Die Lösung ist, mit beiden Versionen zu arbeiten: Man erstellt zuerst ein High Poly Modell mit allen Details und berechnet davon eine Normal Map. Diese Normal Map wird dann auf ein Low Poly Modell angewendet. Für das Auge sieht das Low Poly Modell dann so aus, als wäre es High Poly, obwohl es viel weniger Polygone hat. Auf diese Weise kann man geometrische Details (Polygone) sparen und trotzdem visuell anspruchsvolle Ergebnisse erzielen. Dieser Prozess nennt sich Retopology und ist einer der wichtigsten Optimierungsschritte bei der Asset-Erstellung für Spiele.
+Die Lösung ist, mit beiden Versionen zu arbeiten: Man erstellt zuerst ein High Poly Modell mit allen Details und berechnet davon eine Normal Map. Diese Normal Map wird dann auf ein Low Poly Modell angewendet. Für das Auge sieht das Low Poly Modell dann so aus, als wäre es High Poly, obwohl es viel weniger Polygone hat. Auf diese Weise kann man geometrische Details (Polygone) sparen und trotzdem visuell anspruchsvolle Ergebnisse erzielen. Dieser Prozess nennt sich Retopology und ist einer der wichtigsten Optimierungsschritte bei der Asset-Erstellung für Spiele.[@game-ready-3DModels]
 
 #### Normal Mapping als Approximation
 
@@ -74,53 +73,15 @@ Normal Maps täuschen Details auf einer Oberfläche vor, ohne die Geometrie tats
 
 #### Retopology als Optimierungsstrategie
 
-Retopology erstellt aus einem detaillierten High Poly Modell eine vereinfachte Low Poly Version mit deutlich weniger Polygonen. Kombiniert mit Normal Maps sieht das Ergebnis genauso gut aus, braucht aber viel weniger Rechenleistung. Das ist der Schlüssel zur Performance bei Game-Assets.
-
-## Praktische Arbeit
-
-#### Definition Rendering
-
-Rendering ist im Grunde der Prozess, bei dem ein Computer 3D-Modelle in 2D-Bilder umwandelt, die man auf dem Bildschirm sieht. Grafikkarten (GPU) verwenden dafür ein Verfahren namens Rasterisierung. Dabei berechnet die GPU die Positionen der 3D-Objekte um und berechnet dann noch Farben, Texturen und Schatten dazu, um ein fertiges Bild zu bekommen.
-
-Eine wichtige Rolle spielen dabei sogenannte Shaders – das sind kleine Programme, die festlegen, wie Licht, Reflektionen und Texturen aussehen. Es gibt auch noch fortgeschrittene Techniken wie Raytracing, die noch realistischere Ergebnisse liefern, indem sie den Weg von Lichtstrahlen nachbilden. Je nachdem, wofür man das Rendering braucht, muss man unterschiedliche Methoden wählen – manche Anwendungen brauchen schnelle Ergebnisse, andere können sich Zeit für bessere Qualität nehmen.
-
-#### Offline Rendering (Vorrendern)
-
-Offline Rendering ist darauf ausgelegt, Bilder mit maximaler Qualität darzustellen. Durch die hohe Qualität dauert das Offline Rendering länger. Ein Rechner kann sich beliebig viel Zeit nehmen, um ein einzelnes Bild zu berechnen – manchmal Stunden oder sogar Tage pro Frame. Dies ermöglicht eine extrem hohe visuelle Qualität mit maximalen Details, realistischen Lichtsimulationen und komplexen Effekten. Typische Anwendungsbereiche sind Filmproduktionen oder Animationen.
-
-#### Echtzeit Rendering
-
-Echtzeit Rendering bezeichnet die Berechnung und Darstellung von Bildern in der Interaktion mit einem Nutzer. Ein Computer muss dabei ein neues Bild in wenigen Millisekunden berechnen und anzeigen - typischerweise 30 bis 60 oder mehr Bilder pro Sekunde. Dies ist notwendig, damit eine Anwendung flüssig und reaktionsschnell wirkt. Beispiele dafür sind Computerspiele oder Virtual Reality.
-
-#### Unterschiede und Auswirkungen auf die Asset-Erstellung
-
-In Echtzeit-Anwendungen wie Computerspielen unterscheidet sich die Asset-Erstellung deshalb grundlegend von der für Offline-Renderings. Während bei vorgerenderten Szenen Rechenzeit eine untergeordnete Rolle spielt und maximale Detailgetreue priorisiert wird, müssen Spiel-Assets innerhalb weniger Millisekunden berechnet und dargestellt werden. Dies bedeutet, dass die visuellen Qualitätsansprüche den Performance-Anforderungen untergeordnet werden müssen. Daraus ergeben sich strenge Anforderungen an die Polygonanzahl (Geometrische Komplexität), die Materialanzahl (Draw Calls) und die Texturgröße – alle diese Faktoren beeinflussen direkt die Rechengeschwindigkeit der Engine und damit die erreichbare Bildrate (FPS).
-
-#### High Poly vs. Low Poly
-
-Bei der Erstellung von 3D-Assets für Spiele muss man immer einen Kompromiss zwischen visueller Qualität und Performance finden. High Poly Modelle haben viele Polygone und sehen sehr detailliert aus, brauchen aber viel Rechenleistung. Low Poly Modelle haben deutlich weniger Polygone und rendern schneller, sehen aber weniger detailliert aus. Da Echtzeit-Rendering wie in Spielen sehr schnell sein muss, kann man nicht einfach High Poly Modelle verwenden – das würde die Bildrate zu sehr senken.
-
-Die Lösung ist, mit beiden Versionen zu arbeiten: Man erstellt zuerst ein High Poly Modell mit allen Details und berechnet davon eine Normal Map. Diese Normal Map wird dann auf ein Low Poly Modell angewendet. Für das Auge sieht das Low Poly Modell dann so aus, als wäre es High Poly, obwohl es viel weniger Polygone hat. Auf diese Weise kann man geometrische Details (Polygone) sparen und trotzdem visuell anspruchsvolle Ergebnisse erzielen. Dieser Prozess nennt sich Retopology und ist einer der wichtigsten Optimierungsschritte bei der Asset-Erstellung für Spiele.
-
-#### Normal Mapping als Approximation
-
-Normal Maps täuschen Details auf einer Oberfläche vor, ohne die Geometrie tatsächlich zu verändern. Mithilfe von Lichtrechnungen sieht ein einfaches Modell detailliert aus, obwohl es wenig Polygone hat. Das funktioniert, weil wir hauptsächlich Licht und Schatten wahrnehmen.
-
-#### Retopology als Optimierungsstrategie
-
-Retopology erstellt aus einem detaillierten High Poly Modell eine vereinfachte Low Poly Version mit deutlich weniger Polygonen. Kombiniert mit Normal Maps sieht das Ergebnis genauso gut aus, braucht aber viel weniger Rechenleistung. Das ist der Schlüssel zur Performance bei Game-Assets.
+Retopology erstellt aus einem detaillierten High Poly Modell eine vereinfachte Low Poly Version mit deutlich weniger Polygonen. Kombiniert mit Normal Maps sieht das Ergebnis genauso gut aus, braucht aber viel weniger Rechenleistung. Das ist der Schlüssel zur Performance bei Game-Assets. [@blender-retopology] [@blender-high-poly-to-low-poly]
 
 #### Draw Calls und Material‑Reduktion
 
-Jedes zusätzliche Material erzeugt in der Engine einen eigenen Render‑Aufruf. Durch das Zusammenführen mehrerer Materialien in ein einziges Material (Texture Atlas) reduzieren wir die sogenannten Draw Calls und steigern die Performance. Dieser Ansatz wird in der praktischen Umsetzung beim Backen der Maps direkt eingesetzt.
+Jedes zusätzliche Material erzeugt in der Engine einen eigenen Render‑Aufruf. Durch das Zusammenführen mehrerer Materialien in ein einziges Material (Texture Atlas) reduzieren wir die sogenannten Draw Calls und steigern die Performance. Dieser Ansatz wird in der praktischen Umsetzung beim Backen der Maps direkt eingesetzt. [@blender-create-texture-atlas]
 
 ## Praktischer Teil
 
 Im Praxisteil wird die Umsetzung der Assets und der Prototypen beschrieben, inklusive der Integration des Multiplayer‑Modells in der Engine, damit mehrere Spieler gemeinsam spielen können. Dazu zählen die Modellierung in Blender, die Optimierung der Polygonanzahl, die Multiplayer‑Integration in der Engine, das Erstellen und Baken von Texture Maps sowie der Import und die Prüfung der Assets in der Godot‑Engine.
-
-### Prototyping
-
-Entwickelte Lösungsansätze für die Verbindung mehrerer Clients, Messung der verschiedenen Latenzen und Delays, Proof-of-Concept-Demos, etc.
 
 ### Modellierung/Design der Assets
 
@@ -314,24 +275,21 @@ Nachdem man alle Texture Maps erstellt hat, muss man unter "Edit -> Preferences 
 
 ### Tischplatte
 
-### Funktion
-
+#### Funktion
 Die Tischplatte bildet die zentrale Spielfläche und stellt die Grundlage für die gesamte Spielsimulation dar. Auf ihr bewegen sich Ball und Spielfiguren, weshalb sie sowohl visuell klar strukturiert als auch funktional gut umgesetzt sein muss.
 
 Neben der optischen Darstellung des Spielfeldes (z. B. Linienmarkierungen, Tore und Spielfeldbegrenzungen) erfüllt die Tischplatte eine wichtige technische Rolle: Sie definiert die Kollisionsfläche für den Bal und grenzt den Spielraum ab.
 
 Darüber hinaus dient die Tischplatte als Referenzebene für die Positionierung weiterer Komponenten wie Spielfiguren, Stangen, Tore und Bande. Eine saubere Modellierung und korrekte Skalierung sind daher essenziell, um ein realistisches Spielgefühl sowie eine stabile und performante Simulation zu gewährleisten.
 
-### Design- und Stilentscheidung
-
+#### Design- und Stilentscheidung
 Die Tischplatte ist an ein klassisches Tischfußball-Spielfeld angelehnt und so gestaltet, dass sie eindeutig als Spielfläche erkennbar ist. Die grüne Grundfarbe in Kombination mit weißen Linienmarkierungen dient der klaren Darstellung des Spielfeldes und unterstützt die Orientierung während der Simulation. Zentrale Spielfeldmarkierungen wie Mittellinie, Mittelkreis, Strafräume und Torbereiche sind reduziert, aber eindeutig dargestellt.
 
 Die seitlichen Banden sind farblich dunkler gehalten, um eine klare Abgrenzung zur Spielfläche zu schaffen. Die Tore sind farblich unterschiedlich (rot und blau) gestaltet, um die beiden Spielseiten eindeutig voneinander zu unterscheiden.
 
 Insgesamt wurde ein funktionales und übersichtliches Design gewählt, das den Fokus auf Spielbarkeit und Lesbarkeit legt. Auf unnötige Details wurde bewusst verzichtet, um die Performance nicht zu beeinträchtigen und eine klare visuelle Struktur zu gewährleisten.
 
-### Modellierung
-
+#### Modellierung
 Als Grundlage für die Tischplatte erstellt man mit "Shift+A" eine neue Cube-Mesh. Diese skaliert man mit "S+X" in Richtung der x-Achse, sodass die Größe verhältnismäßig mit einem Tischfußballtisch zusammenpasst. Um Eine Box, welche oben offen ist, zu erschaffen, wird der "Boolean Modifier" verwendet. Hierfür wird die bereits erstellte Mesh kopiert und ein wenig runterskaliert. Weiters postioniert man die kopierte Mesh so, dass sie an der größeren Cube-Mesh oben hinausschaut. Jetzt wendet man auf der größeren Cube-Mesh den "Boolean Modifier" an. Als Target wählt man die kleinere Mesh. Jetzt wurde die Grundlage für die Tischplatte erstellt.
 
 Für die Tore und die Löcher, an denen der Ball reingeworfen wird, verwendet man die gleiche Methode. Zuerst werden die Formen als separate Meshes erstellt. Mit dem "Boolean Modifier" kann man jetzt die Löcher erschaffen, in dem man die separaten Meshes als Target auswählt. Auch für die Bodenmarkierungen werden zuerst dementsprechende Meshes erstellt und per "Boolean Modifier" hinzugefügt. Für ein schöneres Aussehen, werden die Bodenmarkierungen mit "E" nach unten "extrudet.
@@ -341,14 +299,15 @@ Für die Tore und die Löcher, an denen der Ball reingeworfen wird, verwendet ma
 Auch bei den Materials an der vorderen Wand werden die "Alpha Values" auf 0 gesetzt, sodass man während der Simulation alles sehen kann.
 
 ### Optimierung und Export in die Game-Engine
+ 
+#### Tischplatte
+Da das bereits existierende Skript für die Tischplatte so funktioniert, dass die Physik und die Position separat für die Tischfläche, die Wände und die Tore aufgesetzt werden, muss man diese Teile der Tischplatte voneinander getrennt als "PackedScenes" exportieren.
 
-Da das bereits existierende Skript für die Tischplatte so funktioniert, dass die Physik und die Position separat für Die Tischfläche, die Wände und die Tore aufgesetzt werden, muss man diese Teile der Tischplatte in einzelne Meshes aufteilen. Diese Parts werden dementsprechend auch separat als sogenannte "PackedScenes" exportiert.
-
-!Wichtig: Beim Exportieren muss man darauf achten, dass das "Origin" der Mesh im Mittelpunkt liegt und keine unsaubere Topologie vorliegt. Es kann sonst passieren, dass die Mesh nach dem Export in der Engine trotz richtiger Handlierung falsch positioniert ist oder visuelle Bugs vorkommen.
+!Wichtig: Beim Exportieren muss man darauf achten, dass der "Origin" der Mesh im Mittelpunkt liegt und keine unsaubere Topologie (eher wichtig bei der Character-Mesh, da die Tischplatte sowieso wenig Polygone und Edge-Loops beinhaltet) vorliegt. Es kann sonst passieren, dass die Mesh nach dem Export in der Engine eine falsche Position annimmt oder visuelle Bugs vorkommen.
 
 In Godot kann man aus einer PackedScene ein "MeshArray" Objekt erstellen, in dem man aus der PackedScene eine sogenannte "Inherited Scene" erstellt und diese dann wiederrum als "MeshArray" abspeichert. Dieses MeshArray kann man einfach an eine "MeshInstance3D" anhängen und somit in der Simulation darstellen. Die Collision Shape für die Mesh kann man in der 3D-Ansicht generieren lassen.
 
-Im Skript lässt sich die Form der Mesh folgendermaßen verändern:
+Im Skript lässt sich die Form einer 3D Node folgendermaßen verändern:
 
 ```
 var tableMesh = _tableBody.GetNode<MeshInstance3D>("TableMesh");
@@ -371,7 +330,7 @@ if (tableMesh != null)
 
 Zuerst wird sich die Referenz der Mesh mit .GetNode geholt. Die gewünschten Dimensionen müssen mit den aktuellen Dimensionen der Mesh dividiert werden, da der neue Vektor mit den Maßen der bereits bestehenden Mesh multipliziert wird. Wenn die bereits bestehenden Maße nicht 1x1x1 entsprechen, nimmt das Mesh eine unerwünschte Form an.
 
-Die Position von Wänden lässt sich folgendermaßen ändern:
+Die Position von 3D Nodes im dreidimensionalen Raum lässt sich folgendermaßen ändern:
 
 ```
 private void SetupWall(string wallName, Vector3 position, float length, float height, float thickness)
@@ -380,7 +339,59 @@ private void SetupWall(string wallName, Vector3 position, float length, float he
 	wall.Position = position;
 	...
 }
-```	
+```
+
+#### Figuren und Drehstäbe
+Die Figuren und Drehstäbe lassen sich leicht in die Simulation miteinbinden, da man sie als ein ganzes Mesh exportiert.
+
+```
+_rodMesh = GetNode<MeshInstance3D>("Bar");
+_characterMesh = GetNode<MeshInstance3D>("Character");
+```
+
+In Adobe Photoshop kann man einen bestimmten Farbton auf einem Bild ändern, in dem man in die Farbton/Sättigung-Einstellungen geht und den gewünschten Farbton im Bild auswählt. Der Farbton lässt sich dann nach Belieben umstellen. Für das Figuren-Asset muss im Skript überprüft werden, zu welchem Team sie gehört (rot oder blau), damit man die dementsprechende Farbtextur anwenden kann.
+
+```
+// Farbtexturen in die Figure Scene exporten
+[Export] public Texture2D RedTexture;
+[Export] public Texture2D BlueTexture;
+
+...
+
+var material = new StandardMaterial3D();
+
+		// Farbe basierend auf Team setzen
+		switch (Team)
+		{
+			case GameManager.Team.Red:
+				material.AlbedoTexture = RedTexture;
+				GD.Print("Setting RED material");
+				break;
+
+			case GameManager.Team.Blue:
+				material.AlbedoTexture = BlueTexture;
+				GD.Print("Setting BLUE material");
+				break;
+
+			default:
+				material.AlbedoColor = new Color(0.5f, 0.5f, 0.5f); // Grauer Fallback
+				GD.Print("Setting GRAY fallback material");
+				break;
+		}
+```
+
+Wenn der Drehstab dem Gegner gehört (Team Blau), muss dieser in die andere Richtung zeigen.
+
+```
+if(Team == GameManager.Team.Blue) {
+	_rodMesh.RotationDegrees = new Vector3(0, -90, 90);
+}
+```
+
+
+Nachdem alle Collision Shapes erstellt wurden und die alle Assets korrekt in die Simulation miteingebunden wurden, ist das optische Design/Arrangement des Spiels finalisiert.
+
+![Finalisierte Version der Simulation](image-1.png)
 
 
 ### Optisches Design/Arrangement des Spiels
