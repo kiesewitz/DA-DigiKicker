@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://28kg8bq3e0so"]
+
+[ext_resource type="PackedScene" uid="uid://b41iril416sj8" path="res://assets/models/figures/CompleteCharacterRed (1).glb" id="1_3sfyk"]
+
+[node name="CompleteCharacterRed (1)" unique_id=611339245 instance=ExtResource("1_3sfyk")]

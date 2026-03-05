@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://n0jvtt3ik3f"]
+
+[ext_resource type="Script" uid="uid://dwbld7d0rxyag" path="res://scripts/ui/HUD.cs" id="1_emh6u"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_emh6u")
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreRed" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2
+
+[node name="TeamRedIcon" type="ColorRect" parent="TopBar/ScoreRed"]
+layout_mode = 2
+color = Color(0.89411765, 0.023529412, 0.07058824, 1)
+
+[node name="LabelScoreRed" type="Label" parent="TopBar/ScoreRed"]
+layout_mode = 2
+
+[node name="TimerDisplay" type="VBoxContainer" parent="TopBar"]
+layout_mode = 2
+
+[node name="LabelTimer" type="Label" parent="TopBar/TimerDisplay"]
+layout_mode = 2
+
+[node name="ScoreBlue" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2
+
+[node name="LabelScoreBlue" type="Label" parent="TopBar/ScoreBlue"]
+layout_mode = 2
+
+[node name="TeamBlueIcon" type="ColorRect" parent="TopBar/ScoreBlue"]
+layout_mode = 2
+
+[node name="FPSCounter" type="Label" parent="TopBar"]
+layout_mode = 2
+
+[node name="GoalNotification" type="Control" parent="TopBar"]
+layout_mode = 2
+
+[node name="LabelGoal" type="Label" parent="TopBar/GoalNotification"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ControlHints" type="HBoxContainer" parent="TopBar"]
+layout_mode = 2

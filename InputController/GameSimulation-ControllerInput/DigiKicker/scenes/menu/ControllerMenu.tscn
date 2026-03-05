@@ -1,0 +1,168 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsa35mt1w7rv8"]
+
+[ext_resource type="Script" uid="uid://bbnawopchtemr" path="res://scripts/menu/ControllerMenu.cs" id="1_y1qlh"]
+
+[node name="ControllerMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1_y1qlh")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.15, 0.15, 0.2, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="LabelTitle" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Controller Settings"
+horizontal_alignment = 1
+
+[node name="Separator1" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ConnectedDevices" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="LabelConnected" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/ConnectedDevices"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Connected Devices:"
+
+[node name="DeviceList" type="ItemList" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/ConnectedDevices"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Separator2" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Player 1 Keyboard" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/TabContainer/Player 1 Keyboard"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BindingsContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/TabContainer/Player 1 Keyboard/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Player 2 Keyboard" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/TabContainer/Player 2 Keyboard"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BindingsContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/TabContainer/Player 2 Keyboard/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Controller" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/TabContainer/Controller"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BindingsContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/TabContainer/Controller/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="BottomButtons" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BtnResetToDefault" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/BottomButtons"]
+custom_minimum_size = Vector2(180, 40)
+layout_mode = 2
+text = "Reset to Default"
+
+[node name="BtnBack" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/BottomButtons"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+text = "Back"
+
+[node name="RebindingPrompt" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 20
+text = "Press a key..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
