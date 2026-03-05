@@ -1,0 +1,45 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
+[application]
+
+config/name="DigiKicker - ControllerInput"
+run/main_scene="uid://b2snxxy5kvgmt"
+config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://scripts/autoload/GameManager.cs"
+AudioManager="*res://scripts/autoload/AudioManager.cs"
+InputManager="*res://scripts/autoload/InputManager.cs"
+StatsManager="*res://scripts/autoload/StatsManager.cs"
+MqttInputManager="*res://scripts/autoload/MqttInputManager.cs"
+
+[dotnet]
+
+project/assembly_name="DickiKicker"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_rl_agents/plugin.cfg")
+
+[rendering]
+
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=4
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=4
+anti_aliasing/quality/msaa_3d=2
+anti_aliasing/quality/screen_space_aa=1
+lights_and_shadows/positional_shadow/max_distance=80.0
+lights_and_shadows/directional_shadow/max_distance=60.0

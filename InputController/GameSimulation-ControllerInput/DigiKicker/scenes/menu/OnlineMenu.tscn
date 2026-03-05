@@ -1,0 +1,197 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkp5x2mq8j7y4"]
+
+[ext_resource type="Script" path="res://scripts/menu/OnlineMenu.gd" id="1_script"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_team"]
+resource_name = "TeamButtonGroup"
+
+[node name="OnlineMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.12, 0.12, 0.18, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="LabelTitle" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Online Multiplayer"
+horizontal_alignment = 1
+
+[node name="Separator1" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NameSection" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="LabelName" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/NameSection"]
+layout_mode = 2
+text = "Spielername:"
+
+[node name="LineEditPlayerName" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/NameSection"]
+layout_mode = 2
+placeholder_text = "Dein Name"
+max_length = 20
+
+[node name="TeamSection" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="LabelTeam" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TeamSection"]
+layout_mode = 2
+text = "Team-Auswahl (als Host):"
+
+[node name="TeamButtonContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TeamSection"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 15
+
+[node name="BtnTeamRed" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TeamSection/TeamButtonContainer"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_team")
+text = "Team Rot"
+
+[node name="BtnTeamBlue" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TeamSection/TeamButtonContainer"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_team")
+text = "Team Blau"
+
+[node name="ActionSection" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 20
+
+[node name="BtnHost" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ActionSection"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Spiel erstellen"
+
+[node name="BtnJoin" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ActionSection"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "Beitreten"
+
+[node name="JoinSection" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="LabelRoomCodeInput" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/JoinSection"]
+layout_mode = 2
+text = "Room Code eingeben:"
+
+[node name="LineEditRoomCode" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/JoinSection"]
+layout_mode = 2
+placeholder_text = "ABC123"
+max_length = 6
+alignment = 1
+
+[node name="Separator2" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OpenGamesSection" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="LabelOpenGames" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/OpenGamesSection"]
+layout_mode = 2
+text = "Offene Spiele:"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/OpenGamesSection"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="OpenGamesList" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/OpenGamesSection/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Separator3" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatusSection" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 8
+
+[node name="LabelStatus" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/StatusSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Nicht verbunden"
+horizontal_alignment = 1
+
+[node name="LabelRoomCode" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/StatusSection"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0, 0.85, 1, 1)
+text = "Room Code: ------"
+horizontal_alignment = 1
+
+[node name="LabelPing" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/StatusSection"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 1, 0.5, 1)
+text = "Ping: --- ms"
+horizontal_alignment = 1
+
+[node name="BtnCancel" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/StatusSection"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Abbrechen"
+
+[node name="Separator4" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 20
+
+[node name="BtnBack" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+text = "Zurück"
+
+[node name="BtnStartOnline" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+disabled = true
+text = "Spiel starten"

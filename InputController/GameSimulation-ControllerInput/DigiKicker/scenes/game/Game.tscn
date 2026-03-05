@@ -1,0 +1,175 @@
+[gd_scene load_steps=11 format=3 uid="uid://svddn0akayqj"]
+
+[ext_resource type="Script" uid="uid://c60cc0mlgy84f" path="res://scripts/game/Game.cs" id="1_game"]
+[ext_resource type="Script" uid="uid://b388sftsvdym5" path="res://scripts/game/CameraController.cs" id="2_camera"]
+[ext_resource type="PackedScene" uid="uid://cdxsfh2y0vswl" path="res://scenes/game/Table.tscn" id="3_table"]
+[ext_resource type="PackedScene" uid="uid://b3k204u0giqjt" path="res://scenes/game/Ball.tscn" id="4_ball"]
+[ext_resource type="Script" uid="uid://dwbld7d0rxyag" path="res://scripts/ui/HUD.cs" id="5_hud"]
+[ext_resource type="Script" uid="uid://b3a7m1kjaqmpe" path="res://scripts/ui/PauseMenu.cs" id="6_pausemenu"]
+[ext_resource type="PackedScene" uid="uid://cwtop4c03ltu6" path="res://scenes/ui/GameOverScreen.tscn" id="7_gameover"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
+sky_top_color = Color(0.4, 0.5, 0.6, 1)
+sky_horizon_color = Color(0.6, 0.65, 0.7, 1)
+ground_bottom_color = Color(0.2, 0.2, 0.2, 1)
+ground_horizon_color = Color(0.4, 0.4, 0.4, 1)
+
+[sub_resource type="Sky" id="Sky_1"]
+sky_material = SubResource("ProceduralSkyMaterial_1")
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 2
+sky = SubResource("Sky_1")
+ambient_light_source = 2
+ambient_light_color = Color(0.5, 0.5, 0.55, 1)
+ambient_light_energy = 0.5
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_game")
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1")
+
+[node name="Lighting" type="Node3D" parent="."]
+
+[node name="MainLight" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5, 5)
+light_energy = 1.2
+shadow_enabled = true
+shadow_bias = 0.04
+shadow_blur = 0.5
+directional_shadow_mode = 0
+directional_shadow_max_distance = 15.0
+
+[node name="FillLight" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 5, -5)
+light_color = Color(0.9, 0.95, 1, 1)
+light_energy = 0.4
+
+[node name="Table" parent="." instance=ExtResource("3_table")]
+
+[node name="Ball" parent="." instance=ExtResource("4_ball")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="MainCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.574, 0.819, 0, -0.819, 0.574, 0, 2, 1.8)
+fov = 55.0
+script = ExtResource("2_camera")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_hud")
+
+[node name="TopBar" type="HBoxContainer" parent="UILayer/HUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="ScoreRed" type="HBoxContainer" parent="UILayer/HUD/TopBar"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TeamRedIcon" type="ColorRect" parent="UILayer/HUD/TopBar/ScoreRed"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+color = Color(1, 0.27, 0.27, 1)
+
+[node name="LabelScoreRed" type="Label" parent="UILayer/HUD/TopBar/ScoreRed"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "0"
+vertical_alignment = 1
+
+[node name="LabelTimer" type="Label" parent="UILayer/HUD/TopBar"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "03:00"
+vertical_alignment = 1
+
+[node name="ScoreBlue" type="HBoxContainer" parent="UILayer/HUD/TopBar"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LabelScoreBlue" type="Label" parent="UILayer/HUD/TopBar/ScoreBlue"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "0"
+vertical_alignment = 1
+
+[node name="TeamBlueIcon" type="ColorRect" parent="UILayer/HUD/TopBar/ScoreBlue"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+color = Color(0.27, 0.27, 1, 1)
+
+[node name="PauseMenu" type="Control" parent="UILayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_pausemenu")
+
+[node name="DimBackground" type="ColorRect" parent="UILayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="CenterContainer" type="CenterContainer" parent="UILayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/PauseMenu/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="LabelPaused" type="Label" parent="UILayer/PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="BtnResume" type="Button" parent="UILayer/PauseMenu/CenterContainer/VBoxContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+text = "Resume"
+
+[node name="BtnRestart" type="Button" parent="UILayer/PauseMenu/CenterContainer/VBoxContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+text = "Restart"
+
+[node name="BtnMainMenu" type="Button" parent="UILayer/PauseMenu/CenterContainer/VBoxContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+text = "Main Menu"
+
+[node name="GameOverScreen" parent="UILayer" instance=ExtResource("7_gameover")]
+visible = false
+
+[node name="AudioPlayers" type="Node" parent="."]

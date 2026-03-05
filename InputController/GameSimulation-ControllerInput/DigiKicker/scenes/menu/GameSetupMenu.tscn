@@ -1,0 +1,202 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgv3ec8shjeke"]
+
+[ext_resource type="Script" uid="uid://doytmuleb4hj" path="res://scripts/menu/GameSetupMenu.cs" id="1_script"]
+
+[node name="GameSetupMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.15, 0.15, 0.2, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="LabelTitle" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Game Setup"
+horizontal_alignment = 1
+
+[node name="LabelGameMode" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Singleplayer"
+horizontal_alignment = 1
+
+[node name="Separator1" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GameplaySection" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxDuration" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection"]
+layout_mode = 2
+
+[node name="LabelDuration" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection/HBoxDuration"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Game Duration (min):"
+
+[node name="SpinBoxGameDuration" type="SpinBox" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection/HBoxDuration"]
+layout_mode = 2
+min_value = 1.0
+max_value = 10.0
+value = 3.0
+
+[node name="HBoxWinScore" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection"]
+layout_mode = 2
+
+[node name="LabelWinScore" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection/HBoxWinScore"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Goals to Win:"
+
+[node name="SpinBoxWinScore" type="SpinBox" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection/HBoxWinScore"]
+layout_mode = 2
+min_value = 1.0
+max_value = 10.0
+value = 5.0
+
+[node name="HBoxWinCondition" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection"]
+layout_mode = 2
+
+[node name="LabelWinCondition" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection/HBoxWinCondition"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Win Condition:"
+
+[node name="OptionWinCondition" type="OptionButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection/HBoxWinCondition"]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Time Limit"
+popup/item_1/text = "First to Score"
+popup/item_1/id = 1
+popup/item_2/text = "Combined"
+popup/item_2/id = 2
+
+[node name="HBoxPlayerTeam" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection"]
+layout_mode = 2
+
+[node name="LabelPlayerTeam" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection/HBoxPlayerTeam"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Play as Team:"
+
+[node name="OptionPlayerTeam" type="OptionButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection/HBoxPlayerTeam"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "Red"
+popup/item_1/text = "Blue"
+popup/item_1/id = 1
+
+[node name="HBoxBotDifficulty" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection"]
+layout_mode = 2
+
+[node name="LabelBotDifficulty" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection/HBoxBotDifficulty"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Bot Difficulty:"
+
+[node name="OptionBotDifficulty" type="OptionButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection/HBoxBotDifficulty"]
+layout_mode = 2
+selected = 1
+item_count = 4
+popup/item_0/text = "Easy"
+popup/item_1/text = "Medium"
+popup/item_1/id = 1
+popup/item_2/text = "Hard"
+popup/item_2/id = 2
+popup/item_3/text = "Trained AI"
+popup/item_3/id = 3
+
+[node name="SeparatorMultiplayer" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection"]
+layout_mode = 2
+
+[node name="MultiplayerSection" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LabelMultiplayerTitle" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection/MultiplayerSection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Team Controls"
+horizontal_alignment = 1
+
+[node name="HBoxRedTeam" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection/MultiplayerSection"]
+layout_mode = 2
+
+[node name="LabelRedTeam" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection/MultiplayerSection/HBoxRedTeam"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Team Red:"
+
+[node name="OptionRedTeam" type="OptionButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection/MultiplayerSection/HBoxRedTeam"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "Keyboard 1"
+popup/item_1/text = "Keyboard 2"
+popup/item_1/id = 1
+
+[node name="HBoxBlueTeam" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection/MultiplayerSection"]
+layout_mode = 2
+
+[node name="LabelBlueTeam" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection/MultiplayerSection/HBoxBlueTeam"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Team Blue:"
+
+[node name="OptionBlueTeam" type="OptionButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/GameplaySection/MultiplayerSection/HBoxBlueTeam"]
+layout_mode = 2
+selected = 1
+item_count = 2
+popup/item_0/text = "Keyboard 1"
+popup/item_1/text = "Keyboard 2"
+popup/item_1/id = 1
+
+[node name="Separator2" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 20
+
+[node name="BtnBack" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+text = "Back"
+
+[node name="BtnStartGame" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+text = "Start Game"

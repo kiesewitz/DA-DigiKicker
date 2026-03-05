@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://c05g21wh25jv4"]
+
+[ext_resource type="PackedScene" uid="uid://cdxsfh2y0vswl" path="res://scenes/game/Table.tscn" id="1_table"]
+[ext_resource type="PackedScene" uid="uid://b3k204u0giqjt" path="res://scenes/game/Ball.tscn" id="2_ball"]
+[ext_resource type="Script" uid="uid://b2a7p7awlmehv" path="res://scripts/ai/FoosballAIController.gd" id="3_aicontroller"]
+[ext_resource type="Script" uid="uid://c6m1e18qyog5v" path="res://scripts/ai/RLTrainingManager.gd" id="4_training_manager"]
+[ext_resource type="Script" uid="uid://wp44ilx5f6mp" path="res://addons/godot_rl_agents/sync.gd" id="5_sync"]
+
+[node name="RLTraining" type="Node3D"]
+script = ExtResource("4_training_manager")
+
+[node name="Table" parent="." instance=ExtResource("1_table")]
+
+[node name="Ball" parent="." instance=ExtResource("2_ball")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.425, 0)
+
+[node name="MainCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866, 0, -0.866, 0.5, 0, 10, 6)
+fov = 50.0
+
+[node name="Lighting" type="Node3D" parent="."]
+
+[node name="MainLight" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5, 5)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="AIControllerBlue" type="Node3D" parent="."]
+script = ExtResource("3_aicontroller")
+
+[node name="AIControllerRed" type="Node3D" parent="."]
+script = ExtResource("3_aicontroller")
+controlled_team = 0
+
+[node name="Sync" type="Node" parent="."]
+script = ExtResource("5_sync")
+speed_up = 16

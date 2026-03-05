@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://buu23w71oq0ij"]
+
+[ext_resource type="Script" uid="uid://bia6je2ytnhgf" path="res://scripts/game/Rod.cs" id="1_hqcrf"]
+[ext_resource type="PackedScene" uid="uid://crmlha262rmlv" path="res://assets/models/rods/stange.glb" id="1_tmbd3"]
+
+[node name="Rod" instance=ExtResource("1_tmbd3")]
+script = ExtResource("1_hqcrf")
+
+[node name="Bar" parent="." index="0"]
+transform = Transform3D(9.55343e-17, 2.18557e-07, 0.05, 0.05, -2.18557e-07, 0, 2.18557e-09, 5, -2.18557e-09, 0, 0, 0)
+
+[node name="FigureSlots" type="Node3D" parent="." index="1"]
