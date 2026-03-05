@@ -23,16 +23,17 @@ WebRTC besitzt eine große Community, was es leichter macht, Fehler, die bereits
 
 WebRTC nutzt standardmäßig das UDP Protokoll, wodurch ein sehr schneller Datenaustausch möglich ist.
 
-Folgende Arten von Datenaustausch sind möglich:
+*Folgende Arten von Datenaustausch sind möglich:*
 
-"Reliable Messages": Jede Nachricht kommt garantiert und in richtiger Reihenfolge an - hohe Latenz 
-"Unreliable Messages": Nachrichten können verloren gehen, in falscher Reihenfolge ankommen oder gar nicht ankommen - niedrige Latenz
-"Partially Reliable Messages": Mittelweg zwischen "Reliable Messages" und "Unreliable Messages" - nur eine begrenzte Anzahl von Datenpaketen werden, wenn sie verloren gehen, erneut gesendet ODER es gibt einen fixen Timer, der bestimmt, wie lange ein Datenpaket für einen Austausch brauchen darf - wenn es länger braucht, wird es verworfen. [@stun-and-turn-servers] [@web-rtc-data-channels]
+Reliable Messages mit hoher Latenz - Daten kommen immer zuverlässig an
+Unreliable Messages mit niedriger Latenz - Daten kommen nicht immer zuverlässig an
+Partially Reliable Messages mit mittlerer Latenz - Mittelweg zwischen den beiden anderen
+[@snopek-webrtc-nakama]
 
 #### ICE (Interactive Connectivity Establishment)
 Die WebRTC API nutzt das ICE Framework, um Datenaustausch zwischen zwei Parteien sicherzustellen. ICE ermöglicht die direkte Verbindung zwischen zwei Parteien, bei denen mindestens eine der zwei Parteien hinter einem Router bzw. einer Firewall ist. Dies funktioniert mit einem sogenannten "STUN/TURN Server", der die NAT-Adressen beider Parteien kurzfristig speichert und diese dem jeweils anderen Peer freigibt. Wenn die direkte Verbindung fehlschlägt, wird der Datenaustausch auf den TURN Server ausgelegt. [@stun-and-turn-servers]
 
-![ICE - Grafische Darstellung [@stun-and-turn-servers]](image.png)
+![ICE - Grafische Darstellung [@stun-and-turn-servers]](img/Lanzmaier/ICE.png)
 
 ### Unterschied Offline-Rendering vs Echtzeit-Rendering
 
@@ -93,7 +94,7 @@ Das Ziel war es von Beginn an, einen einheitlichen Stil für alle Assets zu bewa
 In der Simulation ist Echtzeit-Performance extrem wichtig. Um das zu erreichen, darf die erforderliche Rechenleistung nicht zu hoch sein und das Rendern der Assets sollte während der Simulation sehr schnell erfolgen. Aus diesem Grund werden die Game-Assets so optimiert, dass ihre Polygonanzahl so gering wie nur möglich ist.
 
 *!Wichtig:* Die GPU bzw CPU rechnet mit Triangles. 1 Polygon = 2 Tris.
-Da wir stark auf die Performance achten und wollen, dass unsere Simulation auf jedem Rechner läuft, halten wir die Gesamtanzahl der Tris unter 200.000. [@optimal-triangles-for-good-performance]
+Da stark auf die Performance geachtet werden soll und das Ziel verfolgt wird, dass die Simulation auf jedem Rechner laufen kann, sollte die Gesamtanzahl der Tris allerhöchstens 250.000 betragen. [@triangle-count-for-good-performance]
 
 ### Korrekte Skalierung im Verhältnis zueinander
 Damit die Simulation gut funktioniert, müssen die einzelnen Komponenten im Größenverhältnis zueinander passen. Dies wird später in der Godot-Engine angepasst.
@@ -149,16 +150,16 @@ Gleichzeitig wird bewusst auf direkte Referenzen realer Tischfußballfiguren ver
 
 Die Modellierung beginnt mit dem Kopf. Zunächst wird mit der Tastenkombination „Shift + A“ ein neues Cube-Mesh erstellt. Auf das Mesh wird ein Subdivision-Surface-Modifier verwendet, um die Polygon-Anzahl ein wenig zu erhöhen und anschließend grob die Form des Kopfes modelliert werden kann.
 
-![Cube Mesh mit Subdivision-Surface-Modifier](img/Lanzmaier/image.png)
+![Cube Mesh mit Subdivision-Surface-Modifier [@cube-mesh-subdivision-modifier]](img/Lanzmaier/image-1.png)
 
 Als nächstes wird mit Sculpt Tools, wie beispielsweise dem Grab-Tool, die ungefähre Form des Kopfes geformt.
 
-![Grundmodellierung der Kopf-Mesh](img/Lanzmaier/image-4.png)
+![Grundmodellierung der Kopf-Mesh [@foundation-head]](img/Lanzmaier/image-4.png)
 Hinweis: Bei der Grundmodellierung wählt man beim sculpten einen relativ großen Radius, da man nur die wichtigsten Merkmale hervorzuheben möchte. Um den Kopf gleichmäßig zu designen wird hier auch standardmäßig die Mesh-Symmetrie auf der X-Achse ausgewählt (rechts oben)
 
 Für genauere Merkmale verwendet man nochmal einen Subdivision-Surface-Modifier und aktiviert Shade-Smooth. Dadurch kann man mit Sculpt-Tools, wie dem Draw-Tool oder dem Grab-Tool mit geringem Radius, mit der Detailmodellierung starten.
 
-![Detailmodellierung der Kopf-Mesh](img/Lanzmaier/image-6.png)
+![Detailmodellierung der Kopf-Mesh [@detailed-foundation-head]](img/Lanzmaier/image-6.png)
 
 Hinweis: Nase, Augen, Ohren, Hals, Augenbrauen und Haare werden in diesem Fall als eigene Mesh designt und später mit der Haupt-Mesh (dem Kopf) mit "Ctrl+J" gejoint und "geremesht". Wenn beim "remeshen" unschöne Kanten entstehen, können diese ausgeglättet werden, in dem man mit dem Grab-Tool "Shift" gedrückt hält und damit an den Kanten entlang fährt.
 
@@ -166,10 +167,10 @@ Definition Remesh: Remesh in Blender ist ein Werkzeug, das die Geometrie eines 3
 
 *!Wichtig:* Man sollte während diesem Prozess immer wieder Backups in Form von Collections in Blender oder als .blend-Files machen. Das ist hier besonders wichtig, da das Mesh beim Modellieren schnell vom einen auf den anderen Moment nicht so wie erwünscht aussehen kann. [@blender-sculpting-tutorial]
 
-![Detailmodellierung der Kopf-Mesh2](img/Lanzmaier/image-7.png)
-![Detailmodellierung der Kopf-Mesh3](img/Lanzmaier/image-8.png)
-![Detailmodellierung der Kopf-Mesh4](img/Lanzmaier/image-9.png)
-![High-Poly Modell der Kopf-Mesh](img/Lanzmaier/image-10.png)
+![Detailmodellierung der Kopf-Mesh2 [@detailed-foundation-head2]](img/Lanzmaier/image-7.png)
+![Detailmodellierung der Kopf-Mesh3 [@detailed-foundation-head3]](img/Lanzmaier/image-8.png)
+![Detailmodellierung der Kopf-Mesh4 [@detailed-foundation-head4]](img/Lanzmaier/image-9.png)
+![High-Poly Modell der Kopf-Mesh [@high-poly-head]](img/Lanzmaier/image-10.png)
 Jetzt ist es wichtig, die Anzahl der Tris zu senken. Da der Kopf jetzt noch eine sehr hohe Anzahl an Polygonen hat, verwendet man "Retopology", um eine Low-Poly-Kopie der High-Poly-Mesh zu erstellen.
 
 Definition Retopology: Retopology ist der Prozess, bei dem man eine neue, saubere Low-Poly-Mesh auf der Oberfläche der High-Poly-Mesh erstellt, um das Modell performanter zu machen.
