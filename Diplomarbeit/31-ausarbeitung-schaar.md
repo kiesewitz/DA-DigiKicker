@@ -1013,18 +1013,12 @@ public partial class MqttInputManager : Node
 
 			if (idx < 0 || idx > 3) return Task.CompletedTask;
 
-			// Unsigned byte → vorzeichenbehaftetes Delta (Linux-PS/2-Protokoll)
 			float dx = (rawX > 127) ? (rawX - 256) : rawX;
 			float dy = (rawY > 127) ? (rawY - 256) : rawY;
 
-			// Dead-Zone
 			if (MathF.Abs(dx) < DeadZone) dx = 0f;
 			if (MathF.Abs(dy) < DeadZone) dy = 0f;
 
-			// Laut Diagramm:
-			//   Maus X → Rotation  (Drehen des Stabs = Schuss/Block)
-			//   Maus Y → Lateral   (Schieben = Position auf dem Tisch)
-			// Y wird negiert: Maus vorwärts schieben = positiver Offset
 			float rotation = dx * RotationSensitivity;
 			float lateral  = -dy * LateralSensitivity;
 
@@ -1040,11 +1034,6 @@ public partial class MqttInputManager : Node
 
 		return Task.CompletedTask;
 	}
-
-	/// <summary>
-	/// Gibt den gesammelten Input für eine Maus zurück und setzt ihn zurück.
-	/// Rückgabe: Vector2(Lateral, Rotation)
-	/// </summary>
 	public Vector2 GetMouseInput(int mouseIndex)
 	{
 		if (mouseIndex < 0 || mouseIndex > 3) return Vector2.Zero;
@@ -1056,22 +1045,12 @@ public partial class MqttInputManager : Node
 			return val;
 		}
 	}
-
-	/// <summary>
-	/// Kompatibilitäts-Wrapper mit gleicher Signatur wie InputManager.GetRodInput().
-	/// Mapping:
-	///   Spieler 1, Stange 0 → mouse0
-	///   Spieler 1, Stange 1 → mouse1
-	///   Spieler 2, Stange 0 → mouse2
-	///   Spieler 2, Stange 1 → mouse3
-	/// </summary>
 	public Vector2 GetRodInput(int playerIndex, int rodIndex)
 	{
 		int mouseIdx = Mathf.Clamp(((playerIndex - 1) * 2) + rodIndex, 0, 3);
 		return GetMouseInput(mouseIdx);
 	}
 
-	/// <summary>Gibt zurück ob der MQTT-Client aktuell verbunden ist.</summary>
 	public new bool IsConnected => _mqttClient?.IsConnected ?? false;
 }
 ```
