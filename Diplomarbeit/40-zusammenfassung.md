@@ -44,3 +44,4 @@ Zur Steuerung der Simulation wird ein Raspberry Pi mit vier angeschlossenen Mäu
 ### KI-Training
 
 Da das Training eines KI-Modells von Grund auf kein einfacher Prozess ist und viel Zeit in Anspruch nimmt, ist es im Zuge dieser Arbeit nicht möglich gewesen ein "perfektes" Modell für die Steuerung der gegnerischen Drehstäbe zu entwickeln. Auch wenn sie gut funktioniert gibt es immer noch Raum für Verbesserung, welcher in Zukunft noch ausgenutzt werden kann.
+

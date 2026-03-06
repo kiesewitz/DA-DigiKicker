@@ -577,7 +577,7 @@ Der folgende Teil befasst sich mit den praktischen Versuchen und Entwicklungen r
 
 In diesem Kapitel geht es um Software-Prototypen, Demos und andere Entwicklungsschritte, welche sich im Laufe der Arbeit am Controller ergeben haben. Anhand von ihnen werden der Entwicklungsprozess und verschiedene Iterationen dargestellt.
 
-#### Arduino <-> Godot Kommunikations-Demo
+#### Arduino <-> Godot Kommunikations-Demo V1
 
 Für die Erstpräsentation der Arbeit wurde eine Demo erstellt, anhand von der die Kommunikation zwischen einem Arduino und der Godot Engine^[https://godotengine.org/de/] veranschaulicht wird. Die Grundstruktur dieser Demo wurde aus einem Youtube-Video genommen [@connect-godot-arduino], in dem die serielle Übertragung der Daten erklärt und beispielhaft dargestellt wird.
 
@@ -674,21 +674,138 @@ In Godot wird das ganze über ein C#-Skript aufgenommen und ein 3D-Würfel wird 
 
 In der Abbildung \ref{fig:arduino-godot-comm-demo} ist die tatsächliche Simulation sowie der Sensor in einem Bild dargestellt. Über dem Würfel werden die aktuellen Winkelgeschwindigkeiten pro Achse angezeigt, anhand von denen die Drehung ermittelt wird. Visuell ist sie noch sehr minimalistisch, reichte jedoch um das generelle Konzept bei der Erstpräsentation darzustellen und den MPU6050 zu testen.
 
-#### Controller V1 - Demo für Sensoreingaben
+#### Controller V2 - Demo für Sensoreingaben\label{controller-demo-v2}
 
 Nachdem die Erstversion des physischen Controllers fertiggestellt wurde war natürlich eine erweiterte Simulation vonnöten, um die Eingaben auf ihre Funktion zu überprüfen. Die erste rudimentäre digitale Darstellung des Controllers ist hierbei in Abbildung \ref{fig:simulation-v1} dargestellt.
 
 ![Simulation V1\label{fig:simulation-v1}](img/Schaar/ControllerV1Demo.png)
 
-Auch wenn diese zweite Simulation visuell wieder relativ mager ausfiel, lässt sich an ihr die Form eines Drehstabes weitaus besser vorstellen als bei der ersten Demo. 
+Auch wenn diese zweite Simulation visuell wieder relativ mager ausfiel, lässt sich an ihr die Form eines Drehstabes weitaus besser vorstellen als bei der ersten Demo. Bei dieser Demo ist, gleich wie bei der ersten Version, die Messung und Verarbeitung der Signale auf Arduino-Code und Godot-Code aufgeteilt.
+
+```{caption="Sensor-Demo V2 - Arduino-Code" .c}
+// ...
+
+Adafruit_MPU6050 mpu;
+
+int trigPin = 11;
+int echoPin = 12;
+
+void setup(void) {
+  Serial.begin(9600);
+
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+
+  while (!Serial)
+    delay(10);
+
+  Serial.println("Adafruit MPU6050 test!");
+
+  // Try to initialize!
+  if (!mpu.begin()) {
+    Serial.println("Failed to find MPU6050 chip");
+    while (1) {
+      delay(10);
+    }
+  }
+  Serial.println("MPU6050 Found!");
+
+  // ...
+}
+
+void loop() {
+  sensors_event_t a, g, temp;
+  mpu.getEvent(&a, &g, &temp);
+
+  Serial.print("Rotation X: ");
+  Serial.print(g.gyro.x);
+  Serial.print(" Y: ");
+  Serial.print(g.gyro.y);
+  Serial.print(" Z: ");
+  Serial.print(g.gyro.z);
+  Serial.print(" rad/s ");
+
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(5);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+ 
+  pinMode(echoPin, INPUT);
+  duration = pulseIn(echoPin, HIGH);
+
+  cm = (duration/2) / 29.1;
+
+  Serial.print("Distance X: ");
+  Serial.print(cm);
+  Serial.println(" cm");
+  
+  delay(50);
+}
+```
+
+Der Arduino-Code dieses Softwareprototypen sieht dem ersten Code teilweise sehr ähnlich, da die Logik des MPU6050-Sensors zur Messung der Rotationswerte übernommen wurde. Zu ihr kommt nun jedoch die Verwendung eines HC-SR04-Ultraschallsensors dazu, dessen Pins zu Beginn mithilfe von ```int trigPin = 11;``` und ```int echoPin = 12;``` initialisiert wurden. In der ```setup()```-Methode werden ihre Pinmodes dann auf Aus- bzw. Eingabe eingestellt.
+
+In der ```loop()```-Methode werden, wie zuvor, die Gyrometer des MPU6050 ausgelesen und ihr Output wird an die serielle Schnittstelle gesendet. Außerdem werden die Pins des Ultraschallsensors angesteuert und die Dauer, die die Wellen für den Weg zum bestrahlten Objekt und zurück benötigen, wird mithilfe einer Formel zu der Distanz zur beschallten Fläche umgerechnet und verschickt. Danach pausiert das Programm für 50ms und wiederholt sich wieder.
+
+```{caption="Sensor-Demo V2 - C-Sharp-Code" .cs}
+using Godot;
+using System;
+using System.IO.Ports;
+
+public partial class CommunicationInterface : Node3D
+{
+
+	// ...
+
+	public override void _Ready()
+	{
+		text = GetNode<RichTextLabel>("RichTextLabel");
+		turnStick = GetNode<MeshInstance3D>("TurnStick");
+		serialPort = new SerialPort("COM6", 9600, Parity.None, 8, StopBits.One);
+		serialPort.DtrEnable = true;
+		serialPort.RtsEnable = true;
+		serialPort.Open();
+	}
+
+	public override void _Process(double delta)
+	{
+		if (!serialPort.IsOpen) return;
+		
+		string serialMessage = serialPort.ReadLine().Replace('.', ',');
+		
+		coords = serialMessage.Split(' ');
+		
+		x = (float) (Convert.ToDouble(coords[2])*delta);
+		y = (float) (Convert.ToDouble(coords[4])*delta);
+		z = (float) (Convert.ToDouble(coords[6])*delta);
+		
+		turnStick.RotateZ(z);
+		//turnStick.RotateY(y);
+		//turnStick.RotateX(x);
+		
+		var pos = turnStick.Position;
+		pos.X = (float) ((Convert.ToDouble(coords[10])-8)/15);
+		turnStick.Position = pos;
+
+		GD.Print(serialMessage);
+
+		text.Text = serialMessage;
+	}
+}
+```
+
+Der C#-Code sieht, ebenso wie der Arduino-Code, zum Teil wieder sehr ähnlich aus wie bei der Erst-Demo. Hierbei wird zu Beginn alles initialisiert und ein ```RichTextLabel``` wird zum Logging der Sensorwerte erstellt. In der ```_Process()```-Methode - dem Godot-Äquivalent zur ```loop()```-Funktion beim Arduino - werden die empfangenen Werte wieder in Variablen gespeichert und anhand von ihnen wird die Position und Rotation des Drehstabes angepasst.
 
 ### Design des Controllers
 
 Dieses Kapitel handelt von den verschiedenen Iterationen der Hülle des Controllers, sowie von den Entscheidungen, welche bei der Entwicklung getroffen worden sind.
 
-Zu Beginn war die Zurechtfindung in der neu gewählten CAD-Umgebung "FreeCAD" ungewöhnlich, jedoch war es nicht schwierig sich daran anzupassen. Die Wahl für FreeCAD entstand, da das ganze Projekt so gut es geht mit Open Source Software realisiert werden sollte.
+Zu Beginn war die Zurechtfindung in der neu gewählten CAD-Umgebung "FreeCAD" ungewöhnlich, jedoch war es nicht schwierig sich daran anzupassen. Die Wahl für FreeCAD^[https://www.freecad.org/] entstand, da das ganze Projekt so gut es geht mit Open-Source-Software realisiert werden sollte.
 
-Zuallererst wurde ein Prototyp entwickelt, der nur zur Bestimmung der grundlegenden Abmessungen des Controllers diente und deshalb nichts außer einer vagen Ähnlichkeit zu einem Tischfußballtisch hat (siehe Abbildung \ref{fig:controller-prototype-0.0}).
+#### Ein-Stab-Prototyp
+
+Zuallererst wurde ein Prototyp entwickelt, der nur zur Bestimmung der grundlegenden Abmessungen des Controllers diente und deshalb nichts außer einer vagen Ähnlichkeit zu einer Drehstabhalterung hat (siehe Abbildung \ref{fig:controller-prototype-0.0}).
 
 ![Prototyp 0.0\label{fig:controller-prototype-0.0}](img/Schaar/ControllerV0Closed.png)
 
@@ -708,19 +825,280 @@ Diese Version (siehe Abbildungen \ref{fig:controller-prototype-1.0-closed}, \ref
 
 ![Prototyp 1.0 - Geschlossener 3D-Druck\label{fig:controller-prototype-1.0-closed-irl}](img/Schaar/ControllerV1ClosedIRL.jpg)
 
-Der fertige 3D-Druck des ersten Prototypen ist hier auf den Abbildungen \ref{fig:controller-prototype-1.0-open-irl} und \ref{fig:controller-prototype-1.0-closed-irl} dargestellt. Um das visuelle Design attraktiver zu gestalten wurden Sticker in Form von dem DigiKicker-Logo auf dem Deckel und der Rückseite angebracht.
+Der fertige 3D-Druck des ersten Prototypen ist hier auf den Abbildungen \ref{fig:controller-prototype-1.0-open-irl} und \ref{fig:controller-prototype-1.0-closed-irl} dargestellt. Um das visuelle Design attraktiver zu gestalten wurden Sticker in Form von dem DigiKicker-Logo auf dem Deckel und der Rückseite angebracht. Ein Problem, welches beim finalen Controller behoben wurde, hier jedoch noch auftaucht, ist das zu kleine Kabel-Loch. Grundsätzlich sollte ein Kabel zwar durch ein Loch mit 5mm Durchmesser passen, jedoch wurde bei der Entwicklung der Hülle nicht an den Stecker am Ende des Kabels gedacht, der leider nicht durchpasst.
 
-Nachdem der 
+Nachdem der Prototyp mit einer Demo, welche auf S. \pageref{controller-demo-v2} genauer beschrieben wurde, auf seine Funktion getestet wurde, wurde als nächstes eine Maus-Halterung entwickelt, welche sich über den Drehstab positionieren lässt.
 
-### Verbindung - Hardware & Software
+![Maus 3D-Scan - Rohmodell\label{fig:mouse-3d-scan-raw}](img/Schaar/Mouse3DScanCleanupMeshmixer.png)
 
-Technischere Details und Beschreibung für Schnittstelle(n) auf der Hardware-Seite
+Die dafür verwendete Maus wurde zuallererst mithilfe eines 3D-Scanners, aus dem MakerLab in der Schule, eingescannt und ergab das rohe Modell, welches in Abbildung \ref{fig:mouse-3d-scan-raw} ersichtlich ist. Dieses Modell weist aufgrund von dem Fakt, dass der Scanner vermutet, dass die Maus unten - wo sie nicht abgescannt wurde - auch abgerundet ist, eine Art Ausbeulung auf der Unterseite auf.
+
+![Maus 3D-Scan - Gesäubertes Modell\label{fig:mouse-3d-scan-cleaned}](img/Schaar/Mouse3DScanCleanupMeshmixer3.png)
+
+Danach wurde die Maus virtuell gedreht, sodass sie horizontal eben ist. Dann wurde die Beule unten abgeflacht und die Seiten wurden aufgesäubert. Alle Säuberungsarbeiten am 3D-Modell wurden in Meshmixer^[https://meshmixer.org/], einer kostenlosen Software von Autodesk^[https://www.autodesk.com/de] durchgeführt.
+
+![Maus 3D-Scan - Flächenreduziertes Modell\label{fig:mouse-3d-scan-cleaned}](img/Schaar/Mouse3DScanBlenderFaceReduction.png)
+
+Nachdem die Maus aufgesäubert wurde, wurden unnötige Flächen entfernt, die zu einer höheren Komplexität des Modells geführt haben, als es nötig war. Diese Reduktion der Flächen und das Abschneiden der Oberseite wurden in Blender^[https://www.blender.org/] durchgeführt.
+
+![Maus in 3D-Modell zur Größenabmessung\label{fig:mouse-3d-scan-in-model}](img/Schaar/MouseSensorAdditionalPart1.png)
+
+![3D-gedruckte Maus-Halterung\label{fig:3d-printed-mouse-mount}](img/Schaar/MouseSensorAdditionalPart.jpeg)
+
+In den Abbildungen \ref{fig:mouse-3d-scan-in-model} und \ref{fig:3d-printed-mouse-mount} ist dargestellt, wie das Modell zuerst an die Größe des ersten Controller-Modells angepasst wurde und danach mit einer dreidimensionalen Formen-Subtraktion eine fertige Maushalterung modelliert und ausgedruckt wurde.
+
+Diese Halterung fasst die gescannte Maus millimetergenau und lässt sich direkt im Controller-Modell über dem Drehstab festklemmen.
 
 ### Finaler Controller
 
-### Audio Design
+Nachdem mit den Demos und zuvor entwickelten 3D-Modellen bereits viel Erfahrung rund um die Messung und Übertragung der Controller-Signale gesammelt wurde, ging es an die Erstellung und Entwicklung des fertigen Controller-Modells. Dieses wurde wie zuvor mithilfe von FreeCAD entwickelt.
 
-### Erstellung der Nachbauanleitung
+Da durch alle Tests und Vergleiche klar wurde, dass für den finalen Controller eine Messung durch Computer-Mäuse verwendet werden sollte, war klar, dass eine Zweitversion der Maushalterung entwickelt werden müsste.
 
-Herangehensweise der Erstellung, Open-Source-Bereitstellung der Anleitung, Nach Fertigstellung der Praxis
+![3D-gedruckte Maus-Halterung - Finale Version\label{fig:3d-printed-mouse-mount-final-version}](img/Schaar/Mouse-Mount-V2.jpg)
+
+In der Abbildung \ref{fig:3d-printed-mouse-mount-final-version} ist die finale Version der Maushalterung dargestellt. Sie funktioniert nahezu identisch zur ersten Version, hat jedoch eine stabilere Zusammensetzung und passt besser auf das finale Controller-Modell. Außerdem ist bei ihr zwischen der Maus und dem Stab keine zusätzliche Filament-Schicht mehr, da diese bei der ersten Halterung zu Problemen bei der Messung geführt hat.
+
+Um diese Halterung richtig zu verwenden wurden zwei Modelle für den finalen Controller geschaffen.
+
+![Finaler Controller mit vier Stäben - Offene Version\label{fig:final-fourstick-controller-open-freecad}](img/Schaar/Final-FourStickController-Open-FreeCAD.png)
+
+![Finaler Controller mit vier Stäben - Geschlossene Version\label{fig:final-fourstick-controller-closed-freecad}](img/Schaar/Final-FourStickController-Closed-with-Lid-FreeCAD.png)
+
+Die Abbildungen \ref{fig:final-fourstick-controller-open-freecad} und \{fig:final-fourstick-controller-closed-freecad} stellen die finale, undekorierte Version des Controllers dar. Sie haben die grundlegenden Eigenschaften des ersten Prototypen, jedoch sind einige Abmessungen aufgrund von Erfahrungswerten angepasst worden und das Kabel-Loch auf der Rückseite wurde erheblich vergrößert.
+
+Die Zusammensetzung des fertigen Controllers basiert auf vier Drehstäben mit Maushalterungen darüber, in denen sich vier HP 125 Wired Mäuse befinden. Diese werden an einen Raspberry Pi 4 Model B angeschlossen, auf dem die Signale eingelesen und per MQTT an den PC versendet werden. MQTT wurde hierbei gewählt, da die serielle Übertragung bei einem PI 4B schwieriger zu realisieren ist und da MQTT eine schöne Entkoppelung der Eingaben zur Simulation mit sich bringt.
+
+```{caption="Raspberry Pi Mauseingabe - Python-Code" .py}
+# ...
+
+MOUSE_PATHS = [
+    "/dev/input/mouse0",
+    "/dev/input/mouse1",
+    "/dev/input/mouse2",
+    "/dev/input/mouse3",
+]
+
+BROKER_HOST = "10.0.0.5"
+BROKER_PORT = 1883
+TOPIC_PREFIX = "digikicker/mouse"
+
+# ...
+
+def read_mice(files):
+    """Mäuse per select() nicht-blockierend einlesen."""
+    while True:
+        readable, _, _ = select.select(files, [], [], 0.1)
+        for f in readable:
+            idx = files.index(f)
+            data = f.read(3)
+            if len(data) == 3:
+                button, x, y = struct.unpack('BBB', data)
+                with state_lock:
+                    state[idx] = (button, x, y)
+                    dirty.add(idx)
+def report():
+    """Nur geänderte Zustände publishen, danach State zurücksetzen."""
+    while True:
+        with state_lock:
+            to_send = {idx: state[idx] for idx in dirty}
+            dirty.clear()
+            for idx in to_send:
+                state[idx] = (0, 128, 128)
+
+        for idx, (button, x, y) in to_send.items():
+            payload = json.dumps({
+                "id":     idx,
+                "button": button,
+                "x":      x,
+                "y":      y
+            })
+            topic = f"{TOPIC_PREFIX}/{idx}"
+            client.publish(topic, payload, qos=0)
+
+        threading.Event().wait(0.02)
+
+files = [open(p, "rb") for p in MOUSE_PATHS]
+reader   = threading.Thread(target=read_mice, args=(files,), daemon=True)
+reporter = threading.Thread(target=report,    daemon=True)
+reader.start()
+reporter.start()
+reader.join()
+```
+
+Dieser Python-Code, welcher die Signale der vier Mäuse einliest und auf ein jeweils eigenes MQTT-Topic publisht, läuft auf dem Raspberry Pi als ein Service, welcher bei Fehlern automatisch neu startet und sofort nach Start des Gerätes angeht.
+
+```{caption="Godot Signal-Empfang - C-Sharp-Code" .cs}
+public partial class MqttInputManager : Node
+{
+	// Initialisierung von Methoden
+
+	// ─── Godot Lifecycle ─────────────────────────────────────────────────────
+
+	public override void _Ready()
+	{
+		for (int i = 0; i < 4; i++)
+			_mouseInput[i] = Vector2.Zero;
+
+		_cts = new CancellationTokenSource();
+		// MQTT-Verbindung asynchron starten ohne den Hauptthread zu blockieren
+		Task.Run(() => ConnectAsync(_cts.Token));
+	}
+
+	public override void _ExitTree()
+	{
+		_cts?.Cancel();
+		if (_mqttClient?.IsConnected == true)
+			_mqttClient.DisconnectAsync().Wait(1000);
+		_mqttClient?.Dispose();
+	}
+
+	// ─── MQTT-Verbindung ──────────────────────────────────────────────────────
+
+	private async Task ConnectAsync(CancellationToken ct)
+	{
+		var factory = new MqttFactory();
+		_mqttClient = factory.CreateMqttClient();
+
+		var options = new MqttClientOptionsBuilder()
+			.WithTcpServer(BrokerHost, BrokerPort)
+			.WithClientId("godot-digikicker")
+			.WithCleanSession()
+			.Build();
+
+		// Handler registrieren bevor Connect aufgerufen wird
+		_mqttClient.ApplicationMessageReceivedAsync += OnMessageReceived;
+
+		_mqttClient.DisconnectedAsync += async args =>
+		{
+			if (ct.IsCancellationRequested) return;
+			GD.PrintErr("[MqttInputManager] Verbindung verloren – versuche Reconnect in 3s...");
+			await Task.Delay(3000, ct);
+			try { await _mqttClient.ConnectAsync(options, ct); }
+			catch (Exception ex) { GD.PrintErr($"[MqttInputManager] Reconnect fehlgeschlagen: {ex.Message}"); }
+		};
+
+		try
+		{
+			await _mqttClient.ConnectAsync(options, ct);
+			GD.Print($"[MqttInputManager] Verbunden mit Broker {BrokerHost}:{BrokerPort}");
+
+			// Alle vier Maus-Topics abonnieren
+			for (int i = 0; i < 4; i++)
+			{
+				string topic = $"{TopicPrefix}/{i}";
+				await _mqttClient.SubscribeAsync(
+					new MqttTopicFilterBuilder()
+						.WithTopic(topic)
+						.WithQualityOfServiceLevel(MqttQualityOfServiceLevel.AtMostOnce) // QoS 0 = niedrigste Latenz
+						.Build(),
+					ct
+				);
+				GD.Print($"[MqttInputManager] Topic abonniert: {topic}");
+			}
+		}
+		catch (Exception ex)
+		{
+			GD.PrintErr($"[MqttInputManager] Verbindungsfehler: {ex.Message}");
+		}
+	}
+
+	// ─── Nachrichten-Handler ──────────────────────────────────────────────────
+
+	private Task OnMessageReceived(MqttApplicationMessageReceivedEventArgs args)
+	{
+		try
+		{
+			string payload = Encoding.UTF8.GetString(args.ApplicationMessage.PayloadSegment);
+			var doc = JsonDocument.Parse(payload);
+			var root = doc.RootElement;
+
+			int  idx    = root.GetProperty("id").GetInt32();
+			byte rawX   = (byte)root.GetProperty("x").GetInt32();
+			byte rawY   = (byte)root.GetProperty("y").GetInt32();
+
+			if (idx < 0 || idx > 3) return Task.CompletedTask;
+
+			// Unsigned byte → vorzeichenbehaftetes Delta (Linux-PS/2-Protokoll)
+			float dx = (rawX > 127) ? (rawX - 256) : rawX;
+			float dy = (rawY > 127) ? (rawY - 256) : rawY;
+
+			// Dead-Zone
+			if (MathF.Abs(dx) < DeadZone) dx = 0f;
+			if (MathF.Abs(dy) < DeadZone) dy = 0f;
+
+			// Laut Diagramm:
+			//   Maus X → Rotation  (Drehen des Stabs = Schuss/Block)
+			//   Maus Y → Lateral   (Schieben = Position auf dem Tisch)
+			// Y wird negiert: Maus vorwärts schieben = positiver Offset
+			float rotation = dx * RotationSensitivity;
+			float lateral  = -dy * LateralSensitivity;
+
+			lock (_inputLock)
+			{
+				_mouseInput[idx] += new Vector2(lateral, rotation);
+			}
+		}
+		catch (Exception ex)
+		{
+			GD.PrintErr($"[MqttInputManager] Fehler beim Parsen: {ex.Message}");
+		}
+
+		return Task.CompletedTask;
+	}
+
+	// ─── Öffentliche API ──────────────────────────────────────────────────────
+
+	/// <summary>
+	/// Gibt den gesammelten Input für eine Maus zurück und setzt ihn zurück.
+	/// Rückgabe: Vector2(Lateral, Rotation)
+	/// </summary>
+	public Vector2 GetMouseInput(int mouseIndex)
+	{
+		if (mouseIndex < 0 || mouseIndex > 3) return Vector2.Zero;
+
+		lock (_inputLock)
+		{
+			Vector2 val = _mouseInput[mouseIndex];
+			_mouseInput[mouseIndex] = Vector2.Zero;
+			return val;
+		}
+	}
+
+	/// <summary>
+	/// Kompatibilitäts-Wrapper mit gleicher Signatur wie InputManager.GetRodInput().
+	/// Mapping:
+	///   Spieler 1, Stange 0 → mouse0
+	///   Spieler 1, Stange 1 → mouse1
+	///   Spieler 2, Stange 0 → mouse2
+	///   Spieler 2, Stange 1 → mouse3
+	/// </summary>
+	public Vector2 GetRodInput(int playerIndex, int rodIndex)
+	{
+		int mouseIdx = Mathf.Clamp(((playerIndex - 1) * 2) + rodIndex, 0, 3);
+		return GetMouseInput(mouseIdx);
+	}
+
+	/// <summary>Gibt zurück ob der MQTT-Client aktuell verbunden ist.</summary>
+	public new bool IsConnected => _mqttClient?.IsConnected ?? false;
+}
+```
+
+Dieser Code stellt einen angepassten InputManager dar, der als MqttInputManager bezeichnet wurde. Mithilfe von ihm werden die übertragenen Eingaben über MQTT angenommen und die verschiedenen Drehstäbe werden durch ihn angesteuert.
+
+![Finaler Controller mit vier Stäben - Simulationssteuerung\label{fig:final-fourstick-controller-simulation-controls}](img/Schaar/Simulation-Controller-Input-Console-Values.png)
+
+Die funktionierenden Eingaben sind hierbei in der Abbildung \ref{fig:final-fourstick-controller-simulation-controls} dargestellt. Die Stäbe lassen sich mit ihnen einwandfrei drehen und die vollständige Steuerung der Simulation ist möglich.
+
+Da aufgrund von zeittechnischen Problemen der Ausdruck des fertigen Controller Modells nicht mehr möglich war, folgen hier zwei, mithilfe von Blender erstellte, Render der fertigen Controller-Modelle (siehe Abbildungen \ref{fig:final-fourstick-controller-render-open} und \ref{fig:final-fourstick-controller-render-closed}).
+
+![Finaler Controller mit vier Stäben - Render (geöffnete Version)\label{fig:final-fourstick-controller-render-open}](img/Schaar/FourStickController-Open-Render-Final.png)
+
+![Finaler Controller mit vier Stäben - Render (geschlossene Version)\label{fig:final-fourstick-controller-render-closed}](img/Schaar/FourStickController-Closed-Render-Final.png)
+
+### Nachbauanleitung
+
+Da das Projekt von Anfang an für den Open-Source-Release gedacht war, wurde zum einfachen Nachbau des Controllers sowie der Aufsetzung der Simulation eine Anleitung verfasst. Sie befindet sich wie die anderen Dateien des Projektes auf GitHub^[https://github.com/kiesewitz/DA-DigiKicker] und in ihr wird sowohl auf Deutsch als auch auf Englisch der Prozess zur Rekonstruierung des Projektes Schritt für Schritt erklärt.
+
+Mit diesem Punkt wird der praktische Teil des Schülers Schaar konkludiert und der Teil des Schülers Rath folgt.
 
