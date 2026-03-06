@@ -37,7 +37,7 @@ da-kurzfassung-de: Um mit den eigenen Freunden auf einem Tischfußballtisch zusa
 
 da-kurzfassung-en: To play on a foosball table with friends, the geographical location of the participants is essential. No matter how fun playing together is though, real games happen quite rarely, since getting together isn't always easy with everybody having full calendars. To solve this problem, the project DigiKicker has separated the hardware from the actual gameplay. Controlling the game works the exact same way as with an analogue table. With the decoupled hardware it is possible to play with friends from anywhere around the world, since it is easy to connect without being in the same room. And even if no friends have time to play for once, it is possible to hone one's personal skills by playing against algorithmically based / AI trained enemies. Since measuring the signals via a set of computer mice is quite an unconventional method, the results of this thesis might be useful for future projects that need a similar type of input. Since the project was planned to be released in an open source format from the start an instruction set to recreate the project was created. With those prerequisites it should be easy for future projects to build upon this one.
 
-da-danksagung: Mit diesem Abschnitt wollen wir als Team hinter der Diplomarbeit "DigiKicker - Digitalisierung eines Tischfußballtisches" einige Danksagungen für Menschen tätigen, welche die Arbeit an diesem Projekt erleichtert haben. Zuallererst wollen wir uns bei unserem Professor und Betreuer Günther Hutter bedanken. Sie waren während der Arbeit an unserer Diplomarbeit und in unserer ganzen Schullaufbahn stets für uns da und zögerten nie uns zu helfen, egal welches Problem wir hatten. Ob es um Hobbyprojekte oder schulische Themen ging waren Sie stets ein Vorbild und lehrten uns alles mögliche rund um Softwareentwicklung, Netzwerktechnik und viele weitere Dinge, die Sie immer mit Enthusiasmus erklärt haben. Für ihre stetige Hilfe und konstruktive Kritik wollen wir uns zutiefst bedanken. Als Projektleiter will ich mich außerdem bei meinem ganzen Team bedanken, welches die Zusammenarbeit an dem Projekt für mich wirklich erleichtert hat. Mit euch hat die Entwicklung fast spielerisch gewirkt und war keineswegs anstrengend, wofür ich wirklich sehr dankbar bin. Ein zusätzlicher Dank geht außerdem an alle Menschen in unserem Umfeld, welche uns persönlich und mental in den anstrengenden Phasen unterstützt haben und stets an uns geglaubt haben.
+da-danksagung: Mit diesem Abschnitt wollen wir als Team hinter der Diplomarbeit "DigiKicker - Digitalisierung eines Tischfußballtisches" einige Danksagungen für Menschen tätigen, welche die Arbeit an diesem Projekt erleichtert haben. Zuallererst wollen wir uns bei unserem Professor und Betreuer Ing. DI (FH) Günther Hutter, MSc. bedanken. Sie waren während der Arbeit an unserer Diplomarbeit und in unserer ganzen Schullaufbahn stets für uns da und zögerten nie uns zu helfen, egal welches Problem wir hatten. Ob es um Hobbyprojekte oder schulische Themen ging waren Sie stets ein Vorbild und lehrten uns alles mögliche rund um Softwareentwicklung, Netzwerktechnik und viele weitere Dinge, die Sie immer mit Enthusiasmus erklärt haben. Für ihre stetige Hilfe und konstruktive Kritik wollen wir uns zutiefst bedanken. Als Projektleiter will ich mich außerdem bei meinem ganzen Team bedanken, welches die Zusammenarbeit an dem Projekt für mich wirklich erleichtert hat. Mit euch hat die Entwicklung fast spielerisch gewirkt und war keineswegs anstrengend, wofür ich wirklich sehr dankbar bin. Ein zusätzlicher Dank geht außerdem an alle Menschen in unserem Umfeld, welche uns persönlich und mental in den anstrengenden Phasen unterstützt haben und stets an uns geglaubt haben.
 
 da-kiquellen: []
 
@@ -54,16 +54,17 @@ da-appendix:
   pdf-file: Schaar/Datasheet-Raspberry-Pi-Pico-2W.pdf
   seiten: 3-6
 
-- abschnitt: Tabellenberechnungen Mikrocontroller
+- abschnitt: Tabellenberechnungen - Mikrocontroller
   pdf-file: Schaar/Tabellenberechnungen-Mikrocontroller-Schaar.pdf
   seiten: 1
 
-- abschnitt: Tabellenberechnungen Projektgesamtkosten
+- abschnitt: Tabellenberechnungen - Projektgesamtkosten
   pdf-file: Schaar/Tabellenberechnungen-Gesamtkosten-DA-Schaar.pdf
   seiten: 1
 
-#- abschnitt: Betreuungsprotokolle
-#  pdf-file: 
+- abschnitt: Tabellenberechnungen - Tatsächliche Projektgesamtkosten
+  pdf-file: Schaar/Tabellenberechnungen-Tatsaechliche-Gesamtkosten-DA-Schaar.pdf
+  seiten: 1
 
 # Diplomarbeitsvereinbarungen müssen zum Schluss sein
 

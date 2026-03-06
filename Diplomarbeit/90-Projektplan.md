@@ -58,7 +58,7 @@ Die Diplomarbeit "DigiKicker - Digitalisierung eines Tischfußballtisches" finde
 
 #### Projektkosten
 
-Die Preise welche für die Gesamtkosten der Hardware herangezogen wurden entsprechen jenen, die im Kapitel "Vergleich der Optionen & Entscheidung" genauer aufgelistet sind. Für die 3D-Druck-Filamentkosten wird sich an aktuellen Preisen orientiert. Für eine genaue Aufschlüsselung der geplanten Projektkosten - in Form von einer Tabellenkalkulation [@table-calculations-total-cost] - wird wieder auf den Anhang verwiesen.
+Die Preise welche für die Gesamtkosten der Hardware herangezogen wurden entsprechen jenen, die im Kapitel "Vergleich der Optionen & Entscheidung" genauer aufgelistet sind. Für die 3D-Druck-Filamentkosten wird sich an aktuellen Preisen orientiert. Für eine genaue Aufschlüsselung der geplanten/tatsächlichen Projektkosten - in Form von Tabellenkalkulationen [@table-calculations-total-cost] [@table-calculations-actual-total-cost] - wird wieder auf den Anhang verwiesen.
 
 | Kostenstelle  | Kostenart | Menge  | Preis   | Gesamtkosten | Deckung durch |
 |:-------------|:---------:|:------:|--------:|-------------:|---------------|
@@ -72,13 +72,13 @@ Die Preise welche für die Gesamtkosten der Hardware herangezogen wurden entspre
 
 | Kostenstelle  | Kostenart | Menge  | Preis   | Gesamtkosten | Deckung durch |
 |:-------------|:---------:|:------:|--------:|-------------:|---------------|
-| Fertiger Controller | Hardware | 2 | xx.xx€ | xx.xx€ | Schüler |
-| Gebundene DA-Abgabe | Druck | 4 | xx.xx€ | xx.xx€ | Schüler |
-| Gebundene DA-Abgabe | Druck | 1 | xx.xx€ | xx.xx€ | Schulischen Betreuer |
+| Fertiger Controller | Hardware | 2 | 125.06€ | 250.12€ | Schüler |
+| Gebundene DA-Abgabe | Druck | 4 | 27.90€ | 111.60€ | Schüler |
+| Gebundene DA-Abgabe | Druck | 1 | 27.90€ | 27.90€ | Schulischen Betreuer |
 
-: Tatsächliche Projektkosten
+: Tatsächliche Projektkosten\label{actual-project-cost}
 
-**Das Projekt kostet in Summe: xx.xx €**
+**Das Projekt kostet in Summe: 389.62 €**
 
 #### Projektrisiken
 

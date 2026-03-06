@@ -573,9 +573,9 @@ Auch wenn für den finalen Controller beide Ansätze ausprobiert und verglichen 
 
 Der folgende Teil befasst sich mit den praktischen Versuchen und Entwicklungen rund um diese Diplomarbeit. Beschrieben werden jegliche Bauteile und wichtige Hardware, welche verwendet bzw. in Betracht gezogen wurden. Hierbei wird auf Prototypen, Demos, Probleme und Lösungen eingegangen. Zum Abschluss wird das finale Controller-Modell, das Audio-Design sowie die Erstellung einer schriftlichen Nachbauanleitung beleuchtet.
 
-### Prototyping
+### Demos und Softwareprototypen
 
-In diesem Kapitel geht es um Prototypen und Design-Ansätze, Demos und andere Entwicklungsschritte, welche sich im Laufe der Arbeit am Controller ergeben haben. Anhand von ihnen werden der Entwicklungsprozess und verschiedene Iterationen dargestellt.
+In diesem Kapitel geht es um Software-Prototypen, Demos und andere Entwicklungsschritte, welche sich im Laufe der Arbeit am Controller ergeben haben. Anhand von ihnen werden der Entwicklungsprozess und verschiedene Iterationen dargestellt.
 
 #### Arduino <-> Godot Kommunikations-Demo
 
@@ -670,7 +670,7 @@ public partial class Arduino : Node3D
 
 In Godot wird das ganze über ein C#-Skript aufgenommen und ein 3D-Würfel wird anhand von den übernommenen Rotationswerten korrekt gedreht. Die Signale werden hierbei über den seriellen Port "COM6" mit einer Baud-Rate - einer Einheit, die aussagt wie viele Symbole pro Sekunde übertragen werden - von 9600 empfangen. Danach wird die empfangene Nachricht aufgespalten und jeder Drehungswert pro Achse auf den digitalen Würfel angewandt, was zu einer virtuellen Rotation führt.
 
-![Kommunikations-Demo Arduino <-> Godot - Simulation\label{fig:arduino-godot-comm-demo}](img/Schaar/Arduino-Godot-Comm-Demo-Image.png){width:70%}
+![Kommunikations-Demo Arduino <-> Godot - Simulation\label{fig:arduino-godot-comm-demo}](img/Schaar/Arduino-Godot-Comm-Demo-Image.png)
 
 In der Abbildung \ref{fig:arduino-godot-comm-demo} ist die tatsächliche Simulation sowie der Sensor in einem Bild dargestellt. Über dem Würfel werden die aktuellen Winkelgeschwindigkeiten pro Achse angezeigt, anhand von denen die Drehung ermittelt wird. Visuell ist sie noch sehr minimalistisch, reichte jedoch um das generelle Konzept bei der Erstpräsentation darzustellen und den MPU6050 zu testen.
 
@@ -680,7 +680,7 @@ Nachdem die Erstversion des physischen Controllers fertiggestellt wurde war nat�
 
 ![Simulation V1\label{fig:simulation-v1}](img/Schaar/ControllerV1Demo.png)
 
-Auch wenn die zweite Simulation visuell wieder
+Auch wenn diese zweite Simulation visuell wieder relativ mager ausfiel, lässt sich an ihr die Form eines Drehstabes weitaus besser vorstellen als bei der ersten Demo. 
 
 ### Design des Controllers
 
@@ -715,10 +715,6 @@ Nachdem der
 ### Verbindung - Hardware & Software
 
 Technischere Details und Beschreibung für Schnittstelle(n) auf der Hardware-Seite
-
-### Debugging/Bug-Fixing
-
-Aufgetretene Fehler, Lösungsansätze
 
 ### Finaler Controller
 
