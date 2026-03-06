@@ -8,20 +8,20 @@ Im Theorieteil werden die Grundlagen für die grafische Umsetzung der Tischfußb
 ### Auswahl eines Verbindungsmodells
 
 #### P2P
-Verwendung eines eigenen Servers nicht benötigt, aber Skalierbarkeit auf mehrere Teilnehmer immer schwieriger, da die einzelnen Netzwerkgeschwindigkeiten immer auf den Teilnehmer mit der geringsten Leistung "gedrosselt" werden => Spielfluss kann von einem/mehreren Teilnehmern stark verlangsamt werden.
+Verwendung eines eigenen Servers nicht erforderlich, aber Skalierbarkeit auf mehrere Teilnehmer immer schwieriger, da die einzelnen Netzwerkgeschwindigkeiten immer auf den Teilnehmer mit der geringsten Leistung "gedrosselt" werden => Spielfluss kann von einem/mehreren Teilnehmern stark verlangsamt werden.
 
 #### Dedicated Server
-Zusätzliche Serverkosten, dafür aber stabilerer Spielfluss, da er nicht vom Netzwerk einzelner abhängig ist.
+Zusätzliche Serverkosten, dafür aber stabilerer Spielfluss, da er nicht vom Netzwerk einzelner Teilnehmer abhängig ist.
 
 ### Entscheidungen für Multiplayer-Spielprinzipien
-Wegen der vielen Online-Tutorials und der Kompatibilität mit der Godot-Engine wurde für die Simulation die Lösung mit der WebRTC API gewählt. WebRTC ist ein Peer-To-Peer-Netzwerkprotokoll speziell für Videospiele und bietet eine gute Kompatibilität mit der Godot-Engine. [@godot-webrtc-docs]
+Wegen der vielen Online-Tutorials und der Kompatibilität mit der Godot-Engine wurde für die Simulation die Lösung mit der WebRTC API gewählt. WebRTC ist eine Webtechnologie zur Echtzeitkommunikation (Real-Time Communication), die Peer-to-Peer-Verbindungen ermöglicht und unter anderem für Spiele genutzt werden kann. [@godot-webrtc-docs]
 
 #### Vorteile von WebRTC:
 Es gibt eine Vielzahl von Online-Tutorials, an denen man sich richten kann.
 
 WebRTC besitzt eine große Community, was es leichter macht, Fehler, die bereits bei anderen häufig aufgetreten sind, auszubessern.
 
-WebRTC nutzt standardmäßig das UDP Protokoll, wodurch ein sehr schneller Datenaustausch möglich ist.
+WebRTC nutzt standardmäßig das UDP-Protokoll, wodurch ein sehr schneller Datenaustausch möglich ist.
 
 *Folgende Arten von Datenaustausch sind möglich:*
 
@@ -38,7 +38,7 @@ Die WebRTC API nutzt das ICE Framework, um Datenaustausch zwischen zwei Parteien
 ### Unterschied Offline-Rendering vs Echtzeit-Rendering
 
 #### Definition Rendering
-Rendering ist im Grunde der Prozess, bei dem ein Computer 3D-Modelle in 2D-Bilder umwandelt, die man auf dem Bildschirm sieht. Grafikkarten (GPU) verwenden dafür ein Verfahren namens Rasterisierung. Dabei berechnet die GPU die Positionen der 3D-Objekte um und berechnet dann noch Farben, Texturen und Schatten dazu, um ein fertiges Bild zu bekommen. 
+Rendering ist im Grunde der Prozess, bei dem ein Computer 3D-Modelle in 2D-Bilder umwandelt, die man auf dem Bildschirm sieht. Grafikkarten (GPU) verwenden dafür ein Verfahren namens Rasterisierung. Dabei berechnet die GPU die Positionen der 3D-Objekte neu und berechnet dann noch Farben, Texturen und Schatten dazu, um ein fertiges Bild zu bekommen. 
 
 Eine wichtige Rolle spielen dabei sogenannte Shaders – das sind kleine Programme, die festlegen, wie Licht, Reflektionen und Texturen aussehen. Es gibt auch noch fortgeschrittene Techniken wie Raytracing, die noch realistischere Ergebnisse liefern, indem sie den Weg von Lichtstrahlen nachbilden. Je nachdem, wofür man das Rendering braucht, muss man unterschiedliche Methoden wählen – manche Anwendungen brauchen schnelle Ergebnisse, andere können sich Zeit für bessere Qualität nehmen. [@rendering-definition]
 
@@ -53,7 +53,7 @@ Echtzeit-Rendering bezeichnet die Berechnung und Darstellung von Bildern in der 
 In Echtzeit-Anwendungen wie Computerspielen unterscheidet sich die Asset-Erstellung deshalb grundlegend von der für Offline-Renderings. Während bei vorgerenderten Szenen Rechenzeit eine untergeordnete Rolle spielt und maximale Detailgetreue priorisiert wird, müssen Spiel-Assets innerhalb weniger Millisekunden berechnet und dargestellt werden. Dies bedeutet, dass die visuellen Qualitätsansprüche den Performance-Anforderungen untergeordnet werden müssen. Daraus ergeben sich strenge Anforderungen an die Polygonanzahl (Geometrische Komplexität), die Materialanzahl (Draw Calls) und die Texturgröße – alle diese Faktoren beeinflussen direkt die Rechengeschwindigkeit der Engine und damit die erreichbare Bildrate (FPS).
 
 #### High Poly vs. Low Poly
-Bei der Erstellung von 3D-Assets für Spiele muss man immer einen Kompromiss zwischen visueller Qualität und Performance finden. High Poly Modelle haben viele Polygone und sehen sehr detailliert aus, brauchen aber viel Rechenleistung. Low-Poly-Modelle haben deutlich weniger Polygone und rendern schneller, sehen aber weniger detailliert aus. Da Echtzeit-Rendering wie in Spielen sehr schnell sein muss, kann man nicht einfach High Poly Modelle verwenden – das würde die Bildrate zu sehr senken.
+Bei der Erstellung von 3D-Assets für Spiele muss man immer einen Kompromiss zwischen visueller Qualität und Performance finden. High Poly Modelle haben viele Polygone und sehen sehr detailliert aus, brauchen aber viel Rechenleistung. Low-Poly-Modelle haben deutlich weniger Polygone und können schneller gerendert werden, sehen aber weniger detailliert aus. Da Echtzeit-Rendering wie in Spielen sehr schnell sein muss, kann man nicht einfach High Poly Modelle verwenden – das würde die Bildrate zu sehr senken.
 
 Die Lösung ist, mit beiden Versionen zu arbeiten: Man erstellt zuerst ein High Poly Modell mit allen Details und berechnet davon eine Normal Map. Diese Normal Map wird dann auf ein Low-Poly-Modell angewendet. Für das Auge sieht das Low-Poly-Modell dann so aus, als wäre es High Poly, obwohl es viel weniger Polygone hat. Auf diese Weise kann man geometrische Details (Polygone) sparen und trotzdem visuell anspruchsvolle Ergebnisse erzielen. Dieser Prozess nennt sich Retopology und ist einer der wichtigsten Optimierungsschritte bei der Asset-Erstellung für Spiele.[@game-ready-3DModels]
 
@@ -67,12 +67,12 @@ Retopology erstellt aus einem detaillierten High Poly Modell eine vereinfachte L
 Jedes zusätzliche Material erzeugt in der Engine einen eigenen Render‑Aufruf. Durch das Zusammenführen mehrerer Materialien in ein einziges Material (Texture Atlas) reduzieren wir die sogenannten Draw Calls und steigern die Performance. Dieser Ansatz wird in der praktischen Umsetzung beim Backen der Maps direkt eingesetzt. [@blender-create-texture-atlas]
 
 ## Praktischer Teil
-Im Praxisteil wird die Umsetzung der Assets und der Prototypen beschrieben, inklusive der Integration des Multiplayer‑Modells in der Engine, damit mehrere Spieler gemeinsam spielen können. Dazu zählen die Modellierung in Blender, die Optimierung der Polygonanzahl, die Multiplayer‑Integration in der Engine, das Erstellen und Baken von Texture Maps sowie der Import und die Prüfung der Assets in der Godot‑Engine.
+Im Praxisteil wird die Umsetzung der Assets und der Prototypen beschrieben. Dazu zählen die Modellierung in Blender, die Optimierung der Polygonanzahl, das Erstellen und Baken von Texture Maps sowie der Import und die Prüfung der Assets in der Godot‑Engine. Da der Umfang meiner Arbeit bereits den erforderlichen Rahmen abdeckte, wurde der Multiplayer-Modus überwiegend von Herrn Rath umgesetzt und implementiert, da er sich ohnehin intensiv mit den dafür relevanten Aspekten beschäftigte. Dieser Aspekt wird daher in dieser praktischen Ausarbeitung nicht behandelt.
 
 ### Modellierung/Design der Assets
 Für alle Komponenten in der Tischfußball-Simulation werden selbst erstellte Assets verwendet.
 
-Die Grafiksoftware "Blender" eignet sich für unser Szenario am besten, da sie als weltweiter "Standard" für Graphic Design bekannt ist und eine große Palette von Design-Funktionen mit sich bringt. Durch die große Community sind neue Lösungsansätze sowie Ideen schnell im Internet zu finden.
+Die Grafiksoftware "Blender" eignet sich für dieses Szenario am besten, da sie als als weit verbreitete Software für 3D-Modellierung und Rendering bekannt ist und eine große Palette von Design-Funktionen mit sich bringt. Durch die große Community sind neue Lösungsansätze sowie Ideen schnell im Internet zu finden.
 
 Für die Simulation sind folgende zentrale Assets nötig:
 
@@ -93,8 +93,8 @@ Das Ziel war es von Beginn an, einen einheitlichen Stil für alle Assets zu bewa
 ### Geringe Polygonanzahl zur Sicherstellung der Performance
 In der Simulation ist Echtzeit-Performance extrem wichtig. Um das zu erreichen, darf die erforderliche Rechenleistung nicht zu hoch sein und das Rendern der Assets sollte während der Simulation sehr schnell erfolgen. Aus diesem Grund werden die Game-Assets so optimiert, dass ihre Polygonanzahl so gering wie nur möglich ist.
 
-*!Wichtig:* Die GPU bzw CPU rechnet mit Triangles. 1 Polygon = 2 Tris.
-Da stark auf die Performance geachtet werden soll und das Ziel verfolgt wird, dass die Simulation auf jedem Rechner laufen kann, sollte die Gesamtanzahl der Tris allerhöchstens 250.000 betragen. [@triangle-count-for-good-performance]
+*!Wichtig:* Die GPU rechnet mit Triangles. 1 Polygon = 2 Tris.
+Da stark auf die Performance geachtet werden soll und das Ziel verfolgt wird, dass die Simulation auf jedem Rechner laufen kann, wurde als Richtwert eine maximale Gesamtanzahl von etwa 250.000 Triangles festgelegt. [@triangle-count-for-good-performance]
 
 ### Korrekte Skalierung im Verhältnis zueinander
 Damit die Simulation gut funktioniert, müssen die einzelnen Komponenten im Größenverhältnis zueinander passen. Dies wird später in der Godot-Engine angepasst.
@@ -175,25 +175,25 @@ Jetzt ist es wichtig, die Anzahl der Tris zu senken. Da der Kopf jetzt noch eine
 
 Definition Retopology: Retopology ist der Prozess, bei dem man eine neue, saubere Low-Poly-Mesh auf der Oberfläche der High-Poly-Mesh erstellt, um das Modell performanter zu machen.
 
-![Retopology](img/Lanzmaier/image-11.png)
+![Retopology [@retopology]](img/Lanzmaier/image-11.png)
 
 Zuerst wird eine Plane mit "Shift+A" erstellt und an der Oberfläche des High-Poly-Modells positioniert.
 
-![Retopolgy2](img/Lanzmaier/image-12.png)
+![Retopolgy2 [@retopology2]](img/Lanzmaier/image-12.png)
 
 Zunächst aktivieren wir das Retopology Kontrollkästchen, damit man die Plane während dem Edit Mode im Vordergrund sehen kann.
 
-![Retopology3](img/Lanzmaier/image-13.png)
+![Retopology3 [@retopology3]](img/Lanzmaier/image-13.png)
 
-Damit die Plane genau auf dem High-Poly-Modell liegt, wird der Shrinkwrap-Modifier verwendet. Beim Target man die High-Poly-Mesh auswählen
+Damit die Plane genau auf dem High-Poly-Modell liegt, wird der Shrinkwrap-Modifier verwendet. Beim Target kann man die High-Poly-Mesh auswählen.
 
-![Retopology4](img/Lanzmaier/image-15.png)
+![Retopology4 [@retopology4]](img/Lanzmaier/image-15.png)
 
 Jetzt wird der Mirror-Modifier verwendet, um die Plane an der x-Achse zu spiegeln. Das Target ist hier ebenfalls die High-Poly-Mesh.
 
 *!Wichtig:* Clipping muss aktiviert sein, damit sich die beiden Planes beim späteren "Extruden" in der Mitte treffen. Bis man mit der Retopology fertig ist, darf man den Mirror-Modifier nicht anwenden.
 
-![Retopology5](img/Lanzmaier/image-16.png)
+![Retopology5 [@retopology4]](img/Lanzmaier/image-16.png)
 
 Im Edit Mode kann man die Kanten der Plane "extruden" und somit die High-Poly-Mesh nachbauen.
 
@@ -202,21 +202,21 @@ Im Edit Mode kann man die Kanten der Plane "extruden" und somit die High-Poly-Me
 Definition Loop-Cuts: Loop-Cuts in Blender sind Werkzeuge, um neue Kanten (Loops) in ein Mesh einzufügen. [@blender-retopology]
 
 ### Die fertige Low-Poly-Version
-![Low-Poly-Modell Kopf](img/Lanzmaier/image-17.png)
+![Low-Poly-Modell Kopf [@low-poly-head]](img/Lanzmaier/image-17.png)
 
 Mit einer Normal Map kann man die Low-Poly-Mesh so aussehen lassen, als wäre sie High-Poly. Dafür erstellen wir eine Normal Map der High-Poly-Version und wenden sie an der Low-Poly-Version an.
 
 ### Normal Map erstellen
 Der erste Schritt ist es, die Low-Poly-Version zu UV-Unwrappen. Dafür geht man in den "Edit-Mode", markiert alle Faces mit "A", drückt "U" und wählt "Smart UV Project" aus. Mit "Smart UV Project" versucht der Rechner so gut wie möglich aus der 3D-Mesh einzelne 2D-Parts zu machen und sie auf eine UV-Map zu projizieren. Der "Island Margin" sagt dem Rechner, wie groß der Abstand der einzelnen 2D-Parts sein soll. Ein guter Wert für den "Island Margin" ist 0.01, da er nicht zu klein ist, sodass sich die Texturen vermischen, aber auch nicht zu groß, sodass der Margin zu viel Platz auf der Map einnimmt.
 
-![Normal Map im Shader Editor erstellen](img/Lanzmaier/NormalMapCharacter1.png)
+![Normal Map im Shader Editor erstellen [@normal-map-shader-editor]](img/Lanzmaier/NormalMapCharacter1.png)
 Als Nächstes wechselt man von dem 3D-Viewport in den Shader-Editor und erstellt ein neues Material für die Low-Poly-Version. Mit "Shift+A" kann man neue "Nodes" hinzufügen. Für eine Normal Map braucht man eine "Image Texture Node" und eine "Normal Map Node". Mit einer "Image Texture Node" kann man die erstellten "Texture Maps" auf ein Material abbilden. Da es sich um eine Normal Map handelt, benötigt man zusätzlich eine "Normal Map Node", um die "Image Texture" mit dem Material verbinden zu können. Auf der "Image Texture Node" klickt man auf "New", um eine neue Textur zu erstellen. Als Auflösung wählt man standardmäßig 4096px. Beim "Color Space" benötigen wir bei der Normal Map keine Farben, deshalb wählen wir "Non Color".
 
-![Normal Map der Low-Poly-Version erstellen](img/Lanzmaier/NormalMapCharacter3.png)
+![Normal Map der Low-Poly-Version erstellen [@create-normal-map]](img/Lanzmaier/NormalMapCharacter3.png)
 Die beiden Versionen, High-Poly und Low-Poly, müssen direkt aufeinander positioniert werden. Im Shader Editor muss die "Image Texture Node" ausgewählt werden, sodass man einen weißen Rand an der Node sehen kann. Oben rechts wählt man zuerst die High Poly-Version aus und dann die Low-Poly-Version indem man "Ctrl" gedrückt hält. Im "Render Tab" unter den "Mesh Properties" wählt man für die Render Engine "Cycles". Unter "Bake" wählt man "Bake Type Normal" und drückt auf Bake. In der "Image Editor Ansicht" kann man nun die fertige Normal Map der High-Poly-Mesh erkennen.
 
 ### Der fertige Kopf nach Anwendung der Normal Map
-![Kopf nach Anwendung der Normal Map](img/Lanzmaier/NormalMapCharacter4.png)
+![Kopf nach Anwendung der Normal Map [@head-with-normal-map]](img/Lanzmaier/NormalMapCharacter4.png)
 
 Oberkörper und Unterkörper werden nach dem gleichen Prinzip wie der Kopf designt. Da diese beiden Komponenten allerdings nicht so detailreich sind, werden die Low-Poly-Modelle nicht per Hand designt, sondern der "Decimate Modifier" wird benutzt. [@blender-high-poly-to-low-poly]
 
@@ -229,15 +229,30 @@ Der erste Schritt ist es, die Farben aller Materials auf eine Texture Map zu pro
 
 *!Wichtig:* Unter der "Image Editor Ansicht" muss man jede neu erstellte Texture Map unter "Image -> Save As" abspeichern, weil das "Image Texture Node" nach jedem Baking-Vorgang die Texture Map überschreibt.
 
-![Diffuse Map Character-Asset](img/Lanzmaier/CharacterColorMap.png)
+![Diffuse Map Character-Asset [@diffuse-map-character]](img/Lanzmaier/CharacterColorMap.png)
 
-![Normal Map Character-Asset](img/Lanzmaier/CharacterNormalMap.png)
+![Normal Map Character-Asset [@normal-map-character]](img/Lanzmaier/CharacterNormalMap.png)
 
-![Roughness Map Character-Asset](img/Lanzmaier/CharacterRoughnessMap.png)
+![Roughness Map Character-Asset [@roughness-map-character]](img/Lanzmaier/CharacterRoughnessMap.png)
 
 Nachdem man alle Texture Maps erstellt hat, muss man unter "Edit -> Preferences -> Add-ons" den "Node Wrangler" aktivieren, damit man gleich alle Texturen einfach in ein neues Material einbetten kann. In der "Shader Editor Ansicht" kann man nun ein neues Material erstellen. Um die Texture Maps einfach hinzufügen zu können, muss man die "Principled BSDF Node" anklicken und "Ctrl+Shift+T" drücken, um den Explorer aufzumachen. Nun wählt man alle abgespeicherten Maps aus und drückt "Enter". [@blender-create-texture-atlas]
 
-![Fertig modelliertes Character-Asset](img/Lanzmaier/BlenderModelAndMaterialNodes.png)
+![Fertig modelliertes Character-Asset [@finished-asset]](img/Lanzmaier/BlenderModelAndMaterialNodes.png)
+
+### Drehstäbe
+
+### Funktion
+Der Drehstab ist das einzige Asset im Spiel, das direkt vom Spieler gesteuert werden kann. Außerdem werden die Spielfiguren auf dem Stab positioniert, wodurch er die zentrale Verbindung zwischen Spielerinteraktion und Spielfiguren darstellt.
+
+Aus diesen Gründen muss der Drehstab sowohl funktional zuverlässig als auch optisch klar gestaltet sein: Er sollte einfach zu erkennen und intuitiv zu bedienen sein, ohne die Übersicht auf dem Spielfeld zu beeinträchtigen.
+
+### Design- und Stilentscheidung
+Der Drehstab ist bewusst schlicht und funktional gestaltet: Er besteht aus einem länglichen Metallstab mit einem schwarzen Griff am Ende. Diese minimalistische Gestaltung sorgt dafür, dass der Stab als steuerbares Spielelement sofort erkennbar ist, ohne die Übersicht auf der Spielfläche zu beeinträchtigen.
+
+### Modellierung
+Der Drehstab wurde in Blender als Zylinder-Mesh modelliert und durch einen erhöhten „Metallic“-Wert mit einer realistischen Metalloberfläche versehen. Durch Strecken des Zylinders entlang seiner Achse "S+Z" entstand die typische Form eines Spielstabs.
+
+Für den Griff wurde ein schwarzes Würfel-Mesh verwendet, das anschließend durch den Einsatz von "Bevels" und "Edge-Loops" zu einer Griffgestaltung geformt wurde.
 
 ### Tischplatte
 
@@ -256,9 +271,9 @@ Die seitlichen Banden sind farblich dunkler gehalten, um eine klare Abgrenzung z
 Insgesamt wurde ein funktionales und übersichtliches Design gewählt, das den Fokus auf Spielbarkeit und Lesbarkeit legt. Auf unnötige Details wurde bewusst verzichtet, um die Performance nicht zu beeinträchtigen und eine klare visuelle Struktur zu gewährleisten.
 
 ### Modellierung
-Als Grundlage für die Tischplatte erstellt man mit "Shift+A" ein neues Cube-Mesh. Diese skaliert man mit "S+X" in Richtung der x-Achse, sodass die Größe verhältnismäßig mit einem Tischfußballtisch zusammenpasst. Um eine Box, welche oben offen ist, zu erschaffen, wird der "Boolean Modifier" verwendet. Hierfür wird die bereits erstellte Mesh kopiert und ein wenig runterskaliert. Weiters positioniert man die kopierte Mesh so, dass sie an der größeren Cube-Mesh oben hinausschaut. Jetzt wendet man auf der größeren Cube-Mesh den "Boolean Modifier" an. Als Target wählt man die kleinere Mesh. Jetzt wurde die Grundlage für die Tischplatte erstellt.
+Als Grundlage für die Tischplatte erstellt man mit "Shift+A" ein neues Cube-Mesh. Diese skaliert man mit "S+X" in Richtung der x-Achse, sodass die Größe verhältnismäßig mit einem Tischfußballtisch zusammenpasst. Um eine Box, welche oben offen ist, zu erschaffen, wird der "Boolean Modifier" verwendet. Hierfür wird die bereits erstellte Mesh kopiert und ein wenig runterskaliert. Anschließend positioniert man die kopierte Mesh so, dass sie an der größeren Cube-Mesh oben hinausschaut. Jetzt wendet man auf der größeren Cube-Mesh den "Boolean Modifier" an. Als Target wählt man die kleinere Mesh. Jetzt wurde die Grundlage für die Tischplatte erstellt.
 
-![Plate Foundation](image-2.png)
+![Plate Foundation [@plate-foundation]](img/Lanzmaier/PlateFoundation.png)
 
 Für die Tore und die Löcher, an denen der Ball reingeworfen wird, verwendet man die gleiche Methode. Zuerst werden die Formen als separate Meshes erstellt. Mit dem "Boolean Modifier" kann man jetzt die Löcher erschaffen, in dem man die separaten Meshes als Target auswählt. Auch für die Bodenmarkierungen werden zuerst dementsprechende Meshes erstellt und per "Boolean Modifier" hinzugefügt. Für ein schöneres Aussehen, werden die Bodenmarkierungen mit "E" nach unten extrudiert. [@cut-holes-in-mesh]
 
@@ -356,7 +371,6 @@ if(Team == GameManager.Team.Blue) {
 }
 ```
 
-
 Nachdem alle Collision Shapes erstellt wurden und alle Assets korrekt in die Simulation eingebunden wurden, ist das optische Design/Arrangement des Spiels finalisiert.
 
-![Finalisierte Version der Simulation](image-1.png)
+![Finalisierte Version der Simulation [@final-version]](img/Lanzmaier/CompleteSImulation.png)
