@@ -968,7 +968,7 @@ public partial class MqttInputManager : Node
 		_mqttClient.DisconnectedAsync += async args =>
 		{
 			if (ct.IsCancellationRequested) return;
-			GD.PrintErr("[MqttInputManager] Verbindung verloren – versuche Reconnect in 3s...");
+			GD.PrintErr("[MqttInputManager] Verbindung verloren - versuche Reconnect in 3s...");
 			await Task.Delay(3000, ct);
 			try { await _mqttClient.ConnectAsync(options, ct); }
 			catch (Exception ex) { GD.PrintErr($"[MqttInputManager] Reconnect fehlgeschlagen: {ex.Message}"); }
