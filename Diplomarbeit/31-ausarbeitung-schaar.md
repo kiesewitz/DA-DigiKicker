@@ -933,8 +933,6 @@ public partial class MqttInputManager : Node
 {
 	// Initialisierung von Methoden
 
-	// ─── Godot Lifecycle ─────────────────────────────────────────────────────
-
 	public override void _Ready()
 	{
 		for (int i = 0; i < 4; i++)
@@ -952,8 +950,6 @@ public partial class MqttInputManager : Node
 			_mqttClient.DisconnectAsync().Wait(1000);
 		_mqttClient?.Dispose();
 	}
-
-	// ─── MQTT-Verbindung ──────────────────────────────────────────────────────
 
 	private async Task ConnectAsync(CancellationToken ct)
 	{
@@ -1003,8 +999,6 @@ public partial class MqttInputManager : Node
 		}
 	}
 
-	// ─── Nachrichten-Handler ──────────────────────────────────────────────────
-
 	private Task OnMessageReceived(MqttApplicationMessageReceivedEventArgs args)
 	{
 		try
@@ -1046,8 +1040,6 @@ public partial class MqttInputManager : Node
 
 		return Task.CompletedTask;
 	}
-
-	// ─── Öffentliche API ──────────────────────────────────────────────────────
 
 	/// <summary>
 	/// Gibt den gesammelten Input für eine Maus zurück und setzt ihn zurück.
