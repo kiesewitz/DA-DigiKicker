@@ -1,4 +1,4 @@
-# Projekthandbuch
+# Projekthandbuch\label{project-documentation}
 \textauthor{Nikita Schaar}
 
 ## Entwicklungsplan

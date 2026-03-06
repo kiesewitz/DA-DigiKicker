@@ -3,11 +3,11 @@
 
 ## Theoretischer Teil
 
-Das folgende Kapitel befasst sich mit jeglicher Theorie rund um diese Diplomarbeit. Beschrieben werden sowohl Werkzeuge und Programme als auch jegliche Bauteile und wichtige Hardware, welche verwendet bzw. in Betracht gezogen wurden.
+Der folgende Teil befasst sich mit jeglicher Theorie rund um diese Diplomarbeit. Beschrieben werden jegliche Bauteile und wichtige Hardware, welche verwendet bzw. in Betracht gezogen wurden.
 
 ### Projektmanagement
 
-Die Zuständigkeit für das Projektmanagement der Arbeit "DigiKicker - Digitalisierung eines Tischfußballtisches" lag bei dem Schüler Schaar. Der Ansatz des Managements war hierbei agil mit regelmäßigen Besprechungen über den Projektstand. Für die detailreiche Dokumentation des Projektmanagements wird auf den Abschnitt "Projekthandbuch" auf Seite xxx verwiesen.
+Die Zuständigkeit für das Projektmanagement der Arbeit "DigiKicker - Digitalisierung eines Tischfußballtisches" lag bei dem Schüler Schaar. Der Ansatz des Managements war hierbei agil mit regelmäßigen Besprechungen über den Projektstand. Für die detailreiche Dokumentation des Projektmanagements wird auf den Abschnitt "Projekthandbuch" auf Seite \pageref{project-documentation} verwiesen.
 
 ### Mikrocontroller
 
@@ -571,17 +571,17 @@ Auch wenn für den finalen Controller beide Ansätze ausprobiert und verglichen 
 
 ## Praktischer Teil
 
-Kurzbeschreibung
+Der folgende Teil befasst sich mit den praktischen Versuchen und Entwicklungen rund um diese Diplomarbeit. Beschrieben werden jegliche Bauteile und wichtige Hardware, welche verwendet bzw. in Betracht gezogen wurden. Hierbei wird auf Prototypen, Demos, Probleme und Lösungen eingegangen. Zum Abschluss wird das finale Controller-Modell, das Audio-Design sowie die Erstellung einer schriftlichen Nachbauanleitung beleuchtet.
 
 ### Prototyping
 
-In diesem Kapitel geht es um Unverwendete Prototypen und Ansätze, Demos und andere Entwicklungsschritte, welche sich im Laufe der Arbeit am Controller ergeben haben. Anhand von ihnen werden der Entwicklungsprozess und verschiedene Iterationen dargestellt.
+In diesem Kapitel geht es um Prototypen und Design-Ansätze, Demos und andere Entwicklungsschritte, welche sich im Laufe der Arbeit am Controller ergeben haben. Anhand von ihnen werden der Entwicklungsprozess und verschiedene Iterationen dargestellt.
 
 #### Arduino <-> Godot Kommunikations-Demo
 
-Für die Erstpräsentation unserer Arbeit haben wir eine Demo erstellt, anhand von der die Kommunikation zwischen einem Arduino und der Godot Engine veranschaulicht wird. Die Grundstruktur dieser Demo wurde aus einem Youtube-Video genommen [@connect-godot-arduino], in dem die serielle Übertragung der Daten erklärt und beispielhaft dargestellt wird.
+Für die Erstpräsentation der Arbeit wurde eine Demo erstellt, anhand von der die Kommunikation zwischen einem Arduino und der Godot Engine^[https://godotengine.org/de/] veranschaulicht wird. Die Grundstruktur dieser Demo wurde aus einem Youtube-Video genommen [@connect-godot-arduino], in dem die serielle Übertragung der Daten erklärt und beispielhaft dargestellt wird.
 
-Am Arduino werden die Signale von einem MPU6050-Sensor eingelesen und über die Serielle Schnittstelle übertragen.
+Kommentare mit drei Punkten stellen hierbei zusätzlichen Code dar, welcher für die Erklärung des Kernprozesses keine Wichtigkeit hat und meist aus Variablendeklarationen besteht.
 
 ```{caption="Kommunikations-Demo Arduino <-> Godot - Arduino-Code" .c}
 // ...
@@ -622,11 +622,11 @@ void loop() {
   // ...
 
   Serial.println("");
-  delay(500);
+  delay(50);
 }
 ```
 
-In Godot wird das ganze über ein C#-Skript aufgenommen und ein 3D-Würfel wird anhand von den übernommenen Rotationswerten korrekt gedreht, obwohl hierbei teilweise noch Kalibrationsfehler vorkommen.
+Am Arduino wird zuerst versucht, den MPU6050-Sensor zu finden und codeseitig zu initialisieren. Bei Erfolg bzw. Fehler wird eine kurze Nachricht seriell ausgegeben. In der ```loop()```-Funktion - dem Teil von Arduino-/C-Code, der konstant wiederholt wird - werden die Rotationsbewegungen vom MPU6050 für jede Achse mittels ```Serial.println(<WERT>)``` über die serielle Schnittstelle an den PC geschickt. Dann pausiert die Funktion für 50ms und wiederholt sich.
 
 ```{caption="Kommunikations-Demo Arduino <-> Godot - C-Sharp-Code" .cs}
 using Godot;
@@ -668,11 +668,11 @@ public partial class Arduino : Node3D
 }
 ```
 
-Kommentare mit drei Punkten stellen hierbei zusätzlichen Code dar, welcher für die Erklärung des Kernprozesses keine Wichtigkeit hat und meist aus Variablendeklarationen besteht.
+In Godot wird das ganze über ein C#-Skript aufgenommen und ein 3D-Würfel wird anhand von den übernommenen Rotationswerten korrekt gedreht. Die Signale werden hierbei über den seriellen Port "COM6" mit einer Baud-Rate - einer Einheit, die aussagt wie viele Symbole pro Sekunde übertragen werden - von 9600 empfangen. Danach wird die empfangene Nachricht aufgespalten und jeder Drehungswert pro Achse auf den digitalen Würfel angewandt, was zu einer virtuellen Rotation führt.
 
-Mithilfe des Arduino-Codes, welcher vom Sensor die Rotationsdaten nimmt und sie im richtigen Format an die Serielle Schnittstelle schickt und dem C#-Code welcher diese Werte annimmt und zur Drehung eines Würfels verwendet ist schlussendlich diese Demo entstanden, welche die Verbindung zwischen einem Mikrocontroller und der Godot Engine und die sich daraus ergebenden Möglichkeiten darstellt.
+![Kommunikations-Demo Arduino <-> Godot - Simulation\label{fig:arduino-godot-comm-demo}](img/Schaar/Arduino-Godot-Comm-Demo-Image.png){width:70%}
 
-Mithilfe des Arduino-Codes, werden die Rotationsdaten des MPU6050 [@arduino-guide-mpu6050] an die Serielle Schnittstelle gesendet. Der C#-Code nimmt diese Werte an und dreht anhand von ihnen ein Würfel-Objekt. Durch diese Verbindung werden die Möglichkeiten für dieses Projekt simpel und effektiv dargestellt.
+In der Abbildung \ref{fig:arduino-godot-comm-demo} ist die tatsächliche Simulation sowie der Sensor in einem Bild dargestellt. Über dem Würfel werden die aktuellen Winkelgeschwindigkeiten pro Achse angezeigt, anhand von denen die Drehung ermittelt wird. Visuell ist sie noch sehr minimalistisch, reichte jedoch um das generelle Konzept bei der Erstpräsentation darzustellen und den MPU6050 zu testen.
 
 #### Controller V1 - Demo für Sensoreingaben
 
@@ -696,11 +696,13 @@ Für die ersten Prototypen ist das Design auf einen Drehstab reduziert, da diese
 
 Da diese rudimentäre Erstdarstellung jedoch selbst für Testzwecke noch unzureichend war, ist als nächstes eine erweiterte Version 1.0 designt worden, welche dem Bildnis eines Tischfußballtisches in mehreren Hinsichten ähnelt.
 
-![Prototyp 1.0 - Geschlossener Deckel\label{fig:controller-prototype-1.0-closed}](img/Schaar/ControllerV1Closed.png) ![Prototyp 1.0 Open](img/Schaar/ControllerV1Open.png)
+![Prototyp 1.0 - Geschlossener Deckel\label{fig:controller-prototype-1.0-closed}](img/Schaar/ControllerV1Closed.png) 
+
+![Prototyp 1.0 - Geöffneter Deckel\label{fig:controller-prototype-1.0-open}](img/Schaar/ControllerV1Open.png)
 
 ![Prototyp 1.0 - Ansicht von hinten rechts mit geöffnetem Deckel\label{fig:controller-prototype-1.0-open-backside}](img/Schaar/ControllerV1OpenBackSide.png)
 
-Diese Version (siehe Abbildungen \ref{fig:controller-prototype-1.0-closed} & \ref{fig:controller-prototype-1.0-open-backside}) weist einen Drehstab, eine Plattform für elektronische Bauteile, eine Trennwand zur Stabilisierung des Stabes sowie ein Loch für Kabel auf, sodass die Stromversorgung mit geschlossenem Deckel ermöglicht wird. Das erweiterte Design wurde dann, zur Erleichterung des Designprozesses und der Darstellung der Grundidee mithilfe eines BambuLab X1C 3D-Druckers ausgedruckt.
+Diese Version (siehe Abbildungen \ref{fig:controller-prototype-1.0-closed}, \ref{fig:controller-prototype-1.0-open} und \ref{fig:controller-prototype-1.0-open-backside}) weist einen Drehstab, eine Plattform für elektronische Bauteile, eine Trennwand zur Stabilisierung des Stabes sowie ein Loch für Kabel auf, sodass die Stromversorgung mit geschlossenem Deckel ermöglicht wird. Das erweiterte Design wurde dann, zur Erleichterung des Designprozesses und der Darstellung der Grundidee mithilfe eines BambuLab X1C 3D-Druckers ausgedruckt.
 
 ![Prototyp 1.0 - Geöffneter 3D-Druck\label{fig:controller-prototype-1.0-open-irl}](img/Schaar/ControllerV1OpenIRL.jpg)
 

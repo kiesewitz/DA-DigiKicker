@@ -1,0 +1,11 @@
+[Unit]
+Description=Four Mouse Input Read
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /home/<user-name>/mouse_input_read.py
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
