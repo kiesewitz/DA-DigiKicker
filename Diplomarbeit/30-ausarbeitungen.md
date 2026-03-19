@@ -27,6 +27,3 @@ Die grundlegende Aufgabenstellung ist die Verwirklichung einer "Digitalversion" 
 
         ![Bend it like Bosch - Machine Vision\label{fig:bend-it-like-machine-vision}](img/Schaar/Bosch-Foosball-MachineVision.png)
 
-* Wie wird derzeit gearbeitet?
-
-    Da aktuell noch keine vergleichbare Arbeit oder ein annähernd ähnliches Projekt existiert kann keine Aussage zur derzeitigen Arbeitsweise getätigt werden.

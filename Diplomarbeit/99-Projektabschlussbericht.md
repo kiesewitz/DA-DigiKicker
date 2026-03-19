@@ -42,3 +42,6 @@ Die folgenden SDGs^[Sustainable Development Goals] werden in dieser Diplomarbeit
 > Eine hochwertige, verlässliche, nachhaltige und widerstandsfähige Infrastruktur aufbauen, einschließlich regionaler und grenzüberschreitender Infrastruktur, um die wirtschaftliche Entwicklung und das menschliche Wohlergehen zu unterstützen, und dabei den Schwerpunkt auf einen erschwinglichen und gleichberechtigten Zugang für alle legen
 
 > Die wissenschaftliche Forschung verbessern und die technologischen Kapazitäten der Industriesektoren in allen Ländern und insbesondere in den Entwicklungsländern ausbauen und zu diesem Zweck bis 2030 unter anderem Innovationen fördern und die Anzahl der im Bereich Forschung und Entwicklung tätigen Personen je 1 Million Menschen sowie die öffentlichen und privaten Ausgaben für Forschung und Entwicklung beträchtlich erhöhen
+
+\textauthor{}
+
