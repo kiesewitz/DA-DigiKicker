@@ -14,20 +14,13 @@ Verwendung eines eigenen Servers nicht erforderlich, aber Skalierbarkeit auf meh
 Zusätzliche Serverkosten, dafür aber stabilerer Spielfluss, da er nicht vom Netzwerk einzelner Teilnehmer abhängig ist.
 
 ### Entscheidungen für Multiplayer-Spielprinzipien
-Wegen der vielen Online-Tutorials und der Kompatibilität mit der Godot-Engine wurde für die Simulation die Lösung mit der WebRTC API gewählt. WebRTC ist eine Webtechnologie zur Echtzeitkommunikation (Real-Time Communication), die Peer-to-Peer-Verbindungen ermöglicht und unter anderem für Spiele genutzt werden kann. [@godot-webrtc-docs]
-
-#### Vorteile von WebRTC:
-Es gibt eine Vielzahl von Online-Tutorials, an denen man sich richten kann.
-
-WebRTC besitzt eine große Community, was es leichter macht, Fehler, die bereits bei anderen häufig aufgetreten sind, auszubessern.
-
-WebRTC nutzt standardmäßig das UDP-Protokoll, wodurch ein sehr schneller Datenaustausch möglich ist.
+Wegen der vielen Online-Tutorials und der Kompatibilität mit der Godot-Engine wurde für die Simulation die Lösung mit der WebRTC API gewählt. WebRTC ist eine Webtechnologie zur Echtzeitkommunikation (Real-Time Communication), die Peer-to-Peer-Verbindungen ermöglicht und unter anderem für Spiele genutzt werden kann. WebRTC nutzt standardmäßig das UDP-Protokoll, wodurch ein sehr schneller Datenaustausch möglich ist. [@godot-webrtc-docs]
 
 *Folgende Arten von Datenaustausch sind möglich:*
 
-Reliable Messages mit hoher Latenz - Daten kommen immer zuverlässig an
-Unreliable Messages mit niedriger Latenz - Daten kommen nicht immer zuverlässig an
-Partially Reliable Messages mit mittlerer Latenz - Mittelweg zwischen den beiden anderen
+* Reliable Messages mit hoher Latenz - Daten kommen immer zuverlässig an
+* Unreliable Messages mit niedriger Latenz - Daten kommen nicht immer zuverlässig an
+* Partially Reliable Messages mit mittlerer Latenz - Mittelweg zwischen den beiden anderen
 [@snopek-webrtc-nakama]
 
 #### ICE (Interactive Connectivity Establishment)
@@ -44,6 +37,7 @@ Eine wichtige Rolle spielen dabei sogenannte Shaders – das sind kleine Program
 
 #### Offline-Rendering (Vorrendern)
 Offline-Rendering ist darauf ausgelegt, Bilder mit maximaler Qualität darzustellen. Durch die hohe Qualität dauert das Offline-Rendering länger. Ein Rechner kann sich beliebig viel Zeit nehmen, um ein einzelnes Bild zu berechnen – manchmal Stunden oder sogar Tage pro Frame. Dies ermöglicht eine extrem hohe visuelle Qualität mit maximalen Details, realistischen Lichtsimulationen und komplexen Effekten. Typische Anwendungsbereiche sind Filmproduktionen oder Animationen.
+[@realtime-offline-rendering]
 
 #### Echtzeit-Rendering
 Echtzeit-Rendering bezeichnet die Berechnung und Darstellung von Bildern in der Interaktion mit einem Nutzer. Ein Computer muss dabei ein neues Bild in wenigen Millisekunden berechnen und anzeigen - typischerweise 30 bis 60 oder mehr Bilder pro Sekunde. Dies ist notwendig, damit eine Anwendung flüssig und reaktionsschnell wirkt. Beispiele dafür sind Computerspiele oder Virtual Reality.
@@ -51,9 +45,10 @@ Echtzeit-Rendering bezeichnet die Berechnung und Darstellung von Bildern in der 
 
 #### Unterschiede und Auswirkungen auf die Asset-Erstellung
 In Echtzeit-Anwendungen wie Computerspielen unterscheidet sich die Asset-Erstellung deshalb grundlegend von der für Offline-Renderings. Während bei vorgerenderten Szenen Rechenzeit eine untergeordnete Rolle spielt und maximale Detailgetreue priorisiert wird, müssen Spiel-Assets innerhalb weniger Millisekunden berechnet und dargestellt werden. Dies bedeutet, dass die visuellen Qualitätsansprüche den Performance-Anforderungen untergeordnet werden müssen. Daraus ergeben sich strenge Anforderungen an die Polygonanzahl (Geometrische Komplexität), die Materialanzahl (Draw Calls) und die Texturgröße – alle diese Faktoren beeinflussen direkt die Rechengeschwindigkeit der Engine und damit die erreichbare Bildrate (FPS).
+[@realtime-offline-rendering]
 
 #### High Poly vs. Low Poly
-Bei der Erstellung von 3D-Assets für Spiele muss man immer einen Kompromiss zwischen visueller Qualität und Performance finden. High Poly Modelle haben viele Polygone und sehen sehr detailliert aus, brauchen aber viel Rechenleistung. Low-Poly-Modelle haben deutlich weniger Polygone und können schneller gerendert werden, sehen aber weniger detailliert aus. Da Echtzeit-Rendering wie in Spielen sehr schnell sein muss, kann man nicht einfach High Poly Modelle verwenden – das würde die Bildrate zu sehr senken.
+Bei der Erstellung von 3D-Assets für Spiele muss man immer einen Kompromiss zwischen visueller Qualität und Performance finden. High Poly Modelle haben viele Polygone und sehen sehr detailliert aus, brauchen aber viel Rechenleistung. Low-Poly-Modelle haben deutlich weniger Polygone und können schneller gerendert werden, sehen aber weniger detailliert aus. Da Echtzeit-Rendering wie in Spielen sehr schnell sein muss, kann man nicht einfach High Poly Modelle verwenden – das würde die Bildrate zu sehr senken.[@game-ready-3DModels]
 
 Die Lösung ist, mit beiden Versionen zu arbeiten: Man erstellt zuerst ein High Poly Modell mit allen Details und berechnet davon eine Normal Map. Diese Normal Map wird dann auf ein Low-Poly-Modell angewendet. Für das Auge sieht das Low-Poly-Modell dann so aus, als wäre es High Poly, obwohl es viel weniger Polygone hat. Auf diese Weise kann man geometrische Details (Polygone) sparen und trotzdem visuell anspruchsvolle Ergebnisse erzielen. Dieser Prozess nennt sich Retopology und ist einer der wichtigsten Optimierungsschritte bei der Asset-Erstellung für Spiele.[@game-ready-3DModels]
 
