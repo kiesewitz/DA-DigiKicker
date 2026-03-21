@@ -17,7 +17,7 @@ Zusätzlich bieten die meisten Engines einen integrierten Editor, der eine visue
 
 Bei der Auswahl einer Game Engine spielen mehrere Faktoren eine entscheidende Rolle. Der Projektumfang und die Art des Spiels bestimmen maßgeblich, welche Engine am besten geeignet ist. Für fotorealistische 3D-Spiele mit aufwendiger Grafik bietet sich beispielsweise die *Unreal Engine* an, während für kleinere Indie-Projekte oder 2D-Spiele *Godot* eine hervorragende Alternative darstellt.
 
-Die Lizenzkosten und das Geschäftsmodell sind ebenfalls wichtige Überlegungen. *Unity* verwendet ein Abonnement-Modell mit Runtime-Gebühren ab bestimmten Umsatzschwellen, während *Unreal Engine* 5% Royalties nach einer Million Dollar Umsatz verlangt. *Godot* hingegen ist vollständig kostenlos und Open Source unter der MIT-Lizenz, was es besonders attraktiv für Indie-Entwickler und Lernende macht.
+Die Lizenzkosten und das Geschäftsmodell sind ebenfalls wichtige Überlegungen. *Unity* verwendet ein Abonnement-Modell mit Runtime-Gebühren ab bestimmten Umsatzschwellen [@unity-official-website], während *Unreal Engine* 5% Royalties nach einer Million Dollar Umsatz verlangt [@unreal-official-website]. *Godot* hingegen ist vollständig kostenlos und Open Source unter der MIT-Lizenz, was es besonders attraktiv für Indie-Entwickler und Lernende macht.
 
 Weitere Kriterien umfassen die verfügbare Dokumentation und Community-Unterstützung, die unterstützten Plattformen für den Export, die Programmiersprachen und Scripting-Möglichkeiten sowie die Lernkurve für neue Entwickler. Auch die Integration von Drittanbieter-Tools, insbesondere für Machine Learning und KI-Entwicklung, kann je nach Projektanforderungen relevant sein.
 
@@ -38,13 +38,13 @@ Das Scripting in *Unity* erfolgt primär in C#, einer objektorientierten Program
 
 #### Rendering und Grafik-Pipelines
 
-*Unity* bietet mehrere Rendering-Pipelines für unterschiedliche Anforderungen. Die *Built-in Render Pipeline* ist die traditionelle Standardoption, die *Universal Render Pipeline* (*URP*) ist optimiert für breite Plattformunterstützung und mobile Geräte, während die *High Definition Render Pipeline* (*HDRP*) für visuell anspruchsvolle Projekte auf High-End-Hardware konzipiert ist.
+*Unity* bietet mehrere Rendering-Pipelines für unterschiedliche Anforderungen. Die *Built-in Render Pipeline* ist die traditionelle Standardoption, die *Universal Render Pipeline* (*URP*) ist optimiert für breite Plattformunterstützung und mobile Geräte, während die *High Definition Render Pipeline* (*HDRP*) für visuell anspruchsvolle Projekte auf High-End-Hardware konzipiert ist. [@codemonkey-unity-beginner] [@unity-learn]
 
-Die *URP* hat sich als beliebte Wahl für die meisten Projekte etabliert, da sie einen guten Kompromiss zwischen visueller Qualität und Performance bietet. Sie unterstützt moderne Rendering-Features wie Post-Processing-Effekte, *Shader Graph* für visuelles Shader-Design und ein skalierbares Lighting-System. Die Pipeline-Architektur ermöglicht es Entwicklern, das Rendering an ihre spezifischen Projektanforderungen anzupassen.
+Die *URP* hat sich als beliebte Wahl für die meisten Projekte etabliert, da sie einen guten Kompromiss zwischen visueller Qualität und Performance bietet. Sie unterstützt moderne Rendering-Features wie Post-Processing-Effekte, *Shader Graph* für visuelles Shader-Design und ein skalierbares Lighting-System. Die Pipeline-Architektur ermöglicht es Entwicklern, das Rendering an ihre spezifischen Projektanforderungen anzupassen. [@codemonkey-unity-beginner]
 
 #### Asset Store und Ökosystem
 
-Ein wesentlicher Vorteil von *Unity* ist der umfangreiche *Asset Store*, ein Marktplatz mit tausenden von vorgefertigten Assets, Tools und Plugins. Entwickler können hier 3D-Modelle, Texturen, Audio-Dateien, komplette Gameplay-Systeme und Editor-Erweiterungen erwerben oder kostenlos herunterladen. Dies beschleunigt den Entwicklungsprozess erheblich, insbesondere für kleinere Teams oder Solo-Entwickler.
+Ein wesentlicher Vorteil von *Unity* ist der umfangreiche *Asset Store*^[https://assetstore.unity.com/], ein Marktplatz mit tausenden von vorgefertigten Assets, Tools und Plugins. Entwickler können hier 3D-Modelle, Texturen, Audio-Dateien, komplette Gameplay-Systeme und Editor-Erweiterungen erwerben oder kostenlos herunterladen. Dies beschleunigt den Entwicklungsprozess erheblich, insbesondere für kleinere Teams oder Solo-Entwickler.
 
 Die große Community und die umfangreiche offizielle Dokumentation machen *Unity* zu einer zugänglichen Plattform für Einsteiger [@codemonkey-unity-beginner]. *Unity Learn* bietet strukturierte Kurse und Tutorials für alle Erfahrungsstufen [@unity-learn]. Allerdings wurde *Unity* in der Vergangenheit für kontroverse Geschäftsentscheidungen kritisiert, insbesondere die Ankündigung von Runtime-Gebühren im Jahr 2023, die zu einem signifikanten Vertrauensverlust in der Entwickler-Community führte [@gamefromscratch-godot-vs-unity].
 
@@ -63,13 +63,13 @@ Bekannte Titel, die mit der *Unreal Engine* entwickelt wurden, umfassen Fortnite
 
 *Unreal Engine 5* führte mehrere bahnbrechende Technologien ein [@unreal-documentation]. *Nanite* ist ein virtualisiertes Geometrie-System, das es ermöglicht, Assets mit filmischer Qualität direkt in Spielen zu verwenden, ohne aufwendige Level-of-Detail-Optimierungen manuell erstellen zu müssen. Die Technologie streamt und skaliert die Geometrie automatisch basierend auf der Bildschirmauflösung und Kameraposition.
 
-*Lumen* ist ein vollständig dynamisches Global-Illumination-System, das realistische Beleuchtung ohne vorberechnete Lightmaps ermöglicht. Änderungen an der Beleuchtung oder Geometrie werden in Echtzeit reflektiert, was den Workflow für Künstler und Level-Designer erheblich verbessert. Diese Technologien machen die *Unreal Engine* besonders attraktiv für Projekte, bei denen visuelle Qualität höchste Priorität hat.
+*Lumen* ist ein vollständig dynamisches Global-Illumination-System, das realistische Beleuchtung ohne vorberechnete Lightmaps ermöglicht. Änderungen an der Beleuchtung oder Geometrie werden in Echtzeit reflektiert, was den Workflow für Künstler und Level-Designer erheblich verbessert. Diese Technologien machen die *Unreal Engine* besonders attraktiv für Projekte, bei denen visuelle Qualität höchste Priorität hat [@unreal-documentation] [@unrealsensei-ue5-beginner].
 
 #### Programmierung und Blueprints
 
-Die *Unreal Engine* unterstützt zwei primäre Entwicklungsansätze: C++ für maximale Kontrolle und Performance sowie *Blueprints* für visuelles Scripting. *Blueprints* ermöglichen es Entwicklern, komplexe Spiellogik durch das Verbinden von Nodes in einem visuellen Graph zu erstellen, ohne eine Zeile Code schreiben zu müssen. Dies macht die Engine zugänglicher für Designer und Künstler ohne Programmierhintergrund.
+Die *Unreal Engine* unterstützt zwei primäre Entwicklungsansätze: C++ für maximale Kontrolle und Performance sowie *Blueprints* für visuelles Scripting [@unrealsensei-ue5-beginner]. *Blueprints* ermöglichen es Entwicklern, komplexe Spiellogik durch das Verbinden von Nodes in einem visuellen Graph zu erstellen, ohne eine Zeile Code schreiben zu müssen. Dies macht die Engine zugänglicher für Designer und Künstler ohne Programmierhintergrund.
 
-Für performancekritische Systeme bietet C++ die volle Kontrolle über die Engine. Die Kombination beider Ansätze ist üblich: C++ für die Grundsysteme und Performance-intensive Berechnungen, *Blueprints* für schnelles Prototyping und spielspezifische Logik. Die Lernkurve für die *Unreal Engine* ist steiler als bei *Unity* oder *Godot*, bietet aber entsprechend mehr Möglichkeiten für komplexe Projekte.
+Für performancekritische Systeme bietet C++ die volle Kontrolle über die Engine. Die Kombination beider Ansätze ist üblich: C++ für die Grundsysteme und Performance-intensive Berechnungen, *Blueprints* für schnelles Prototyping und spielspezifische Logik [@unreal-documentation]. Die Lernkurve für die *Unreal Engine* ist steiler als bei *Unity* oder *Godot*, bietet aber entsprechend mehr Möglichkeiten für komplexe Projekte.
 
 #### Lizenzmodell und Zielgruppe
 
@@ -595,6 +595,95 @@ Die Peer-to-Peer-Architektur, die *WebRTC* ermöglicht, verbindet Spieler direkt
 
 Hybride Ansätze kombinieren beide Architekturen: Ein leichtgewichtiger Server übernimmt Matchmaking und Authentifizierung, während die eigentliche Spielkommunikation peer-to-peer erfolgt. Dies reduziert Serverkosten bei gleichzeitiger Beibehaltung zentraler Kontrolle über wichtige Funktionen.
 
+
+### Neuronale Netze und Deep Learning
+
+#### Grundlagen neuronaler Netze
+
+Neuronale Netze sind von biologischen Nervensystemen inspirierte Berechnungsmodelle, die aus miteinander verbundenen Neuronen bestehen. Ein künstliches Neuron empfängt gewichtete Inputs, summiert diese auf und wendet eine Aktivierungsfunktion an, um den Output zu berechnen. Durch das Schichten von vielen Neuronen entstehen tiefe Netze mit der Fähigkeit, komplexe Muster zu lernen. 
+
+Die Architektur eines Feedforward-Netzes besteht aus einem Input Layer, das die Eingabedaten empfängt, einem oder mehreren Hidden Layers, die Zwischenrepräsentationen berechnen, und einem Output Layer, das die finale Vorhersage liefert. Die Stärke neuronaler Netze liegt in ihrer Fähigkeit, automatisch relevante Features aus den Rohdaten zu extrahieren. [@karpathy-micrograd]
+
+```{caption="Einfaches Feedforward-Netz mit drei Schichten in PyTorch" .py}
+# Python: Einfaches Neuronales Netz mit PyTorch
+import torch
+import torch.nn as nn
+
+class SimpleNeuralNetwork(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(SimpleNeuralNetwork, self).__init__()
+        
+        self.layer1 = nn.Linear(input_size, hidden_size)
+        self.activation1 = nn.ReLU()
+        self.layer2 = nn.Linear(hidden_size, hidden_size)
+        self.activation2 = nn.ReLU()
+        self.layer3 = nn.Linear(hidden_size, output_size)
+    
+    def forward(self, x):
+        x = self.layer1(x)
+        x = self.activation1(x)
+        x = self.layer2(x)
+        x = self.activation2(x)
+        x = self.layer3(x)
+        return x
+
+# Beispiel: Netzwerk erstellen und verwenden
+model = SimpleNeuralNetwork(input_size=4, hidden_size=64, output_size=2)
+
+# Beispiel-Input
+sample_input = torch.randn(1, 4)
+output = model(sample_input)
+print(f"Output: {output}")
+```
+
+Das Training neuronaler Netze erfolgt durch Backpropagation, einen Algorithmus zur effizienten Berechnung von Gradienten [@karpathy-micrograd]. Ein Loss-Function misst den Unterschied zwischen Vorhersage und Zielwert, und Gradient Descent passt die Gewichte schrittweise an, um den Loss zu minimieren. Die Lernrate kontrolliert die Schrittgröße dieser Updates.
+
+#### PyTorch als Framework
+
+*PyTorch* ist ein Open-Source Deep Learning Framework, das von Meta (Facebook) entwickelt wurde und sich als eines der führenden Frameworks für Forschung und Produktion etabliert hat [@pytorch-official-docs]. Seine dynamische Computation Graph-Architektur ermöglicht flexibles Debugging und intuitive Entwicklung.
+
+Die Kernkonzepte von *PyTorch* umfassen Tensors als mehrdimensionale Arrays mit GPU-Beschleunigung, Automatic Differentiation für die automatische Gradientenberechnung und ein modulares System zur Definition von Netzwerk-Architekturen [@pytorch-tutorials]. Die API ist Python-nativ und erlaubt natürliche Kontrollflussstrukturen innerhalb von Modellen.
+
+```{caption="Training Loop mit Forward- und Backward-Pass in PyTorch" .py}
+# Python: Training Loop mit PyTorch
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
+# Model, Loss und Optimizer
+model = SimpleNeuralNetwork(input_size=4, hidden_size=64, output_size=2)
+criterion = nn.MSELoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+# Training Loop
+def train_step(model, inputs, targets):
+    model.train()
+    
+    # Forward pass
+    outputs = model(inputs)
+    loss = criterion(outputs, targets)
+    
+    # Backward pass
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+    
+    return loss.item()
+
+# Beispiel-Training
+for epoch in range(100):
+    # Dummy-Daten
+    inputs = torch.randn(32, 4)
+    targets = torch.randn(32, 2)
+    
+    loss = train_step(model, inputs, targets)
+    
+    if epoch % 10 == 0:
+        print(f"Epoch {epoch}, Loss: {loss:.4f}")
+```
+
+Für Reinforcement Learning ist *PyTorch* die bevorzugte Wahl vieler Forscher und Bibliotheken [@renotte-rl-3hours]. *Stable-Baselines3*, die Standard-RL-Bibliothek, basiert vollständig auf *PyTorch*. Die Kombination aus Flexibilität, Performance und dem umfangreichen Ökosystem macht *PyTorch* ideal für die Entwicklung und das Training von RL-Agenten.
+
 ### Grundlagen des Reinforcement Learning
 
 #### Was ist Reinforcement Learning?
@@ -797,93 +886,6 @@ model.save("ppo_lunarlander")
 PPO ist besonders populär für kontinuierliche Control-Tasks, Robotik und Game AI. Die relative Einfachheit der Implementierung im Vergleich zu anderen Algorithmen wie TRPO, bei gleichzeitig vergleichbarer Performance, macht PPO zur Standardwahl für viele Anwendungen. *Stable-Baselines3* bietet eine robuste, gut getestete PPO-Implementierung [@sb3-documentation].
 
 
-### Neuronale Netze und Deep Learning
-
-#### Grundlagen neuronaler Netze
-
-Neuronale Netze sind von biologischen Nervensystemen inspirierte Berechnungsmodelle, die aus miteinander verbundenen Neuronen bestehen. Ein künstliches Neuron empfängt gewichtete Inputs, summiert diese auf und wendet eine Aktivierungsfunktion an, um den Output zu berechnen. Durch das Schichten von vielen Neuronen entstehen tiefe Netze mit der Fähigkeit, komplexe Muster zu lernen. 
-
-Die Architektur eines Feedforward-Netzes besteht aus einem Input Layer, das die Eingabedaten empfängt, einem oder mehreren Hidden Layers, die Zwischenrepräsentationen berechnen, und einem Output Layer, das die finale Vorhersage liefert. Die Stärke neuronaler Netze liegt in ihrer Fähigkeit, automatisch relevante Features aus den Rohdaten zu extrahieren. [@karpathy-micrograd]
-
-```{caption="Einfaches Feedforward-Netz mit drei Schichten in PyTorch" .py}
-# Python: Einfaches Neuronales Netz mit PyTorch
-import torch
-import torch.nn as nn
-
-class SimpleNeuralNetwork(nn.Module):
-    def __init__(self, input_size, hidden_size, output_size):
-        super(SimpleNeuralNetwork, self).__init__()
-        
-        self.layer1 = nn.Linear(input_size, hidden_size)
-        self.activation1 = nn.ReLU()
-        self.layer2 = nn.Linear(hidden_size, hidden_size)
-        self.activation2 = nn.ReLU()
-        self.layer3 = nn.Linear(hidden_size, output_size)
-    
-    def forward(self, x):
-        x = self.layer1(x)
-        x = self.activation1(x)
-        x = self.layer2(x)
-        x = self.activation2(x)
-        x = self.layer3(x)
-        return x
-
-# Beispiel: Netzwerk erstellen und verwenden
-model = SimpleNeuralNetwork(input_size=4, hidden_size=64, output_size=2)
-
-# Beispiel-Input
-sample_input = torch.randn(1, 4)
-output = model(sample_input)
-print(f"Output: {output}")
-```
-
-Das Training neuronaler Netze erfolgt durch Backpropagation, einen Algorithmus zur effizienten Berechnung von Gradienten [@karpathy-micrograd]. Ein Loss-Function misst den Unterschied zwischen Vorhersage und Zielwert, und Gradient Descent passt die Gewichte schrittweise an, um den Loss zu minimieren. Die Lernrate kontrolliert die Schrittgröße dieser Updates.
-
-#### PyTorch als Framework
-
-*PyTorch* ist ein Open-Source Deep Learning Framework, das von Meta (Facebook) entwickelt wurde und sich als eines der führenden Frameworks für Forschung und Produktion etabliert hat [@pytorch-official-docs]. Seine dynamische Computation Graph-Architektur ermöglicht flexibles Debugging und intuitive Entwicklung.
-
-Die Kernkonzepte von *PyTorch* umfassen Tensors als mehrdimensionale Arrays mit GPU-Beschleunigung, Automatic Differentiation für die automatische Gradientenberechnung und ein modulares System zur Definition von Netzwerk-Architekturen [@pytorch-tutorials]. Die API ist Python-nativ und erlaubt natürliche Kontrollflussstrukturen innerhalb von Modellen.
-
-```{caption="Training Loop mit Forward- und Backward-Pass in PyTorch" .py}
-# Python: Training Loop mit PyTorch
-import torch
-import torch.nn as nn
-import torch.optim as optim
-
-# Model, Loss und Optimizer
-model = SimpleNeuralNetwork(input_size=4, hidden_size=64, output_size=2)
-criterion = nn.MSELoss()
-optimizer = optim.Adam(model.parameters(), lr=0.001)
-
-# Training Loop
-def train_step(model, inputs, targets):
-    model.train()
-    
-    # Forward pass
-    outputs = model(inputs)
-    loss = criterion(outputs, targets)
-    
-    # Backward pass
-    optimizer.zero_grad()
-    loss.backward()
-    optimizer.step()
-    
-    return loss.item()
-
-# Beispiel-Training
-for epoch in range(100):
-    # Dummy-Daten
-    inputs = torch.randn(32, 4)
-    targets = torch.randn(32, 2)
-    
-    loss = train_step(model, inputs, targets)
-    
-    if epoch % 10 == 0:
-        print(f"Epoch {epoch}, Loss: {loss:.4f}")
-```
-
-Für Reinforcement Learning ist *PyTorch* die bevorzugte Wahl vieler Forscher und Bibliotheken [@renotte-rl-3hours]. *Stable-Baselines3*, die Standard-RL-Bibliothek, basiert vollständig auf *PyTorch*. Die Kombination aus Flexibilität, Performance und dem umfangreichen Ökosystem macht *PyTorch* ideal für die Entwicklung und das Training von RL-Agenten.
 
 
 ### Godot RL Agents
