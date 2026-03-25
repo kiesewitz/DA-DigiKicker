@@ -3,7 +3,7 @@
 
 ## Theoretischer Teil
 
-Der folgende Teil befasst sich mit jeglicher Theorie rund um diese Diplomarbeit. Beschrieben werden jegliche Bauteile und wichtige Hardware, welche verwendet bzw. in Betracht gezogen wurden.
+Der folgende Teil befasst sich mit jeglicher Theorie rund um die Hardware - also die Teilaufgabe des Schülers Schaar - dieser Diplomarbeit. Beschrieben werden jegliche Bauteile und wichtige Hardware, welche verwendet bzw. in Betracht gezogen wurden.
 
 ### Projektmanagement
 
@@ -45,11 +45,11 @@ In Abbildung \ref{fig:point_weights} (erstellt in Microsoft Excel) sind die Ante
 
 ### Arduino Nano ESP32
 
-![Arduino Nano ESP32\label{fig:arduino_nano_esp32}](img/Schaar/Arduino-Nano-ESP32-IRL.png)
+![Arduino Nano ESP32\label{fig:arduino_nano_esp32}](img/Schaar/Arduino-Nano-ESP32-IRL.png){width=70%}
 
 Der erste Mikrocontroller, welcher im Zuge dieser Arbeit bewertet wird, ist der Arduino Nano ESP32 (siehe Abbildung \ref{fig:arduino_nano_esp32} [@arduino-nano-esp32-image]). Er ist ein Controller mit überschaubarer Komplexität, bietet jedoch trotzdem zahlreiche Funktionen für alle möglichen Zwecke, welche dank offiziellen Dokumentationen und Tutorials verständlich gemacht werden [@arduino-docs]. Wie schon am Namen ersichtlich beinhaltet dieser Controller auch einen ESP32, gleich wie das ESP-32 DevKit C, ein anderer behandelter Controller in dieser Arbeit, jedoch ist hierbei ein ESP32-S3 verbaut und kein ESP32-WROOM-32. Zum DevKit C bestehen auch Unterschiede, was technische Daten sowie den Kostenpunkt angeht. Im Detail folgen diese Unterschiede in der Auflistung der technischen Daten.
 
-Während die primäre Programmiersprache des Arduino Nano ESP32 zwar eine simplifizierte Version von C bzw. C++ (Arduino Language) ist, gibt es bei dieser Ausführung des Nano die Möglichkeit, in MicroPython [@micropython] zu programmieren, da diese Sprache auf allen ESP32-basierten Controllern funktioniert. Bei MicroPython handelt es sich ähnlich wie bei der Arduino Language selbst um eine schlankere Version und effizientere Version von Python. Sie hat einen Teil der Funktionalitäten der Python Standard Library und ist für die Verwendung auf Mikrocontrollern optimiert. Die genauen Unterschiede zum standardmäßigen CPython sind zahlreich und reichen von Syntax-Unterschieden bis zu entfernten Core-Funktionen.
+Während die primäre Programmiersprache des Arduino Nano ESP32 zwar eine simplifizierte Version von C bzw. C++ (Arduino Language) ist, gibt es bei dieser Ausführung des Nano die Möglichkeit, in MicroPython [@micropython] zu programmieren, da diese Sprache auf allen ESP32-basierten Controllern funktioniert. Bei MicroPython handelt es sich ähnlich wie bei der Arduino Language selbst um eine schlankere Version und effizientere Version von Python. Sie hat einen Teil der Funktionalitäten der Python Standard Library und ist für die Verwendung auf Mikrocontrollern optimiert. Die genauen Unterschiede zum standardmäßigen CPython sind zahlreich [@micropython] und reichen von Syntax-Unterschieden bis zu entfernten Core-Funktionen.
 
 Beispiel:  Einzelne Array-Elemente können nicht wie in CPython gelöscht werden.
 
@@ -112,13 +112,13 @@ Abbildung \ref{fig:arduino-nano-esp32-pinout} [@arduino-nano-pinout] stellt das 
 
 ### ESP-32 DevKit C
 
-![ESP-32 DevKit C V4\label{fig:esp32-devkit-c}](img/Schaar/ESP32-DevKit-C-V4-IRL.png)
+![ESP-32 DevKit C V4\label{fig:esp32-devkit-c}](img/Schaar/ESP32-DevKit-C-V4-IRL.png){width=70%}
 
 Der nächste Mikrocontroller ist das ESP-32 Dev Kit C V4 [@esp32-data] (siehe Abbildung \ref{fig:esp32-devkit-c} [@esp32-devkit-c-image]), welcher wie der zuvor betrachtete Mikrocontroller auf einem ESP32 - genauer gesagt, einem ESP32-WROOM-32 - basiert ist, weshalb für die Programmierung die Arduino Language sowie MicroPython verwendet werden kann. Wie allen ESP32-basierten Controllern ist es auch diesem möglich, von dem Protokoll "ESP-Now" Gebrauch zu machen. 
 
 #### ESP-NOW-Protokoll
 
-Bei ESP-Now handelt es sich um ein eigens entwickeltes Protokoll von Espressif Systems, welches es mehreren Geräten erlaubt, sich untereinander zu verständigen. Das Protokoll [@esp-now-protocol] [@esp-now-introduction] ist auf dem 802.11 Wi-Fi Standard basiert, benötigt jedoch keinen zusätzlichen Access Point für die Kommunikation. Die maximale "Payload-Größe" beträgt hierbei 250 Bytes, wobei die Datenübertragung jedoch sinngemäß schneller ist, je kleiner die Payload ist.
+Bei ESP-Now handelt es sich um ein eigens entwickeltes Protokoll von Espressif Systems, welches es mehreren Geräten erlaubt, sich untereinander zu verständigen. Das Protokoll ist auf dem 802.11 Wi-Fi Standard basiert [@esp-now-protocol] [@esp-now-introduction], benötigt jedoch keinen zusätzlichen Access Point für die Kommunikation. Die maximale "Payload-Größe" beträgt hierbei 250 Bytes, wobei die Datenübertragung jedoch sinngemäß schneller ist, je kleiner die Payload ist.
 
 TechTerms.com, eine Website für so gut wie alle technischen Begriffe rund um IT, definiert den Begriff Payload [@payload-definition] wie folgt:
 
@@ -140,6 +140,10 @@ ESP-Now ermöglicht Master-Slave-Beziehungen zwischen Boards, für Kommunikation
 ![ESP-Now Kommunikation\label{fig:esp-now-communication}](img/Schaar/ESP-Now-Connections.png)
 
 In Abbildung \ref{fig:esp-now-communication} [@esp-now-introduction] wird die Kommunikation mehrerer ESP-32-Controller in beide Richtungen dargestellt. Dies ist zwar nur eine simple Visualisierung, zeigt jedoch dass die Verbindung vieler Mikrocontroller dadurch einfach ermöglicht wird. Dadurch ergeben sich zahlreiche Möglichkeiten für zusammenhängende Systeme, wie z. B. die Messung und Übermittlung verschiedener Sensordaten in einem Smart Home.
+
+Auch wenn durch die Eigenschaften von ESP-NOW die Erstellung von Mesh-Netzwerken ermöglicht wird, ist dies teilweise durch Einschränkungen in der Anzahl an verbundenen Mikrocontrollern erschwert. Für die Erstellung von Mesh-Netzwerken eignet sich daher das ESP-MESH-Protokoll [@esp-mesh] besser. Offiziell wird dieses wie folgt beschrieben:
+
+> ESP-MESH is a networking protocol built atop the Wi-Fi protocol. ESP-MESH allows numerous devices (referred to as nodes) spread over a large physical area (both indoors and outdoors) to be interconnected under a single WLAN (Wireless Local-Area Network).
 
 Hier folgen nun beispielhafte Code-Snippets [@esp-now-introduction] zur Realisierung des ESP-Now-Protokolls (One-Way-Form) in C-Code, so wie er auf einem Mikrocontroller laufen würde:
 
@@ -273,7 +277,7 @@ In Abbildung \ref{fig:esp32-wroom-32-pinout} [@esp32-pinout] werden die Pin-Bele
 
 ### Raspberry Pi Pico 2W
 
-![Raspberry Pi Pico 2W\label{fig:raspberry-pi-pico-2w}](img/Schaar/Raspberry-Pi-Pico-2W-IRL.png)
+![Raspberry Pi Pico 2W\label{fig:raspberry-pi-pico-2w}](img/Schaar/Raspberry-Pi-Pico-2W-IRL.png){width=70%}
 
 Der letzte Mikrocontroller, der in dieser Arbeit betrachtet wird, ist der Raspberry Pi Pico 2W [@raspberry-pi-pico-documentation] (siehe Abbildung \ref{fig:raspberry-pi-pico-2w} [@raspberry-pi-pico-2w-image]). Dieser Controller verwendet keinen ESP-32 basierten Chip für kabellose Datenübertragung, sondern einen Infineon CYW43439 in Kombination mit einer ABRACON-lizensierten Antenne.
 
@@ -281,7 +285,7 @@ Für die Programmierung eines Pi Pico kann sowohl C/C++ als auch MicroPython ver
 
 ![Raspberry Pi Code Club\label{fig:raspberry-pi-code-club}](img/Schaar/Raspberry-Pi-Code-Club.png)
 
-Da (Micro-)Python als Programmiersprache weitaus einsteigerfreundlicher als andere Sprachen ist, wird der Raspberry Pi Pico gerne für den Einstieg in die Hardware-Programmierung genommen. Dafür gibt es auf der offiziellen Raspberry Pi Code Club Seite [@raspberry-pi-code-club] viele Projekte, welche wichtige Kernkonzepte der Low-Level-Programmierung erklären (siehe Abbildung \ref{fig:raspberry-pi-code-club} [@raspberry-pi-code-club]).
+Da (Micro-)Python als Programmiersprache weitaus einsteigerfreundlicher als andere Sprachen ist, wird der Raspberry Pi Pico gerne für den Einstieg in die Hardware-Programmierung genommen. Dafür gibt es auf der offiziellen Raspberry Pi Code Club Seite^[https://projects.raspberrypi.org/en/] [@raspberry-pi-code-club] viele Projekte, welche wichtige Kernkonzepte der Low-Level-Programmierung erklären (siehe Abbildung \ref{fig:raspberry-pi-code-club} [@raspberry-pi-code-club]).
 
 Dank der ```gpiozero```/```picozero```-Library [@gpiozero-library] [@picozero-library] - ```picozero``` ist hierbei eine abgeänderte Version der ```gpiozero```-Library, welche ihre grundlegende Struktur wiederverwendet, aber für den Raspberry Pi Pico optimiert ist - wird das Interfacing verschiedener GPIO-Geräte mit dem Raspberry Pi Pico ein leichtes. Diese Library hat viele Funktionen für die verschiedensten Input-/Output-Teile, welche die Nutzung dieser auch für unerfahrene Programmierer:innen ermöglichen und bei der Entwicklung viel Code ersparen.
 
@@ -364,17 +368,16 @@ Gleich wie die anderen Geräte der Raspberry-Pi-Familie ist auch der Raspberry P
 
 Konzipiert und entwickelt wurde der erste Raspberry Pi damals von einem Team an der University of Cambridge. Ein paar der treibenden Kräfte in diesem Team sind/waren Eben Upton, Robert Mullins und Alan Mycroft sowie zahlreiche weitere Entwickler. Für die Entwicklung des Computers stellte das Team damals 4 Anforderungen auf:
 
-**1. Programmierbare Hardware**
-
-**2. Spaß bei der Entwicklung**
-
-**3. Leistbar für alle**
-
-**4. Robustheit**
+* 1. Programmierbare Hardware
+* 2. Spaß bei der Entwicklung
+* 3. Leistbar für alle
+* 4. Robustheit
 
 Für das Team war es von Anfang an wichtig, diese Anforderungen bei der Entwicklung einzuhalten. Auf dem Gerät sollte es möglich sein zu programmieren, während die Entwicklung für die Kinder und Jugendlichen auch noch Spaß machen sollte. Als Preis hatten sie von Anfang an 25 Dollar im Kopf, da dies für sie ein Betrag war, der für die meisten Familien tragbar wäre. Der vierte Punkt musste für sie auch erreicht werden, da der Raspberry Pi ein Gerät werden sollte, das unter anderem von Kindern jeden Tag verwendet werden würde, weshalb es stabil sein müsste.
 
 14 Jahre später werden immer noch neue Geräte entwickelt und die Bemühungen der Foundation, die Entwicklung von Hardware- und Software-Projekten einfach zugänglich und verständlich zu machen, gehen bis heute international weiter. Nur in der UK wurden bereits über 26.000 Lehrer unterstützt und auf der ganzen Welt werden offizielle Projekte durchgeführt, um junge Menschen zu informieren.
+
+Auch im Zuge unserer Ausbildung an der HTL hatten wir bereits direkten Kontakt zur Raspberry Pi Foundation, als wir bei dem AstroPi-Projekt^[https://astro-pi.org/] teilnahmen. Dabei ging es darum Code zur Ermittlung der Geschwindigkeit der ISS anhand von Bildaufnahmen zu schreiben.
 
 #### Technische Daten
 
@@ -403,13 +406,10 @@ In diesem Teil folgt der direkte Vergleich sowie die Entscheidung für eine der 
 
 Die Punkteverteilung, wie sie in Abbildung \ref{fig:point-distribution} (siehe Anhang für Berechnungen) ersichtlich ist, ergibt sich aus:
 
-**1. Kosten (~49% der möglichen Gesamtpunkte)**
-
-**2. Prozessorleistung (~22% der möglichen Gesamtpunkte)**
-
-**3. Datenübertragung (~22% der möglichen Gesamtpunkte)**
-
-**4. Stromverbrauch (~7% der möglichen Gesamtpunkte)**
+* 1. Kosten (~49% der möglichen Gesamtpunkte)
+* 2. Prozessorleistung (~22% der möglichen Gesamtpunkte)
+* 3. Datenübertragung (~22% der möglichen Gesamtpunkte)
+* 4. Stromverbrauch (~7% der möglichen Gesamtpunkte)
 
 Für den genauen Vergleich der Prozessorleistung, Datenübertragung und dem Stromverbrauch wird hierbei wieder auf die Datenblätter im Anhang verwiesen.
 
@@ -425,7 +425,7 @@ Die durchschnittlichen Kosten (in €) und die sich daraus ergebenden Punkte jed
 
 ![Gesamtpunktzahl - Mikrocontroller\label{fig:full-points-microcontroller}](img/Schaar/PointsSumMicrocontrollers.png)
 
-Nach dem Addieren aller Teilpunktzahlen der Kategorien ergibt sich für die Gesamtpunktzahl (siehe Abbildung \ref{fig:full-points-microcontroller}) und die finale Entscheidung dieses Ergebnis. Den ersten Platz belegt mit einem klaren Vorsprung der **Raspberry Pi Pico 2W** weshalb er für die finale Entscheidung für einen Mikrocontroller für den Bau eines Controllers ausgewählt wird. Das **ESP32 DevKit C** belegt den zweiten Platz, während der **Arduino Nano ESP32** insgesamt am schlechtesten abschneidet.
+Nach dem Addieren aller Teilpunktzahlen der Kategorien ergibt sich für die Gesamtpunktzahl (siehe Abbildung \ref{fig:full-points-microcontroller}) und die finale Entscheidung dieses Ergebnis. Bei der Bewertung der Punkte ist der höchstmögliche Wert erwünscht. Den ersten Platz belegt mit einem klaren Vorsprung der **Raspberry Pi Pico 2W** weshalb er für die finale Entscheidung für einen Mikrocontroller für den Bau eines Controllers ausgewählt wird. Das **ESP32 DevKit C** belegt den zweiten Platz, während der **Arduino Nano ESP32** insgesamt am schlechtesten abschneidet.
 
 Der Raspberry Pi Pico 2W ist nicht nur anhand von diesem faktischen Vergleich für die Entwicklung sehr angenehm, sondern auch wegen der umfassenden Code-Library ```picozero```, welche die Entwicklung für diesen stark vereinfacht. Hiermit endet das Subkapitel über die Entscheidung für den Mikrocontroller, der für diese Diplomarbeit am Besten geeignet ist. Als nächstes werden die möglichen Sensoren zur Messung der Eingabesignale genauer beleuchtet.
 
@@ -467,22 +467,22 @@ Auch wenn die beiden Sensoren das selbe Grundprinzip aufweisen unterscheiden sie
 
 *Ultraschallsensor*:
 
-![Ultraschallsensor - HC-SR04\label{fig:ultrasound-hc-sr04}](img/Schaar/HC-SR04-Sensor.jpg)
+![Ultraschallsensor - HC-SR04\label{fig:ultrasound-hc-sr04}](img/Schaar/HC-SR04-Sensor.jpg){width=70%}
 
 - Ultraschallsensoren (wie z. B. der HC-SR04 - siehe Abbildung \ref{fig:ultrasound-hc-sr04} [@hc-sr04-image]) werden gerne in Situationen verwendet, wo physikalische Störungen wie Staub, Luftfeuchtigkeit oder schlechte Lichtbedingungen (z. B. zu helles Umfeld) auftreten. Sie sind tendenziell weitaus leistbarer als viele Laser-Sensoren und werden deshalb auch im Hobby-Bereich öfter verwendet. Da Ultraschallsensoren billiger und robuster gegenüber physikalischen Gegebenheiten sind - auch reflektive Oberflächen verfälschen die Messung nicht - werden sie z. B. oft zur Messung von Füllständen von Flüssigkeiten oder Abständen zu anderen Fahrzeugen als Parkhilfe verwendet.
 
 *Lasersensor*:
 
-![Lasersensor - KY-008\label{fig:laser-ky-008}](img/Schaar/KY-008-Sensor.jpg)
+![Lasersensor - VL53L0X\label{fig:laser-vl53l0x}](img/Schaar/VL53LOX-Sensor.png){width=70%}
 
-- Da Laser-Sensoren (wie z. B. der KY-008 - siehe Abbildung \ref{fig:laser-ky-008} [@ky-008-image]) üblicherweise teurer aber auch weitaus genauer sind (Wenige Milli- bis Mikrometer gegenüber Zentimeter bei US) werden sie in Systemen verwendet, die eine weitaus höhere Präzision benötigen. Auch für weite Entfernungen oder Messungen, bei denen die höchstmögliche Geschwindigkeit essenziell ist, werden sie verwendet. Dank diesen Eigenschaften werden Laser-Sensoren z. B. in der Herstellung von Autoteilen zur Qualitätssicherung, bei der Landschaftsvermessung oder auf der Zielgeraden beim Formel 1 - zusätzlich zu Induktionsschleifen (Timing Loops) in der Strecke - zur Zeitmessung verwendet.
+- Da Laser-Sensoren (wie z. B. der VL53L0X - siehe Abbildung \ref{fig:laser-vl53l0x} [@vl53l0x-image]) üblicherweise teurer aber auch weitaus genauer sind (Wenige Milli- bis Mikrometer gegenüber Zentimeter bei US) werden sie in Systemen verwendet, die eine weitaus höhere Präzision benötigen. Auch für weite Entfernungen oder Messungen, bei denen die höchstmögliche Geschwindigkeit essenziell ist, werden sie verwendet. Dank diesen Eigenschaften werden Laser-Sensoren z. B. in der Herstellung von Autoteilen zur Qualitätssicherung, bei der Landschaftsvermessung oder auf der Zielgeraden beim Formel 1 - zusätzlich zu Induktionsschleifen (Timing Loops) in der Strecke - zur Zeitmessung verwendet.
 
 
 **IMU-Sensor**
 
 Eine IMU [@imu-and-robotics] ist eine inertiale Messeinheit (engl. **I**nertial **M**easurement **U**nit), mit der die Beschleunigung, die Winkelgeschwindigkeit sowie die Orientierung des Sensors gemessen wird. Dies funktioniert durch eine Kombination aus Gyroskopen, Beschleunigungsmessern und oft Magnetometern.
 
-![Roll-, Nick- und Gier-Winkel\label{fig:roll-pitch-yaw}](img/Schaar/Roll-Pitch-Yaw.png)
+![Roll-, Nick- und Gier-Winkel\label{fig:roll-pitch-yaw}](img/Schaar/Roll-Pitch-Yaw.png){width=70%}
 
 In Abbildung \ref{fig:roll-pitch-yaw} [@arduino-guide-mpu6050] sind die Winkel, welche bei einem IMU mithilfe seiner verschiedenen Sensoren erfasst werden, dargestellt. Die Winkel werden auf Deutsch als Roll-, Nick- und Gier-Winkel [@yaw-pitch-and-roll] bezeichnet. Diese Begriffe kommen ursprünglich aus der Luft- und Seefahrt und bezeichnen die Bewegungen, die ein Fahrzeug um die jeweilige Achse macht. Ein Flugzeug oder Schiff kann um die X-Achse "rollen", um die Y-Achse "nicken" - wie wenn man als Mensch den Kopf auf und ab bewegt - und um die Z-Achse "gieren". Auch wenn diese Winkeldarstellung ursprünglich also aus der (Aero-) Nautik kommt, wird sie heutzutage überall dort verwendet, wo die Lage eines Fahrzeugs oder Objekts im Raum beschrieben werden muss.
 
@@ -500,7 +500,7 @@ Da eine IMU aus mehreren Unterkomponenten besteht, werden diese im folgenden Abs
 
 - Mithilfe von einem Magnetometer lassen sich sowohl die Richtung als auch die Stärke von Magnetfeldern bestimmen. Einfach gesagt verhält es sich wie ein elektronischer Kompass, der die relative Änderung eines Magnetfeldes zu einem gegebenen Standort misst. Weil Beschleunigungsmesser und Gyroskop alleine den Gier-Winkel nicht bestimmen können, übernimmt genau hier das Magnetometer. Durch das Erdmagnetfeld ist - gleich wie für den Roll- und Nick-Winkel die Schwerkraft - eine konstante horizontale Kraft gegeben. Anhand von dieser lässt sich der Gier-Winkel bestimmen. Was jedoch zu beachten ist, ist, dass das Magnetometer durch äußere Magnetfelder, z. B. von Motoren oder metallischen Strukturen gestört werden kann, was möglicherweise zu Messfehlern führt.
 
-![IMU-Sensor - MPU6050\label{fig:imu-mpu6050}](img/Schaar/MPU6050-Sensor.png)
+![IMU-Sensor - MPU6050\label{fig:imu-mpu6050}](img/Schaar/MPU6050-Sensor.png){width=70%}
 
 In Abbildung \ref{fig:imu-mpu6050} [@arduino-guide-mpu6050] ist ein typischer IMU-Sensor des Typs MPU-6050 dargestellt. Dieser weitverbreitete Sensor vereint einen Beschleunigungsmesser und ein Gyroskop mit jeweils 3 Achsen auf einem einzigen Chip und ist damit ein Beispiel für eine IMU vom Typ I. [@imu-and-robotics] Das bedeutet, dass es dem MPU6050 nicht möglich ist - ohne eine ungenaue und fehlerbehaftete Integrationsrechnung - den Gier-Winkel zu bestimmen. Eine IMU vom Typ II hat zusätzlich noch ein Magnetometer, welches mit 3 zusätzlichen Achsen den Freiheitsgrad des Sensors auf neun erhöht. Damit ist es dann auch möglich, den fehlenden Winkel zu messen.
 
@@ -517,15 +517,13 @@ Mit einem Drehgeber lassen sich drei Eigenschaften [@how-rotary-encoders-work] e
 * Die **Drehrichtung** = Ob die Achse im oder gegen den Uhrzeigersinn gedreht wird (engl. *clockwise* / *counter clockwise*).
 * Die **Winkelgeschwindigkeit** = Die Geschwindigkeit, mit der sich die Achse dreht.
 
-![Drehgeber - KY-040\label{fig:rotary-encoder-ky-040}](img/Schaar/KY-040-Sensor.png)
+![Drehgeber - KY-040\label{fig:rotary-encoder-ky-040}](img/Schaar/KY-040-Sensor.png){width=70%}
 
 Wie diese Informationen gewonnen werden, lässt sich an der internen Funktionsweise des Sensors erkennen. Beim Drehen werden zwei Kontakte - beim KY-040-Drehgeber (siehe Abbildung \ref{fig:rotary-encoder-ky-040} [@ky-040-rotary-encoder]) die Signalausgänge CLK und DT - nacheinander geschlossen. Anhand von der Reihenfolge, in der diese beiden Kontakte Signale erhalten, lässt sich die Drehrichtung bestimmen. Durch den zeitlichen Abstand zwischen den Schaltvorgängen lässt sich die Winkelgeschwindigkeit ableiten. Weil die Auswertung des Sensors softwareseitig erfolgen muss, ist für die Verwendung zwingend ein Mikrocontroller notwendig.
 
 ![Inkrementeller/Absoluter Drehgeber\label{fig:rotary-encoder-incremental-absolute}](img/Schaar/Rotary-Encoder-Inner-Workings.jpg)
 
 Es wird zwischen zwei Typen von Drehgebern unterschieden (siehe Abbildung \ref{fig:rotary-encoder-incremental-absolute} [@how-rotary-encoders-work-second-source]):  ***Absolute*** Drehgeber kennen ihre Position sofort nach dem Einschalten, sind aber aufwendiger gebaut und dadurch teurer in der Herstellung. ***Inkrementelle*** Drehgeber - die in der Praxis weitaus verbreiteter sind - melden sofort Geschwindigkeit und Drehrichtung, kennen ihre absolute Ausgangsposition aber nicht. Deswegen benötigen diese entweder einen Referenzpunkt oder setzen beim Einschalten eine Nullposition, von der aus gemessen wird.
-
----
 
 Nachdem wir nun die Sensoren für den ersten möglichen Aufbau des Controllers kennengelernt haben, sehen wir uns den theoretischen Aufbau anhand von einer Skizze genauer an.
 
@@ -535,15 +533,15 @@ In Abbildung \ref{fig:side-view-possible-controller}, einer händisch angefertig
 
 Die rotatorischen Eingaben (Drehen des Stabes) sollen hierbei entweder anhand von einem Drehgeber oder einem IMU-Sensor gemessen werden. Für beide dieser Sensoren bräuchte es zusätzliche Teile, die verbaut werden müssten, um ihre Verwendung zu ermöglichen.
 
-![Linearführung\label{fig:linear-rail}](img/Schaar/Roll-Bearing-Rail.png)
+![Linearführung\label{fig:linear-rail}](img/Schaar/Roll-Bearing-Rail.png){width=70%}
 
 Im Falle, dass ein Drehgeber zur Messung der Rotation des Stabes verwendet wird, bräuchte dieser eine Schiene oder eine Art Führung (siehe Abbildung \ref{fig:linear-rail} [@roll-bearing-rail]), die unter dem Stab fest positioniert ist. An dieser Führung müsste der Drehgeber fest verbaut sein, sodass sich dieser nicht mit dem Stab mit dreht, sondern von einer stabilen Position aus die Drehung messen kann.
 
-![Elektrischer Schleifring\label{fig:electrical-slip-ring}](img/Schaar/Slip-Ring.png)
+![Elektrischer Schleifring\label{fig:electrical-slip-ring}](img/Schaar/Slip-Ring.png){width=70%}
 
 Für den Fall, dass für die Messung der Drehung ein IMU-Sensor verwendet wird, bräuchte man hierbei einen Schleifring (siehe Abbildung \ref{fig:electrical-slip-ring} [@electrical-slip-ring]) oder etwas Ähnliches. Da sich der IMU mit dem Stab mitdrehen würde, bräuchte man hier einen Schleifring, mithilfe dessen Stromversorgung auch bei drehenden Teilen möglich ist. Durch ihn würden sich Kabel nicht verdrehen, sondern die benötigte Spannung mithilfe der eingebauten Drahtbürsten - egal wie der Stab gedreht ist - bereitstellen.
 
-Ein Problem, welches mit Schleifringen besteht, ist der Verschleiß. Da sie über mechanische Teile, die konstant aneinander gerieben werden, die Spannung übertragen, werden sie mit der Zeit automatisch "aufgebraucht". Auch wenn moderne Schleifringe zwar gut funktionieren, ist gerade bei diesem Projekt, wo der Drehstab oft sehr schnell gedreht wird, keine Sicherheit gegeben, dass es mit einem Schleifring zuverlässig funktioniert. 
+Ein Problem, welches mit Schleifringen besteht, ist der Verschleiß. Da sie über mechanische Teile, die konstant aneinander gerieben werden, die Spannung übertragen, werden sie mit der Zeit automatisch "aufgebraucht" und beginnen sozusagen zu "krachen". Auch wenn moderne Schleifringe zwar gut funktionieren, ist gerade bei diesem Projekt, wo der Drehstab oft sehr schnell gedreht wird, keine Sicherheit gegeben, dass es mit einem Schleifring zuverlässig funktioniert. 
 
 Aus den genannten Gründen würde die Entscheidung für den Rotationssensor in diesem Fall auf den Drehgeber fallen. Dieser ist einerseits zuverlässiger und andererseits wäre ein IMU-Sensor voraussichtlich auch von den innewohnenden Funktionen her übertrieben, da nur die Drehung auf einer Achse gemessen werden muss. Falls dieser Ansatz also für die finale Konstruktion des Controllers herangezogen werden würde, läge die Wahl der Sensoren bei einem ***Drehgeber mit fest verbauter Schiene*** - für die Drehung des Stabes - sowie einem ***Ultraschallsensor*** zur Messung der Schiebebewegungen.
 
@@ -564,8 +562,6 @@ Wenn die Maus direkt über dem Stab in einer festen Position platziert wird, kö
 Auf den Abbildungen \ref{fig:computer-mouse-bottom} und \ref{fig:computer-mouse-sensor} lässt sich das Herzstück einer Computermaus - einmal ein- und einmal ausgebaut - erkennen: Der optische Sensor. Auch wenn es je nach Hersteller verschiedene Arten dieser Sensoren gibt, funktionieren alle prinzipiell ziemlich gleich. Um das Projekt für den Nachbau so simpel zu halten wie möglich, wird bei diesem Ansatz jedoch eher eine komplette Maus verwendet, sodass kein Sensor ausgebaut werden muss.
 
 Um die Eingaben der Maus dann letztendlich in einem Format zu übertragen, welches einfach weiterzuverarbeiten ist, wird die Microsoft Raw Input API [@about-raw-input] [@windows-input] verwendet. Bei dieser handelt es sich um eine API, mit der die Eingaben von HIDs (Human Input Device) direkt an ein Programm weitergegeben werden können. Dies sollte man für den Fall von einem Spiel, bei dem es um Präzision geht, nicht über die Windows-Eingaben selbst erledigen. Das liegt daran, dass Windows auf den Cursor Funktionen wie Beschleunigung anwendet, sodass zwar die Nutzung als tatsächlicher Cursor verbessert wird, die Präzision jedoch maßgeblich beeinträchtigt wird.
-
----
 
 Auch wenn für den finalen Controller beide Ansätze ausprobiert und verglichen werden, wäre der zweite Ansatz auf Basis einer Maus für den Nachbau weitaus nützlicher. Hierbei müsste sehr viel weniger Arbeit auf der Seite des/der Nachbauenden verrichtet werden, was es wahrscheinlicher machen würde, dass das Projekt nachgebaut wird. Mit dieser Analyse wird der Theoretische Teil der Arbeit am Controller konkludiert. Nun folgt der Praktische Teil.
 
@@ -801,7 +797,7 @@ Der C#-Code sieht, ebenso wie der Arduino-Code, zum Teil wieder sehr ähnlich au
 
 Dieses Kapitel handelt von den verschiedenen Iterationen der Hülle des Controllers, sowie von den Entscheidungen, welche bei der Entwicklung getroffen worden sind.
 
-Zu Beginn war die Zurechtfindung in der neu gewählten CAD-Umgebung "FreeCAD" ungewöhnlich, jedoch war es nicht schwierig sich daran anzupassen. Die Wahl für FreeCAD^[https://www.freecad.org/] entstand, da das ganze Projekt so gut es geht mit Open-Source-Software realisiert werden sollte.
+Zu Beginn war die Bedienung der neu gewählten CAD-Umgebung "FreeCAD" ungewöhnlich, jedoch war es nicht schwierig sich daran anzupassen. Die Wahl für FreeCAD^[https://www.freecad.org/] entstand, da das ganze Projekt so gut es geht mit Open-Source-Software realisiert werden sollte.
 
 #### Ein-Stab-Prototyp
 
@@ -829,9 +825,11 @@ Der fertige 3D-Druck des ersten Prototypen ist hier auf den Abbildungen \ref{fig
 
 Nachdem der Prototyp mit einer Demo, welche auf S. \pageref{controller-demo-v2} genauer beschrieben wurde, auf seine Funktion getestet wurde, wurde als nächstes eine Maus-Halterung entwickelt, welche sich über den Drehstab positionieren lässt.
 
-![Maus 3D-Scan - Rohmodell\label{fig:mouse-3d-scan-raw}](img/Schaar/Mouse3DScanCleanupMeshmixer.png)
+![Maus 3D-Scan - Scan-Vorgang\label{fig:mouse-3d-scan-process}](img/Schaar/3D-Scan-Mouse.png)
 
-Die dafür verwendete Maus wurde zuallererst mithilfe eines 3D-Scanners, aus dem MakerLab in der Schule, eingescannt und ergab das rohe Modell, welches in Abbildung \ref{fig:mouse-3d-scan-raw} ersichtlich ist. Dieses Modell weist aufgrund von dem Fakt, dass der Scanner vermutet, dass die Maus unten - wo sie nicht abgescannt wurde - auch abgerundet ist, eine Art Ausbeulung auf der Unterseite auf.
+![Maus 3D-Scan - Rohmodell - HP 125 Wired Mouse\label{fig:mouse-3d-scan-raw}](img/Schaar/Mouse3DScanCleanupMeshmixer.png)
+
+Die dafür verwendete Maus wurde zuallererst mithilfe eines 3D-Scanners (siehe Abbildung \ref{fig:mouse-3d-scan-process}), aus dem MakerLab in der Schule, eingescannt und ergab das rohe Modell, welches in Abbildung \ref{fig:mouse-3d-scan-raw} ersichtlich ist. Dieses Modell weist aufgrund von dem Fakt, dass der Scanner vermutet, dass die Maus unten - wo sie nicht abgescannt wurde - auch abgerundet ist, eine Art Ausbeulung auf der Unterseite auf.
 
 ![Maus 3D-Scan - Gesäubertes Modell\label{fig:mouse-3d-scan-cleaned}](img/Schaar/Mouse3DScanCleanupMeshmixer3.png)
 
@@ -865,12 +863,17 @@ Um diese Halterung richtig zu verwenden wurden zwei Modelle für den finalen Con
 
 ![Finaler Controller mit vier Stäben - Geschlossene Version\label{fig:final-fourstick-controller-closed-freecad}](img/Schaar/Final-FourStickController-Closed-with-Lid-FreeCAD.png)
 
-Die Abbildungen \ref{fig:final-fourstick-controller-open-freecad} und \{fig:final-fourstick-controller-closed-freecad} stellen die finale, undekorierte Version des Controllers dar. Sie haben die grundlegenden Eigenschaften des ersten Prototypen, jedoch sind einige Abmessungen aufgrund von Erfahrungswerten angepasst worden und das Kabel-Loch auf der Rückseite wurde erheblich vergrößert.
+Die Abbildungen \ref{fig:final-fourstick-controller-open-freecad} und \ref{fig:final-fourstick-controller-closed-freecad} stellen die finale, undekorierte Version des Controllers dar. Sie haben die grundlegenden Eigenschaften des ersten Prototypen, jedoch sind einige Abmessungen aufgrund von Erfahrungswerten angepasst worden und das Kabel-Loch auf der Rückseite wurde erheblich vergrößert.
 
 Die Zusammensetzung des fertigen Controllers basiert auf vier Drehstäben mit Maushalterungen darüber, in denen sich vier HP 125 Wired Mäuse befinden. Diese werden an einen Raspberry Pi 4 Model B angeschlossen, auf dem die Signale eingelesen und per MQTT an den PC versendet werden. MQTT wurde hierbei gewählt, da die serielle Übertragung bei einem PI 4B schwieriger zu realisieren ist und da MQTT eine schöne Entkoppelung der Eingaben zur Simulation mit sich bringt.
 
 ```{caption="Raspberry Pi Mauseingabe - Python-Code" .py}
-# ...
+import struct
+import select
+import threading
+import json
+from collections import defaultdict
+import paho.mqtt.client as mqtt
 
 MOUSE_PATHS = [
     "/dev/input/mouse0",
@@ -1070,6 +1073,4 @@ Da aufgrund von zeittechnischen Problemen der Ausdruck des fertigen Controller M
 ### Nachbauanleitung
 
 Da das Projekt von Anfang an für den Open-Source-Release gedacht war, wurde zum einfachen Nachbau des Controllers sowie der Aufsetzung der Simulation eine Anleitung verfasst. Sie befindet sich wie die anderen Dateien des Projektes auf GitHub^[https://github.com/kiesewitz/DA-DigiKicker] und in ihr wird sowohl auf Deutsch als auch auf Englisch der Prozess zur Rekonstruierung des Projektes Schritt für Schritt erklärt.
-
-Mit diesem Punkt wird der praktische Teil des Schülers Schaar konkludiert und der Teil des Schülers Rath folgt.
 

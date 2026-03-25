@@ -132,7 +132,7 @@ Die Abbildung \ref{fig:project-organization-diagram} stellt die Projektrollen in
 * Wer muss zustimmen
     * Projektleiter od. Haupt- bzw. Nebenbetreuer bei möglicher Verhinderung
 * Wo werden die Änderungen wie vermerkt?
-    * Github Repository mittels Commits
+    * Github Repository mittels Commits/Issues
     * Bei schwerwiegenden Änderungen in der Umsetzung des Projektes wird direkt in der Arbeit darauf eingegangen
 
 ## Meilensteine
@@ -142,7 +142,7 @@ Die Abbildung \ref{fig:project-organization-diagram} stellt die Projektrollen in
 - Projektbeschreibung und Teammitglieder im DA-Portal eingetragen
 - Grundlegende Projektdaten vollständig erfasst
 
-### 10.11.2025: 1. DA-Präsentation
+### 10.11.2025: Erste DA-Präsentation
 
 - Aktueller Projektfortschritt wurde Schülern, Professoren, Hr. Hofer und Fr. Gmundtner präsentiert
 - Bisherige Ergebnisse und Zwischenstände sind dokumentiert
@@ -153,7 +153,7 @@ Die Abbildung \ref{fig:project-organization-diagram} stellt die Projektrollen in
 - Erste Zwischenabgabe der Diplomarbeit ist fertig
 - Dokument wurde elektronisch an Prof. Hutter übermittelt
 
-### 26.02.2026: 2. DA-Präsentation
+### 26.02.2026: Zweite DA-Präsentation
 
 - Nahezu fertige DA wurde Schülern, Professoren, Hr. Hofer und Fr. Gmundtner präsentiert
 - Präsentation nach Feedback der 1. Präsentation geupdatet
@@ -177,7 +177,7 @@ Die Abbildung \ref{fig:project-organization-diagram} stellt die Projektrollen in
 
 - Gebundene Bibliotheksversion der Diplomarbeit ist abgegeben
 
-### 08.04.2026: 3. DA-Präsentation
+### 08.04.2026: Dritte DA-Präsentation
 
 - Finale Arbeit wurde Schülern, Professoren, Hr. Hofer und Fr. Gmundtner präsentiert
 - Letztes Feedback für die Verteidigung der DA erhalten

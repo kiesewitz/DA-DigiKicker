@@ -9,7 +9,7 @@ Für jeden Use Case wird zusätzlich zu der textuellen Beschreibung ein Screensh
 
 #### Menüpunkt wählen
 
-![Menüpunkt auswählen](img/Schaar/UseCases-Screenshots/menu-choice.png)
+![Startmenü - Menüpunkt auswählen](img/Schaar/UseCases-Screenshots/menu-choice.png)
 
 **Beschreibung:** Der Benutzer wählt im Hauptmenü einen Menüpunkt aus.
 
