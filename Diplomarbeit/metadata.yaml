@@ -12,19 +12,19 @@ da-author:
   nachname: Schaar
   klasse: 5AHWIN
   thema: Erstellung eines Controllers zur Steuerung der Simulation
-  ki-tools: []
+  ki-tools: [Keine KI-Quellen]
 
 - vorname: André 
   nachname: Rath
   klasse: 5AHWIN
   thema: Entwicklung einer spielbaren Simulation eines Tischfußballtisches
-  ki-tools: []
+  ki-tools: [Keine KI-Quellen]
 
 - vorname: Luan 
   nachname: Lanzmaier
   klasse: 5BHWIN
   thema: Implementierung eines Multiplayer-Modus und visuelles Design der Simulation
-  ki-tools: []
+  ki-tools: [Keine KI-Quellen]
 
 da-betreuer:
 - paraffe: HG
