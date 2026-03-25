@@ -26,7 +26,7 @@ Wegen der vielen Online-Tutorials und der Kompatibilität mit der Godot-Engine w
 #### ICE (Interactive Connectivity Establishment)
 Die WebRTC API nutzt das ICE Framework, um Datenaustausch zwischen zwei Parteien sicherzustellen. ICE ermöglicht die direkte Verbindung zwischen zwei Parteien, bei denen mindestens eine der zwei Parteien hinter einem Router bzw. einer Firewall ist. Dies funktioniert mit einem sogenannten "STUN/TURN Server", der die NAT-Adressen beider Parteien kurzfristig speichert und diese dem jeweils anderen Peer freigibt. Wenn die direkte Verbindung fehlschlägt, wird der Datenaustausch auf den TURN Server ausgelegt. [@stun-and-turn-servers]
 
-![ICE - Grafische Darstellung [@stun-and-turn-servers]](img/Lanzmaier/ICE.png)
+![ICE - Grafische Darstellung [@ice-visualization]](img/Lanzmaier/stunturn.png)
 
 ### Unterschied Offline-Rendering vs Echtzeit-Rendering
 
@@ -62,20 +62,20 @@ Retopology erstellt aus einem detaillierten High Poly Modell eine vereinfachte L
 Jedes zusätzliche Material erzeugt in der Engine einen eigenen Render‑Aufruf. Durch das Zusammenführen mehrerer Materialien in ein einziges Material (Texture Atlas) reduzieren wir die sogenannten Draw Calls und steigern die Performance. Dieser Ansatz wird in der praktischen Umsetzung beim Backen der Maps direkt eingesetzt. [@blender-create-texture-atlas]
 
 ## Praktischer Teil
-Im Praxisteil wird die Umsetzung der Assets und der Prototypen beschrieben. Dazu zählen die Modellierung in Blender, die Optimierung der Polygonanzahl, das Erstellen und Baken von Texture Maps sowie der Import und die Prüfung der Assets in der Godot‑Engine. Da der Umfang meiner Arbeit bereits den erforderlichen Rahmen abdeckte, wurde der Multiplayer-Modus überwiegend von Herrn Rath umgesetzt und implementiert, da er sich ohnehin intensiv mit den dafür relevanten Aspekten beschäftigte. Dieser Aspekt wird daher in dieser praktischen Ausarbeitung nicht behandelt.
+Im Praxisteil wird die Umsetzung der Assets und der Prototypen beschrieben. Dazu zählen die Modellierung in Blender, die Optimierung der Polygonanzahl, das Erstellen und Baken von Texture Maps sowie der Import und die Prüfung der Assets in der Godot‑Engine. Aufgrund des inhaltlichen Umfangs und der Schwerpunktsetzung dieser Arbeit auf die Asset-Erstellung und -Optimierung wurde der Multiplayer-Modus nicht behandelt. Dieser wurde von Herrn Rath umgesetzt und wird daher in dieser praktischen Ausarbeitung nicht behandelt.
 
 ### Modellierung/Design der Assets
 Für alle Komponenten in der Tischfußball-Simulation werden selbst erstellte Assets verwendet.
 
-Die Grafiksoftware "Blender" eignet sich für dieses Szenario am besten, da sie als als weit verbreitete Software für 3D-Modellierung und Rendering bekannt ist und eine große Palette von Design-Funktionen mit sich bringt. Durch die große Community sind neue Lösungsansätze sowie Ideen schnell im Internet zu finden.
+Die Grafiksoftware Blender eignet sich für dieses Szenario am besten, da sie als als weit verbreitete Software für 3D-Modellierung und Rendering bekannt ist und eine große Palette von Design-Funktionen mit sich bringt. Durch die große Community sind neue Lösungsansätze sowie Ideen schnell im Internet zu finden.
 
 Für die Simulation sind folgende zentrale Assets nötig:
 
-#### Spielfiguren
+* **Spielfiguren**
 
-#### Drehstäbe
+* **Drehstäbe**
 
-#### Tischplatte
+* **Tischplatte**
 
 ### Anforderungen an die 3D-Assets
 Für die Tischfußball-Simulation müssen die erstellten Assets sowohl optischen als auch technischen Anforderungen gerecht werden. Da die Assets in einer interaktiven Simulation verwendet werden, ist eine Balance zwischen realistischer und performanter Darstellung notwendig.
