@@ -94,18 +94,18 @@ Da stark auf die Performance geachtet werden soll und das Ziel verfolgt wird, da
 ### Korrekte Skalierung im Verhältnis zueinander
 Damit die Simulation gut funktioniert, müssen die einzelnen Komponenten in einem konsistenten Größenverhältnis zueinander stehen. Die in Blender erstellte Spielfigur dient dabei als Referenz für die Dimensionierung der übrigen Assets.
 
-Beim Export in die Godot-Engine kann es aufgrund unterschiedlicher Maßstäbe zu Abweichungen in der Skalierung kommen. Daher wird die finale Anpassung direkt in Godot vorgenommen, indem die Skalierung der jeweiligen Nodes im Skript über die Transform-Eigenschaften (mit ```.Scale```) festgelegt und an die Referenz angepasst wird.
+Beim Export in die Godot-Engine kann es aufgrund unterschiedlicher Maßstäbe zu Abweichungen in der Skalierung kommen. Daher wird die finale Anpassung direkt in Godot vorgenommen, indem die Skalierung der jeweiligen Nodes im Skript über die Transform-Eigenschaften (mit ```.Scale```) festgelegt und an die Referenz angepasst wird. [@mesh-export-problem]
 
 ### Kompatibilität mit der verwendeten Game-Engine
-Die grafischen Komponenten werden vor der Fertigstellung häufig in der Godot-Engine getestet, um die Funktionalität sicherzustellen und um visuelle Bugs zu vermeiden. Wenn es beispielsweise Probleme mit den Hitboxen gibt oder das Asset in der Engine nicht so aussieht wie erwünscht, werden Änderungen vorgenommen.
+Die grafischen Komponenten werden vor der Fertigstellung häufig in der Godot-Engine getestet. Wenn es beispielsweise Probleme mit den Hitboxen gibt oder das Asset in der Engine nicht so aussieht wie erwünscht, werden Änderungen vorgenommen.
 
 ### Allgemeiner Workflow zur Erstellung des Character-Assets
 
 ### Referenzanalyse
-Zur realitätsnahen Umsetzung wurden reale Spielfiguren analysiert. Dabei wurden insbesondere Proportionen, Farben und charakteristische Merkmale berücksichtigt.
+Zur realitätsnahen Umsetzung wurden reale Spielfiguren von einem Tischfußballtisch während der Modellierung analysiert. Dabei wurden insbesondere Proportionen, Farben und der Körperbau berücksichtigt.
 
 ### Grundmodellierung
-Zu Beginn wird ein Grundmodell mit einer geringen Polygonanzahl erstellt, welches mit Sculpt-Tools so angerichtet wird, dass es der Form des Referenzmodells in etwa entspricht.
+Zu Beginn wird ein Grundmodell mit einer geringen Polygonanzahl erstellt, welches mit Sculpt-Tools so modelliert wird, dass es der Form des Referenzmodells in etwa entspricht.
 
 ### Detailmodellierung
 Durch den Einsatz des Subdivision Surface-Modifiers wird die Polygonanzahl des Grundmodells erhöht, wodurch eine feinere Geometrie entsteht. Diese bildet die Grundlage für die anschließende Detailausarbeitung mithilfe der Sculpting-Werkzeuge. [@blender-sculpting-tutorial]
@@ -114,7 +114,7 @@ Durch den Einsatz des Subdivision Surface-Modifiers wird die Polygonanzahl des G
 Um die Polygonanzahl zu minimieren, wird eine Low-Poly Kopie des bereits bestehenden Detailmodells erstellt. Bei sehr detailreichen Meshes (wie z.B. beim Kopf der Spielfigur) wird das Low-Poly Modell per Hand erstellt, damit keine wichtigen Details verloren gehen. Bei Komponenten mit wenigen Details reicht für die Retopology der Decimate Modifier.
 
 ### UV-Unwrapping
-Damit man eine Mesh texturieren und Maps (Normal, Diffuse, Emission etc.) verwenden kann, muss man sie zuvor "unwrappen". Dies kann man entweder per Hand oder wie in unserem Fall mit dem Smart UV Project machen.
+Damit man ein Mesh texturieren und Maps (Normal, Diffuse, Emission etc.) verwenden kann, muss man sie zuvor "unwrappen". Dies kann man entweder per Hand oder wie in unserem Fall mit dem Smart UV Project machen.
 [@blender-retopology]
 
 ### Texturierung
@@ -131,14 +131,14 @@ Mit einer Diffuse Map können wir die Base Color aller benutzten Materialien auf
 
 ### Spielfigur
 
-### Funktion
+#### Funktion
 Die Spielfigur ist das zentrale visuelle Element des Spiels und trägt maßgeblich zur Wiedererkennbarkeit sowie zur Atmosphäre der Simulation bei. Sie sollte daher nicht nur optisch ansprechend und stilistisch konsistent gestaltet sein, sondern auch funktional den Anforderungen des Spiels gerecht werden.
 
 Während der Simulation übernimmt die Spielfigur eine aktive Rolle im Spielgeschehen: Sie interagiert direkt mit dem Ball und beeinflusst dessen Bewegung. Aus diesem Grund ist eine saubere Geometrie essenziell, um ein realistisches und nachvollziehbares Spielverhalten zu gewährleisten.
 
 Darüber hinaus muss die Spielfigur performant umgesetzt sein, da sie mehrfach im Spiel vorkommt. Eine optimierte Polygonanzahl in Kombination mit geeigneten Texture- und Normal Maps ermöglicht es, eine hohe visuelle Qualität beizubehalten, ohne die Performance der Simulation negativ zu beeinflussen.
 
-### Design- und Stilentscheidung
+#### Design- und Stilentscheidung
 Das Spielfiguren-Asset sollte auf den ersten Blick als klassisches „Tischfußballmännchen“ erkennbar sein, um eine klare visuelle Zuordnung zum bekannten Spielprinzip zu ermöglichen. Charakteristische Merkmale wie die vereinfachte Körperform, die aufrechte Haltung sowie die reduzierte Detailtiefe dienen dabei als grundlegende Orientierung.
 
 Gleichzeitig wird bewusst auf direkte Referenzen realer Tischfußballfiguren verzichtet. Stattdessen wird das Design nach eigenen Vorstellungen entwickelt, um einen individuellen Stil zu schaffen und dem Asset einen eigenständigen Charakter zu verleihen. Die Formen und Proportionen sind leicht stilisiert, sodass die Spielfigur sowohl funktional als auch visuell ansprechend wirkt und sich harmonisch in das Gesamtbild der Simulation einfügt.
@@ -152,54 +152,59 @@ Die Modellierung beginnt mit dem Kopf. Zunächst wird mit der Tastenkombination 
 Als nächstes wird mit Sculpt Tools, wie beispielsweise dem Grab-Tool, die ungefähre Form des Kopfes geformt.
 
 ![Grundmodellierung der Kopf-Mesh [@foundation-head]](img/Lanzmaier/image-4.png)
+
 Hinweis: Bei der Grundmodellierung wählt man beim sculpten einen relativ großen Radius, da man nur die wichtigsten Merkmale hervorzuheben möchte. Um den Kopf gleichmäßig zu designen wird hier auch standardmäßig die Mesh-Symmetrie auf der X-Achse ausgewählt (rechts oben)
 
 Für genauere Merkmale verwendet man nochmal einen Subdivision-Surface-Modifier und aktiviert Shade-Smooth. Dadurch kann man mit Sculpt-Tools, wie dem Draw-Tool oder dem Grab-Tool mit geringem Radius, mit der Detailmodellierung starten.
 
-![Detailmodellierung der Kopf-Mesh [@detailed-foundation-head]](img/Lanzmaier/image-6.png)
+![Modellierung der Kopfform [@modelled-headshape]](img/Lanzmaier/image-6.png)
 
 Hinweis: Nase, Augen, Ohren, Hals, Augenbrauen und Haare werden in diesem Fall als eigene Mesh designt und später mit der Haupt-Mesh (dem Kopf) mit "Ctrl+J" gejoint und "geremesht". Wenn beim "remeshen" unschöne Kanten entstehen, können diese ausgeglättet werden, in dem man mit dem Grab-Tool "Shift" gedrückt hält und damit an den Kanten entlang fährt.
 
 Definition Remesh: Remesh in Blender ist ein Werkzeug, das die Geometrie eines 3D-Modells automatisch neu aufbaut, um eine gleichmäßigere Topologie zu erzeugen.
 
-*!Wichtig:* Man sollte während diesem Prozess immer wieder Backups in Form von Collections in Blender oder als .blend-Files machen. Das ist hier besonders wichtig, da das Mesh beim Modellieren schnell vom einen auf den anderen Moment nicht so wie erwünscht aussehen kann. [@blender-sculpting-tutorial]
+Man sollte während diesem Prozess immer wieder Backups in Form von Collections in Blender oder als .blend-Files machen. Das ist hier besonders wichtig, da das Mesh beim Modellieren schnell vom einen auf den anderen Moment nicht so wie erwünscht aussehen kann. [@blender-sculpting-tutorial]
 
-![Detailmodellierung der Kopf-Mesh2 [@detailed-foundation-head2]](img/Lanzmaier/image-7.png)
-![Detailmodellierung der Kopf-Mesh3 [@detailed-foundation-head3]](img/Lanzmaier/image-8.png)
-![Detailmodellierung der Kopf-Mesh4 [@detailed-foundation-head4]](img/Lanzmaier/image-9.png)
+![Erstellung erster Gesichtsfeatures [@modelled-face-features]](img/Lanzmaier/image-7.png)
+
+![Adjustierung und Verfeinerung der Gesichtsfeatures [@face-features-adjustments]](img/Lanzmaier/image-8.png)
+
+![Finalisierung der Gesichtsfeatures [@face-features-finalization]](img/Lanzmaier/image-9.png)
+
 ![High-Poly Modell der Kopf-Mesh [@high-poly-head]](img/Lanzmaier/image-10.png)
+
 Jetzt ist es wichtig, die Anzahl der Tris zu senken. Da der Kopf jetzt noch eine sehr hohe Anzahl an Polygonen hat, verwendet man "Retopology", um eine Low-Poly-Kopie der High-Poly-Mesh zu erstellen.
 
-Definition Retopology: Retopology ist der Prozess, bei dem man eine neue, saubere Low-Poly-Mesh auf der Oberfläche der High-Poly-Mesh erstellt, um das Modell performanter zu machen.
-
-![Retopology [@retopology]](img/Lanzmaier/image-11.png)
+![Erstellung einer Plane [@plane-created]](img/Lanzmaier/image-11.png)
 
 Zuerst wird eine Plane mit "Shift+A" erstellt und an der Oberfläche des High-Poly-Modells positioniert.
 
-![Retopolgy2 [@retopology2]](img/Lanzmaier/image-12.png)
+![Aktivierung von Retopology in den Mesh Properties [@retopology-activated]](img/Lanzmaier/image-12.png)
 
 Zunächst aktivieren wir das Retopology Kontrollkästchen, damit man die Plane während dem Edit Mode im Vordergrund sehen kann.
 
-![Retopology3 [@retopology3]](img/Lanzmaier/image-13.png)
+![Hinzufügen eines Shrinkwrap-Modifiers [@shrinkwrap-modifier-added]](img/Lanzmaier/image-13.png)
 
 Damit die Plane genau auf dem High-Poly-Modell liegt, wird der Shrinkwrap-Modifier verwendet. Beim Target kann man die High-Poly-Mesh auswählen.
 
-![Retopology4 [@retopology4]](img/Lanzmaier/image-15.png)
+![Hinzufügen eines Mirror-Modifiers [@mirror-modifier-added]](img/Lanzmaier/image-15.png)
 
 Jetzt wird der Mirror-Modifier verwendet, um die Plane an der x-Achse zu spiegeln. Das Target ist hier ebenfalls die High-Poly-Mesh.
 
-*!Wichtig:* Clipping muss aktiviert sein, damit sich die beiden Planes beim späteren "Extruden" in der Mitte treffen. Bis man mit der Retopology fertig ist, darf man den Mirror-Modifier nicht anwenden.
+Clipping muss aktiviert sein, damit sich die beiden Planes beim späteren "Extruden" in der Mitte treffen. Bis man mit der Retopology fertig ist, darf man den Mirror-Modifier nicht anwenden.
 
-![Retopology5 [@retopology4]](img/Lanzmaier/image-16.png)
+![Retopology [@retopology]](img/Lanzmaier/image-16.png)
 
 Im Edit Mode kann man die Kanten der Plane "extruden" und somit die High-Poly-Mesh nachbauen.
 
-*!Wichtig:* Bei sehr detailreichen Stellen, wie in diesem Fall die Ohren bzw. die Nase, müssen wir mit "Ctrl+R" mehrere "Loop-Cuts" hinzufügen um am Ende eine saubere Kopie der Mesh zu erhalten. Die Retopology der Augen und Augenbrauen erfolgt extra, da sie einem anderen Material zugehören.
+Bei sehr detailreichen Stellen, wie in diesem Fall die Ohren bzw. die Nase, müssen wir mit "Ctrl+R" mehrere "Loop-Cuts" hinzufügen um am Ende eine saubere Kopie der Mesh zu erhalten. Die Retopology der Augen und Augenbrauen erfolgt extra, da sie einem anderen Material zugehören.
 
 Definition Loop-Cuts: Loop-Cuts in Blender sind Werkzeuge, um neue Kanten (Loops) in ein Mesh einzufügen. [@blender-retopology]
 
 ### Die fertige Low-Poly-Version
 ![Low-Poly-Modell Kopf [@low-poly-head]](img/Lanzmaier/image-17.png)
+
+Durch diesen Prozess konnte die die Polygonanzahl des Kopfes von ca. 90000 Tris auf unter 2000 Tris minimiert werden, wodurch der Computer während der Simulation um einiges weniger rendern muss und mehr FPS (Frames Per Second) insbesonders auf leistungsschwachen Geräten möglich sind.
 
 Mit einer Normal Map kann man die Low-Poly-Mesh so aussehen lassen, als wäre sie High-Poly. Dafür erstellen wir eine Normal Map der High-Poly-Version und wenden sie an der Low-Poly-Version an.
 
@@ -207,24 +212,26 @@ Mit einer Normal Map kann man die Low-Poly-Mesh so aussehen lassen, als wäre si
 Der erste Schritt ist es, die Low-Poly-Version zu UV-Unwrappen. Dafür geht man in den "Edit-Mode", markiert alle Faces mit "A", drückt "U" und wählt "Smart UV Project" aus. Mit "Smart UV Project" versucht der Rechner so gut wie möglich aus der 3D-Mesh einzelne 2D-Parts zu machen und sie auf eine UV-Map zu projizieren. Der "Island Margin" sagt dem Rechner, wie groß der Abstand der einzelnen 2D-Parts sein soll. Ein guter Wert für den "Island Margin" ist 0.01, da er nicht zu klein ist, sodass sich die Texturen vermischen, aber auch nicht zu groß, sodass der Margin zu viel Platz auf der Map einnimmt.
 
 ![Normal Map im Shader Editor erstellen [@normal-map-shader-editor]](img/Lanzmaier/NormalMapCharacter1.png)
+
 Als Nächstes wechselt man von dem 3D-Viewport in den Shader-Editor und erstellt ein neues Material für die Low-Poly-Version. Mit "Shift+A" kann man neue "Nodes" hinzufügen. Für eine Normal Map braucht man eine "Image Texture Node" und eine "Normal Map Node". Mit einer "Image Texture Node" kann man die erstellten "Texture Maps" auf ein Material abbilden. Da es sich um eine Normal Map handelt, benötigt man zusätzlich eine "Normal Map Node", um die "Image Texture" mit dem Material verbinden zu können. Auf der "Image Texture Node" klickt man auf "New", um eine neue Textur zu erstellen. Als Auflösung wählt man standardmäßig 4096px. Beim "Color Space" benötigen wir bei der Normal Map keine Farben, deshalb wählen wir "Non Color".
 
 ![Normal Map der Low-Poly-Version erstellen [@create-normal-map]](img/Lanzmaier/NormalMapCharacter3.png)
+
 Die beiden Versionen, High-Poly und Low-Poly, müssen direkt aufeinander positioniert werden. Im Shader Editor muss die "Image Texture Node" ausgewählt werden, sodass man einen weißen Rand an der Node sehen kann. Oben rechts wählt man zuerst die High Poly-Version aus und dann die Low-Poly-Version indem man "Ctrl" gedrückt hält. Im "Render Tab" unter den "Mesh Properties" wählt man für die Render Engine "Cycles". Unter "Bake" wählt man "Bake Type Normal" und drückt auf Bake. In der "Image Editor Ansicht" kann man nun die fertige Normal Map der High-Poly-Mesh erkennen.
 
 ### Der fertige Kopf nach Anwendung der Normal Map
 ![Kopf nach Anwendung der Normal Map [@head-with-normal-map]](img/Lanzmaier/NormalMapCharacter4.png)
 
-Oberkörper und Unterkörper werden nach dem gleichen Prinzip wie der Kopf designt. Da diese beiden Komponenten allerdings nicht so detailreich sind, werden die Low-Poly-Modelle nicht per Hand designt, sondern der "Decimate Modifier" wird benutzt. [@blender-high-poly-to-low-poly]
+Oberkörper und Unterkörper werden nach dem gleichen Prinzip wie der Kopf designt. Da diese beiden Komponenten allerdings nicht so detailreich sind, werden die Low-Poly-Modelle nicht per Hand designt, sondern mit dem "Decimate Modifier". [@blender-high-poly-to-low-poly]
 
 ### Erstellung eines Texture Atlases für das Character-Asset
-Sobald das Mesh komplett ist und die gewünschte Anzahl der Polygone erreicht wird, sollte man alle genutzten Materialien in ein Material zusammenfassen. Dadurch muss die Engine weniger Draw-Calls an die Graphic API machen, was die Performance eindeutig erhöht.
+Sobald das Mesh komplett ist und die gewünschte Anzahl der Polygone erreicht wird, sollte man alle genutzten Materialien in ein Material zusammenfassen. Dadurch muss die Engine statt 5 einzelne Draw-Calls nur noch einen Draw-Call an die Graphic API machen, was die Performance eindeutig erhöhen kann.
 
 Zuerst muss man die Einzelteile des Assets in eine Mesh mit "Ctrl+J" zusammenführen. Dadurch kann man das Asset als eine Mesh UV-Unwrappen. Dass man alle Materials auf eine UV-Map bekommt, erstellt man in der "Shader Editor Ansicht" bei jedem Material ein "Image Texture Node". Am Einfachsten geht das, wenn man die Node in einem Material mit einer neuen Texture Map erstellt (4096px) und diese in die anderen Materials mit "Ctrl+C / Ctrl+V" kopiert.
 
 Der erste Schritt ist es, die Farben aller Materials auf eine Texture Map zu projizieren. Dafür muss man bei den Mesh-Properties unter "Render" für die Render Engine "Cycles" auswählen. Die "Samples" unter "Sampling" kann man auf 1 stellen. Das beschleunigt das Baken, hat aber keinen Einfluss auf das Endergebnis. Unter "Bake" wählt man für den Bake Type "Diffuse". Da wir nur die Farben projizieren wollen, können wir unter den "Contributions" "Direct" und "Indirect" weglassen und nur "Color" anklicken. Bevor man auf "Bake" klickt, sollte man sicherstellen, dass man die "Image Texture Node" bei jedem Material angeklickt hat und für "Color Space" "sRGB" ausgewählt hat. Derselbe Vorgang muss anschließend auch für die Bake Types „Normal“ und „Roughness“ durchgeführt werden, da das Character-Asset derzeit Normal Maps auf mehrere Materialien verteilt hat und zudem unterschiedliche Roughness-Werte verwendet.
 
-*!Wichtig:* Unter der "Image Editor Ansicht" muss man jede neu erstellte Texture Map unter "Image -> Save As" abspeichern, weil das "Image Texture Node" nach jedem Baking-Vorgang die Texture Map überschreibt.
+Unter der "Image Editor Ansicht" muss man jede neu erstellte Texture Map unter "Image -> Save As" abspeichern, weil das "Image Texture Node" nach jedem Baking-Vorgang die Texture Map überschreibt.
 
 ![Diffuse Map Character-Asset [@diffuse-map-character]](img/Lanzmaier/CharacterColorMap.png)
 
@@ -274,20 +281,20 @@ Als Grundlage für die Tischplatte erstellt man mit "Shift+A" ein neues Cube-Mes
 
 Für die Tore und die Löcher, an denen der Ball reingeworfen wird, verwendet man die gleiche Methode. Zuerst werden die Formen als separate Meshes erstellt. Mit dem "Boolean Modifier" kann man jetzt die Löcher erschaffen, in dem man die separaten Meshes als Target auswählt. Auch für die Bodenmarkierungen werden zuerst dementsprechende Meshes erstellt und per "Boolean Modifier" hinzugefügt. Für ein schöneres Aussehen, werden die Bodenmarkierungen mit "E" nach unten extrudiert. [@cut-holes-in-mesh]
 
-*!Wichtig:* Damit die Hitbox für das Spielfeld in der Engine richtig erstellt werden kann, muss über den Bodenmarkierungen, die jetzt weiter unten liegen, ein unsichtbarer Boden erstellt werden. Dafür erstellt man ein neues Material und stellt den "Alpha Value" auf 0.
+Damit die Hitbox für das Spielfeld in der Engine richtig erstellt werden kann, muss über den Bodenmarkierungen, die jetzt weiter unten liegen, ein unsichtbarer Boden erstellt werden. Dafür erstellt man ein neues Material und stellt den "Alpha Value" auf 0.
 
 ### Optimierung und Export in die Game-Engine
  
 ### Tischplatte
 Da das bereits existierende Skript für die Tischplatte so funktioniert, dass die Physik und die Position separat für die Tischfläche, die Wände und die Tore aufgesetzt werden, muss man diese Teile der Tischplatte voneinander getrennt als "PackedScenes" exportieren.
 
-*!Wichtig:* Beim Exportieren muss man darauf achten, dass der "Origin" der Mesh im Mittelpunkt liegt und keine unsaubere Topologie (eher wichtig bei der Character-Mesh, da die Tischplatte sowieso wenig Polygone und Edge-Loops beinhaltet) vorliegt. Es kann sonst passieren, dass das Mesh nach dem Export in der Engine eine falsche Position annimmt oder visuelle Bugs vorkommen.
+Beim Exportieren muss man darauf achten, dass der "Origin" der Mesh im Mittelpunkt liegt und keine unsaubere Topologie (eher wichtig bei der Character-Mesh, da die Tischplatte sowieso wenig Polygone und Edge-Loops beinhaltet) vorliegt. Es kann sonst passieren, dass das Mesh nach dem Export in der Engine eine falsche Position annimmt oder visuelle Bugs vorkommen.
 
 In Godot kann man aus einer PackedScene ein "MeshArray" Objekt erstellen, in dem man aus der PackedScene eine sogenannte "Inherited Scene" erstellt und diese dann wiederum als "MeshArray" abspeichert. Dieses MeshArray kann man einfach an eine "MeshInstance3D" anhängen und somit in der Simulation darstellen. Die Collision Shape für das Mesh kann man in der 3D-Ansicht generieren lassen.
 
 Im Skript lässt sich die Form einer 3D Node folgendermaßen verändern:
 
-```
+```{caption="Skalierung der Table-Mesh" .cs}
 var tableMesh = _tableBody.GetNode<MeshInstance3D>("TableMesh");
 
 // Prüfen, ob Mesh in der Scene vorhanden ist.
@@ -306,11 +313,11 @@ if (tableMesh != null)
 	}
 ```
 
-Zuerst wird sich die Referenz der Mesh mit .GetNode geholt. Die gewünschten Dimensionen müssen mit den aktuellen Dimensionen der Mesh dividiert werden, da der neue Vektor mit den Maßen der bereits bestehenden Mesh multipliziert wird. Wenn die bereits bestehenden Maße nicht 1x1x1 entsprechen, nimmt das Mesh eine unerwünschte Form an. [@get-dimensions-of-mesh] [@set-dimensions-of-mesh]
+Zuerst wird sich die Referenz der Mesh mit ```.GetNode``` geholt. Die gewünschten Dimensionen müssen mit den aktuellen Dimensionen der Mesh dividiert werden, da der neue Vektor mit den Maßen der bereits bestehenden Mesh multipliziert wird. Wenn die bereits bestehenden Maße nicht 1x1x1 entsprechen, nimmt das Mesh eine unerwünschte Form an. [@get-dimensions-of-mesh] [@set-dimensions-of-mesh]
 
 Die Position von 3D Nodes im dreidimensionalen Raum lässt sich folgendermaßen ändern:
 
-```
+```{caption="Setzen der Position einer Mesh" .cs}
 private void SetupWall(string wallName, Vector3 position, float length, float height, float thickness)
 {
 	...
@@ -323,14 +330,14 @@ private void SetupWall(string wallName, Vector3 position, float length, float he
 ### Figuren und Drehstäbe
 Die Figuren und Drehstäbe lassen sich leicht in die Simulation miteinbinden, da man sie als ein ganzes Mesh exportiert.
 
-```
+```{caption="Initialisierung der Bar- und Character-Mesh" .cs}
 _rodMesh = GetNode<MeshInstance3D>("Bar");
 _characterMesh = GetNode<MeshInstance3D>("Character");
 ```
 
 In Adobe Photoshop kann man einen bestimmten Farbton auf einem Bild ändern, in dem man in die Farbton/Sättigung-Einstellungen geht und den gewünschten Farbton im Bild auswählt. Der Farbton lässt sich dann nach Belieben umstellen. Für das Figuren-Asset muss im Skript überprüft werden, zu welchem Team sie gehört (rot oder blau), damit man die dementsprechende Farbtextur anwenden kann.
 
-```
+```{caption="Setzen der Texturen für die Character" .cs}
 // Farbtexturen in die Figure Scene exportieren
 [Export] public Texture2D RedTexture;
 [Export] public Texture2D BlueTexture;
@@ -362,7 +369,7 @@ var material = new StandardMaterial3D();
 
 Wenn der Drehstab dem Gegner gehört (Team Blau), muss dieser in die andere Richtung zeigen.
 
-```
+```{caption="Rotieren der Drehstäbe" .cs}
 if(Team == GameManager.Team.Blue) {
 	_rodMesh.RotationDegrees = new Vector3(0, -90, 90);
 }
