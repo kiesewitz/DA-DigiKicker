@@ -86,13 +86,15 @@ Für die Tischfußball-Simulation müssen die erstellten Assets sowohl optischen
 Das Ziel war es von Beginn an, einen einheitlichen Stil für alle Assets zu bewahren. Zunächst war geplant, dass alle Assets anhand realistischer Referenzen nachgestaltet werden. Das Problem hierbei war jedoch, dass beim reinen Nachbauen bereits existierender Gegenstände die Innovation fehlte. Das endgültige Stilkonzept der Assets entwickelte sich daher zu einer Mischung aus Realismus und Comic-Stil.
 
 ### Geringe Polygonanzahl zur Sicherstellung der Performance
-In der Simulation ist Echtzeit-Performance extrem wichtig. Um das zu erreichen, darf die erforderliche Rechenleistung nicht zu hoch sein und das Rendern der Assets sollte während der Simulation sehr schnell erfolgen. Aus diesem Grund werden die Game-Assets so optimiert, dass ihre Polygonanzahl so gering wie nur möglich ist.
+In der Simulation ist Echtzeit-Performance extrem wichtig. Um das zu erreichen, darf die erforderliche Rechenleistung nicht zu hoch sein und das Rendern der Assets sollte während der Simulation sehr schnell erfolgen. Aus diesem Grund werden die Game-Assets so optimiert, dass ihre Polygonanzahl so gering wie nur möglich ist. 
 
-*!Wichtig:* Die GPU rechnet mit Triangles. 1 Polygon = 2 Tris.
+Die GPU rechnet mit Triangles. 1 Polygon = 2 Tris.
 Da stark auf die Performance geachtet werden soll und das Ziel verfolgt wird, dass die Simulation auf jedem Rechner laufen kann, wurde als Richtwert eine maximale Gesamtanzahl von etwa 250.000 Triangles festgelegt. [@triangle-count-for-good-performance]
 
 ### Korrekte Skalierung im Verhältnis zueinander
-Damit die Simulation gut funktioniert, müssen die einzelnen Komponenten im Größenverhältnis zueinander passen. Dies wird später in der Godot-Engine angepasst.
+Damit die Simulation gut funktioniert, müssen die einzelnen Komponenten in einem konsistenten Größenverhältnis zueinander stehen. Die in Blender erstellte Spielfigur dient dabei als Referenz für die Dimensionierung der übrigen Assets.
+
+Beim Export in die Godot-Engine kann es aufgrund unterschiedlicher Maßstäbe zu Abweichungen in der Skalierung kommen. Daher wird die finale Anpassung direkt in Godot vorgenommen, indem die Skalierung der jeweiligen Nodes im Skript über die Transform-Eigenschaften (mit ```.Scale```) festgelegt und an die Referenz angepasst wird.
 
 ### Kompatibilität mit der verwendeten Game-Engine
 Die grafischen Komponenten werden vor der Fertigstellung häufig in der Godot-Engine getestet, um die Funktionalität sicherzustellen und um visuelle Bugs zu vermeiden. Wenn es beispielsweise Probleme mit den Hitboxen gibt oder das Asset in der Engine nicht so aussieht wie erwünscht, werden Änderungen vorgenommen.
